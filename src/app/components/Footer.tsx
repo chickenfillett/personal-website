@@ -41,6 +41,12 @@ export default function Footer() {
             >
               {t("footer.privacy")}
             </Link>
+            <Link
+              href="/products/adhd-focus-timer/refund"
+              className="text-muted text-sm hover:text-foreground transition-colors duration-200"
+            >
+              {t("footer.refund")}
+            </Link>
           </div>
         </div>
         <div className="mt-12 pt-6 border-t border-white/5 text-muted text-xs">

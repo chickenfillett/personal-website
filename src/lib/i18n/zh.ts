@@ -281,6 +281,39 @@ export const zh = {
     },
     backButton: "返回产品页",
   },
+  productRefund: {
+    intro: {
+      title: "退款政策",
+      description: "关于 ADHD Focus Timer 赞赏与退款的相关说明。",
+    },
+    sections: {
+      freeDownload: {
+        title: "免费下载",
+        description: "ADHD Focus Timer 是一款免费下载使用的桌面软件。所有核心功能均可免费使用，无需付费即可完整体验。",
+      },
+      voluntary: {
+        title: "自愿赞赏",
+        description: "如果你觉得这款工具对你有帮助，可以选择通过赞赏来表达支持。赞赏是完全自愿的行为，不是购买行为，也不会解锁任何额外功能。",
+      },
+      noRefund: {
+        title: "原则上不支持退款",
+        description: "由于赞赏是自愿的支持行为，而非商品购买，原则上我们不支持退款。你的每一份支持都会被认真对待，用于持续改进这款工具。",
+      },
+      special: {
+        title: "特殊情况",
+        description: "如果你在赞赏后的 72 小时内遇到特殊情况（如重复支付、误操作等），可以通过邮件联系我说明情况，我会尽力协助处理。",
+      },
+      responseTime: {
+        title: "处理时效",
+        description: "收到你的邮件后，我会在 48 小时内回复。如果确认属于特殊情况，我会尽快为你处理退款事宜。",
+      },
+      contact: {
+        title: "联系方式",
+        description: "如需沟通退款相关事宜，请发送邮件至 3371436706@qq.com，并附上支付凭证和简要说明。",
+      },
+    },
+    backButton: "返回产品页",
+  },
   footer: {
     name: "Chicken Fillet",
     subtitle: "极简桌面工具的设计者",
@@ -288,6 +321,7 @@ export const zh = {
     products: "产品",
     contact: "联系",
     privacy: "隐私政策",
+    refund: "退款政策",
     copyright: "版权所有。",
   },
   language: {

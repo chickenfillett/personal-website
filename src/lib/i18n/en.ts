@@ -281,6 +281,39 @@ export const en = {
     },
     backButton: "Back to Product",
   },
+  productRefund: {
+    intro: {
+      title: "Refund Policy",
+      description: "Information about tips and refunds for ADHD Focus Timer.",
+    },
+    sections: {
+      freeDownload: {
+        title: "Free to Download",
+        description: "ADHD Focus Timer is a desktop software available for free download. All core features are fully accessible without any payment.",
+      },
+      voluntary: {
+        title: "Voluntary Tips",
+        description: "If you find this tool helpful, you may choose to send a tip as a gesture of support. Tipping is entirely voluntary — it is not a purchase and does not unlock any additional features.",
+      },
+      noRefund: {
+        title: "No Refunds in Principle",
+        description: "Since tips are voluntary acts of support rather than product purchases, we generally do not offer refunds. Every contribution is deeply appreciated and goes toward the continued improvement of this tool.",
+      },
+      special: {
+        title: "Special Circumstances",
+        description: "If you encounter a special situation within 72 hours of tipping (such as duplicate payments or accidental transactions), please reach out via email and I'll do my best to help.",
+      },
+      responseTime: {
+        title: "Response Time",
+        description: "I will respond to your email within 48 hours. If the situation qualifies as a special case, I will process the refund as quickly as possible.",
+      },
+      contact: {
+        title: "Contact",
+        description: "For refund-related inquiries, please email 3371436706@qq.com with your payment receipt and a brief explanation.",
+      },
+    },
+    backButton: "Back to Product",
+  },
   footer: {
     name: "Chicken Fillet",
     subtitle: "Designer of Minimal Desktop Tools",
@@ -288,6 +321,7 @@ export const en = {
     products: "Products",
     contact: "Contact",
     privacy: "Privacy Policy",
+    refund: "Refund Policy",
     copyright: "All rights reserved.",
   },
   language: {
