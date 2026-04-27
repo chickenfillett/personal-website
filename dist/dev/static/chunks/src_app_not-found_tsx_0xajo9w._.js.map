@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/nemon/Documents/trae_projects/persenalwebsite/src/app/not-found.tsx"],"sourcesContent":["\"use client\";\n\nimport Link from \"next/link\";\nimport { useLanguage } from \"@/lib/i18n/context\";\n\nexport default function NotFound() {\n  const { t } = useLanguage();\n\n  return (\n    <div className=\"flex flex-col items-center justify-center min-h-[60vh] px-6\">\n      <h1 className=\"text-4xl md:text-6xl font-medium text-foreground\">{t(\"notFound.code\")}</h1>\n      <p className=\"mt-4 text-muted\">{t(\"notFound.message\")}</p>\n      <Link\n        href=\"/\"\n        className=\"mt-8 text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background transition-colors duration-200\"\n      >\n        {t(\"notFound.button\")}\n      </Link>\n    </div>\n  );\n}\n"],"names":["NotFound","t","className","href"],"mappings":";;;;;AAEA;AACA;;;AAHA;;;AAKe,SAASA;;IACtB,MAAM,EAAEC,CAAC,EAAE,GAAG,IAAA,gJAAW;IAEzB,qBACE,6LAAC;QAAIC,WAAU;;0BACb,6LAAC;gBAAGA,WAAU;0BAAoDD,EAAE;;;;;;0BACpE,6LAAC;gBAAEC,WAAU;0BAAmBD,EAAE;;;;;;0BAClC,6LAAC,0KAAI;gBACHE,MAAK;gBACLD,WAAU;0BAETD,EAAE;;;;;;;;;;;;AAIX;GAfwBD;;QACR,gJAAW;;;KADHA"}}]
-}
