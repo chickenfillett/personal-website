@@ -59,6 +59,11 @@ export const en = {
       description: "I'll update here when there's news.",
       button: "Contact Me",
     },
+    policyLinks: {
+      privacy: "Privacy Policy",
+      refund: "Refund Policy",
+      payment: "Payment Info",
+    },
   },
   about: {
     intro: {
@@ -312,7 +317,43 @@ export const en = {
         description: "For refund-related inquiries, please email 3371436706@qq.com with your payment receipt and a brief explanation.",
       },
     },
+    paymentGuide: "View Payment Guide",
     backButton: "Back to Product",
+  },
+  productPayment: {
+    intro: {
+      title: "Payment Information",
+      description: "Information about how to support ADHD Focus Timer via PayPal.",
+    },
+    sections: {
+      freeProduct: {
+        title: "Free to Use",
+        description: "ADHD Focus Timer is a desktop software that is free to download and use. All core features are available at no cost for a complete experience.",
+      },
+      voluntarySupport: {
+        title: "Voluntary Support",
+        description: "If you find this tool helpful, you may choose to support the developer via PayPal. Tipping is voluntary and helps sustain the continued development of this independent project.",
+      },
+      paymentMethod: {
+        title: "Payment Method",
+        description: "We use PayPal.me link to receive support payments. You can transfer funds to the developer through the following method:",
+        paypalMe: "PayPal.me Link",
+        paypalMeDescription: "You can visit PayPal.me/chickenfillet (or similar link) to transfer funds directly to the developer.",
+      },
+      notPurchase: {
+        title: "This is Not a Purchase",
+        description: "Tipping is not purchasing software — the software itself is free. Your support is a contribution to independent development work that sustains the ongoing development and maintenance of the product.",
+      },
+      paymentFlow: {
+        title: "Payment Flow",
+        description: "User visits product page → clicks 'Support Developer' → redirects to PayPal.me link → completes PayPal transfer. The entire process is simple and secure, with transaction protection provided by PayPal.",
+      },
+      contact: {
+        title: "Contact",
+        description: "If you encounter any issues during the payment process, you can email 3371436706@qq.com for assistance.",
+      },
+    },
+    backButton: "Back to Refund Policy",
   },
   footer: {
     name: "Chicken Fillet",

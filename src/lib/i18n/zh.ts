@@ -59,6 +59,11 @@ export const zh = {
       description: "有新消息时，我会在这里更新。",
       button: "联系我",
     },
+    policyLinks: {
+      privacy: "隐私政策",
+      refund: "退款政策",
+      payment: "支付说明",
+    },
   },
   about: {
     intro: {
@@ -312,7 +317,43 @@ export const zh = {
         description: "如需沟通退款相关事宜，请发送邮件至 3371436706@qq.com，并附上支付凭证和简要说明。",
       },
     },
+    paymentGuide: "查看支付说明",
     backButton: "返回产品页",
+  },
+  productPayment: {
+    intro: {
+      title: "支付说明",
+      description: "关于如何通过 PayPal 支持 ADHD Focus Timer 的说明。",
+    },
+    sections: {
+      freeProduct: {
+        title: "产品免费使用",
+        description: "ADHD Focus Timer 是一款免费下载和使用的桌面软件。所有核心功能均免费提供，无需支付任何费用即可完整体验。",
+      },
+      voluntarySupport: {
+        title: "自愿赞赏",
+        description: "如果你觉得这款工具对你有帮助，可以选择通过 PayPal 向开发者表达支持。赞赏是自愿的行为，用于支持独立开发者的持续工作。",
+      },
+      paymentMethod: {
+        title: "支付方式",
+        description: "我们使用 PayPal.me 链接接收支持款项。你可以通过以下方式向我转账支持：",
+        paypalMe: "PayPal.me 链接",
+        paypalMeDescription: "你可以访问 PayPal.me/chickenfillet（或类似链接）直接向开发者转账。",
+      },
+      notPurchase: {
+        title: "这不是购买",
+        description: "赞赏不是购买软件——软件本身是免费的。赞赏是对独立开发工作的支持，用于维持产品的持续开发和维护。",
+      },
+      paymentFlow: {
+        title: "支付流程",
+        description: "用户访问产品页面 → 点击「支持开发者」→ 跳转到 PayPal.me 链接 → 完成 PayPal 转账。整个过程简单、安全，由 PayPal 提供交易保障。",
+      },
+      contact: {
+        title: "联系方式",
+        description: "如果你在支付过程中遇到任何问题，可以发送邮件至 3371436706@qq.com 寻求帮助。",
+      },
+    },
+    backButton: "返回退款政策",
   },
   footer: {
     name: "Chicken Fillet",

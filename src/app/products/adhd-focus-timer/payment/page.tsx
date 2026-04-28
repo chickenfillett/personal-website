@@ -3,17 +3,17 @@
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 
-export default function ProductRefund() {
+export default function ProductPayment() {
   const { t } = useLanguage();
 
   return (
     <div className="flex flex-col">
       <section className="max-w-[1200px] mx-auto px-6 md:px-12 pt-24 pb-16 md:pt-36 md:pb-24">
         <h1 className="text-3xl md:text-5xl font-medium tracking-tight text-foreground">
-          {t("productRefund.intro.title")}
+          {t("productPayment.intro.title")}
         </h1>
         <p className="mt-6 text-lg text-muted max-w-2xl leading-relaxed">
-          {t("productRefund.intro.description")}
+          {t("productPayment.intro.description")}
         </p>
       </section>
 
@@ -21,48 +21,46 @@ export default function ProductRefund() {
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
           <div className="max-w-2xl space-y-10">
             <div>
-              <h2 className="text-foreground font-medium">{t("productRefund.sections.freeDownload.title")}</h2>
+              <h2 className="text-foreground font-medium">{t("productPayment.sections.freeProduct.title")}</h2>
               <p className="mt-3 text-muted leading-relaxed">
-                {t("productRefund.sections.freeDownload.description")}
+                {t("productPayment.sections.freeProduct.description")}
               </p>
             </div>
             <div>
-              <h2 className="text-foreground font-medium">{t("productRefund.sections.voluntary.title")}</h2>
+              <h2 className="text-foreground font-medium">{t("productPayment.sections.voluntarySupport.title")}</h2>
               <p className="mt-3 text-muted leading-relaxed">
-                {t("productRefund.sections.voluntary.description")}
+                {t("productPayment.sections.voluntarySupport.description")}
               </p>
             </div>
             <div>
-              <h2 className="text-foreground font-medium">{t("productRefund.sections.noRefund.title")}</h2>
+              <h2 className="text-foreground font-medium">{t("productPayment.sections.paymentMethod.title")}</h2>
               <p className="mt-3 text-muted leading-relaxed">
-                {t("productRefund.sections.noRefund.description")}
+                {t("productPayment.sections.paymentMethod.description")}
+              </p>
+              <div className="mt-4 p-4 bg-surface border border-white/10">
+                <p className="text-foreground font-medium">{t("productPayment.sections.paymentMethod.paypalMe")}</p>
+                <p className="mt-2 text-muted text-sm">
+                  {t("productPayment.sections.paymentMethod.paypalMeDescription")}
+                </p>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-foreground font-medium">{t("productPayment.sections.notPurchase.title")}</h2>
+              <p className="mt-3 text-muted leading-relaxed">
+                {t("productPayment.sections.notPurchase.description")}
               </p>
             </div>
             <div>
-              <h2 className="text-foreground font-medium">{t("productRefund.sections.special.title")}</h2>
+              <h2 className="text-foreground font-medium">{t("productPayment.sections.paymentFlow.title")}</h2>
               <p className="mt-3 text-muted leading-relaxed">
-                {t("productRefund.sections.special.description")}
+                {t("productPayment.sections.paymentFlow.description")}
               </p>
             </div>
             <div>
-              <h2 className="text-foreground font-medium">{t("productRefund.sections.responseTime.title")}</h2>
+              <h2 className="text-foreground font-medium">{t("productPayment.sections.contact.title")}</h2>
               <p className="mt-3 text-muted leading-relaxed">
-                {t("productRefund.sections.responseTime.description")}
+                {t("productPayment.sections.contact.description")}
               </p>
-            </div>
-            <div>
-              <h2 className="text-foreground font-medium">{t("productRefund.sections.contact.title")}</h2>
-              <p className="mt-3 text-muted leading-relaxed">
-                {t("productRefund.sections.contact.description")}
-              </p>
-            </div>
-            <div className="pt-4">
-              <Link
-                href="/products/adhd-focus-timer/payment"
-                className="text-sm text-muted hover:text-foreground transition-colors duration-200 underline"
-              >
-                {t("productRefund.paymentGuide")}
-              </Link>
             </div>
           </div>
         </div>
@@ -71,10 +69,10 @@ export default function ProductRefund() {
       <section className="border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24 text-center">
           <Link
-            href="/products/adhd-focus-timer"
+            href="/products/adhd-focus-timer/refund"
             className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background transition-colors duration-200"
           >
-            {t("productRefund.backButton")}
+            {t("productPayment.backButton")}
           </Link>
         </div>
       </section>

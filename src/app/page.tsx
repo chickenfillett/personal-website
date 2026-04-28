@@ -140,6 +140,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Policy Links */}
+      <section className="border-t border-white/5">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+            <Link
+              href="/products/adhd-focus-timer/privacy"
+              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
+            >
+              {t("home.policyLinks.privacy")}
+            </Link>
+            <Link
+              href="/products/adhd-focus-timer/refund"
+              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
+            >
+              {t("home.policyLinks.refund")}
+            </Link>
+            <Link
+              href="/products/adhd-focus-timer/payment"
+              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
+            >
+              {t("home.policyLinks.payment")}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36 text-center">
