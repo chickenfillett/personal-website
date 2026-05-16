@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 
 const imageMap = {
@@ -248,12 +249,12 @@ export default function EnergyFlowPage() {
             <span className="text-sm text-muted border border-white/10 px-6 py-3">
               {t("energyflowDetail.cta.status")}
             </span>
-            <a
+            <Link
                 href="/contact"
                 className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
               >
                 {t("energyflowDetail.cta.button")}
-              </a>
+              </Link>
           </div>
         </div>
       </section>

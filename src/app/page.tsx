@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 
 const CAROUSEL_INTERVAL = 6000;
+const PRODUCT_COUNT = 2;
 
 const energyflowImages = {
   zh: "/photo/energyflow-zh-1.png",
@@ -19,6 +21,8 @@ export default function Home() {
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const activeIndexRef = useRef(0);
+  const isAnimatingRef = useRef(false);
 
   const products = [
     {
@@ -52,19 +56,24 @@ export default function Home() {
   ];
 
   const goTo = useCallback((index: number) => {
-    if (isAnimating) return;
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
     setIsAnimating(true);
     setActiveIndex(index);
-    setTimeout(() => setIsAnimating(false), 500);
-  }, [isAnimating]);
+    activeIndexRef.current = index;
+    setTimeout(() => {
+      isAnimatingRef.current = false;
+      setIsAnimating(false);
+    }, 500);
+  }, []);
 
   const next = useCallback(() => {
-    goTo((activeIndex + 1) % products.length);
-  }, [activeIndex, products.length, goTo]);
+    goTo((activeIndexRef.current + 1) % PRODUCT_COUNT);
+  }, [goTo]);
 
   const prev = useCallback(() => {
-    goTo((activeIndex - 1 + products.length) % products.length);
-  }, [activeIndex, products.length, goTo]);
+    goTo((activeIndexRef.current - 1 + PRODUCT_COUNT) % PRODUCT_COUNT);
+  }, [goTo]);
 
   useEffect(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -156,12 +165,12 @@ export default function Home() {
                 ))}
               </div>
               <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-6">
-                <a
+                <Link
                   href={current.href}
                   className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
                 >
                   {current.cta}
-                </a>
+                </Link>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={prev}
@@ -260,7 +269,7 @@ export default function Home() {
             {t("home.products.title")}
           </h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a
+            <Link
               href="/products"
               className="p-6 card-premium group hover-lift flex flex-col items-center justify-center text-center"
             >
@@ -270,8 +279,8 @@ export default function Home() {
               <span className="mt-3 inline-block text-xs text-muted border border-white/10 px-3 py-1">
                 {t("home.products.browse")}
               </span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products/energyflow"
               className="p-6 card-premium group hover-lift"
             >
@@ -295,7 +304,7 @@ export default function Home() {
               <span className="mt-4 inline-block text-xs text-muted border border-white/10 px-3 py-1">
                 {t("products.energyflow.details")}
               </span>
-            </a>
+            </Link>
             <div className="p-6 card-premium">
               <h3 className="text-foreground font-medium">{t("home.products.product3.title")}</h3>
               <p className="mt-3 text-muted text-sm leading-[1.75]">
@@ -312,24 +321,24 @@ export default function Home() {
       <section className="border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
-            <a
+            <Link
               href="/products/adhd-focus-timer/privacy"
               className="text-sm text-muted hover:text-foreground transition-colors duration-200"
             >
               {t("home.policyLinks.privacy")}
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products/adhd-focus-timer/refund"
               className="text-sm text-muted hover:text-foreground transition-colors duration-200"
             >
               {t("home.policyLinks.refund")}
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products/adhd-focus-timer/payment"
               className="text-sm text-muted hover:text-foreground transition-colors duration-200"
             >
               {t("home.policyLinks.payment")}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -342,12 +351,12 @@ export default function Home() {
           <p className="mt-4 text-muted">
             {t("home.cta.description")}
           </p>
-          <a
+          <Link
             href="/contact"
             className="mt-8 inline-block text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
           >
             {t("home.cta.button")}
-          </a>
+          </Link>
         </div>
       </section>
     </div>

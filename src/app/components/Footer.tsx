@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 
 export default function Footer() {
@@ -16,36 +17,36 @@ export default function Footer() {
             </span>
           </div>
           <div className="flex items-center gap-6">
-            <a
+            <Link
               href="/about"
               className="text-muted text-sm hover:text-foreground transition-colors duration-200"
             >
               {t("footer.about")}
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products"
               className="text-muted text-sm hover:text-foreground transition-colors duration-200"
             >
               {t("footer.products")}
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contact"
               className="text-muted text-sm hover:text-foreground transition-colors duration-200"
             >
               {t("footer.contact")}
-            </a>
-            <a
+            </Link>
+            <Link
               href="/privacy"
               className="text-muted text-sm hover:text-foreground transition-colors duration-200"
             >
               {t("footer.privacy")}
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products/adhd-focus-timer/refund"
               className="text-muted text-sm hover:text-foreground transition-colors duration-200"
             >
               {t("footer.refund")}
-            </a>
+            </Link>
           </div>
         </div>
         <div className="mt-12 pt-6 border-t border-white/5 text-muted text-xs">

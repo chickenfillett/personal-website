@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 
 const energyflowImages = {
@@ -26,7 +27,7 @@ export default function Products() {
       <section className="border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a
+            <Link
               href="/products/adhd-focus-timer"
               className="p-6 bg-surface group hover:border-white/20 border border-transparent transition-colors duration-200"
             >
@@ -39,8 +40,8 @@ export default function Products() {
               <span className="mt-6 inline-block text-xs text-muted border border-white/10 px-3 py-1">
                 {t("products.adhd.details")}
               </span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/products/energyflow"
               className="p-6 bg-surface group hover:border-white/20 border border-transparent transition-colors duration-200"
             >
@@ -64,7 +65,7 @@ export default function Products() {
               <span className="mt-4 inline-block text-xs text-muted border border-white/10 px-3 py-1">
                 {t("products.energyflow.details")}
               </span>
-            </a>
+            </Link>
             <div className="p-6 bg-surface">
               <h3 className="text-foreground font-medium">{t("home.products.product3.title")}</h3>
               <p className="mt-3 text-muted text-sm leading-relaxed">

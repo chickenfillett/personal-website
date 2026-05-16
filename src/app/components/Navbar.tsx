@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 
 export default function Navbar() {
@@ -15,18 +16,18 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-sm border-b border-white/5">
       <nav className="max-w-[1200px] mx-auto px-6 md:px-12 h-14 flex items-center justify-between">
-        <a href="/" className="text-foreground font-medium tracking-tight">
+        <Link href="/" className="text-foreground font-medium tracking-tight">
           Chicken Fillet
-        </a>
+        </Link>
         <ul className="flex items-center gap-6 md:gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className="text-sm text-muted hover:text-foreground transition-colors duration-200"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
           <li>
