@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/lib/i18n/context";
 
@@ -267,18 +266,18 @@ export default function ADHDFocusTimerPage() {
             <span className="text-sm text-muted border border-white/10 px-6 py-3">
               {t("productDetail.cta.status")}
             </span>
-            <Link
+            <a
               href="/contact"
               className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
             >
               {t("productDetail.cta.button")}
-            </Link>
-            <Link
+            </a>
+            <a
               href="/products/adhd-focus-timer/privacy"
               className="text-sm text-muted hover:text-foreground transition-colors duration-200"
             >
               {t("productDetail.cta.privacy")}
-            </Link>
+            </a>
           </div>
         </div>
       </section>

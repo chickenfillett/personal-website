@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 
 export default function About() {
@@ -94,12 +93,12 @@ export default function About() {
           <p className="mt-4 text-muted">
             {t("about.cta.description")}
           </p>
-          <Link
+          <a
             href="/contact"
             className="mt-8 inline-block text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background transition-colors duration-200"
           >
             {t("about.cta.button")}
-          </Link>
+          </a>
         </div>
       </section>
     </div>

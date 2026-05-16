@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 
 export default function ProductRefund() {
@@ -57,12 +56,12 @@ export default function ProductRefund() {
               </p>
             </div>
             <div className="pt-4">
-              <Link
+              <a
                 href="/products/adhd-focus-timer/payment"
                 className="text-sm text-muted hover:text-foreground transition-colors duration-200 underline"
               >
                 {t("productRefund.paymentGuide")}
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -70,12 +69,12 @@ export default function ProductRefund() {
 
       <section className="border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24 text-center">
-          <Link
+          <a
             href="/products/adhd-focus-timer"
             className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background transition-colors duration-200"
           >
             {t("productRefund.backButton")}
-          </Link>
+          </a>
         </div>
       </section>
     </div>

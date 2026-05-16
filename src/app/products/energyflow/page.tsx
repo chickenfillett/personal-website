@@ -1,16 +1,31 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/lib/i18n/context";
+
+const imageMap = {
+  zh: {
+    quickLog: "/photo/energyflow-zh-1.png",
+    themeSwitch: "/photo/energyflow-zh-2.png",
+    desktopAlwaysOn: "/photo/energyflow-zh-5.png",
+    analytics: "/photo/energyflow-zh-4.png",
+    privacy: "/photo/energyflow-zh-3.png",
+  },
+  en: {
+    quickLog: "/photo/energyflow-en-2.png",
+    themeSwitch: "/photo/energyflow-en-5.png",
+    desktopAlwaysOn: "/photo/energyflow-en-1.png",
+    analytics: "/photo/energyflow-en-4.png",
+    privacy: "/photo/energyflow-en-3.png",
+  },
+} as const;
+
+type ImageKey = keyof typeof imageMap.zh;
 
 export default function EnergyFlowPage() {
   const { locale, t } = useLanguage();
 
-  const getImageSrc = (index: number) =>
-    locale === "zh"
-      ? `/photo/energyflow-zh-${index}.png`
-      : `/photo/energyflow-en-${index}.png`;
+  const img = (key: ImageKey) => imageMap[locale][key];
 
   return (
     <div className="flex flex-col">
@@ -32,7 +47,7 @@ export default function EnergyFlowPage() {
             <div className="flex-shrink-0 w-full md:w-[600px]">
               <div className="screenshot-container">
                 <Image
-                  src={getImageSrc(1)}
+                  src={img("quickLog")}
                   alt="EnergyFlow Quick Log"
                   width={800}
                   height={600}
@@ -72,7 +87,7 @@ export default function EnergyFlowPage() {
             <div className="flex-shrink-0 w-full md:w-[600px]">
               <div className="screenshot-container">
                 <Image
-                  src={getImageSrc(2)}
+                  src={img("themeSwitch")}
                   alt="EnergyFlow Theme Switch"
                   width={800}
                   height={600}
@@ -111,7 +126,7 @@ export default function EnergyFlowPage() {
           <div className="mt-12 flex justify-center">
             <div className="screenshot-container max-w-[700px] w-full">
               <Image
-                src={getImageSrc(5)}
+                src={img("desktopAlwaysOn")}
                 alt="EnergyFlow Desktop Always-On"
                 width={800}
                 height={600}
@@ -153,7 +168,7 @@ export default function EnergyFlowPage() {
           <div className="mt-12 flex justify-center">
             <div className="screenshot-container max-w-[800px] w-full">
               <Image
-                src={getImageSrc(4)}
+                src={img("analytics")}
                 alt="EnergyFlow Analytics"
                 width={800}
                 height={600}
@@ -190,7 +205,7 @@ export default function EnergyFlowPage() {
             <div className="flex-shrink-0 w-full md:w-[600px]">
               <div className="screenshot-container">
                 <Image
-                  src={getImageSrc(3)}
+                  src={img("privacy")}
                   alt="EnergyFlow Privacy Protection"
                   width={800}
                   height={600}
@@ -233,12 +248,12 @@ export default function EnergyFlowPage() {
             <span className="text-sm text-muted border border-white/10 px-6 py-3">
               {t("energyflowDetail.cta.status")}
             </span>
-            <Link
-              href="/contact"
-              className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
-            >
-              {t("energyflowDetail.cta.button")}
-            </Link>
+            <a
+                href="/contact"
+                className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
+              >
+                {t("energyflowDetail.cta.button")}
+              </a>
           </div>
         </div>
       </section>
