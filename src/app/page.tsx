@@ -5,11 +5,10 @@ import Image from "next/image";
 import { useLanguage } from "@/lib/i18n/context";
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   return (
     <div className="flex flex-col">
-      {/* Hero */}
       <section className="max-w-[1200px] mx-auto px-6 md:px-12 pt-32 pb-24 md:pt-48 md:pb-20 animate-fade-in">
         <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-gradient-hero">
           {t("home.hero.title")}
@@ -19,7 +18,6 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Featured Product */}
       <section className="bg-white/[0.02] border-y border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
           <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
@@ -64,7 +62,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Philosophy */}
       <section className="border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
@@ -100,7 +97,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* More Products */}
       <section className="border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36">
           <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
@@ -118,15 +114,31 @@ export default function Home() {
                 {t("home.products.browse")}
               </span>
             </Link>
-            <div className="p-6 card-premium">
-              <h3 className="text-foreground font-medium">{t("home.products.product2.title")}</h3>
+            <Link
+              href="/products/energyflow"
+              className="p-6 card-premium group hover-lift"
+            >
+              <div className="flex-shrink-0 mb-4">
+                <div className="screenshot-container">
+                  <Image
+                    src={locale === "zh" ? "/photo/energyflow-zh-1.png" : "/photo/energyflow-en-1.png"}
+                    alt="EnergyFlow"
+                    width={400}
+                    height={300}
+                    className="screenshot-img"
+                  />
+                </div>
+              </div>
+              <h3 className="text-foreground font-medium group-hover:text-muted transition-colors duration-200">
+                {t("products.energyflow.title")}
+              </h3>
               <p className="mt-3 text-muted text-sm leading-[1.75]">
-                {t("home.products.product2.description")}
+                {t("products.energyflow.description")}
               </p>
-              <span className="mt-6 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("home.products.comingSoon")}
+              <span className="mt-4 inline-block text-xs text-muted border border-white/10 px-3 py-1">
+                {t("products.energyflow.details")}
               </span>
-            </div>
+            </Link>
             <div className="p-6 card-premium">
               <h3 className="text-foreground font-medium">{t("home.products.product3.title")}</h3>
               <p className="mt-3 text-muted text-sm leading-[1.75]">
@@ -140,7 +152,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Policy Links */}
       <section className="border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
@@ -166,7 +177,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="border-t border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36 text-center">
           <p className="text-2xl md:text-3xl font-medium text-foreground leading-snug">

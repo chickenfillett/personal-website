@@ -131,6 +131,11 @@ export const en = {
       description: "A fullscreen immersive focus tool designed for people with ADHD, featuring zero-punishment design and forward timing.",
       details: "View Details",
     },
+    energyflow: {
+      title: "EnergyFlow",
+      description: "A desktop energy tracking app that helps you understand your energy patterns, identify drains, and optimize your daily performance.",
+      details: "View Details",
+    },
     comingSoon: "Coming Soon",
   },
   productDetail: {
@@ -368,5 +373,79 @@ export const en = {
   language: {
     switchToEnglish: "English",
     switchToChinese: "中文",
+  },
+  energyflowDetail: {
+    hero: {
+      title: "EnergyFlow",
+      subtitle: "Your Workplace Energy Dashboard",
+      description: "Track energy levels, discover patterns, and find your optimal performance zone with scientific analysis.",
+    },
+    quickLog: {
+      title: "3-Second Quick Log",
+      description: "Record your energy state in just 3 seconds with a simple 5-level rating system. No friction, no delay — just tap and go.",
+      features: {
+        level: "5 Energy Levels",
+        levelDesc: " — Drained, Tense, Calm, Good, Energized",
+        status: "Current Status",
+        statusDesc: " — At Work, In Meeting, On Break...",
+        source: "Trigger Source",
+        sourceDesc: " — What's affecting your energy?",
+        emoji: "Mood Emoji",
+        emojiDesc: " — How are you feeling right now?",
+      },
+    },
+    themeSwitch: {
+      title: "Deep Focus or Light Clarity",
+      description: "Stay deeply focused in dark mode, feel refreshed in light mode. Switch anytime to match your mood and environment.",
+      features: {
+        darkMode: "Dark Mode",
+        darkModeDesc: " — Deep focus, gentle on the eyes",
+        lightMode: "Light Mode",
+        lightModeDesc: " — Clear and bright, easy on the eyes",
+      },
+    },
+    desktopAlwaysOn: {
+      title: "Always on Your Desktop",
+      description: "Quick-access floating icon, global hotkey support, one-tap minimize. Zero distraction, zero forgetfulness.",
+      features: {
+        floatingIcon: "Desktop Resident",
+        floatingIconDesc: " — One-glance energy status",
+        hotkey: "Quick Access Hotkey",
+        hotkeyDesc: " — Summon instantly, log in seconds",
+        minimize: "One-Tap Minimize",
+        minimizeDesc: " — Back to desktop, stay undisturbed",
+      },
+    },
+    analytics: {
+      title: "Discover Energy Drains",
+      description: "Powered by Pearson correlation analysis and chi-square testing, scientifically identify what's really draining your energy and find your energy black holes.",
+      features: {
+        pearson: "Pearson Correlation",
+        pearsonDesc: " — Scientific factor impact measurement",
+        chiSquare: "Chi-Square Testing",
+        chiSquareDesc: " — Statistical significance validation",
+        trends: "Energy Trends",
+        trendsDesc: " — Visualize day-by-day changes",
+      },
+    },
+    privacy: {
+      title: "Professional Privacy Protection",
+      description: "Your energy data stays on your device, encrypted and protected by multiple layers of security. No account, no cloud, no tracking.",
+      features: {
+        encryption: "Local Encrypted Storage",
+        encryptionDesc: " — AES-256-GCM, data never leaves",
+        antiCapture: "Anti-Screenshot",
+        antiCaptureDesc: " — Prevent content leaks",
+        password: "Password Lock",
+        passwordDesc: " — Multi-layer privacy safeguards",
+      },
+    },
+    cta: {
+      title: "Take Control of Your Energy",
+      description: "Start tracking today and discover what powers you up and drains you down.",
+      status: "Coming Soon",
+      button: "Get Notified",
+      privacy: "View Privacy Policy",
+    },
   },
 };

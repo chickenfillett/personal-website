@@ -131,6 +131,11 @@ export const zh = {
       description: "专为 ADHD 人群设计的全屏沉浸式专注工具，零惩罚设计，正向计时。",
       details: "查看详情",
     },
+    energyflow: {
+      title: "EnergyFlow",
+      description: "一款专注于个人精力管理的桌面追踪应用，帮助你理解精力波动规律、识别消耗因素、发现恢复模式。",
+      details: "查看详情",
+    },
     comingSoon: "Coming Soon",
   },
   productDetail: {
@@ -368,5 +373,79 @@ export const zh = {
   language: {
     switchToEnglish: "English",
     switchToChinese: "中文",
+  },
+  energyflowDetail: {
+    hero: {
+      title: "EnergyFlow",
+      subtitle: "你的职场能量仪表盘",
+      description: "追踪精力等级、发现波动规律、用科学分析方法找到你的最佳表现区间。",
+    },
+    quickLog: {
+      title: "3秒打卡精力",
+      description: "仅需3秒即可完成一次精力记录，采用直观的5级精力等级系统。无摩擦、无延迟——点击即走。",
+      features: {
+        level: "5级精力等级",
+        levelDesc: " — 耗竭、紧张、平静、良好、充沛",
+        status: "当前状态",
+        statusDesc: " — 在岗上班、开会中、午休放松...",
+        source: "触发来源",
+        sourceDesc: " — 什么在影响你的精力？",
+        emoji: "心情表情",
+        emojiDesc: " — 此刻的状态...",
+      },
+    },
+    themeSwitch: {
+      title: "深浅随心切换",
+      description: "深色沉浸专注，浅色清爽治愈。随时切换，陪伴你的每一天。",
+      features: {
+        darkMode: "深色模式",
+        darkModeDesc: " — 沉浸专注，护眼舒适",
+        lightMode: "浅色模式",
+        lightModeDesc: " — 清爽明亮，轻松愉悦",
+      },
+    },
+    desktopAlwaysOn: {
+      title: "桌面常驻，灵感不打断",
+      description: "快捷键一呼即出，记录完一键收起。零干扰，零遗忘。",
+      features: {
+        floatingIcon: "桌面常驻",
+        floatingIconDesc: " — 一眼掌握状态",
+        hotkey: "快捷键唤起",
+        hotkeyDesc: " — 一呼即出，极速记录",
+        minimize: "一键收起",
+        minimizeDesc: " — 回归桌面，专注不散",
+      },
+    },
+    analytics: {
+      title: "数据洞察精力消耗",
+      description: "基于Pearson相关分析和卡方检验，科学精准定位影响你精力的关键因素，找出真正的能量黑洞。",
+      features: {
+        pearson: "Pearson相关分析",
+        pearsonDesc: " — 科学量化影响因素",
+        chiSquare: "卡方检验",
+        chiSquareDesc: " — 统计显著性验证",
+        trends: "精力趋势图",
+        trendsDesc: " — 可视化每日变化",
+      },
+    },
+    privacy: {
+      title: "专业隐私守护",
+      description: "你的精力数据仅存于本机，多层加密保护。无账号、无云端、无追踪。",
+      features: {
+        encryption: "本地加密存储",
+        encryptionDesc: " — AES-256-GCM，数据永不离开设备",
+        antiCapture: "反截屏保护",
+        antiCaptureDesc: " — 防止内容泄露",
+        password: "密码保护",
+        passwordDesc: " — 多重隐私防护",
+      },
+    },
+    cta: {
+      title: "掌控你的精力节奏",
+      description: "从今天开始追踪，发现什么让你充满能量，什么在悄悄消耗你。",
+      status: "即将上线",
+      button: "获取通知",
+      privacy: "查看隐私政策",
+    },
   },
 };

@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/lib/i18n/context";
 
 export default function Products() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   return (
     <div className="flex flex-col">
@@ -34,15 +35,31 @@ export default function Products() {
                 {t("products.adhd.details")}
               </span>
             </Link>
-            <div className="p-6 bg-surface">
-              <h3 className="text-foreground font-medium">{t("home.products.product2.title")}</h3>
+            <Link
+              href="/products/energyflow"
+              className="p-6 bg-surface group hover:border-white/20 border border-transparent transition-colors duration-200"
+            >
+              <div className="flex-shrink-0 mb-4">
+                <div className="screenshot-container">
+                  <Image
+                    src={locale === "zh" ? "/photo/energyflow-zh-1.png" : "/photo/energyflow-en-1.png"}
+                    alt="EnergyFlow"
+                    width={400}
+                    height={300}
+                    className="screenshot-img"
+                  />
+                </div>
+              </div>
+              <h3 className="text-foreground font-medium group-hover:text-muted transition-colors duration-200">
+                {t("products.energyflow.title")}
+              </h3>
               <p className="mt-3 text-muted text-sm leading-relaxed">
-                {t("home.products.product2.description")}
+                {t("products.energyflow.description")}
               </p>
-              <span className="mt-6 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("home.products.comingSoon")}
+              <span className="mt-4 inline-block text-xs text-muted border border-white/10 px-3 py-1">
+                {t("products.energyflow.details")}
               </span>
-            </div>
+            </Link>
             <div className="p-6 bg-surface">
               <h3 className="text-foreground font-medium">{t("home.products.product3.title")}</h3>
               <p className="mt-3 text-muted text-sm leading-relaxed">
