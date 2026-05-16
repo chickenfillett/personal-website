@@ -1,11 +1,64 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/lib/i18n/context";
 
+const CAROUSEL_INTERVAL = 6000;
+
 export default function Home() {
   const { locale, t } = useLanguage();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const products = [
+    {
+      href: "/products/adhd-focus-timer",
+      image: "/photo/捕获3.PNG",
+      label: t("home.featured.label"),
+      name: t("home.featured.name"),
+      description: t("home.featured.description"),
+      tags: [
+        t("home.featured.tags.zero"),
+        t("home.featured.tags.forward"),
+        t("home.featured.tags.particles"),
+        t("home.featured.tags.local"),
+      ],
+      cta: t("home.featured.cta"),
+    },
+    {
+      href: "/products/energyflow",
+      image: locale === "zh" ? "/photo/energyflow-zh-1.png" : "/photo/energyflow-en-1.png",
+      label: t("home.featuredEnergyflow.label"),
+      name: t("home.featuredEnergyflow.name"),
+      description: t("home.featuredEnergyflow.description"),
+      tags: [
+        t("home.featuredEnergyflow.tags.quick"),
+        t("home.featuredEnergyflow.tags.analysis"),
+        t("home.featuredEnergyflow.tags.privacy"),
+        t("home.featuredEnergyflow.tags.desktop"),
+      ],
+      cta: t("home.featuredEnergyflow.cta"),
+    },
+  ];
+
+  const goTo = useCallback((index: number) => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setActiveIndex(index);
+      setIsTransitioning(false);
+    }, 300);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      goTo((activeIndex + 1) % products.length);
+    }, CAROUSEL_INTERVAL);
+    return () => clearInterval(timer);
+  }, [activeIndex, products.length, goTo]);
+
+  const current = products[activeIndex];
 
   return (
     <div className="flex flex-col">
@@ -21,37 +74,51 @@ export default function Home() {
       <section className="bg-white/[0.02] border-y border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
           <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-            <div className="flex-1 text-center md:text-left">
+            <div className={`flex-1 text-center md:text-left transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
               <span className="text-xs font-medium text-muted uppercase tracking-wider">
-                {t("home.featured.label")}
+                {current.label}
               </span>
               <h2 className="mt-3 text-2xl md:text-3xl font-medium text-foreground">
-                {t("home.featured.name")}
+                {current.name}
               </h2>
               <p className="mt-4 text-muted leading-[1.75]">
-                {t("home.featured.description")}
+                {current.description}
               </p>
               <div className="mt-4 flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1 text-xs text-muted">
-                <span>{t("home.featured.tags.zero")}</span>
-                <span>·</span>
-                <span>{t("home.featured.tags.forward")}</span>
-                <span>·</span>
-                <span>{t("home.featured.tags.particles")}</span>
-                <span>·</span>
-                <span>{t("home.featured.tags.local")}</span>
+                {current.tags.map((tag, i) => (
+                  <span key={i} className="flex items-center gap-x-3">
+                    <span>{tag}</span>
+                    {i < current.tags.length - 1 && <span>·</span>}
+                  </span>
+                ))}
               </div>
-              <Link
-                href="/products/adhd-focus-timer"
-                className="mt-8 inline-block text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
-              >
-                {t("home.featured.cta")}
-              </Link>
+              <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-4">
+                <Link
+                  href={current.href}
+                  className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
+                >
+                  {current.cta}
+                </Link>
+                <div className="flex items-center gap-2">
+                  {products.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => goTo(i)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        i === activeIndex
+                          ? "bg-foreground w-6"
+                          : "bg-white/20 hover:bg-white/40"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="hidden md:block flex-shrink-0 w-[500px]">
+            <div className={`hidden md:block flex-shrink-0 w-[500px] transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
               <div className="screenshot-container">
                 <Image
-                  src="/photo/捕获3.PNG"
-                  alt={t("home.featured.name")}
+                  src={current.image}
+                  alt={current.name}
                   width={800}
                   height={600}
                   className="screenshot-img"

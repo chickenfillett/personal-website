@@ -22,6 +22,18 @@ export const en = {
       },
       cta: "Learn More",
     },
+    featuredEnergyflow: {
+      label: "Featured Product",
+      name: "EnergyFlow",
+      description: "A desktop energy tracking app that helps you understand your energy patterns and optimize performance",
+      tags: {
+        quick: "3-Second Log",
+        analysis: "Scientific Analysis",
+        privacy: "Privacy First",
+        desktop: "Always on Desktop",
+      },
+      cta: "Learn More",
+    },
     philosophy: {
       title: "Philosophy",
       intro: "Remove everything unnecessary, let users focus on the task itself.",

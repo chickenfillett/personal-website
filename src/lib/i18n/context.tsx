@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import { createContext, useContext, useCallback, useSyncExternalStore, ReactNode } from "react";
 import { zh } from "./zh";
 import { en } from "./en";
 
@@ -42,36 +42,57 @@ function getNestedValue(obj: TranslationObject, key: string): string {
   return typeof current === "string" ? current : key;
 }
 
-function detectLocale(): Locale {
-  if (typeof window === "undefined") return "en";
+let listeners: (() => void)[] = [];
+let currentLocale: Locale = "en";
 
-  const saved = localStorage.getItem("locale");
-  if (saved === "zh" || saved === "en") return saved;
+function subscribeLocale(listener: () => void) {
+  listeners.push(listener);
+  return () => {
+    listeners = listeners.filter((l) => l !== listener);
+  };
+}
 
-  const browserLang = navigator.language || navigator.languages?.[0] || "";
-  if (browserLang.toLowerCase().startsWith("zh")) return "zh";
+function getLocaleSnapshot(): Locale {
+  return currentLocale;
+}
 
+function getLocaleServerSnapshot(): Locale {
   return "en";
 }
 
+function setGlobalLocale(newLocale: Locale) {
+  currentLocale = newLocale;
+  if (typeof window !== "undefined") {
+    localStorage.setItem("locale", newLocale);
+  }
+  for (const listener of listeners) {
+    listener();
+  }
+}
+
+function detectLocale(): Locale {
+  if (typeof window === "undefined") return "en";
+  const saved = localStorage.getItem("locale");
+  if (saved === "zh" || saved === "en") return saved;
+  const browserLang = navigator.language || navigator.languages?.[0] || "";
+  if (browserLang.toLowerCase().startsWith("zh")) return "zh";
+  return "en";
+}
+
+if (typeof window !== "undefined") {
+  currentLocale = detectLocale();
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => {
-    if (typeof window !== "undefined") {
-      return detectLocale();
-    }
-    return "en";
-  });
+  const locale = useSyncExternalStore(subscribeLocale, getLocaleSnapshot, getLocaleServerSnapshot);
 
   const setLocale = useCallback((newLocale: Locale) => {
-    setLocaleState(newLocale);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("locale", newLocale);
-    }
+    setGlobalLocale(newLocale);
   }, []);
 
   const toggleLocale = useCallback(() => {
-    setLocale(locale === "zh" ? "en" : "zh");
-  }, [locale, setLocale]);
+    setGlobalLocale(locale === "zh" ? "en" : "zh");
+  }, [locale]);
 
   const t = useCallback(
     (key: string): string => {

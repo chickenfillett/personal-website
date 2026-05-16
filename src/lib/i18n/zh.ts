@@ -22,6 +22,18 @@ export const zh = {
       },
       cta: "了解详情",
     },
+    featuredEnergyflow: {
+      label: "精选产品",
+      name: "EnergyFlow",
+      description: "一款桌面精力追踪应用，帮助你理解精力规律、优化日常表现",
+      tags: {
+        quick: "3秒打卡",
+        analysis: "科学分析",
+        privacy: "隐私优先",
+        desktop: "桌面常驻",
+      },
+      cta: "了解详情",
+    },
     philosophy: {
       title: "理念",
       intro: "去除一切非必要元素，让用户专注于任务本身。",
