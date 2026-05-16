@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/lib/i18n/context";
@@ -10,23 +10,13 @@ const CAROUSEL_INTERVAL = 6000;
 export default function Home() {
   const { locale, t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const products = [
-    {
-      href: "/products/adhd-focus-timer",
-      image: "/photo/捕获3.PNG",
-      label: t("home.featured.label"),
-      name: t("home.featured.name"),
-      description: t("home.featured.description"),
-      tags: [
-        t("home.featured.tags.zero"),
-        t("home.featured.tags.forward"),
-        t("home.featured.tags.particles"),
-        t("home.featured.tags.local"),
-      ],
-      cta: t("home.featured.cta"),
-    },
     {
       href: "/products/energyflow",
       image: locale === "zh" ? "/photo/energyflow-zh-1.png" : "/photo/energyflow-en-1.png",
@@ -41,22 +31,78 @@ export default function Home() {
       ],
       cta: t("home.featuredEnergyflow.cta"),
     },
+    {
+      href: "/products/adhd-focus-timer",
+      image: "/photo/捕获3.PNG",
+      label: t("home.featured.label"),
+      name: t("home.featured.name"),
+      description: t("home.featured.description"),
+      tags: [
+        t("home.featured.tags.zero"),
+        t("home.featured.tags.forward"),
+        t("home.featured.tags.particles"),
+        t("home.featured.tags.local"),
+      ],
+      cta: t("home.featured.cta"),
+    },
   ];
 
   const goTo = useCallback((index: number) => {
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setActiveIndex(index);
-      setIsTransitioning(false);
-    }, 300);
-  }, []);
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setActiveIndex(index);
+    setTimeout(() => setIsAnimating(false), 500);
+  }, [isAnimating]);
+
+  const next = useCallback(() => {
+    goTo((activeIndex + 1) % products.length);
+  }, [activeIndex, products.length, goTo]);
+
+  const prev = useCallback(() => {
+    goTo((activeIndex - 1 + products.length) % products.length);
+  }, [activeIndex, products.length, goTo]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      goTo((activeIndex + 1) % products.length);
-    }, CAROUSEL_INTERVAL);
-    return () => clearInterval(timer);
-  }, [activeIndex, products.length, goTo]);
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(next, CAROUSEL_INTERVAL);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [next]);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      next();
+    } else if (isRightSwipe) {
+      prev();
+    }
+  };
+
+  const onKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === "ArrowLeft") prev();
+    if (e.key === "ArrowRight") next();
+  }, [next, prev]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [onKeyDown]);
 
   const current = products[activeIndex];
 
@@ -73,8 +119,20 @@ export default function Home() {
 
       <section className="bg-white/[0.02] border-y border-white/5">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
-          <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-            <div className={`flex-1 text-center md:text-left transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+          <div
+            ref={containerRef}
+            className="flex flex-col md:flex-row items-center gap-10 md:gap-16"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            <div
+              className={`flex-1 text-center md:text-left transition-all duration-500 ease-out ${
+                isAnimating
+                  ? "opacity-0 translate-x-4"
+                  : "opacity-100 translate-x-0"
+              }`}
+            >
               <span className="text-xs font-medium text-muted uppercase tracking-wider">
                 {current.label}
               </span>
@@ -92,29 +150,55 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-4">
+              <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-6">
                 <Link
                   href={current.href}
                   className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
                 >
                   {current.cta}
                 </Link>
-                <div className="flex items-center gap-2">
-                  {products.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => goTo(i)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        i === activeIndex
-                          ? "bg-foreground w-6"
-                          : "bg-white/20 hover:bg-white/40"
-                      }`}
-                    />
-                  ))}
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={prev}
+                    className="w-8 h-8 flex items-center justify-center text-muted hover:text-foreground transition-colors"
+                    aria-label="Previous"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <div className="flex items-center gap-2">
+                    {products.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => goTo(i)}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          i === activeIndex
+                            ? "bg-foreground w-6"
+                            : "bg-white/20 hover:bg-white/40 w-2"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    onClick={next}
+                    className="w-8 h-8 flex items-center justify-center text-muted hover:text-foreground transition-colors"
+                    aria-label="Next"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
-            <div className={`hidden md:block flex-shrink-0 w-[500px] transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+            <div
+              className={`hidden md:block flex-shrink-0 w-[500px] transition-all duration-500 ease-out ${
+                isAnimating
+                  ? "opacity-0 -translate-x-4"
+                  : "opacity-100 translate-x-0"
+              }`}
+            >
               <div className="screenshot-container">
                 <Image
                   src={current.image}
@@ -122,6 +206,7 @@ export default function Home() {
                   width={800}
                   height={600}
                   className="screenshot-img"
+                  priority={activeIndex === 0}
                 />
               </div>
             </div>
