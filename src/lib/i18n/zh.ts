@@ -460,4 +460,37 @@ export const zh = {
       privacy: "查看隐私政策",
     },
   },
+  energyflowPrivacy: {
+    intro: {
+      title: "隐私政策",
+      description: "本页面说明 EnergyFlow 如何处理您的个人数据。EnergyFlow 是一款以隐私为核心设计原则的桌面精力追踪应用——您的数据始终只存在于您的设备上。",
+    },
+    sections: {
+      encryptedStorage: {
+        title: "本地加密存储",
+        description: "您的所有精力数据均使用 AES-256-GCM 加密算法存储在本地设备上。数据不会离开您的设备，也不会传输到任何服务器。加密密钥由您的设备派生，确保只有您本人可以访问数据。",
+      },
+      noCloud: {
+        title: "无需云端同步",
+        description: "EnergyFlow 不使用任何云服务。没有服务器、没有数据库、没有第三方存储参与。您的精力记录仅存在于创建它们的设备上。我们没有任何能力访问、读取或分享您的数据。",
+      },
+      noAccount: {
+        title: "无需账户注册",
+        description: "EnergyFlow 不要求您创建账户、注册或提供任何个人信息（如邮箱、手机号或姓名）。您无需任何注册即可立即开始使用应用。",
+      },
+      antiCapture: {
+        title: "反截屏保护",
+        description: "EnergyFlow 内置反截屏和反录屏保护功能。启用后，应用窗口内容将对屏幕捕获工具隐藏，防止在屏幕共享或录制过程中发生意外或恶意的内容泄露。",
+      },
+      dataControl: {
+        title: "数据控制与导出",
+        description: "您始终对自己的数据拥有完全控制权。您可以随时导出所有精力记录，也可以通过单一操作永久删除应用中的所有数据。删除后没有恢复机制——您的选择是最终且被尊重的。",
+      },
+      contact: {
+        title: "联系我们",
+        description: "如果您对本隐私政策或 EnergyFlow 如何处理您的数据有任何疑问或顾虑，请通过 3371436706@qq.com 联系我们。我们致力于透明，并将尽快回复您的咨询。",
+      },
+    },
+    backButton: "返回产品页",
+  },
 };

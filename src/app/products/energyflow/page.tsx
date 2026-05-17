@@ -255,6 +255,12 @@ export default function EnergyFlowPage() {
               >
                 {t("energyflowDetail.cta.button")}
               </Link>
+            <Link
+              href="/products/energyflow/privacy"
+              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
+            >
+              {t("energyflowDetail.cta.privacy")}
+            </Link>
           </div>
         </div>
       </section>

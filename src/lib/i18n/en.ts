@@ -460,4 +460,37 @@ export const en = {
       privacy: "View Privacy Policy",
     },
   },
+  energyflowPrivacy: {
+    intro: {
+      title: "Privacy Policy",
+      description: "This page explains how EnergyFlow handles your personal data. EnergyFlow is a desktop energy tracking application designed with privacy as a core principle — your data stays on your device, always.",
+    },
+    sections: {
+      encryptedStorage: {
+        title: "Local Encrypted Storage",
+        description: "All your energy data is stored locally on your device using AES-256-GCM encryption. Your data never leaves your device and is never transmitted to any server. The encryption key is derived from your device, ensuring only you can access your data.",
+      },
+      noCloud: {
+        title: "No Cloud Sync",
+        description: "EnergyFlow does not use any cloud services. There are no servers, no databases, and no third-party storage involved. Your energy records exist only on the device where you created them. We have no ability to access, read, or share your data.",
+      },
+      noAccount: {
+        title: "No Account Required",
+        description: "EnergyFlow does not require you to create an account, sign up, or provide any personal information such as email, phone number, or name. You can start using the app immediately without any registration.",
+      },
+      antiCapture: {
+        title: "Anti-Screenshot Protection",
+        description: "EnergyFlow includes built-in anti-screenshot and anti-screen-recording protection. When enabled, the app window content will be hidden from screen capture tools, preventing accidental or malicious content leaks during screen sharing or recording.",
+      },
+      dataControl: {
+        title: "Data Control & Export",
+        description: "You have full control over your data at all times. You can export all your energy records at any time, and you can permanently delete all data from the app with a single action. There is no recovery mechanism after deletion — your choice is final and respected.",
+      },
+      contact: {
+        title: "Contact Us",
+        description: "If you have any questions or concerns about this privacy policy or how EnergyFlow handles your data, please contact us at 3371436706@qq.com. We are committed to transparency and will respond to your inquiries as soon as possible.",
+      },
+    },
+    backButton: "Back to Product",
+  },
 };
