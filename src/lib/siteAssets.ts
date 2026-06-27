@@ -1,4 +1,8 @@
-export type Locale = "zh" | "en";
+export type ImageLocale = "zh" | "en";
+
+export function imageLocale(locale: string): ImageLocale {
+  return locale === "zh" ? "zh" : "en";
+}
 
 export const energyFlowImages = {
   zh: {
@@ -27,12 +31,24 @@ export const adhdImages = {
   privacy: "/photo/捕获6.PNG",
 } as const;
 
+export const deskHavenImages = {
+  hero: "/photo/deskhaven/deskhaven-store-hero.png",
+  icon: "/photo/deskhaven/deskhaven-icon.png",
+  dashboard: "/photo/deskhaven/deskhaven-dashboard.png",
+  vault: "/photo/deskhaven/deskhaven-file-vault.png",
+  privacy: "/photo/deskhaven/deskhaven-privacy.png",
+  graph: "/photo/deskhaven/deskhaven-relationship-graph.png",
+  settings: "/photo/deskhaven/deskhaven-settings.png",
+  poster: "/photo/deskhaven/deskhaven-poster.png",
+} as const;
+
 export function optimizedImagePath(src: string) {
   const parts = src.split("/");
   const file = parts[parts.length - 1] ?? src;
   const dot = file.lastIndexOf(".");
   const name = dot > -1 ? file.slice(0, dot) : file;
-  return `/photo-optimized/${name}.webp`;
+  const folder = src.includes("/deskhaven/") ? "deskhaven/" : "";
+  return `/photo-optimized/${folder}${name}.webp`;
 }
 
 export function allEnergyFlowImages() {
@@ -46,7 +62,12 @@ export function allAdhdImages() {
   return Object.values(adhdImages);
 }
 
-export function productPreviewImage(locale: Locale, product: "energyflow" | "adhd") {
-  if (product === "energyflow") return energyFlowImages[locale].quickLog;
+export function allDeskHavenImages() {
+  return Object.values(deskHavenImages);
+}
+
+export function productPreviewImage(locale: string, product: "energyflow" | "adhd" | "deskhaven") {
+  if (product === "energyflow") return energyFlowImages[imageLocale(locale)].quickLog;
+  if (product === "deskhaven") return deskHavenImages.hero;
   return adhdImages.focus;
 }
