@@ -3,15 +3,16 @@
 import Link from "next/link";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
-import { allEnergyFlowImages, energyFlowImages } from "@/lib/siteAssets";
+import { allEnergyFlowImages, energyFlowImages, imageLocale } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 export default function EnergyFlowPage() {
   const { locale } = useLanguage();
-  const images = energyFlowImages[locale];
+  const images = energyFlowImages[imageLocale(locale)];
+  const zh = locale === "zh";
   usePreloadImages(allEnergyFlowImages());
 
-  const copy = locale === "zh"
+  const copy = zh
     ? {
         eyebrow: "EnergyFlow / 职场能量仪表盘",
         title: "看清工作日里，精力到底流向哪里。",
@@ -55,10 +56,10 @@ export default function EnergyFlowPage() {
         <div className="product-page-grid">
           <div className="animate-fade-in">
             <span className="eyebrow">{copy.eyebrow}</span>
-            <h1 className="mt-7 text-[clamp(3rem,7vw,6rem)] leading-[0.94] tracking-[-0.075em] font-medium text-warm-gradient">
+            <h1 className="mt-7 text-[clamp(2.75rem,5.3vw,5.25rem)] leading-[1.04] tracking-[-0.055em] font-medium text-warm-gradient">
               {copy.title}
             </h1>
-            <p className="mt-8 text-lg md:text-xl leading-[1.75] text-muted max-w-2xl">{copy.intro}</p>
+            <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.intro}</p>
             <div className="mt-10 flex flex-wrap gap-4">
               <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{copy.status}</span>
               <Link href="/contact" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.contact}</Link>
@@ -66,21 +67,14 @@ export default function EnergyFlowPage() {
             </div>
           </div>
 
-          <SmartScreenshot
-            src={images.quickLog}
-            alt="EnergyFlow quick log"
-            width={1200}
-            height={820}
-            priority
-            sizes="(max-width: 1024px) 92vw, 620px"
-          />
+          <SmartScreenshot src={images.quickLog} alt="EnergyFlow quick log" width={1200} height={820} priority sizes="(max-width: 1024px) 92vw, 620px" />
         </div>
       </section>
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <span className="eyebrow">Product promise</span>
-        <h2 className="mt-7 text-[clamp(2.5rem,5vw,4.75rem)] leading-[0.98] tracking-[-0.07em] font-medium max-w-4xl">{copy.promiseTitle}</h2>
-        <p className="mt-7 text-lg leading-[1.8] text-muted max-w-3xl">{copy.promise}</p>
+        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.03] tracking-[-0.06em] font-medium max-w-4xl">{copy.promiseTitle}</h2>
+        <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{copy.promise}</p>
       </section>
 
       <section className="border-t border-white/[0.07]">
@@ -89,16 +83,10 @@ export default function EnergyFlowPage() {
             <div className={`detail-rail ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
               <div className="detail-sticky">
                 <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">0{index + 1}</span>
-                <h2 className="mt-5 text-[clamp(2.25rem,4vw,4rem)] leading-none tracking-[-0.07em] font-medium">{feature.title}</h2>
-                <p className="mt-6 text-muted leading-[1.8] text-lg">{feature.body}</p>
+                <h2 className="mt-5 text-[clamp(2.2rem,4vw,4rem)] leading-[1.03] tracking-[-0.06em] font-medium">{feature.title}</h2>
+                <p className="mt-6 text-muted leading-[1.85] text-lg">{feature.body}</p>
               </div>
-              <SmartScreenshot
-                src={feature.image}
-                alt={feature.title}
-                width={1200}
-                height={820}
-                sizes="(max-width: 1024px) 92vw, 680px"
-              />
+              <SmartScreenshot src={feature.image} alt={feature.title} width={1200} height={820} sizes="(max-width: 1024px) 92vw, 680px" />
             </div>
           </div>
         ))}
