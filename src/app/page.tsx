@@ -8,11 +8,15 @@ import { usePreloadImages } from "@/lib/usePreloadImages";
 import { adhdImages, allAdhdImages, allEnergyFlowImages, energyFlowImages } from "@/lib/siteAssets";
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const lerp = (a: number, b: number, t: number) => a + (b - a, t);
 const smoothStep = (edge0: number, edge1: number, x: number) => {
   const t = clamp((x - edge0) / (edge1 - edge0), 0, 1);
   return t * t * (3 - 2 * t);
 };
+
+function mix(a: number, b: number, t: number) {
+  return a + (b - a) * t;
+}
 
 export default function Home() {
   const { locale } = useLanguage();
@@ -34,6 +38,7 @@ export default function Home() {
       primary: zh ? "滑动了解理念" : "Scroll the story",
       secondary: zh ? "查看产品" : "View products",
       contact: zh ? "联系我" : "Contact",
+      currentProduct: zh ? "当前产品预览" : "Current product preview",
       notes: zh
         ? [
             ["本地优先", "数据默认留在设备上，除非真的有必要离开。"],
@@ -151,7 +156,7 @@ export default function Home() {
         if (!chapter) return;
         const key = `chapter-${index}`;
         const previous = valuesRef.current.get(key) ?? strengths[index] ?? 0;
-        const next = lerp(previous, strengths[index] ?? 0, 0.18);
+        const next = mix(previous, strengths[index] ?? 0, 0.18);
         valuesRef.current.set(key, next);
         chapter.style.setProperty("--story-strength", next.toFixed(4));
       });
@@ -161,7 +166,7 @@ export default function Home() {
         const normalized = (strengths[index] ?? 0) / total;
         const key = `stage-${index}`;
         const previous = valuesRef.current.get(key) ?? normalized;
-        const next = lerp(previous, normalized, 0.2);
+        const next = mix(previous, normalized, 0.2);
         const opacity = clamp(next * 1.35, 0, 1);
         valuesRef.current.set(key, next);
         stage.style.setProperty("--story-opacity", opacity.toFixed(4));
@@ -176,21 +181,23 @@ export default function Home() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
+  const heroTitleClass = locale === "zh"
+    ? "mt-7 text-[clamp(2.75rem,5.4vw,5.25rem)] leading-[1.04] tracking-[-0.055em] font-medium text-warm-gradient max-w-4xl"
+    : "mt-7 text-[clamp(3rem,7vw,6rem)] leading-[0.94] tracking-[-0.075em] font-medium text-warm-gradient max-w-4xl";
+
   return (
     <div className="flex flex-col">
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 min-h-[calc(100vh-4rem)] grid items-center pt-24 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.95fr] gap-14 lg:gap-20 items-center">
           <div className="animate-fade-in">
             <span className="eyebrow">{copy.eyebrow}</span>
-            <h1 className="mt-7 text-[clamp(3rem,7vw,6rem)] leading-[0.94] tracking-[-0.075em] font-medium text-warm-gradient max-w-4xl">
-              {copy.title}
-            </h1>
+            <h1 className={heroTitleClass}>{copy.title}</h1>
             <p className="mt-8 text-lg md:text-xl leading-[1.75] text-muted max-w-2xl">{copy.intro}</p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link href="#story" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.primary}</Link>
               <Link href="/products" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.secondary}</Link>
             </div>
-            <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
+            <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
               {copy.notes.map(([title, body]) => (
                 <div key={title} className="text-sm leading-relaxed text-[var(--faint)]">
                   <strong className="block mb-2 text-muted font-medium">{title}</strong>
@@ -200,24 +207,29 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="screen-shell rounded-[2rem] p-4 md:p-6 min-h-[460px] flex items-center justify-center">
-            <div className="relative w-full max-w-[560px] aspect-[1.08]">
-              <div className="absolute inset-[14%_8%_20%_0] rotate-[-3deg] rounded-[1.75rem] border border-white/[0.09] bg-[#171510] shadow-2xl" />
-              <div className="absolute inset-[4%_0_30%_18%] rotate-[5deg] rounded-[1.75rem] border border-white/[0.07] bg-[#201c16]/80" />
-              <div className="absolute inset-[24%_16%_0_10%] rotate-[2deg] rounded-[1.75rem] border border-white/[0.08] bg-[#14120f] overflow-hidden">
-                <div className="h-10 border-b border-white/[0.07] flex items-center gap-2 px-4">
-                  <span className="w-2 h-2 rounded-full bg-white/20" />
-                  <span className="w-2 h-2 rounded-full bg-white/20" />
-                  <span className="w-2 h-2 rounded-full bg-white/20" />
-                </div>
-                <div className="p-5 space-y-4">
-                  {[72, 46, 84, 58].map((width, index) => (
-                    <div key={index} className="h-2 rounded-full bg-white/[0.07] overflow-hidden">
-                      <div className="h-full rounded-full bg-[#b4835c]/45" style={{ width: `${width}%` }} />
-                    </div>
-                  ))}
-                </div>
-              </div>
+          <div className="screen-shell rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
+            <div className="flex items-center justify-between text-xs text-[var(--faint)] uppercase tracking-[0.14em] px-1">
+              <span>{copy.currentProduct}</span>
+              <span>EnergyFlow</span>
+            </div>
+            <SmartScreenshot
+              src={energyFlowImages[locale].quickLog}
+              alt="EnergyFlow preview"
+              width={1200}
+              height={820}
+              priority
+              sizes="(max-width: 1024px) 92vw, 560px"
+              frameClassName="shadow-none flex-1"
+            />
+            <div className="grid grid-cols-2 gap-3">
+              <Link href="/products/energyflow" className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.035] transition-colors">
+                <div className="text-sm text-foreground font-medium">EnergyFlow</div>
+                <div className="mt-1 text-xs text-muted">{locale === "zh" ? "职场能量仪表盘" : "Energy dashboard"}</div>
+              </Link>
+              <Link href="/products/adhd-focus-timer" className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.035] transition-colors">
+                <div className="text-sm text-foreground font-medium">ADHD Timer</div>
+                <div className="mt-1 text-xs text-muted">{locale === "zh" ? "低压力专注" : "Gentle focus"}</div>
+              </Link>
             </div>
           </div>
         </div>
