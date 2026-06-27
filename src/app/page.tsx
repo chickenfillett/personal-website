@@ -1,362 +1,377 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
+import SmartScreenshot from "./components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import { usePreloadImages } from "@/lib/usePreloadImages";
+import { adhdImages, allAdhdImages, allEnergyFlowImages, energyFlowImages } from "@/lib/siteAssets";
 
-const CAROUSEL_INTERVAL = 6000;
-const PRODUCT_COUNT = 2;
-
-const energyflowImages = {
-  zh: "/photo/energyflow-zh-1.png",
-  en: "/photo/energyflow-en-2.png",
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+const smoothStep = (edge0: number, edge1: number, x: number) => {
+  const t = clamp((x - edge0) / (edge1 - edge0), 0, 1);
+  return t * t * (3 - 2 * t);
 };
 
 export default function Home() {
-  const { locale, t } = useLanguage();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const activeIndexRef = useRef(0);
-  const isAnimatingRef = useRef(false);
+  const { locale } = useLanguage();
+  const chapterRefs = useRef<HTMLElement[]>([]);
+  const stageRefs = useRef<HTMLDivElement[]>([]);
+  const valuesRef = useRef(new Map<string, number>());
 
-  const products = [
-    {
-      href: "/products/energyflow",
-      image: energyflowImages[locale],
-      label: t("home.featuredEnergyflow.label"),
-      name: t("home.featuredEnergyflow.name"),
-      description: t("home.featuredEnergyflow.description"),
-      tags: [
-        t("home.featuredEnergyflow.tags.quick"),
-        t("home.featuredEnergyflow.tags.analysis"),
-        t("home.featuredEnergyflow.tags.privacy"),
-        t("home.featuredEnergyflow.tags.desktop"),
+  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages()]);
+
+  const copy = useMemo(() => {
+    if (locale === "zh") {
+      return {
+        eyebrow: "独立桌面软件工作室",
+        title: "为专注工作打造安静的桌面工具。",
+        intro: "SoloCraft 是 Chicken Fillet 的产品主页。我做的是小而克制的 Windows 桌面软件：记录精力、保护专注、整理桌面，并且尽量不打扰用户。",
+        primary: "滑动了解理念",
+        secondary: "查看产品",
+        notes: [
+          ["本地优先", "数据默认留在设备上，除非真的有必要离开。"],
+          ["低摩擦", "工具应该在需要时出现，完成后安静退场。"],
+          ["克制界面", "不要焦虑徽章，不要假紧迫感，不要让界面大喊大叫。"],
+        ],
+        chapters: [
+          {
+            id: "energyflow",
+            num: "01 / EnergyFlow",
+            title: "看清每一天精力流向。",
+            body: "3 秒打卡精力，记录等级、状态、来源与心情。它不是另一个工作量表，而是帮你发现会议、任务和节奏如何影响表现。",
+            bullets: ["5 级精力等级", "职场场景与能量来源", "Pearson 相关 + 卡方检验", "本地隐私优先"],
+          },
+          {
+            id: "deskhaven",
+            num: "02 / DeskHaven",
+            title: "让混乱桌面重新变成工作表面。",
+            body: "DeskHaven 是一个桌面文件避风港。它不应该像沉重的文件管理器，而应该像一个安全、安静、随手可用的整理空间。",
+            bullets: ["桌面文件归拢", "Windows 桌面习惯", "安全可找回", "开发中"],
+          },
+          {
+            id: "adhd",
+            num: "03 / ADHD Focus Timer",
+            title: "不惩罚注意力的专注工具。",
+            body: "正向计时、呼吸过渡、想法冰箱和全屏专注环境。它不是催促你完成任务，而是帮你更温和地进入状态。",
+            bullets: ["正向计时", "呼吸引导", "想法冰箱", "本地隐私"],
+          },
+        ],
+        principlesTitle: "设计成不打扰人的工具。",
+        principlesBody: "首页只介绍我是谁、做什么、产品气质是什么。每个产品的完整说明、真实截图、隐私政策和下载入口，都放进独立产品页。",
+        productTitle: "清晰入口，而不是拥挤详情。",
+        studioTitle: "小工具，也应该认真设计。",
+        studioBody: "这些产品服务于同一个方向：把桌面工作从噪音、混乱和压力中稍微解放出来。",
+        contact: "联系我",
+      };
+    }
+
+    return {
+      eyebrow: "Independent desktop software studio",
+      title: "Quiet tools for focused desktop work.",
+      intro: "SoloCraft is the product home for Chicken Fillet: small, restrained Windows desktop tools for tracking energy, protecting focus, and keeping the desktop calm.",
+      primary: "Scroll the story",
+      secondary: "View products",
+      notes: [
+        ["Local-first", "Data stays on the device unless there is a clear reason to leave."],
+        ["Low-friction", "Tools appear when needed, then step away."],
+        ["Calm UI", "No fake urgency, no noisy badges, no anxiety loops."],
       ],
-      cta: t("home.featuredEnergyflow.cta"),
+      chapters: [
+        {
+          id: "energyflow",
+          num: "01 / EnergyFlow",
+          title: "Understand where your energy goes.",
+          body: "Capture energy in seconds, then see how meetings, tasks, overtime, and recovery shape the way you work.",
+          bullets: ["5-level energy state", "Work context and source", "Pearson + Chi-square insight", "Local privacy first"],
+        },
+        {
+          id: "deskhaven",
+          num: "02 / DeskHaven",
+          title: "A quiet haven for messy desktops.",
+          body: "DeskHaven is a safe working surface for loose files: less like a heavy file manager, more like a calm place to put things down.",
+          bullets: ["Desktop file gathering", "Windows-native habits", "Safe and recoverable", "In development"],
+        },
+        {
+          id: "adhd",
+          num: "03 / ADHD Focus Timer",
+          title: "Focus without punishment.",
+          body: "Forward timing, breathing transition, idea parking, and a calm full-screen focus environment for low-resistance sessions.",
+          bullets: ["Forward timer", "Breathing guide", "Idea Fridge", "Local privacy"],
+        },
+      ],
+      principlesTitle: "Designed to stay out of the way.",
+      principlesBody: "The home page introduces the studio and product philosophy. Detailed product stories, real screenshots, policies, and calls to action live on individual product pages.",
+      productTitle: "Clear entrances, not crowded detail.",
+      studioTitle: "Small tools, built with restraint.",
+      studioBody: "These products share one direction: making desktop work quieter, more recoverable, and less stressful.",
+      contact: "Contact",
+    };
+  }, [locale]);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      const viewportCenter = window.innerHeight * 0.52;
+      const strengths = chapterRefs.current.map((chapter) => {
+        if (!chapter) return 0;
+        const rect = chapter.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - viewportCenter);
+        const range = Math.max(window.innerHeight * 0.6, rect.height * 0.52);
+        return smoothStep(0.08, 0.92, 1 - clamp(distance / range, 0, 1));
+      });
+
+      const total = strengths.reduce((sum, value) => sum + value, 0) || 1;
+
+      chapterRefs.current.forEach((chapter, index) => {
+        if (!chapter) return;
+        const key = `chapter-${index}`;
+        const previous = valuesRef.current.get(key) ?? strengths[index] ?? 0;
+        const next = lerp(previous, strengths[index] ?? 0, 0.18);
+        valuesRef.current.set(key, next);
+        chapter.style.setProperty("--story-strength", next.toFixed(4));
+      });
+
+      stageRefs.current.forEach((stage, index) => {
+        if (!stage) return;
+        const normalized = (strengths[index] ?? 0) / total;
+        const key = `stage-${index}`;
+        const previous = valuesRef.current.get(key) ?? normalized;
+        const next = lerp(previous, normalized, 0.2);
+        valuesRef.current.set(key, next);
+        stage.style.setProperty("--story-opacity", clamp(next * 1.35, 0, 1).toFixed(4));
+      });
+
+      frame = requestAnimationFrame(update);
+    };
+
+    frame = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  const stages = [
+    {
+      id: "energyflow",
+      href: "/products/energyflow",
+      title: "EnergyFlow",
+      status: locale === "zh" ? "预览" : "Preview",
+      description: locale === "zh" ? "职场能量仪表盘" : "Workplace energy dashboard",
+      image: energyFlowImages[locale].quickLog,
     },
     {
+      id: "deskhaven",
+      href: "/products/deskhaven",
+      title: "DeskHaven",
+      status: locale === "zh" ? "开发中" : "In development",
+      description: locale === "zh" ? "桌面文件避风港" : "Desktop file haven",
+      image: null,
+    },
+    {
+      id: "adhd",
       href: "/products/adhd-focus-timer",
-      image: "/photo/捕获3.PNG",
-      label: t("home.featured.label"),
-      name: t("home.featured.name"),
-      description: t("home.featured.description"),
-      tags: [
-        t("home.featured.tags.zero"),
-        t("home.featured.tags.forward"),
-        t("home.featured.tags.particles"),
-        t("home.featured.tags.local"),
-      ],
-      cta: t("home.featured.cta"),
+      title: "ADHD Focus Timer",
+      status: locale === "zh" ? "即将推出" : "Coming soon",
+      description: locale === "zh" ? "低压力专注计时器" : "Low-pressure focus timer",
+      image: adhdImages.focus,
     },
   ];
 
-  const goTo = useCallback((index: number) => {
-    if (isAnimatingRef.current) return;
-    isAnimatingRef.current = true;
-    setIsAnimating(true);
-    setActiveIndex(index);
-    activeIndexRef.current = index;
-    setTimeout(() => {
-      isAnimatingRef.current = false;
-      setIsAnimating(false);
-    }, 500);
-  }, []);
-
-  const next = useCallback(() => {
-    goTo((activeIndexRef.current + 1) % PRODUCT_COUNT);
-  }, [goTo]);
-
-  const prev = useCallback(() => {
-    goTo((activeIndexRef.current - 1 + PRODUCT_COUNT) % PRODUCT_COUNT);
-  }, [goTo]);
-
-  useEffect(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(next, CAROUSEL_INTERVAL);
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [next]);
-
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    
-    if (isLeftSwipe) {
-      next();
-    } else if (isRightSwipe) {
-      prev();
-    }
-  };
-
-  const onKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === "ArrowLeft") prev();
-    if (e.key === "ArrowRight") next();
-  }, [next, prev]);
-
-  useEffect(() => {
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onKeyDown]);
-
-  const current = products[activeIndex];
-  const efImage = energyflowImages[locale];
-
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1200px] mx-auto px-6 md:px-12 pt-32 pb-24 md:pt-48 md:pb-20 animate-fade-in">
-        <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-gradient-hero">
-          {t("home.hero.title")}
-        </h1>
-        <p className="mt-6 text-lg md:text-xl text-muted max-w-xl leading-[1.75]">
-          {t("home.hero.subtitle")}
-        </p>
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 min-h-[calc(100vh-4rem)] grid items-center pt-24 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-20 items-center">
+          <div className="animate-fade-in">
+            <span className="eyebrow">{copy.eyebrow}</span>
+            <h1 className="mt-7 text-[clamp(3rem,7vw,6rem)] leading-[0.94] tracking-[-0.075em] font-medium text-warm-gradient max-w-4xl">
+              {copy.title}
+            </h1>
+            <p className="mt-8 text-lg md:text-xl leading-[1.75] text-muted max-w-2xl">
+              {copy.intro}
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link href="#story" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">
+                {copy.primary}
+              </Link>
+              <Link href="/products" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">
+                {copy.secondary}
+              </Link>
+            </div>
+            <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
+              {copy.notes.map(([title, body]) => (
+                <div key={title} className="text-sm leading-relaxed text-[var(--faint)]">
+                  <strong className="block mb-2 text-muted font-medium">{title}</strong>
+                  {body}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="screen-shell rounded-[2rem] p-4 md:p-6 min-h-[460px] flex items-center justify-center">
+            <div className="relative w-full max-w-[560px] aspect-[1.08]">
+              <div className="absolute inset-[14%_8%_20%_0] rotate-[-3deg] rounded-[1.75rem] border border-white/[0.09] bg-[#171510] shadow-2xl" />
+              <div className="absolute inset-[4%_0_30%_18%] rotate-[5deg] rounded-[1.75rem] border border-white/[0.07] bg-[#201c16]/80" />
+              <div className="absolute inset-[24%_16%_0_10%] rotate-[2deg] rounded-[1.75rem] border border-white/[0.08] bg-[#14120f] overflow-hidden">
+                <div className="h-10 border-b border-white/[0.07] flex items-center gap-2 px-4">
+                  <span className="w-2 h-2 rounded-full bg-white/20" />
+                  <span className="w-2 h-2 rounded-full bg-white/20" />
+                  <span className="w-2 h-2 rounded-full bg-white/20" />
+                </div>
+                <div className="p-5 space-y-4">
+                  {[72, 46, 84, 58].map((width, index) => (
+                    <div key={index} className="h-2 rounded-full bg-white/[0.07] overflow-hidden">
+                      <div className="h-full rounded-full bg-[#b4835c]/45" style={{ width: `${width}%` }} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section className="bg-white/[0.02] border-y border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
-          <div
-            ref={containerRef}
-            className="flex flex-col md:flex-row items-center gap-10 md:gap-16"
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-          >
-            <div
-              className={`flex-1 text-center md:text-left transition-all duration-500 ease-out ${
-                isAnimating
-                  ? "opacity-0 translate-x-4"
-                  : "opacity-100 translate-x-0"
-              }`}
+      <section id="story" className="max-w-[1180px] mx-auto px-5 md:px-8 grid grid-cols-1 lg:grid-cols-[0.86fr_1.14fr] gap-12 lg:gap-20 py-20 md:py-28">
+        <div className="py-4 md:py-12">
+          {copy.chapters.map((chapter, index) => (
+            <article
+              key={chapter.id}
+              ref={(element) => {
+                if (element) chapterRefs.current[index] = element;
+              }}
+              className="story-chapter min-h-[72vh] flex flex-col justify-center"
             >
-              <span className="text-xs font-medium text-muted uppercase tracking-wider">
-                {current.label}
-              </span>
-              <h2 className="mt-3 text-2xl md:text-3xl font-medium text-foreground">
-                {current.name}
+              <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{chapter.num}</span>
+              <h2 className="mt-5 text-[clamp(2.25rem,4.6vw,4.5rem)] leading-[0.98] tracking-[-0.07em] font-medium text-foreground">
+                {chapter.title}
               </h2>
-              <p className="mt-4 text-muted leading-[1.75]">
-                {current.description}
-              </p>
-              <div className="mt-4 flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1 text-xs text-muted">
-                {current.tags.map((tag, i) => (
-                  <span key={i} className="flex items-center gap-x-3">
-                    <span>{tag}</span>
-                    {i < current.tags.length - 1 && <span>·</span>}
+              <p className="mt-6 text-muted leading-[1.8] text-lg max-w-xl">{chapter.body}</p>
+              <div className="mt-7 flex flex-wrap gap-2">
+                {chapter.bullets.map((item) => (
+                  <span key={item} className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-muted">
+                    {item}
                   </span>
                 ))}
               </div>
-              <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-6">
-                <Link
-                  href={current.href}
-                  className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
-                >
-                  {current.cta}
-                </Link>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={prev}
-                    className="w-8 h-8 flex items-center justify-center text-muted hover:text-foreground transition-colors"
-                    aria-label="Previous"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  <div className="flex items-center gap-2">
-                    {products.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => goTo(i)}
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          i === activeIndex
-                            ? "bg-foreground w-6"
-                            : "bg-white/20 hover:bg-white/40 w-2"
-                        }`}
-                      />
-                    ))}
+            </article>
+          ))}
+        </div>
+
+        <div className="lg:sticky lg:top-24 h-[620px] grid place-items-center">
+          <div className="screen-shell relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
+            <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">
+              Product stage follows scroll
+            </div>
+            {stages.map((stage, index) => (
+              <Link
+                key={stage.id}
+                href={stage.href}
+                ref={(element) => {
+                  if (element) stageRefs.current[index] = element;
+                }}
+                className="story-stage-product absolute inset-[4.8rem_2rem_2rem] block"
+              >
+                <div className="h-full rounded-[1.5rem] border border-white/10 bg-[#14120f] overflow-hidden">
+                  <div className="h-12 border-b border-white/[0.07] flex items-center justify-between px-4 text-xs text-[var(--faint)]">
+                    <span className="text-muted">{stage.title}</span>
+                    <span>{stage.status}</span>
                   </div>
-                  <button
-                    onClick={next}
-                    className="w-8 h-8 flex items-center justify-center text-muted hover:text-foreground transition-colors"
-                    aria-label="Next"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
+                  <div className="p-5 h-[calc(100%-3rem)] flex flex-col justify-between gap-5">
+                    {stage.image ? (
+                      <SmartScreenshot
+                        src={stage.image}
+                        alt={stage.title}
+                        width={900}
+                        height={640}
+                        priority={index === 0}
+                        sizes="(max-width: 1024px) 90vw, 560px"
+                        frameClassName="shadow-none flex-1"
+                      />
+                    ) : (
+                      <div className="flex-1 rounded-[1.25rem] border border-white/[0.08] bg-white/[0.018] grid grid-cols-3 gap-3 p-5">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                          <div key={i} className="rounded-2xl border border-white/[0.08] bg-white/[0.025] relative overflow-hidden">
+                            <div className="absolute top-4 left-4 w-10 h-2 rounded-full bg-white/10" />
+                            <div className="absolute bottom-4 left-4 right-4 h-1.5 rounded-full bg-[#b4835c]/25" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <div className="flex items-end justify-between gap-6">
+                      <div>
+                        <h3 className="text-2xl tracking-[-0.05em] text-foreground font-medium">{stage.title}</h3>
+                        <p className="mt-1 text-sm text-muted">{stage.description}</p>
+                      </div>
+                      <span className="shrink-0 rounded-full border border-white/10 px-3 py-1.5 text-xs text-[var(--faint)]">→</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div
-              className={`hidden md:block flex-shrink-0 w-[500px] transition-all duration-500 ease-out ${
-                isAnimating
-                  ? "opacity-0 -translate-x-4"
-                  : "opacity-100 translate-x-0"
-              }`}
-            >
-              <div className="screenshot-container">
-                <Image
-                  src={current.image}
-                  alt={current.name}
-                  width={800}
-                  height={600}
-                  className="screenshot-img"
-                  priority={activeIndex === 0}
-                />
-              </div>
-            </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-            <div>
-              <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
-                {t("home.philosophy.title")}
-              </h2>
-              <p className="mt-8 text-2xl md:text-3xl font-medium text-foreground leading-snug">
-                {t("home.philosophy.intro")}
-              </p>
+      <section id="principles" className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+        <span className="eyebrow">Operating principles</span>
+        <h2 className="mt-7 text-[clamp(2.5rem,5vw,4.75rem)] leading-[0.98] tracking-[-0.07em] font-medium max-w-3xl">
+          {copy.principlesTitle}
+        </h2>
+        <p className="mt-7 text-lg leading-[1.8] text-muted max-w-2xl">{copy.principlesBody}</p>
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 border-t border-l border-white/[0.07]">
+          {copy.notes.map(([title, body], index) => (
+            <div key={title} className="min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
+              <span className="text-xs text-[var(--faint)] tracking-[0.14em]">0{index + 1}</span>
+              <h3 className="mt-16 text-xl tracking-[-0.045em] font-medium">{title}</h3>
+              <p className="mt-4 text-sm leading-[1.7] text-muted">{body}</p>
             </div>
-            <div className="flex flex-col gap-10">
-              <div>
-                <h3 className="text-foreground font-medium">{t("home.philosophy.items.minimal.title")}</h3>
-                <p className="mt-2 text-muted leading-relaxed">
-                  {t("home.philosophy.items.minimal.description")}
-                </p>
-              </div>
-              <div>
-                <h3 className="text-foreground font-medium">{t("home.philosophy.items.immersive.title")}</h3>
-                <p className="mt-2 text-muted leading-relaxed">
-                  {t("home.philosophy.items.immersive.description")}
-                </p>
-              </div>
-              <div>
-                <h3 className="text-foreground font-medium">{t("home.philosophy.items.practical.title")}</h3>
-                <p className="mt-2 text-muted leading-relaxed">
-                  {t("home.philosophy.items.practical.description")}
-                </p>
-              </div>
-            </div>
+          ))}
+          <div className="min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
+            <span className="text-xs text-[var(--faint)] tracking-[0.14em]">04</span>
+            <h3 className="mt-16 text-xl tracking-[-0.045em] font-medium">Desktop-native</h3>
+            <p className="mt-4 text-sm leading-[1.7] text-muted">Built around actual desktop workflows, not another web dashboard in disguise.</p>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36">
-          <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
-            {t("home.products.title")}
-          </h2>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Link
-              href="/products"
-              className="p-6 card-premium group hover-lift flex flex-col items-center justify-center text-center"
-            >
-              <h3 className="text-foreground font-medium group-hover:text-muted transition-colors duration-200">
-                {t("home.products.viewAll")}
-              </h3>
-              <span className="mt-3 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("home.products.browse")}
-              </span>
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+        <span className="eyebrow">Product index</span>
+        <h2 className="mt-7 text-[clamp(2.5rem,5vw,4.75rem)] leading-[0.98] tracking-[-0.07em] font-medium max-w-3xl">
+          {copy.productTitle}
+        </h2>
+        <div className="mt-14 border-t border-white/10">
+          {stages.map((stage) => (
+            <Link key={stage.id} href={stage.href} className="index-row grid grid-cols-1 md:grid-cols-[1.2fr_1.8fr_0.7fr_3rem] gap-4 md:gap-8 items-center py-8 border-b border-white/[0.07] text-muted">
+              <strong className="text-2xl md:text-3xl tracking-[-0.06em] text-foreground font-medium">{stage.title}</strong>
+              <span className="leading-relaxed">{stage.description}</span>
+              <span className="text-sm text-[var(--faint)]">{stage.status}</span>
+              <span className="w-10 h-10 rounded-full border border-white/10 grid place-items-center text-[var(--faint)]">→</span>
             </Link>
-            <Link
-              href="/products/energyflow"
-              className="p-6 card-premium group hover-lift"
-            >
-              <div className="flex-shrink-0 mb-4">
-                <div className="screenshot-container">
-                  <Image
-                    src={efImage}
-                    alt="EnergyFlow"
-                    width={400}
-                    height={300}
-                    className="screenshot-img"
-                  />
-                </div>
-              </div>
-              <h3 className="text-foreground font-medium group-hover:text-muted transition-colors duration-200">
-                {t("products.energyflow.title")}
-              </h3>
-              <p className="mt-3 text-muted text-sm leading-[1.75]">
-                {t("products.energyflow.description")}
-              </p>
-              <span className="mt-4 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("products.energyflow.details")}
-              </span>
-            </Link>
-            <div className="p-6 card-premium">
-              <h3 className="text-foreground font-medium">{t("home.products.product3.title")}</h3>
-              <p className="mt-3 text-muted text-sm leading-[1.75]">
-                {t("home.products.product3.description")}
-              </p>
-              <span className="mt-6 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("home.products.comingSoon")}
-              </span>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+          <div>
+            <span className="eyebrow">Studio note</span>
+            <h2 className="mt-7 text-[clamp(2.5rem,5vw,4.75rem)] leading-[0.98] tracking-[-0.07em] font-medium">
+              {copy.studioTitle}
+            </h2>
+            <p className="mt-7 text-lg leading-[1.8] text-muted">{copy.studioBody}</p>
+          </div>
+          <div className="card-premium rounded-[1.75rem] p-8 md:p-10 self-start">
+            <p className="text-muted leading-[1.8]">
+              {locale === "zh"
+                ? "下一步，每个产品页会承载真实截图、详细介绍、下载入口和隐私政策。首页只保持安静、清晰和可信。"
+                : "Next, each product page carries real screenshots, product details, downloads, and privacy links. The home page stays quiet, clear, and trustworthy."}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/products" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.secondary}</Link>
+              <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.contact}</Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
-            <Link
-              href="/products/adhd-focus-timer/privacy"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-            >
-              {t("home.policyLinks.privacy")}
-            </Link>
-            <Link
-              href="/products/adhd-focus-timer/refund"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-            >
-              {t("home.policyLinks.refund")}
-            </Link>
-            <Link
-              href="/products/adhd-focus-timer/payment"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-            >
-              {t("home.policyLinks.payment")}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36 text-center">
-          <p className="text-2xl md:text-3xl font-medium text-foreground leading-snug">
-            {t("home.cta.title")}
-          </p>
-          <p className="mt-4 text-muted">
-            {t("home.cta.description")}
-          </p>
-          <Link
-            href="/contact"
-            className="mt-8 inline-block text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
-          >
-            {t("home.cta.button")}
-          </Link>
         </div>
       </section>
     </div>
