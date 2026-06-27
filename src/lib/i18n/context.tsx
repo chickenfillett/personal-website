@@ -4,7 +4,17 @@ import React, { createContext, useContext, useState, useEffect, useMemo, useCall
 import { zh } from "./zh";
 import { en } from "./en";
 
-type Locale = "zh" | "en";
+export type Locale = "zh" | "en" | "ja" | "ko" | "fr" | "de" | "es";
+
+export const supportedLocales: { code: Locale; label: string; nativeName: string }[] = [
+  { code: "zh", label: "中文", nativeName: "中文" },
+  { code: "en", label: "English", nativeName: "English" },
+  { code: "ja", label: "日本語", nativeName: "日本語" },
+  { code: "ko", label: "한국어", nativeName: "한국어" },
+  { code: "fr", label: "Français", nativeName: "Français" },
+  { code: "de", label: "Deutsch", nativeName: "Deutsch" },
+  { code: "es", label: "Español", nativeName: "Español" },
+];
 
 interface LanguageContextType {
   locale: Locale;
@@ -15,7 +25,15 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
-const translations: Record<Locale, typeof zh> = { zh, en };
+const translations = { zh, en } as const;
+
+function isLocale(value: string | null): value is Locale {
+  return supportedLocales.some((locale) => locale.code === value);
+}
+
+function translationLocale(locale: Locale): "zh" | "en" {
+  return locale === "zh" ? "zh" : "en";
+}
 
 function getNestedValue(obj: unknown, path: string): string {
   const keys = path.split(".");
@@ -33,9 +51,15 @@ function getNestedValue(obj: unknown, path: string): string {
 function detectLocale(): Locale {
   if (typeof window === "undefined") return "en";
   const saved = localStorage.getItem("locale");
-  if (saved === "zh" || saved === "en") return saved;
-  const browserLang = navigator.language || "";
-  if (browserLang.toLowerCase().startsWith("zh")) return "zh";
+  if (isLocale(saved)) return saved;
+
+  const browserLang = (navigator.language || "").toLowerCase();
+  if (browserLang.startsWith("zh")) return "zh";
+  if (browserLang.startsWith("ja")) return "ja";
+  if (browserLang.startsWith("ko")) return "ko";
+  if (browserLang.startsWith("fr")) return "fr";
+  if (browserLang.startsWith("de")) return "de";
+  if (browserLang.startsWith("es")) return "es";
   return "en";
 }
 
@@ -43,15 +67,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocale] = useState<Locale>("en");
 
   useEffect(() => {
-    const detected = detectLocale();
-    if (detected !== "en") {
-      setLocale(detected);
-    }
+    setLocale(detectLocale());
   }, []);
 
   const toggleLocale = useCallback(() => {
     setLocale((prev) => {
-      const next = prev === "zh" ? "en" : "zh";
+      const index = supportedLocales.findIndex((item) => item.code === prev);
+      const next = supportedLocales[(index + 1) % supportedLocales.length]?.code ?? "en";
       if (typeof window !== "undefined") {
         localStorage.setItem("locale", next);
       }
@@ -67,7 +89,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const t = useCallback((key: string): string => {
-    return getNestedValue(translations[locale], key);
+    return getNestedValue(translations[translationLocale(locale)], key);
   }, [locale]);
 
   const value = useMemo(() => ({
@@ -87,7 +109,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);
   if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
+    throw new Error("useLanguage must be used within LanguageProvider");
   }
   return context;
 }
