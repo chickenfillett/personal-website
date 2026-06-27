@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "../../components/TransitionLink";
+import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
@@ -20,6 +21,7 @@ const featureImages = [
 export default function ADHDFocusTimerPage() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
+  const legalLabel = locale === "zh" || locale === "zh-tw" ? "法律条款" : "Legal";
   usePreloadImages(allAdhdImages());
 
   const heroTitleClass = locale === "zh"
@@ -39,6 +41,7 @@ export default function ADHDFocusTimerPage() {
               <a href={microsoftStoreLinks.adhd} target="_blank" rel="noreferrer" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.microsoftStore}</a>
               <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.getUpdates}</Link>
               <Link href="/products/adhd-focus-timer/privacy" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.privacy}</Link>
+              <Link href="/products/adhd-focus-timer/legal" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{legalLabel}</Link>
             </div>
           </div>
 
@@ -58,6 +61,8 @@ export default function ADHDFocusTimerPage() {
         <h2 className="mt-7 text-[clamp(2.35rem,4.7vw,4.55rem)] leading-[1.04] tracking-[-0.05em] font-medium max-w-4xl">{copy.adhd.promiseTitle}</h2>
         <p className="mt-7 text-lg leading-[1.8] text-muted max-w-3xl">{copy.adhd.promise}</p>
       </section>
+
+      <ProductPricing product="adhd" />
 
       <section className="border-t border-white/[0.07]">
         {copy.adhd.features.map(([title, body], index) => (

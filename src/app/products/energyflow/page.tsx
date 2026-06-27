@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "../../components/TransitionLink";
+import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
@@ -13,6 +14,7 @@ export default function EnergyFlowPage() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
   const images = energyFlowImages[imageLocale(locale)];
+  const legalLabel = locale === "zh" || locale === "zh-tw" ? "法律条款" : "Legal";
   usePreloadImages(allEnergyFlowImages());
 
   return (
@@ -30,6 +32,7 @@ export default function EnergyFlowPage() {
               <a href={microsoftStoreLinks.energyflow} target="_blank" rel="noreferrer" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.microsoftStore}</a>
               <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.getUpdates}</Link>
               <Link href="/products/energyflow/privacy" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.privacy}</Link>
+              <Link href="/products/energyflow/legal" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{legalLabel}</Link>
             </div>
           </div>
 
@@ -42,6 +45,8 @@ export default function EnergyFlowPage() {
         <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-4xl">{copy.energyflow.promiseTitle}</h2>
         <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{copy.energyflow.promise}</p>
       </section>
+
+      <ProductPricing product="energyflow" />
 
       <section className="border-t border-white/[0.07]">
         {copy.energyflow.features.map(([title, body], index) => (

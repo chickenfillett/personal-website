@@ -4,6 +4,7 @@ import Link from "../components/TransitionLink";
 import SmartScreenshot from "../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
+import type { ProductId } from "@/lib/productCommerce";
 import {
   adhdImages,
   allAdhdImages,
@@ -15,6 +16,13 @@ import {
 } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
+function priceBadge(product: ProductId, locale: string) {
+  const zh = locale === "zh" || locale === "zh-tw";
+  if (product === "adhd") return zh ? "免费" : "Free";
+  if (product === "energyflow") return zh ? "USD $9.99 / ¥45 · 7 天试用" : "USD $9.99 / CNY ¥45 · 7-day trial";
+  return zh ? "USD $8.99 起 / ¥59 · 15 天试用" : "From USD $8.99 / CNY ¥59 · 15-day trial";
+}
+
 export default function Products() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
@@ -24,16 +32,19 @@ export default function Products() {
 
   const products = [
     {
+      id: "energyflow" as const,
       ...copy.productCards.energyflow,
       href: "/products/energyflow",
       image: energyFlowImages[assetLocale].quickLog,
     },
     {
+      id: "deskhaven" as const,
       ...copy.productCards.deskhaven,
       href: "/products/deskhaven",
       image: deskHavenAssets.hero,
     },
     {
+      id: "adhd" as const,
       ...copy.productCards.adhd,
       href: "/products/adhd-focus-timer",
       image: adhdImages.focus,
@@ -66,6 +77,7 @@ export default function Products() {
                   {product.title}
                 </h2>
                 <p className="mt-5 leading-[1.75] max-w-xl">{product.description}</p>
+                <p className="mt-4 text-sm text-[var(--faint)]">{priceBadge(product.id, locale)}</p>
               </div>
 
               <SmartScreenshot

@@ -1,70 +1,21 @@
 "use client";
 
 import Link from "../../components/TransitionLink";
+import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
-import { Locale, useLanguage } from "@/lib/i18n/context";
+import { useLanguage } from "@/lib/i18n/context";
+import { deskHavenPosterSectionCopy, deskHavenPosterStories } from "@/lib/deskhavenPosterCopy";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { allDeskHavenImages, deskHavenImagesForLocale } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
-
-const posterNotes = {
-  zh: {
-    eyebrow: "核心能力",
-    title: "从收纳到找回，DeskHaven 覆盖文件整理的完整路径。",
-    body: "下面的产品图对应真实功能：建立本地文件空间、快速检索、理解内容关系、自动整理，并把备份、加密和控制权交还给用户。",
-    galleryEyebrow: "真实界面",
-    galleryTitle: "查看 DeskHaven 的实际工作界面。",
-    galleryBody: "从仪表盘、文件台到设置与隐私控制，这里展示的是当前语言版本的真实界面。",
-    download: "联系开发者",
-  },
-  en: {
-    eyebrow: "Core capabilities",
-    title: "From storing to finding again, DeskHaven covers the full file-organization path.",
-    body: "The product visuals below map to real features: local file space, fast search, content relationships, quiet automation, backup, encryption, and user control.",
-    galleryEyebrow: "Real interface",
-    galleryTitle: "See DeskHaven's actual working screens.",
-    galleryBody: "From dashboard and file desk to settings and privacy controls, this gallery shows the real interface for the selected language.",
-    download: "Contact developer",
-  },
-} as const;
-
-const posterStories = {
-  zh: [
-    ["专属私域空间", "把文件、照片、导出资料和敏感内容放进一个本地私域，不再让桌面承担所有记忆。"],
-    ["本地内容工作台", "在同一个工作台里查看文件列表、详情、统计和最近操作，先建立秩序，再处理细节。"],
-    ["更快找到目标", "搜索、标签、路径和文件夹入口并列出现，让找文件不再只依赖模糊的文件名回忆。"],
-    ["关系清晰可见", "用关系图谱看见文件、标签、项目和主题之间的连接，理解内容为什么重要。"],
-    ["归档更有秩序", "批量归档、状态管理、时间线和恢复入口放在一起，整理之后也能安心找回。"],
-    ["先看全局再进入细节", "仪表盘汇总文件数量、分类、趋势和最近变化，适合每天打开先扫一眼。"],
-    ["后台自动整理", "路径、规则、开关和语言设置集中管理，让整理在后台稳定发生。"],
-    ["接入 AI 工具链", "把摘要、标签、归类等能力接进文件工作流，帮助理解内容，而不是替你失控操作。"],
-    ["白天清爽，夜晚专注", "深浅模式对应不同工作环境，界面保持克制，不用视觉噪音抢走注意力。"],
-    ["数据和控制权", "导入导出、备份恢复、加密和密钥管理放在明确位置，重要文件始终可控。"],
-  ],
-  en: [
-    ["A private file space", "Keep files, photos, exports, and sensitive material in a local space instead of letting the desktop carry every memory."],
-    ["A local content workbench", "Review file lists, details, stats, and recent actions from one workbench before diving into cleanup."],
-    ["Find the right file faster", "Search, tags, paths, and folder entry points work together so recall is not limited to file names."],
-    ["Visible relationships", "The relationship graph shows how files, tags, projects, and topics connect."],
-    ["Cleaner archiving", "Batch archive tools, status, timelines, and recovery entries keep organization reversible."],
-    ["Overview before detail", "The dashboard summarizes counts, categories, trends, and recent changes for a quick daily scan."],
-    ["Automation in the background", "Rules, paths, switches, and language settings stay centralized so organization can keep running quietly."],
-    ["An AI tool chain", "Summaries, tags, and classification can join the file workflow without taking control away from you."],
-    ["Light by day, focused by night", "Light and dark modes serve different work environments while keeping the interface restrained."],
-    ["Data and control", "Import, export, backup, restore, encryption, and keys stay visible and understandable."],
-  ],
-} as const;
-
-function posterCopyForLocale(locale: Locale) {
-  return locale === "zh" || locale === "zh-tw" ? posterStories.zh : posterStories.en;
-}
 
 export default function DeskHavenPage() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
   const assets = deskHavenImagesForLocale(locale);
-  const note = locale === "zh" || locale === "zh-tw" ? posterNotes.zh : posterNotes.en;
-  const posterCopy = posterCopyForLocale(locale);
+  const note = deskHavenPosterSectionCopy(locale);
+  const posterCopy = deskHavenPosterStories(locale, assets.locale);
+  const legalLabel = locale === "zh" || locale === "zh-tw" ? "法律条款" : "Legal";
   usePreloadImages(allDeskHavenImages(locale));
 
   return (
@@ -80,6 +31,8 @@ export default function DeskHavenPage() {
             <div className="mt-10 flex flex-wrap gap-4">
               <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{copy.deskhaven.status}</span>
               <Link href="/contact" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.getUpdates}</Link>
+              <Link href="/products/deskhaven/privacy" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.privacy}</Link>
+              <Link href="/products/deskhaven/legal" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{legalLabel}</Link>
               <Link href="/products" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.backToProducts}</Link>
             </div>
           </div>
@@ -100,6 +53,8 @@ export default function DeskHavenPage() {
         <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-4xl">{copy.deskhaven.promiseTitle}</h2>
         <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{copy.deskhaven.promise}</p>
       </section>
+
+      <ProductPricing product="deskhaven" />
 
       <section className="border-t border-white/[0.07]">
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
