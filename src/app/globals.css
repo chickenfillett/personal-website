@@ -338,21 +338,22 @@ body::after {
   transition: color 220ms cubic-bezier(.22, 1, .36, 1), background 220ms cubic-bezier(.22, 1, .36, 1);
 }
 
-.index-row > * {
-  transition: transform 220ms cubic-bezier(.22, 1, .36, 1);
-  will-change: transform;
-}
-
 .index-row:hover {
   background: rgba(238, 231, 219, 0.018);
 }
 
-.index-row:hover > * {
-  transform: translateX(0.875rem);
+.index-row > :first-child,
+.index-row .screenshot-frame {
+  transition: transform 220ms cubic-bezier(.22, 1, .36, 1);
+  will-change: transform;
+}
+
+.index-row:hover > :first-child {
+  transform: translateX(0.75rem);
 }
 
 .index-row:hover .screenshot-frame {
-  transform: translateX(0.875rem) scale(0.985);
+  transform: translateX(0.75rem) scale(0.988);
 }
 
 .product-page-grid {

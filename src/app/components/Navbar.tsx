@@ -10,7 +10,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const labels = navCopy[locale] ?? navCopy.en;
-  const currentLocale = supportedLocales.find((item) => item.code === locale) ?? supportedLocales[1];
+  const currentLocale = supportedLocales.find((item) => item.code === locale) ?? supportedLocales[2];
 
   useEffect(() => {
     if (!open) return;

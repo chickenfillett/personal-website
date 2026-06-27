@@ -4,17 +4,37 @@ import Link from "../../components/TransitionLink";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import { commerceLabels } from "@/lib/productCommerce";
 import { getSiteCopy } from "@/lib/siteCopy";
-import { allEnergyFlowImages, energyFlowImages, imageLocale, microsoftStoreLinks } from "@/lib/siteAssets";
+import {
+  allEnergyFlowImages,
+  energyFlowGalleryImagesForLocale,
+  energyFlowImages,
+  imageLocale,
+  microsoftStoreLinks,
+} from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 const featureImages = ["quickLog", "themeSwitch", "desktopAlwaysOn", "analytics", "privacy"] as const;
+
+function galleryCopy(locale: string) {
+  const zh = locale === "zh" || locale === "zh-tw";
+  return {
+    eyebrow: zh ? "真实界面" : "Real interface",
+    title: zh ? "查看 EnergyFlow 的完整界面截图。" : "See the full EnergyFlow interface set.",
+    body: zh
+      ? "这里展示你新增的 EnergyFlow 页面截图。切换网站语言后，截图会自动切换到中文或英文版本。"
+      : "This gallery uses the latest EnergyFlow screenshots. Switching the website language also switches the interface screenshots between Chinese and English.",
+  };
+}
 
 export default function EnergyFlowPage() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
   const images = energyFlowImages[imageLocale(locale)];
-  const legalLabel = locale === "zh" || locale === "zh-tw" ? "法律条款" : "Legal";
+  const gallery = energyFlowGalleryImagesForLocale(locale);
+  const galleryText = galleryCopy(locale);
+  const legalLabel = commerceLabels(locale).legal;
   usePreloadImages(allEnergyFlowImages());
 
   return (
@@ -72,6 +92,30 @@ export default function EnergyFlowPage() {
               <p className="text-lg md:text-xl text-muted leading-relaxed">{item}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="border-t border-white/[0.07]">
+        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
+          <span className="eyebrow">{galleryText.eyebrow}</span>
+          <h2 className="section-title mt-7 text-[clamp(2rem,3.8vw,3.55rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-4xl">
+            {galleryText.title}
+          </h2>
+          <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{galleryText.body}</p>
+
+          <div className="mt-14 screenshot-gallery">
+            {gallery.map((screenshot, index) => (
+              <SmartScreenshot
+                key={screenshot}
+                src={screenshot}
+                alt={`EnergyFlow interface screenshot ${index + 1}`}
+                width={1180}
+                height={664}
+                sizes="(max-width: 768px) 92vw, (max-width: 1180px) 44vw, 540px"
+                frameClassName="shadow-none"
+              />
+            ))}
+          </div>
         </div>
       </section>
     </div>

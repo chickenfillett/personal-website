@@ -4,6 +4,7 @@ import Link from "../../components/TransitionLink";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import { commerceLabels } from "@/lib/productCommerce";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { adhdImages, allAdhdImages, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
@@ -21,7 +22,7 @@ const featureImages = [
 export default function ADHDFocusTimerPage() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
-  const legalLabel = locale === "zh" || locale === "zh-tw" ? "法律条款" : "Legal";
+  const legalLabel = commerceLabels(locale).legal;
   usePreloadImages(allAdhdImages());
 
   const heroTitleClass = locale === "zh"

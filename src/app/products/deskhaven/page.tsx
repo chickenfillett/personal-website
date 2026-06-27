@@ -4,6 +4,7 @@ import Link from "../../components/TransitionLink";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import { commerceLabels } from "@/lib/productCommerce";
 import { deskHavenPosterSectionCopy, deskHavenPosterStories } from "@/lib/deskhavenPosterCopy";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { allDeskHavenImages, deskHavenImagesForLocale } from "@/lib/siteAssets";
@@ -15,7 +16,7 @@ export default function DeskHavenPage() {
   const assets = deskHavenImagesForLocale(locale);
   const note = deskHavenPosterSectionCopy(locale);
   const posterCopy = deskHavenPosterStories(locale, assets.locale);
-  const legalLabel = locale === "zh" || locale === "zh-tw" ? "法律条款" : "Legal";
+  const legalLabel = commerceLabels(locale).legal;
   usePreloadImages(allDeskHavenImages(locale));
 
   return (

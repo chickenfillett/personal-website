@@ -36,6 +36,17 @@ export const energyFlowImages = {
   },
 } as const;
 
+function numberedEnergyFlowScreenshots(locale: ImageLocale) {
+  return Array.from(
+    { length: 13 },
+    (_, index) => `/photo/energyflow/${locale}/screenshots/screenshot-${String(index + 1).padStart(2, "0")}.webp`,
+  );
+}
+
+export function energyFlowGalleryImagesForLocale(locale: Locale) {
+  return numberedEnergyFlowScreenshots(imageLocale(locale));
+}
+
 export const adhdImages = {
   intro: "/photo/捕获.PNG",
   prep: "/photo/捕获1.PNG",
@@ -100,6 +111,8 @@ export function allEnergyFlowImages() {
   return [
     ...Object.values(energyFlowImages.zh),
     ...Object.values(energyFlowImages.en),
+    ...numberedEnergyFlowScreenshots("zh"),
+    ...numberedEnergyFlowScreenshots("en"),
   ];
 }
 
