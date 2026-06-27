@@ -4,10 +4,12 @@ import { useEffect } from "react";
 import { optimizedImagePath } from "./siteAssets";
 
 export function usePreloadImages(sources: string[], enabled = true) {
+  const sourceKey = sources.join("|");
+
   useEffect(() => {
     if (!enabled || typeof window === "undefined") return;
 
-    const unique = Array.from(new Set(sources.filter(Boolean)));
+    const unique = Array.from(new Set(sourceKey.split("|").filter(Boolean)));
 
     for (const src of unique) {
       for (const candidate of [optimizedImagePath(src), src]) {
@@ -16,5 +18,5 @@ export function usePreloadImages(sources: string[], enabled = true) {
         image.src = candidate;
       }
     }
-  }, [enabled, sources.join("|")]);
+  }, [enabled, sourceKey]);
 }

@@ -2,16 +2,7 @@
 
 import Link from "next/link";
 import { supportedLocales, useLanguage } from "@/lib/i18n/context";
-
-const navCopy = {
-  zh: { home: "首页", about: "关于", products: "产品", contact: "联系" },
-  en: { home: "Home", about: "About", products: "Products", contact: "Contact" },
-  ja: { home: "ホーム", about: "概要", products: "製品", contact: "連絡" },
-  ko: { home: "홈", about: "소개", products: "제품", contact: "문의" },
-  fr: { home: "Accueil", about: "À propos", products: "Produits", contact: "Contact" },
-  de: { home: "Start", about: "Über", products: "Produkte", contact: "Kontakt" },
-  es: { home: "Inicio", about: "Acerca", products: "Productos", contact: "Contacto" },
-} as const;
+import { navCopy } from "@/lib/siteCopy";
 
 export default function Navbar() {
   const { locale, setLocale } = useLanguage();
@@ -48,7 +39,7 @@ export default function Navbar() {
           <select
             value={locale}
             onChange={(event) => setLocale(event.target.value as typeof locale)}
-            aria-label="Select language"
+            aria-label={labels.language}
             className="bg-transparent border border-white/10 px-3 py-2 text-sm text-muted hover:text-foreground hover:border-white/20 transition-colors outline-none"
           >
             {supportedLocales.map((item) => (

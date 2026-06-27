@@ -12,7 +12,7 @@ async function loadSharp() {
   try {
     const mod = await import("sharp");
     return mod.default;
-  } catch (error) {
+  } catch {
     console.warn("[optimize-images] sharp is not available yet. Run npm install, then retry.");
     return null;
   }

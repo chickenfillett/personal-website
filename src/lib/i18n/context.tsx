@@ -1,19 +1,27 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, ReactNode } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  ReactNode,
+} from "react";
 import { zh } from "./zh";
 import { en } from "./en";
 
 export type Locale = "zh" | "en" | "ja" | "ko" | "fr" | "de" | "es";
 
 export const supportedLocales: { code: Locale; label: string; nativeName: string }[] = [
-  { code: "zh", label: "中文", nativeName: "中文" },
+  { code: "zh", label: "Chinese", nativeName: "中文" },
   { code: "en", label: "English", nativeName: "English" },
-  { code: "ja", label: "日本語", nativeName: "日本語" },
-  { code: "ko", label: "한국어", nativeName: "한국어" },
-  { code: "fr", label: "Français", nativeName: "Français" },
-  { code: "de", label: "Deutsch", nativeName: "Deutsch" },
-  { code: "es", label: "Español", nativeName: "Español" },
+  { code: "ja", label: "Japanese", nativeName: "日本語" },
+  { code: "ko", label: "Korean", nativeName: "한국어" },
+  { code: "fr", label: "French", nativeName: "Français" },
+  { code: "de", label: "German", nativeName: "Deutsch" },
+  { code: "es", label: "Spanish", nativeName: "Español" },
 ];
 
 interface LanguageContextType {
@@ -24,7 +32,6 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
-
 const translations = { zh, en } as const;
 
 function isLocale(value: string | null): value is Locale {
@@ -39,8 +46,7 @@ function getNestedValue(obj: unknown, path: string): string {
   const keys = path.split(".");
   let current: unknown = obj;
   for (const key of keys) {
-    if (current === null || current === undefined) return path;
-    if (typeof current !== "object") return path;
+    if (current === null || current === undefined || typeof current !== "object") return path;
     const next = (current as Record<string, unknown>)[key];
     if (next === undefined) return path;
     current = next;
@@ -74,42 +80,30 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLocale((prev) => {
       const index = supportedLocales.findIndex((item) => item.code === prev);
       const next = supportedLocales[(index + 1) % supportedLocales.length]?.code ?? "en";
-      if (typeof window !== "undefined") {
-        localStorage.setItem("locale", next);
-      }
+      if (typeof window !== "undefined") localStorage.setItem("locale", next);
       return next;
     });
   }, []);
 
   const handleSetLocale = useCallback((newLocale: Locale) => {
     setLocale(newLocale);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("locale", newLocale);
-    }
+    if (typeof window !== "undefined") localStorage.setItem("locale", newLocale);
   }, []);
 
   const t = useCallback((key: string): string => {
     return getNestedValue(translations[translationLocale(locale)], key);
   }, [locale]);
 
-  const value = useMemo(() => ({
-    locale,
-    setLocale: handleSetLocale,
-    toggleLocale,
-    t,
-  }), [locale, handleSetLocale, toggleLocale, t]);
-
-  return (
-    <LanguageContext.Provider value={value}>
-      {children}
-    </LanguageContext.Provider>
+  const value = useMemo(
+    () => ({ locale, setLocale: handleSetLocale, toggleLocale, t }),
+    [locale, handleSetLocale, toggleLocale, t],
   );
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used within LanguageProvider");
-  }
+  if (!context) throw new Error("useLanguage must be used within LanguageProvider");
   return context;
 }
