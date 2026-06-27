@@ -9,7 +9,7 @@ import {
   allAdhdImages,
   allDeskHavenImages,
   allEnergyFlowImages,
-  deskHavenImages,
+  deskHavenImagesForLocale,
   energyFlowImages,
   imageLocale,
 } from "@/lib/siteAssets";
@@ -19,7 +19,8 @@ export default function Products() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
   const assetLocale = imageLocale(locale);
-  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages()]);
+  const deskHavenAssets = deskHavenImagesForLocale(locale);
+  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages(locale)]);
 
   const products = [
     {
@@ -30,7 +31,7 @@ export default function Products() {
     {
       ...copy.productCards.deskhaven,
       href: "/products/deskhaven",
-      image: deskHavenImages.hero,
+      image: deskHavenAssets.hero,
     },
     {
       ...copy.productCards.adhd,

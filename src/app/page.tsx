@@ -11,7 +11,7 @@ import {
   allAdhdImages,
   allDeskHavenImages,
   allEnergyFlowImages,
-  deskHavenImages,
+  deskHavenImagesForLocale,
   energyFlowImages,
   imageLocale,
 } from "@/lib/siteAssets";
@@ -27,12 +27,13 @@ export default function Home() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
   const assetLocale = imageLocale(locale);
+  const deskHavenAssets = deskHavenImagesForLocale(locale);
   const chapterRefs = useRef<HTMLElement[]>([]);
   const stageRefs = useRef<HTMLElement[]>([]);
   const valuesRef = useRef(new Map<string, number>());
   const [heroIndex, setHeroIndex] = useState(0);
 
-  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages()]);
+  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages(locale)]);
 
   const stages = useMemo(() => [
     {
@@ -49,7 +50,7 @@ export default function Home() {
       title: copy.productCards.deskhaven.title,
       status: copy.productCards.deskhaven.status,
       description: copy.productCards.deskhaven.category,
-      image: deskHavenImages.hero,
+      image: deskHavenAssets.hero,
     },
     {
       id: "adhd",
@@ -59,14 +60,14 @@ export default function Home() {
       description: copy.productCards.adhd.category,
       image: adhdImages.focus,
     },
-  ], [assetLocale, copy.productCards]);
+  ], [assetLocale, copy.productCards, deskHavenAssets.hero]);
 
   const heroItems = useMemo(() => [
     { title: "EnergyFlow", image: energyFlowImages[assetLocale].quickLog, href: "/products/energyflow" },
-    { title: "DeskHaven", image: deskHavenImages.hero, href: "/products/deskhaven" },
+    { title: "DeskHaven", image: deskHavenAssets.hero, href: "/products/deskhaven" },
     { title: "EnergyFlow Analytics", image: energyFlowImages[assetLocale].analytics, href: "/products/energyflow" },
     { title: "ADHD Focus Timer", image: adhdImages.focus, href: "/products/adhd-focus-timer" },
-  ], [assetLocale]);
+  ], [assetLocale, deskHavenAssets.hero]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {

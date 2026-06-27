@@ -1,16 +1,26 @@
 # DeskHaven image assets
 
-Binary image upload is not supported through the current ChatGPT GitHub connector, so the DeskHaven product page is wired to the following expected paths. Copy the provided DeskHaven asset package into this folder.
+DeskHaven images are organized by website locale:
 
-Expected files:
+- `zh`
+- `en`
+- `ja`
+- `ko`
+- `fr`
+- `de`
+- `es`
 
-- `deskhaven-store-hero.png`
-- `deskhaven-icon.png`
-- `deskhaven-dashboard.png`
-- `deskhaven-file-vault.png`
-- `deskhaven-privacy.png`
-- `deskhaven-relationship-graph.png`
-- `deskhaven-settings.png`
-- `deskhaven-poster.png`
+Each locale folder contains:
 
-After these files are present, `npm run build` will generate optimized WebP files under `public/photo-optimized/deskhaven/`.
+- `posters/poster-01.webp` ... `poster-10.webp`
+- `screenshots/screenshot-01.webp` ... screenshots for that locale
+
+The source images come from:
+
+`D:\Users\nemon\Desktop\项目源代码及程序\DeskHaven桌面管理\宣传图片`
+
+Notes:
+
+- Poster images are used for the product introduction section.
+- Interface screenshots are shown in the lower gallery.
+- Korean, German, and Spanish currently reuse English poster art because the source poster folders for those languages were not present, while their interface screenshot folders are present and localized.

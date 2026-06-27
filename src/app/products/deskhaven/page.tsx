@@ -4,21 +4,36 @@ import Link from "next/link";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
-import { allDeskHavenImages, deskHavenImages } from "@/lib/siteAssets";
+import { allDeskHavenImages, deskHavenImagesForLocale } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
-const featureImages = [
-  deskHavenImages.dashboard,
-  deskHavenImages.vault,
-  deskHavenImages.graph,
-  deskHavenImages.privacy,
-  deskHavenImages.settings,
-] as const;
+const posterNotes = {
+  zh: {
+    eyebrow: "海报图",
+    title: "先用产品海报理解 DeskHaven 的完整气质。",
+    body: "这些图来自你的海报图文件夹，适合承担产品介绍，而不是用单张界面截图硬解释所有功能。",
+    galleryEyebrow: "界面截图",
+    galleryTitle: "当前语言的全部界面截图。",
+    galleryBody: "这里直接陈列真实界面。切换网站语言后，DeskHaven 的截图会自动切换到对应语言版本。",
+    download: "Microsoft Store 暂未提供",
+  },
+  en: {
+    eyebrow: "Poster set",
+    title: "Understand DeskHaven through the official product posters.",
+    body: "These images come from the poster folder and carry the product story better than forcing one screenshot to explain every feature.",
+    galleryEyebrow: "Interface screenshots",
+    galleryTitle: "All interface screenshots for this language.",
+    galleryBody: "This section shows the real UI set. Switching the website language also switches the DeskHaven screenshot language.",
+    download: "Microsoft Store link pending",
+  },
+} as const;
 
 export default function DeskHavenPage() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
-  usePreloadImages(allDeskHavenImages());
+  const assets = deskHavenImagesForLocale(locale);
+  const note = locale === "zh" ? posterNotes.zh : posterNotes.en;
+  usePreloadImages(allDeskHavenImages(locale));
 
   return (
     <div className="flex flex-col">
@@ -38,10 +53,10 @@ export default function DeskHavenPage() {
           </div>
 
           <SmartScreenshot
-            src={deskHavenImages.hero}
-            alt="DeskHaven dashboard"
-            width={1280}
-            height={720}
+            src={assets.hero}
+            alt="DeskHaven product poster"
+            width={1400}
+            height={788}
             priority
             sizes="(max-width: 1024px) 92vw, 620px"
           />
@@ -55,24 +70,31 @@ export default function DeskHavenPage() {
       </section>
 
       <section className="border-t border-white/[0.07]">
-        {copy.deskhaven.features.map(([title, body], index) => (
-          <div key={title} className="max-w-[1180px] mx-auto px-5 md:px-8 py-16 md:py-24 border-b border-white/[0.07] last:border-b-0">
-            <div className={`detail-rail ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
-              <div className="detail-sticky">
-                <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">0{index + 1}</span>
-                <h2 className="mt-5 text-[clamp(2.15rem,3.9vw,3.9rem)] leading-[1.05] tracking-[-0.045em] font-medium">{title}</h2>
-                <p className="mt-6 text-muted leading-[1.85] text-lg">{body}</p>
-              </div>
-              <SmartScreenshot
-                src={featureImages[index]}
-                alt={title}
-                width={1280}
-                height={720}
-                sizes="(max-width: 1024px) 92vw, 680px"
-              />
+        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
+          <span className="eyebrow">{note.eyebrow}</span>
+          <div className="mt-7 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-start">
+            <div className="detail-sticky">
+              <h2 className="text-[clamp(2.25rem,4.4vw,4.2rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">
+                {note.title}
+              </h2>
+              <p className="mt-6 text-lg leading-[1.85] text-muted">{note.body}</p>
+            </div>
+
+            <div className="poster-stack">
+              {assets.posters.map((poster, index) => (
+                <SmartScreenshot
+                  key={poster}
+                  src={poster}
+                  alt={`DeskHaven poster ${index + 1}`}
+                  width={1400}
+                  height={788}
+                  sizes="(max-width: 1024px) 92vw, 680px"
+                  frameClassName="shadow-none"
+                />
+              ))}
             </div>
           </div>
-        ))}
+        </div>
       </section>
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
@@ -85,6 +107,30 @@ export default function DeskHavenPage() {
               <p className="mt-4 text-sm leading-[1.7] text-muted">{body}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="border-t border-white/[0.07]">
+        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
+          <span className="eyebrow">{note.galleryEyebrow}</span>
+          <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-4xl">
+            {note.galleryTitle}
+          </h2>
+          <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{note.galleryBody}</p>
+
+          <div className="mt-14 screenshot-gallery">
+            {assets.screenshots.map((screenshot, index) => (
+              <SmartScreenshot
+                key={screenshot}
+                src={screenshot}
+                alt={`DeskHaven interface screenshot ${index + 1}`}
+                width={1500}
+                height={844}
+                sizes="(max-width: 768px) 92vw, (max-width: 1180px) 44vw, 540px"
+                frameClassName="shadow-none"
+              />
+            ))}
+          </div>
         </div>
       </section>
     </div>

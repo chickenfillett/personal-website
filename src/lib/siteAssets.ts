@@ -1,7 +1,22 @@
+import type { Locale } from "@/lib/i18n/context";
+
 export type ImageLocale = "zh" | "en";
+export type DeskHavenAssetLocale = "zh" | "en" | "ja" | "ko" | "fr" | "de" | "es";
+
+export const microsoftStoreLinks = {
+  energyflow: "https://apps.microsoft.com/store/detail/9N7ZWFVC2QQS?cid=DevShareMCLPCS",
+  adhd: "https://apps.microsoft.com/store/detail/9MWWCZJPGW4Q?cid=DevShareMCLPCS",
+} as const;
 
 export function imageLocale(locale: string): ImageLocale {
   return locale === "zh" ? "zh" : "en";
+}
+
+export function deskHavenAssetLocale(locale: Locale): DeskHavenAssetLocale {
+  if (["zh", "en", "ja", "ko", "fr", "de", "es"].includes(locale)) {
+    return locale as DeskHavenAssetLocale;
+  }
+  return "en";
 }
 
 export const energyFlowImages = {
@@ -31,24 +46,51 @@ export const adhdImages = {
   privacy: "/photo/捕获6.PNG",
 } as const;
 
-export const deskHavenImages = {
-  hero: "/photo/deskhaven/deskhaven-store-hero.png",
-  icon: "/photo/deskhaven/deskhaven-icon.png",
-  dashboard: "/photo/deskhaven/deskhaven-dashboard.png",
-  vault: "/photo/deskhaven/deskhaven-file-vault.png",
-  privacy: "/photo/deskhaven/deskhaven-privacy.png",
-  graph: "/photo/deskhaven/deskhaven-relationship-graph.png",
-  settings: "/photo/deskhaven/deskhaven-settings.png",
-  poster: "/photo/deskhaven/deskhaven-poster.png",
-} as const;
+function numberedAssets(locale: DeskHavenAssetLocale, folder: "posters" | "screenshots", count: number) {
+  const stem = folder === "posters" ? "poster" : "screenshot";
+  return Array.from(
+    { length: count },
+    (_, index) => `/photo/deskhaven/${locale}/${folder}/${stem}-${String(index + 1).padStart(2, "0")}.webp`,
+  );
+}
+
+const deskHavenScreenshotCount: Record<DeskHavenAssetLocale, number> = {
+  zh: 20,
+  en: 21,
+  ja: 20,
+  ko: 21,
+  fr: 20,
+  de: 21,
+  es: 21,
+};
+
+export function deskHavenImagesForLocale(locale: Locale) {
+  const assetLocale = deskHavenAssetLocale(locale);
+  const posters = numberedAssets(assetLocale, "posters", 10);
+  const screenshots = numberedAssets(assetLocale, "screenshots", deskHavenScreenshotCount[assetLocale]);
+
+  return {
+    locale: assetLocale,
+    posters,
+    screenshots,
+    hero: posters[1] ?? posters[0],
+    icon: "/photo/deskhaven/zh/posters/poster-02.webp",
+    dashboard: screenshots[0],
+    privateSpace: screenshots[1],
+    fileDesk: screenshots[2],
+    archive: screenshots[3],
+    relationshipGraph: screenshots[4],
+    settings: screenshots[6],
+  };
+}
+
+export const deskHavenImages = deskHavenImagesForLocale("en");
 
 export function optimizedImagePath(src: string) {
-  const parts = src.split("/");
-  const file = parts[parts.length - 1] ?? src;
-  const dot = file.lastIndexOf(".");
-  const name = dot > -1 ? file.slice(0, dot) : file;
-  const folder = src.includes("/deskhaven/") ? "deskhaven/" : "";
-  return `/photo-optimized/${folder}${name}.webp`;
+  const dot = src.lastIndexOf(".");
+  const extension = dot > -1 ? src.slice(dot).toLowerCase() : "";
+  if (extension === ".webp" || !src.startsWith("/photo/")) return src;
+  return `/photo-optimized/${src.slice("/photo/".length, dot)}.webp`;
 }
 
 export function allEnergyFlowImages() {
@@ -62,12 +104,21 @@ export function allAdhdImages() {
   return Object.values(adhdImages);
 }
 
-export function allDeskHavenImages() {
-  return Object.values(deskHavenImages);
+export function allDeskHavenImages(locale?: Locale) {
+  if (locale) {
+    const assets = deskHavenImagesForLocale(locale);
+    return [...assets.posters, ...assets.screenshots];
+  }
+
+  return (["zh", "en", "ja", "ko", "fr", "de", "es"] as DeskHavenAssetLocale[]).flatMap((item) => {
+    const posters = numberedAssets(item, "posters", 10);
+    const screenshots = numberedAssets(item, "screenshots", deskHavenScreenshotCount[item]);
+    return [...posters, ...screenshots];
+  });
 }
 
-export function productPreviewImage(locale: string, product: "energyflow" | "adhd" | "deskhaven") {
+export function productPreviewImage(locale: Locale, product: "energyflow" | "adhd" | "deskhaven") {
   if (product === "energyflow") return energyFlowImages[imageLocale(locale)].quickLog;
-  if (product === "deskhaven") return deskHavenImages.hero;
+  if (product === "deskhaven") return deskHavenImagesForLocale(locale).hero;
   return adhdImages.focus;
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
-import { adhdImages, allAdhdImages } from "@/lib/siteAssets";
+import { adhdImages, allAdhdImages, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 const featureImages = [
@@ -36,7 +36,8 @@ export default function ADHDFocusTimerPage() {
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.adhd.intro}</p>
             <div className="mt-10 flex flex-wrap gap-4">
               <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{copy.adhd.status}</span>
-              <Link href="/contact" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.getUpdates}</Link>
+              <a href={microsoftStoreLinks.adhd} target="_blank" rel="noreferrer" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.microsoftStore}</a>
+              <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.getUpdates}</Link>
               <Link href="/products/adhd-focus-timer/privacy" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.privacy}</Link>
             </div>
           </div>

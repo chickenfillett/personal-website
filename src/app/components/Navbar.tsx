@@ -1,12 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { supportedLocales, useLanguage } from "@/lib/i18n/context";
+import { useEffect, useRef, useState } from "react";
+import { Locale, supportedLocales, useLanguage } from "@/lib/i18n/context";
 import { navCopy } from "@/lib/siteCopy";
 
 export default function Navbar() {
   const { locale, setLocale } = useLanguage();
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
   const labels = navCopy[locale] ?? navCopy.en;
+  const currentLocale = supportedLocales.find((item) => item.code === locale) ?? supportedLocales[1];
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
 
   const navLinks = [
     { href: "/", label: labels.home },
@@ -14,6 +37,11 @@ export default function Navbar() {
     { href: "/products", label: labels.products },
     { href: "/contact", label: labels.contact },
   ];
+
+  const chooseLocale = (nextLocale: Locale) => {
+    setLocale(nextLocale);
+    setOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-background/80 backdrop-blur-xl">
@@ -36,18 +64,36 @@ export default function Navbar() {
           <Link href="/products" className="sm:hidden hover:text-foreground transition-colors">
             {labels.products}
           </Link>
-          <select
-            value={locale}
-            onChange={(event) => setLocale(event.target.value as typeof locale)}
-            aria-label={labels.language}
-            className="bg-transparent border border-white/10 px-3 py-2 text-sm text-muted hover:text-foreground hover:border-white/20 transition-colors outline-none"
-          >
-            {supportedLocales.map((item) => (
-              <option key={item.code} value={item.code} className="bg-background text-foreground">
-                {item.nativeName}
-              </option>
-            ))}
-          </select>
+
+          <div ref={menuRef} className="language-menu">
+            <button
+              type="button"
+              className="language-menu-button"
+              aria-label={labels.language}
+              aria-expanded={open}
+              onClick={() => setOpen((value) => !value)}
+            >
+              <span>{currentLocale.nativeName}</span>
+              <span className="language-menu-chevron" aria-hidden="true">⌄</span>
+            </button>
+            {open && (
+              <div className="language-menu-panel" role="menu">
+                {supportedLocales.map((item) => (
+                  <button
+                    key={item.code}
+                    type="button"
+                    role="menuitemradio"
+                    aria-checked={item.code === locale}
+                    className={`language-menu-item ${item.code === locale ? "is-active" : ""}`}
+                    onClick={() => chooseLocale(item.code)}
+                  >
+                    <span className="language-menu-code">{item.code.toUpperCase()}</span>
+                    <span>{item.nativeName}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </nav>
     </header>
