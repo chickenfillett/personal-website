@@ -12,16 +12,19 @@ import React, {
 import { zh } from "./zh";
 import { en } from "./en";
 
-export type Locale = "zh" | "en" | "ja" | "ko" | "fr" | "de" | "es";
+export type Locale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
 
 export const supportedLocales: { code: Locale; label: string; nativeName: string }[] = [
-  { code: "zh", label: "Chinese", nativeName: "中文" },
+  { code: "zh", label: "Simplified Chinese", nativeName: "简体中文" },
+  { code: "zh-tw", label: "Traditional Chinese", nativeName: "繁體中文" },
   { code: "en", label: "English", nativeName: "English" },
   { code: "ja", label: "Japanese", nativeName: "日本語" },
   { code: "ko", label: "Korean", nativeName: "한국어" },
   { code: "fr", label: "French", nativeName: "Français" },
   { code: "de", label: "German", nativeName: "Deutsch" },
   { code: "es", label: "Spanish", nativeName: "Español" },
+  { code: "ru", label: "Russian", nativeName: "Русский" },
+  { code: "pt", label: "Portuguese", nativeName: "Português" },
 ];
 
 interface LanguageContextType {
@@ -39,7 +42,7 @@ function isLocale(value: string | null): value is Locale {
 }
 
 function translationLocale(locale: Locale): "zh" | "en" {
-  return locale === "zh" ? "zh" : "en";
+  return locale === "zh" || locale === "zh-tw" ? "zh" : "en";
 }
 
 function getNestedValue(obj: unknown, path: string): string {
@@ -60,12 +63,15 @@ function detectLocale(): Locale {
   if (isLocale(saved)) return saved;
 
   const browserLang = (navigator.language || "").toLowerCase();
+  if (browserLang === "zh-tw" || browserLang === "zh-hk" || browserLang === "zh-mo") return "zh-tw";
   if (browserLang.startsWith("zh")) return "zh";
   if (browserLang.startsWith("ja")) return "ja";
   if (browserLang.startsWith("ko")) return "ko";
   if (browserLang.startsWith("fr")) return "fr";
   if (browserLang.startsWith("de")) return "de";
   if (browserLang.startsWith("es")) return "es";
+  if (browserLang.startsWith("ru")) return "ru";
+  if (browserLang.startsWith("pt")) return "pt";
   return "en";
 }
 
@@ -75,6 +81,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setLocale(detectLocale());
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const toggleLocale = useCallback(() => {
     setLocale((prev) => {

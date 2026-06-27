@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Locale, supportedLocales, useLanguage } from "@/lib/i18n/context";
 import { navCopy } from "@/lib/siteCopy";
+import Link from "./TransitionLink";
 
 export default function Navbar() {
   const { locale, setLocale } = useLanguage();

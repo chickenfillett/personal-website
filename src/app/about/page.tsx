@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "../components/TransitionLink";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 

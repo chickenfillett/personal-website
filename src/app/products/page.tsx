@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "../components/TransitionLink";
 import SmartScreenshot from "../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
@@ -44,7 +44,7 @@ export default function Products() {
     <div className="flex flex-col">
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24 animate-fade-in">
         <span className="eyebrow">{copy.products.eyebrow}</span>
-        <h1 className="mt-7 text-[clamp(2.75rem,5.4vw,5.25rem)] leading-[1.06] tracking-[-0.045em] font-medium text-warm-gradient max-w-4xl">
+        <h1 className="section-title mt-7 text-[clamp(2.35rem,4.5vw,4.55rem)] leading-[1.08] tracking-[-0.04em] font-medium text-warm-gradient max-w-4xl">
           {copy.products.title}
         </h1>
         <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-3xl">

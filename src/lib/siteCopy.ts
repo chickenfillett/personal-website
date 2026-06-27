@@ -2,12 +2,15 @@ import type { Locale } from "@/lib/i18n/context";
 
 export const navCopy = {
   zh: { home: "首页", about: "关于", products: "产品", contact: "联系", language: "选择语言" },
+  "zh-tw": { home: "首頁", about: "關於", products: "產品", contact: "聯絡", language: "選擇語言" },
   en: { home: "Home", about: "About", products: "Products", contact: "Contact", language: "Select language" },
   ja: { home: "ホーム", about: "概要", products: "製品", contact: "連絡", language: "言語を選択" },
   ko: { home: "홈", about: "소개", products: "제품", contact: "연락", language: "언어 선택" },
   fr: { home: "Accueil", about: "À propos", products: "Produits", contact: "Contact", language: "Choisir la langue" },
   de: { home: "Start", about: "Über uns", products: "Produkte", contact: "Kontakt", language: "Sprache wählen" },
   es: { home: "Inicio", about: "Acerca de", products: "Productos", contact: "Contacto", language: "Elegir idioma" },
+  ru: { home: "Главная", about: "О нас", products: "Продукты", contact: "Контакты", language: "Выбрать язык" },
+  pt: { home: "Início", about: "Sobre", products: "Produtos", contact: "Contato", language: "Escolher idioma" },
 };
 
 export const siteCopy = {
@@ -329,6 +332,32 @@ export const siteCopy = {
 };
 
 const localized: Partial<Record<Locale, typeof siteCopy.en>> = {
+  "zh-tw": {
+    ...siteCopy.zh,
+    common: { ...siteCopy.zh.common, productPromise: "產品承諾", experienceFlow: "體驗流程", productIndex: "產品索引", operatingPrinciples: "工作原則", designPrinciples: "設計原則", step: "步驟", viewProducts: "查看產品", contact: "聯絡", getUpdates: "取得更新", microsoftStore: "Microsoft Store", privacy: "隱私政策", backToProducts: "返回產品" },
+    products: { eyebrow: "產品索引", title: "選擇一個工具，進入它的完整產品頁。", intro: "這裡保留清楚的產品入口。完整介紹、真實截圖、隱私資訊和下載連結都放在對應產品頁裡。" },
+    about: { ...siteCopy.zh.about, title: "關於 SoloCraft", ctaButton: "聯絡我" },
+    contact: { title: "聯絡", intro: "產品回饋、合作想法、媒體詢問，或只是打個招呼，都可以用郵件聯絡我。", infoTitle: "聯絡方式", email: "郵箱" },
+    footer: { ...siteCopy.zh.footer, studio: "工作室", products: "產品", legal: "法務", about: "關於", contact: "聯絡", privacy: "隱私政策" },
+  },
+  ru: {
+    ...siteCopy.en,
+    common: { ...siteCopy.en.common, productPromise: "Обещание продукта", experienceFlow: "Сценарий работы", productIndex: "Каталог продуктов", operatingPrinciples: "Принципы", designPrinciples: "Принципы дизайна", step: "Шаг", viewProducts: "Смотреть продукты", contact: "Контакты", getUpdates: "Получать новости", microsoftStore: "Microsoft Store", privacy: "Политика конфиденциальности", backToProducts: "Назад к продуктам" },
+    home: { ...siteCopy.en.home, eyebrow: "Независимая студия настольных приложений", title: "Спокойные инструменты для сосредоточенной работы.", intro: "SoloCraft — дом продуктов Chicken Fillet: небольшие Windows-инструменты для энергии, фокуса и аккуратного рабочего стола.", primary: "Прокрутить историю", secondary: "Смотреть продукты", currentProduct: "Превью продукта", productTitle: "Понятные входы в продукты.", studioTitle: "Небольшие инструменты, сделанные сдержанно." },
+    products: { eyebrow: "Каталог продуктов", title: "Выберите инструмент и откройте полную страницу продукта.", intro: "Здесь остаются понятные входы в продукты. Полные описания, реальные скриншоты, детали приватности и ссылки на загрузку находятся на страницах продуктов." },
+    about: { ...siteCopy.en.about, title: "О SoloCraft", intro: "SoloCraft — независимая студия Chicken Fillet для спокойных, сдержанных и privacy-first настольных инструментов.", ctaButton: "Связаться" },
+    contact: { title: "Контакты", intro: "Отзывы о продукте, идеи сотрудничества, запросы медиа или короткое приветствие можно отправить по почте.", infoTitle: "Контакт", email: "Почта" },
+    footer: { ...siteCopy.en.footer, studio: "Студия", products: "Продукты", legal: "Правовое", about: "О нас", contact: "Контакты", privacy: "Конфиденциальность" },
+  },
+  pt: {
+    ...siteCopy.en,
+    common: { ...siteCopy.en.common, productPromise: "Promessa do produto", experienceFlow: "Fluxo de experiência", productIndex: "Índice de produtos", operatingPrinciples: "Princípios", designPrinciples: "Princípios de design", step: "Etapa", viewProducts: "Ver produtos", contact: "Contato", getUpdates: "Receber novidades", microsoftStore: "Microsoft Store", privacy: "Política de privacidade", backToProducts: "Voltar aos produtos" },
+    home: { ...siteCopy.en.home, eyebrow: "Estúdio independente de software desktop", title: "Ferramentas calmas para trabalho focado.", intro: "SoloCraft é a casa dos produtos Chicken Fillet: pequenas ferramentas Windows para energia, foco e uma mesa de trabalho mais tranquila.", primary: "Ver a história", secondary: "Ver produtos", currentProduct: "Prévia do produto", productTitle: "Entradas claras para cada produto.", studioTitle: "Ferramentas pequenas, feitas com contenção." },
+    products: { eyebrow: "Índice de produtos", title: "Escolha uma ferramenta e abra sua página completa.", intro: "Esta página mantém entradas claras para os produtos. Descrições completas, capturas reais, detalhes de privacidade e links de download ficam nas páginas de cada produto." },
+    about: { ...siteCopy.en.about, title: "Sobre o SoloCraft", intro: "SoloCraft é o estúdio independente da Chicken Fillet para ferramentas desktop calmas, discretas e privacy-first.", ctaButton: "Entrar em contato" },
+    contact: { title: "Contato", intro: "Feedback de produto, ideias de colaboração, pedidos de mídia ou um simples oi podem chegar por e-mail.", infoTitle: "Contato", email: "E-mail" },
+    footer: { ...siteCopy.en.footer, studio: "Estúdio", products: "Produtos", legal: "Legal", about: "Sobre", contact: "Contato", privacy: "Privacidade" },
+  },
   ja: {
     ...siteCopy.en,
     common: { ...siteCopy.en.common, productPromise: "製品の約束", experienceFlow: "体験の流れ", productIndex: "製品一覧", operatingPrinciples: "運用原則", designPrinciples: "設計原則", step: "ステップ", viewProducts: "製品を見る", contact: "連絡", getUpdates: "更新を受け取る", privacy: "プライバシーポリシー", backToProducts: "製品に戻る" },
@@ -377,6 +406,36 @@ const localized: Partial<Record<Locale, typeof siteCopy.en>> = {
 };
 
 const productLocaleCopy: Partial<Record<Locale, Pick<typeof siteCopy.en, "productCards" | "energyflow" | "deskhaven" | "adhd">>> = {
+  "zh-tw": {
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "職場能量儀表盤", description: "幾秒記錄精力、工作狀態和能量來源，用統計洞察看清消耗與恢復。", status: "已推出" },
+      deskhaven: { title: "DeskHaven", category: "桌面文件避風港", description: "給每份文件一個本地、可控、可追溯的工作台，結合檔案櫃、關係圖譜與隱私控制。", status: "已推出" },
+      adhd: { title: "ADHD Focus Timer", category: "低壓力專注計時器", description: "正向計時、呼吸過渡、想法冰箱和沉浸式專注環境，讓開始更溫和。", status: "已推出" },
+    },
+    energyflow: { ...siteCopy.zh.energyflow, status: "已推出" },
+    deskhaven: { ...siteCopy.zh.deskhaven, title: "守護你的每一份文件。", status: "已推出" },
+    adhd: { ...siteCopy.zh.adhd, status: "已推出" },
+  },
+  ru: {
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "Панель рабочей энергии", description: "Записывайте энергию за секунды и находите, что истощает или восстанавливает вас.", status: "Доступно" },
+      deskhaven: { title: "DeskHaven", category: "Убежище для файлов", description: "Локальная рабочая зона для файлов: архив, карта связей, приватность и автоматизация.", status: "Доступно" },
+      adhd: { title: "ADHD Focus Timer", category: "Мягкий таймер фокуса", description: "Прямой таймер, дыхательный переход, Idea Fridge и спокойный полноэкранный фокус.", status: "Доступно" },
+    },
+    energyflow: { ...siteCopy.en.energyflow, eyebrow: "EnergyFlow / Панель рабочей энергии", title: "Поймите, куда уходит энергия рабочего дня.", intro: "Записывайте уровень энергии, контекст, источник и настроение за несколько секунд.", status: "Доступно" },
+    deskhaven: { ...siteCopy.en.deskhaven, eyebrow: "DeskHaven / Убежище для файлов", title: "Личный рабочий стол для каждого файла.", intro: "DeskHaven организует локальные Windows-файлы через архив, карту связей, контроль приватности и тихую автоматизацию.", status: "Доступно" },
+    adhd: { ...siteCopy.en.adhd, eyebrow: "ADHD Focus Timer / Мягкий фокус", title: "Фокус без наказания внимания.", intro: "Инструмент с дыхательным переходом, прямым таймером, Idea Fridge и local-first приватностью.", status: "Доступно" },
+  },
+  pt: {
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "Painel de energia no trabalho", description: "Registre energia em segundos e entenda o que drena ou restaura você.", status: "Disponível" },
+      deskhaven: { title: "DeskHaven", category: "Refúgio de arquivos desktop", description: "Uma mesa local para cada arquivo, com arquivo, mapa de relações, privacidade e automação.", status: "Disponível" },
+      adhd: { title: "ADHD Focus Timer", category: "Timer de foco suave", description: "Contagem progressiva, respiração, Idea Fridge e foco em tela cheia com baixa resistência.", status: "Disponível" },
+    },
+    energyflow: { ...siteCopy.en.energyflow, eyebrow: "EnergyFlow / Painel de energia", title: "Entenda para onde vai sua energia de trabalho.", intro: "Registre nível de energia, contexto, fonte e humor em poucos segundos.", status: "Disponível" },
+    deskhaven: { ...siteCopy.en.deskhaven, eyebrow: "DeskHaven / Refúgio de arquivos", title: "Uma mesa privada para cada arquivo.", intro: "DeskHaven organiza arquivos locais do Windows com arquivo, mapa de relações, privacidade e automação tranquila.", status: "Disponível" },
+    adhd: { ...siteCopy.en.adhd, eyebrow: "ADHD Focus Timer / Foco suave", title: "Foco sem transformar atenção em julgamento.", intro: "Ferramenta com transição respiratória, contagem progressiva, Idea Fridge e privacidade local-first.", status: "Disponível" },
+  },
   ja: {
     productCards: {
       energyflow: { title: "EnergyFlow", category: "仕事のエネルギーダッシュボード", description: "数秒でエネルギーを記録し、仕事の状態や回復源を統計的に見える化します。", status: "プレビュー" },
@@ -483,10 +542,42 @@ const productLocaleCopy: Partial<Record<Locale, Pick<typeof siteCopy.en, "produc
   },
 };
 
-export function getSiteCopy(locale: Locale) {
-  if (locale === "zh") return siteCopy.zh;
+const launchedStatus: Record<Locale, string> = {
+  zh: "已推出",
+  "zh-tw": "已推出",
+  en: "Available",
+  ja: "公開中",
+  ko: "출시됨",
+  fr: "Disponible",
+  de: "Verfügbar",
+  es: "Disponible",
+  ru: "Доступно",
+  pt: "Disponível",
+};
+
+function withLaunchedStatuses(copy: typeof siteCopy.en, locale: Locale): typeof siteCopy.en {
+  const status = launchedStatus[locale] ?? launchedStatus.en;
+
   return {
-    ...(localized[locale] ?? siteCopy.en),
-    ...(productLocaleCopy[locale] ?? {}),
+    ...copy,
+    productCards: {
+      energyflow: { ...copy.productCards.energyflow, status },
+      deskhaven: { ...copy.productCards.deskhaven, status },
+      adhd: { ...copy.productCards.adhd, status },
+    },
+    energyflow: { ...copy.energyflow, status },
+    deskhaven: { ...copy.deskhaven, status },
+    adhd: { ...copy.adhd, status },
   };
+}
+
+export function getSiteCopy(locale: Locale) {
+  const copy = locale === "zh"
+    ? siteCopy.zh
+    : {
+      ...(localized[locale] ?? siteCopy.en),
+      ...(productLocaleCopy[locale] ?? {}),
+    };
+
+  return withLaunchedStatuses(copy as typeof siteCopy.en, locale);
 }

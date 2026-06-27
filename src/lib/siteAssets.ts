@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n/context";
 
 export type ImageLocale = "zh" | "en";
-export type DeskHavenAssetLocale = "zh" | "en" | "ja" | "ko" | "fr" | "de" | "es";
+export type DeskHavenAssetLocale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
 
 export const microsoftStoreLinks = {
   energyflow: "https://apps.microsoft.com/store/detail/9N7ZWFVC2QQS?cid=DevShareMCLPCS",
@@ -13,7 +13,7 @@ export function imageLocale(locale: string): ImageLocale {
 }
 
 export function deskHavenAssetLocale(locale: Locale): DeskHavenAssetLocale {
-  if (["zh", "en", "ja", "ko", "fr", "de", "es"].includes(locale)) {
+  if (["zh", "zh-tw", "en", "ja", "ko", "fr", "de", "es", "ru", "pt"].includes(locale)) {
     return locale as DeskHavenAssetLocale;
   }
   return "en";
@@ -56,12 +56,15 @@ function numberedAssets(locale: DeskHavenAssetLocale, folder: "posters" | "scree
 
 const deskHavenScreenshotCount: Record<DeskHavenAssetLocale, number> = {
   zh: 20,
+  "zh-tw": 18,
   en: 21,
   ja: 20,
   ko: 21,
   fr: 20,
   de: 21,
   es: 21,
+  ru: 20,
+  pt: 21,
 };
 
 export function deskHavenImagesForLocale(locale: Locale) {
@@ -110,7 +113,7 @@ export function allDeskHavenImages(locale?: Locale) {
     return [...assets.posters, ...assets.screenshots];
   }
 
-  return (["zh", "en", "ja", "ko", "fr", "de", "es"] as DeskHavenAssetLocale[]).flatMap((item) => {
+  return (["zh", "zh-tw", "en", "ja", "ko", "fr", "de", "es", "ru", "pt"] as DeskHavenAssetLocale[]).flatMap((item) => {
     const posters = numberedAssets(item, "posters", 10);
     const screenshots = numberedAssets(item, "screenshots", deskHavenScreenshotCount[item]);
     return [...posters, ...screenshots];

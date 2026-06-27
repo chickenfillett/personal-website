@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import Link from "../../components/TransitionLink";
 import SmartScreenshot from "../../components/SmartScreenshot";
-import { useLanguage } from "@/lib/i18n/context";
+import { Locale, useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { allDeskHavenImages, deskHavenImagesForLocale } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
@@ -10,29 +10,61 @@ import { usePreloadImages } from "@/lib/usePreloadImages";
 const posterNotes = {
   zh: {
     eyebrow: "海报图",
-    title: "先用产品海报理解 DeskHaven 的完整气质。",
-    body: "这些图来自你的海报图文件夹，适合承担产品介绍，而不是用单张界面截图硬解释所有功能。",
+    title: "用 10 张产品海报看懂 DeskHaven 的完整功能。",
+    body: "每张海报都对应一个真实产品能力：从文件私域、工作台、搜索、关系图谱，到后台自动化和数据控制权。",
     galleryEyebrow: "界面截图",
-    galleryTitle: "当前语言的全部界面截图。",
-    galleryBody: "这里直接陈列真实界面。切换网站语言后，DeskHaven 的截图会自动切换到对应语言版本。",
+    galleryTitle: "真实界面总览。",
+    galleryBody: "这里直接陈列当前语言的真实界面截图。切换网站语言后，DeskHaven 的海报和截图会自动切换到对应语言版本。",
     download: "Microsoft Store 暂未提供",
   },
   en: {
     eyebrow: "Poster set",
-    title: "Understand DeskHaven through the official product posters.",
-    body: "These images come from the poster folder and carry the product story better than forcing one screenshot to explain every feature.",
+    title: "Understand DeskHaven through ten product posters.",
+    body: "Each poster maps to a real capability: private file space, workbench, search, relationship graph, automation, AI tooling, and data control.",
     galleryEyebrow: "Interface screenshots",
-    galleryTitle: "All interface screenshots for this language.",
-    galleryBody: "This section shows the real UI set. Switching the website language also switches the DeskHaven screenshot language.",
+    galleryTitle: "A real interface overview.",
+    galleryBody: "This section shows the full UI set for the current language. Switching the website language also switches DeskHaven posters and screenshots.",
     download: "Microsoft Store link pending",
   },
 } as const;
+
+const posterStories = {
+  zh: [
+    ["专属私域空间", "把文件、照片、导出资料和敏感内容放进一个本地私域，不再让桌面承担所有记忆。"],
+    ["本地内容工作台", "在同一个工作台里查看文件列表、详情、统计和最近操作，先建立秩序，再处理细节。"],
+    ["更快找到目标", "搜索、标签、路径和文件夹入口并列出现，让找文件不再只依赖模糊的文件名回忆。"],
+    ["关系清晰可见", "用关系图谱看见文件、标签、项目和主题之间的连接，理解内容为什么重要。"],
+    ["归档更有秩序", "批量归档、状态管理、时间线和恢复入口放在一起，整理之后也能安心找回。"],
+    ["先看全局再进入细节", "仪表盘汇总文件数量、分类、趋势和最近变化，适合每天打开先扫一眼。"],
+    ["后台自动整理", "路径、规则、开关和语言设置集中管理，让整理在后台稳定发生。"],
+    ["接入 AI 工具链", "把摘要、标签、归类等能力接进文件工作流，帮助理解内容，而不是替你失控操作。"],
+    ["白天清爽，夜晚专注", "深浅模式对应不同工作环境，界面保持克制，不用视觉噪音抢走注意力。"],
+    ["数据和控制权", "导入导出、备份恢复、加密和密钥管理放在明确位置，重要文件始终可控。"],
+  ],
+  en: [
+    ["A private file space", "Keep files, photos, exports, and sensitive material in a local space instead of letting the desktop carry every memory."],
+    ["A local content workbench", "Review file lists, details, stats, and recent actions from one workbench before diving into cleanup."],
+    ["Find the right file faster", "Search, tags, paths, and folder entry points work together so recall is not limited to file names."],
+    ["Visible relationships", "The relationship graph shows how files, tags, projects, and topics connect."],
+    ["Cleaner archiving", "Batch archive tools, status, timelines, and recovery entries keep organization reversible."],
+    ["Overview before detail", "The dashboard summarizes counts, categories, trends, and recent changes for a quick daily scan."],
+    ["Automation in the background", "Rules, paths, switches, and language settings stay centralized so organization can keep running quietly."],
+    ["An AI tool chain", "Summaries, tags, and classification can join the file workflow without taking control away from you."],
+    ["Light by day, focused by night", "Light and dark modes serve different work environments while keeping the interface restrained."],
+    ["Data and control", "Import, export, backup, restore, encryption, and keys stay visible and understandable."],
+  ],
+} as const;
+
+function posterCopyForLocale(locale: Locale) {
+  return locale === "zh" || locale === "zh-tw" ? posterStories.zh : posterStories.en;
+}
 
 export default function DeskHavenPage() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
   const assets = deskHavenImagesForLocale(locale);
-  const note = locale === "zh" ? posterNotes.zh : posterNotes.en;
+  const note = locale === "zh" || locale === "zh-tw" ? posterNotes.zh : posterNotes.en;
+  const posterCopy = posterCopyForLocale(locale);
   usePreloadImages(allDeskHavenImages(locale));
 
   return (
@@ -74,24 +106,34 @@ export default function DeskHavenPage() {
           <span className="eyebrow">{note.eyebrow}</span>
           <div className="mt-7 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-start">
             <div className="detail-sticky">
-              <h2 className="text-[clamp(2.25rem,4.4vw,4.2rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">
+              <h2 className="section-title text-[clamp(2rem,3.7vw,3.45rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-3xl">
                 {note.title}
               </h2>
               <p className="mt-6 text-lg leading-[1.85] text-muted">{note.body}</p>
             </div>
 
             <div className="poster-stack">
-              {assets.posters.map((poster, index) => (
-                <SmartScreenshot
-                  key={poster}
-                  src={poster}
-                  alt={`DeskHaven poster ${index + 1}`}
-                  width={1400}
-                  height={788}
-                  sizes="(max-width: 1024px) 92vw, 680px"
-                  frameClassName="shadow-none"
-                />
-              ))}
+              {assets.posters.map((poster, index) => {
+                const story = posterCopy[index] ?? posterCopy[0];
+
+                return (
+                  <article key={poster} className="poster-story-card">
+                    <SmartScreenshot
+                      src={poster}
+                      alt={`DeskHaven poster ${index + 1}`}
+                      width={1400}
+                      height={788}
+                      sizes="(max-width: 1024px) 92vw, 680px"
+                      frameClassName="shadow-none"
+                    />
+                    <div className="poster-story-copy">
+                      <span>0{index + 1}</span>
+                      <h3>{story[0]}</h3>
+                      <p>{story[1]}</p>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -113,7 +155,7 @@ export default function DeskHavenPage() {
       <section className="border-t border-white/[0.07]">
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
           <span className="eyebrow">{note.galleryEyebrow}</span>
-          <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-4xl">
+          <h2 className="section-title mt-7 text-[clamp(2rem,3.8vw,3.55rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-4xl">
             {note.galleryTitle}
           </h2>
           <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{note.galleryBody}</p>

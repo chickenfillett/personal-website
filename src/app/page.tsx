@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "./components/TransitionLink";
 import SmartScreenshot from "./components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
@@ -121,9 +121,9 @@ export default function Home() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  const heroTitleClass = locale === "zh"
-    ? "mt-7 text-[clamp(2.45rem,4.8vw,4.75rem)] leading-[1.1] tracking-[-0.035em] font-medium text-warm-gradient max-w-4xl"
-    : "mt-7 text-[clamp(3rem,6.4vw,5.75rem)] leading-[0.96] tracking-[-0.07em] font-medium text-warm-gradient max-w-4xl";
+  const heroTitleClass = locale === "zh" || locale === "zh-tw"
+    ? "hero-title mt-7 text-[clamp(2.45rem,4.8vw,4.75rem)] leading-[1.1] tracking-[-0.035em] font-medium text-warm-gradient max-w-4xl"
+    : "hero-title mt-7 text-[clamp(3rem,6.4vw,5.75rem)] leading-[0.96] tracking-[-0.07em] font-medium text-warm-gradient max-w-4xl";
 
   return (
     <div className="flex flex-col">

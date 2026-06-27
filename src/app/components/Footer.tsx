@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
+import Link from "./TransitionLink";
 
 export default function Footer() {
   const { locale } = useLanguage();
