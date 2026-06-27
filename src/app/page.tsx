@@ -237,7 +237,7 @@ export default function Home() {
         <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">{copy.home.principlesTitle}</h2>
         <p className="mt-7 text-lg leading-[1.8] text-muted max-w-2xl">{copy.home.principlesBody}</p>
         <div className="mt-16 grid grid-cols-1 md:grid-cols-4 border-t border-l border-white/[0.07]">
-          {[...copy.home.notes, ["Desktop-native", "Built around actual desktop workflows, not another web dashboard in disguise."]].map(([title, body], index) => (
+          {copy.home.notes.map(([title, body], index) => (
             <div key={title} className="min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
               <span className="text-xs text-[var(--faint)] tracking-[0.14em]">0{index + 1}</span>
               <h3 className="mt-16 text-xl tracking-[-0.045em] font-medium">{title}</h3>

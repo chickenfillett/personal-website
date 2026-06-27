@@ -9,22 +9,22 @@ import { usePreloadImages } from "@/lib/usePreloadImages";
 
 const posterNotes = {
   zh: {
-    eyebrow: "海报图",
-    title: "用 10 张产品海报看懂 DeskHaven 的完整功能。",
-    body: "每张海报都对应一个真实产品能力：从文件私域、工作台、搜索、关系图谱，到后台自动化和数据控制权。",
-    galleryEyebrow: "界面截图",
-    galleryTitle: "真实界面总览。",
-    galleryBody: "这里直接陈列当前语言的真实界面截图。切换网站语言后，DeskHaven 的海报和截图会自动切换到对应语言版本。",
-    download: "Microsoft Store 暂未提供",
+    eyebrow: "核心能力",
+    title: "从收纳到找回，DeskHaven 覆盖文件整理的完整路径。",
+    body: "下面的产品图对应真实功能：建立本地文件空间、快速检索、理解内容关系、自动整理，并把备份、加密和控制权交还给用户。",
+    galleryEyebrow: "真实界面",
+    galleryTitle: "查看 DeskHaven 的实际工作界面。",
+    galleryBody: "从仪表盘、文件台到设置与隐私控制，这里展示的是当前语言版本的真实界面。",
+    download: "联系开发者",
   },
   en: {
-    eyebrow: "Poster set",
-    title: "Understand DeskHaven through ten product posters.",
-    body: "Each poster maps to a real capability: private file space, workbench, search, relationship graph, automation, AI tooling, and data control.",
-    galleryEyebrow: "Interface screenshots",
-    galleryTitle: "A real interface overview.",
-    galleryBody: "This section shows the full UI set for the current language. Switching the website language also switches DeskHaven posters and screenshots.",
-    download: "Microsoft Store link pending",
+    eyebrow: "Core capabilities",
+    title: "From storing to finding again, DeskHaven covers the full file-organization path.",
+    body: "The product visuals below map to real features: local file space, fast search, content relationships, quiet automation, backup, encryption, and user control.",
+    galleryEyebrow: "Real interface",
+    galleryTitle: "See DeskHaven's actual working screens.",
+    galleryBody: "From dashboard and file desk to settings and privacy controls, this gallery shows the real interface for the selected language.",
+    download: "Contact developer",
   },
 } as const;
 
@@ -87,8 +87,8 @@ export default function DeskHavenPage() {
           <SmartScreenshot
             src={assets.hero}
             alt="DeskHaven product poster"
-            width={1400}
-            height={788}
+            width={1120}
+            height={630}
             priority
             sizes="(max-width: 1024px) 92vw, 620px"
           />
@@ -121,8 +121,8 @@ export default function DeskHavenPage() {
                     <SmartScreenshot
                       src={poster}
                       alt={`DeskHaven poster ${index + 1}`}
-                      width={1400}
-                      height={788}
+                      width={1120}
+                      height={630}
                       sizes="(max-width: 1024px) 92vw, 680px"
                       frameClassName="shadow-none"
                     />
@@ -166,8 +166,8 @@ export default function DeskHavenPage() {
                 key={screenshot}
                 src={screenshot}
                 alt={`DeskHaven interface screenshot ${index + 1}`}
-                width={1500}
-                height={844}
+                width={1180}
+                height={664}
                 sizes="(max-width: 768px) 92vw, (max-width: 1180px) 44vw, 540px"
                 frameClassName="shadow-none"
               />
