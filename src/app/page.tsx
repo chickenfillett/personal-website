@@ -150,20 +150,30 @@ export default function Home() {
           <div className="screen-shell rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
             <div className="flex items-center justify-between text-xs text-[var(--faint)] uppercase tracking-[0.14em] px-1">
               <span>{copy.home.currentProduct}</span>
-              <span>{heroItems[heroIndex]?.title}</span>
+              <span className="hero-preview-label" key={heroItems[heroIndex]?.title}>{heroItems[heroIndex]?.title}</span>
             </div>
-            <Link href={heroItems[heroIndex]?.href ?? "/products"} className="block flex-1 min-h-0">
-              <SmartScreenshot
-                src={heroItems[heroIndex]?.image ?? energyFlowImages[assetLocale].quickLog}
-                alt={heroItems[heroIndex]?.title ?? "Product preview"}
-                width={1200}
-                height={820}
-                priority
-                sizes="(max-width: 1024px) 92vw, 560px"
-                frameClassName="shadow-none h-full"
-                className="h-full object-contain"
-              />
-            </Link>
+            <div className="hero-preview-stage flex-1 min-h-0">
+              {heroItems.map((item, index) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  aria-hidden={index !== heroIndex}
+                  tabIndex={index === heroIndex ? 0 : -1}
+                  className={`hero-preview-card ${index === heroIndex ? "is-active" : ""}`}
+                >
+                  <SmartScreenshot
+                    src={item.image}
+                    alt={item.title}
+                    width={1200}
+                    height={820}
+                    priority={index === 0}
+                    sizes="(max-width: 1024px) 92vw, 560px"
+                    frameClassName="shadow-none h-full"
+                    className="h-full object-contain"
+                  />
+                </Link>
+              ))}
+            </div>
             <div className="grid grid-cols-3 gap-3">
               {stages.map((item) => (
                 <Link key={item.id} href={item.href} className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.035] transition-colors">
