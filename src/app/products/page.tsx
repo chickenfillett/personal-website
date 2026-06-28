@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "../components/TransitionLink";
 import SmartScreenshot from "../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 import type { ProductId } from "@/lib/productCommerce";
 import { productPricing } from "@/lib/productCommerce";
@@ -19,7 +20,7 @@ import {
 } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
-function localPriceBadge(product: ProductId, locale: string, browserLanguage: string) {
+function localPriceBadge(product: ProductId, locale: Locale, browserLanguage: string) {
   const pricing = productPricing(product, locale);
   const localPrice = selectLocalPrice(pricing.prices, locale, browserLanguage);
   return localPrice?.current ?? "";
