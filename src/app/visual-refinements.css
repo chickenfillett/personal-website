@@ -58,26 +58,27 @@
 .energy-gallery-card {
   min-width: 0;
   justify-self: center;
-  width: 100%;
+  width: fit-content;
   max-width: 330px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   padding: 0;
-  border-radius: 1rem;
-  border: 1px solid rgba(238, 231, 219, 0.11);
-  background: rgba(238, 231, 219, 0.012);
-  overflow: hidden;
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.16);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
 }
 
 .energy-gallery-image {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: 330px;
   max-height: 340px;
   object-fit: contain;
-  border-radius: calc(1rem - 1px);
+  border-radius: 1rem;
+  border: 1px solid rgba(238, 231, 219, 0.11);
+  background: rgba(238, 231, 219, 0.012);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.16);
   filter: saturate(0.98) contrast(0.99);
 }
 
@@ -99,6 +100,7 @@
   }
 
   .energy-gallery-image {
+    max-width: 315px;
     max-height: 320px;
   }
 }
@@ -110,6 +112,10 @@
   }
 
   .energy-gallery-card {
+    max-width: 330px;
+  }
+
+  .energy-gallery-image {
     max-width: 330px;
   }
 
@@ -126,10 +132,13 @@
   }
 
   .energy-gallery-card {
+    width: 100%;
     max-width: 100%;
   }
 
   .energy-gallery-image {
+    width: 100%;
+    max-width: 100%;
     max-height: none;
   }
 }
