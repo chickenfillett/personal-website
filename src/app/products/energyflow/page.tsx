@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "../../components/TransitionLink";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
@@ -16,19 +17,20 @@ import {
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 const featureImages = ["quickLog", "themeSwitch", "desktopAlwaysOn", "analytics", "privacy"] as const;
+const galleryVariants = ["wide", "compact", "portrait", "medium", "compact", "wide", "medium", "portrait", "compact", "medium", "wide", "compact", "medium"] as const;
 
 function galleryCopy(locale: string) {
   const copy = {
-    zh: { eyebrow: "真实界面", title: "查看 EnergyFlow 的完整界面截图。", body: "这里展示你新增的 EnergyFlow 页面截图。切换网站语言后，截图会自动切换到中文或英文版本。" },
-    "zh-tw": { eyebrow: "真實介面", title: "查看 EnergyFlow 的完整介面截圖。", body: "這裡展示 EnergyFlow 的最新頁面截圖。切換網站語言後，截圖會自動切換為中文或英文版本。" },
-    en: { eyebrow: "Real interface", title: "See the full EnergyFlow interface set.", body: "This gallery uses the latest EnergyFlow screenshots. Switching the website language also switches the interface screenshots between Chinese and English." },
-    ja: { eyebrow: "実際の画面", title: "EnergyFlow の画面セットを見る。", body: "このギャラリーでは EnergyFlow の最新スクリーンショットを表示します。サイト言語に応じて中国語または英語の画面に切り替わります。" },
-    ko: { eyebrow: "실제 화면", title: "EnergyFlow 전체 화면을 살펴보세요.", body: "이 갤러리는 최신 EnergyFlow 스크린샷을 보여 줍니다. 사이트 언어에 따라 중국어 또는 영어 인터페이스 이미지로 전환됩니다." },
-    fr: { eyebrow: "Interface réelle", title: "Voir l'ensemble des écrans EnergyFlow.", body: "Cette galerie affiche les dernières captures EnergyFlow. Le changement de langue du site bascule aussi les captures entre chinois et anglais." },
-    de: { eyebrow: "Echte Oberfläche", title: "Die vollständige EnergyFlow-Oberfläche ansehen.", body: "Diese Galerie zeigt die neuesten EnergyFlow-Screenshots. Beim Wechsel der Website-Sprache wechseln auch die Oberflächenbilder zwischen Chinesisch und Englisch." },
-    es: { eyebrow: "Interfaz real", title: "Ver el conjunto completo de pantallas de EnergyFlow.", body: "Esta galería usa las capturas más recientes de EnergyFlow. Al cambiar el idioma del sitio, las capturas también cambian entre chino e inglés." },
-    ru: { eyebrow: "Реальный интерфейс", title: "Посмотрите полный набор экранов EnergyFlow.", body: "В этой галерее показаны последние скриншоты EnergyFlow. При смене языка сайта изображения интерфейса переключаются между китайской и английской версиями." },
-    pt: { eyebrow: "Interface real", title: "Veja o conjunto completo de telas do EnergyFlow.", body: "Esta galeria usa as capturas mais recentes do EnergyFlow. Ao trocar o idioma do site, as imagens da interface alternam entre chinês e inglês." },
+    zh: { eyebrow: "真实界面", title: "查看 EnergyFlow 的完整界面截图。", body: "截图区域已经按原图比例重新排布：大图收小，窄图留白更自然，避免在大屏幕上把低分辨率截图强行拉满。" },
+    "zh-tw": { eyebrow: "真實介面", title: "查看 EnergyFlow 的完整介面截圖。", body: "截圖區域已按原圖比例重新排布：大圖收小，窄圖留白更自然，避免在大螢幕上把低解析截圖強行拉滿。" },
+    en: { eyebrow: "Real interface", title: "See the full EnergyFlow interface set.", body: "The gallery now respects screenshot proportions: large images are kept smaller, narrow images breathe better, and lower-resolution captures are no longer stretched across the full screen." },
+    ja: { eyebrow: "実際の画面", title: "EnergyFlow の画面セットを見る。", body: "スクリーンショットの比率に合わせて配置し、大きな画像は控えめに、細長い画像は自然な余白で表示します。" },
+    ko: { eyebrow: "실제 화면", title: "EnergyFlow 전체 화면을 살펴보세요.", body: "스크린샷 비율에 맞춰 배치하고 큰 이미지는 작게 유지해 큰 화면에서 거칠게 보이지 않도록 했습니다." },
+    fr: { eyebrow: "Interface réelle", title: "Voir l'ensemble des écrans EnergyFlow.", body: "La galerie respecte davantage les proportions : les grandes captures restent plus petites et les images étroites respirent mieux." },
+    de: { eyebrow: "Echte Oberfläche", title: "Die vollständige EnergyFlow-Oberfläche ansehen.", body: "Die Galerie respektiert die Bildproportionen: große Screenshots bleiben kleiner, schmale Ansichten erhalten natürlichere Abstände." },
+    es: { eyebrow: "Interfaz real", title: "Ver el conjunto completo de pantallas de EnergyFlow.", body: "La galería respeta mejor las proporciones: las capturas grandes se muestran más pequeñas y las estrechas tienen más aire." },
+    ru: { eyebrow: "Реальный интерфейс", title: "Посмотрите полный набор экранов EnergyFlow.", body: "Галерея учитывает пропорции снимков: крупные изображения уменьшены, а узкие кадры не растягиваются на весь экран." },
+    pt: { eyebrow: "Interface real", title: "Veja o conjunto completo de telas do EnergyFlow.", body: "A galeria respeita melhor as proporções: capturas grandes ficam menores e imagens estreitas respiram melhor." },
   } as const;
 
   return copy[locale as keyof typeof copy] ?? copy.en;
@@ -130,17 +132,17 @@ export default function EnergyFlowPage() {
           </h2>
           <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{galleryText.body}</p>
 
-          <div className="mt-14 screenshot-gallery">
+          <div className="mt-14 energy-gallery-grid">
             {gallery.map((screenshot, index) => (
-              <SmartScreenshot
-                key={screenshot}
-                src={screenshot}
-                alt={`EnergyFlow interface screenshot ${index + 1}`}
-                width={1180}
-                height={664}
-                sizes="(max-width: 768px) 92vw, (max-width: 1180px) 44vw, 540px"
-                frameClassName="shadow-none"
-              />
+              <figure key={screenshot} className={`energy-gallery-card energy-gallery-card--${galleryVariants[index % galleryVariants.length]}`}>
+                <Image
+                  src={screenshot}
+                  alt={`EnergyFlow interface screenshot ${index + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 86vw, (max-width: 1180px) 34vw, 420px"
+                  className="energy-gallery-image"
+                />
+              </figure>
             ))}
           </div>
         </div>
