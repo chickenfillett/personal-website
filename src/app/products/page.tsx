@@ -1,10 +1,13 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import Link from "../components/TransitionLink";
 import SmartScreenshot from "../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 import type { ProductId } from "@/lib/productCommerce";
+import { productPricing } from "@/lib/productCommerce";
+import { detectedBrowserLanguage, selectLocalPrice } from "@/lib/localPricing";
 import {
   adhdImages,
   allAdhdImages,
@@ -16,32 +19,25 @@ import {
 } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
-function priceBadge(product: ProductId, locale: string) {
-  const badges = {
-    zh: { adhd: "免费", energyflow: "USD $9.99 / ¥45 · 7 天试用", deskhaven: "USD $8.99 起 / ¥59 · 15 天试用" },
-    "zh-tw": { adhd: "免費", energyflow: "USD $9.99 / ¥45 · 7 天試用", deskhaven: "USD $8.99 起 / ¥59 · 15 天試用" },
-    en: { adhd: "Free", energyflow: "USD $9.99 / CNY ¥45 · 7-day trial", deskhaven: "From USD $8.99 / CNY ¥59 · 15-day trial" },
-    ja: { adhd: "無料", energyflow: "USD $9.99 / CNY ¥45 · 7 日間試用", deskhaven: "USD $8.99 から / CNY ¥59 · 15 日間試用" },
-    ko: { adhd: "무료", energyflow: "USD $9.99 / CNY ¥45 · 7일 체험", deskhaven: "USD $8.99부터 / CNY ¥59 · 15일 체험" },
-    fr: { adhd: "Gratuit", energyflow: "USD $9.99 / CNY ¥45 · essai 7 jours", deskhaven: "Dès USD $8.99 / CNY ¥59 · essai 15 jours" },
-    de: { adhd: "Kostenlos", energyflow: "USD $9.99 / CNY ¥45 · 7 Tage Test", deskhaven: "Ab USD $8.99 / CNY ¥59 · 15 Tage Test" },
-    es: { adhd: "Gratis", energyflow: "USD $9.99 / CNY ¥45 · prueba 7 días", deskhaven: "Desde USD $8.99 / CNY ¥59 · prueba 15 días" },
-    ru: { adhd: "Бесплатно", energyflow: "USD $9.99 / CNY ¥45 · 7 дней пробно", deskhaven: "От USD $8.99 / CNY ¥59 · 15 дней пробно" },
-    pt: { adhd: "Grátis", energyflow: "USD $9.99 / CNY ¥45 · teste 7 dias", deskhaven: "A partir de USD $8.99 / CNY ¥59 · teste 15 dias" },
-  } as const;
-
-  const copy = badges[locale as keyof typeof badges] ?? badges.en;
-  return copy[product];
+function localPriceBadge(product: ProductId, locale: string, browserLanguage: string) {
+  const pricing = productPricing(product, locale);
+  const localPrice = selectLocalPrice(pricing.prices, locale, browserLanguage);
+  return localPrice?.current ?? "";
 }
 
 export default function Products() {
   const { locale } = useLanguage();
+  const [browserLanguage, setBrowserLanguage] = useState<string>(() => detectedBrowserLanguage(locale));
   const copy = getSiteCopy(locale);
   const assetLocale = imageLocale(locale);
   const deskHavenAssets = deskHavenImagesForLocale(locale);
   usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages(locale)]);
 
-  const products = [
+  useEffect(() => {
+    setBrowserLanguage(detectedBrowserLanguage(locale));
+  }, [locale]);
+
+  const products = useMemo(() => [
     {
       id: "energyflow" as const,
       ...copy.productCards.energyflow,
@@ -60,7 +56,7 @@ export default function Products() {
       href: "/products/adhd-focus-timer",
       image: adhdImages.focus,
     },
-  ];
+  ], [assetLocale, copy.productCards.adhd, copy.productCards.deskhaven, copy.productCards.energyflow, deskHavenAssets.hero]);
 
   return (
     <div className="flex flex-col">
@@ -88,7 +84,7 @@ export default function Products() {
                   {product.title}
                 </h2>
                 <p className="mt-5 leading-[1.75] max-w-xl">{product.description}</p>
-                <p className="mt-4 text-sm text-[var(--faint)]">{priceBadge(product.id, locale)}</p>
+                <p className="mt-4 text-sm text-[var(--faint)]">{localPriceBadge(product.id, locale, browserLanguage)}</p>
               </div>
 
               <SmartScreenshot
