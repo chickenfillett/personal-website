@@ -75,15 +75,17 @@ function detectLocale(): Locale {
   return "en";
 }
 
+function markLanguageReady(locale: Locale) {
+  if (typeof document === "undefined") return;
+  document.documentElement.lang = locale;
+  document.documentElement.dataset.languageReady = "true";
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("en");
+  const [locale, setLocale] = useState<Locale>(() => detectLocale());
 
   useEffect(() => {
-    setLocale(detectLocale());
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.lang = locale;
+    markLanguageReady(locale);
   }, [locale]);
 
   const toggleLocale = useCallback(() => {
