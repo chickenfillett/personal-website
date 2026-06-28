@@ -47,62 +47,70 @@
 }
 
 .energy-gallery-grid {
-  width: min(100%, 920px);
+  width: min(100%, 1100px);
   margin-inline: auto;
-  column-count: 2;
-  column-gap: clamp(1.1rem, 2vw, 1.65rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.6vw, 1.35rem);
+  align-items: stretch;
 }
 
 .energy-gallery-card {
-  display: inline-block;
-  width: 100%;
-  margin: 0 0 clamp(1.1rem, 2vw, 1.65rem);
-  break-inside: avoid;
-  border-radius: 1.15rem;
+  min-width: 0;
+  height: clamp(220px, 18vw, 285px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.45rem, 0.8vw, 0.7rem);
+  border-radius: 1.05rem;
   border: 1px solid rgba(238, 231, 219, 0.095);
-  background: rgba(238, 231, 219, 0.018);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(180, 131, 92, 0.045), transparent 11rem),
+    rgba(238, 231, 219, 0.014);
   overflow: hidden;
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
-}
-
-.energy-gallery-card:nth-child(3n + 1) {
-  width: 88%;
-}
-
-.energy-gallery-card:nth-child(3n + 2) {
-  width: 74%;
-  margin-left: auto;
-}
-
-.energy-gallery-card:nth-child(4n) {
-  width: 96%;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.18);
 }
 
 .energy-gallery-image {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
-  max-height: 520px;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  border-radius: 1rem;
+  border-radius: 0.85rem;
   filter: saturate(0.98) contrast(0.99);
+}
+
+@media (min-width: 1180px) {
+  .energy-gallery-card {
+    height: 265px;
+  }
 }
 
 @media (max-width: 920px) {
   .energy-gallery-grid {
-    width: min(100%, 620px);
-    column-count: 1;
+    width: min(100%, 720px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .energy-gallery-card,
-  .energy-gallery-card:nth-child(3n + 1),
-  .energy-gallery-card:nth-child(3n + 2),
-  .energy-gallery-card:nth-child(4n) {
-    width: 100%;
-    margin-left: 0;
+  .energy-gallery-card {
+    height: clamp(210px, 34vw, 270px);
+  }
+}
+
+@media (max-width: 620px) {
+  .energy-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .energy-gallery-card {
+    height: auto;
+    min-height: 0;
   }
 
   .energy-gallery-image {
+    width: 100%;
     max-height: none;
   }
 }
