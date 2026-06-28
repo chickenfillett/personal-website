@@ -27,7 +27,7 @@
         "./src/lib/productPoliciesRuntime.ts"
       ],
       "@/lib/siteCopy": [
-        "./src/lib/siteCopyRuntime.ts"
+        "./src/lib/siteCopy.ts"
       ],
       "@/*": [
         "./src/*"
@@ -45,6 +45,8 @@
     "dist/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/lib/siteCopyRuntime.ts",
+    "src/lib/locales/site/**/*.ts"
   ]
 }
