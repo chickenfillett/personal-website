@@ -7,6 +7,19 @@ import type { ProductId } from "@/lib/productCommerce";
 import { productPolicyMeta } from "@/lib/productCommerce";
 import { useLanguage } from "@/lib/i18n/context";
 
+const documentUi = {
+  zh: { toc: "文档目录", privacy: "查看隐私政策", legal: "查看法律条款" },
+  "zh-tw": { toc: "文件目錄", privacy: "查看隱私政策", legal: "查看法律條款" },
+  en: { toc: "Contents", privacy: "View privacy policy", legal: "View legal terms" },
+  ja: { toc: "目次", privacy: "プライバシーポリシーを見る", legal: "法的条項を見る" },
+  ko: { toc: "문서 목차", privacy: "개인정보 처리방침 보기", legal: "법률 약관 보기" },
+  fr: { toc: "Sommaire", privacy: "Voir la politique de confidentialité", legal: "Voir les conditions légales" },
+  de: { toc: "Inhalt", privacy: "Datenschutzerklärung ansehen", legal: "Rechtliche Bedingungen ansehen" },
+  es: { toc: "Contenido", privacy: "Ver política de privacidad", legal: "Ver términos legales" },
+  ru: { toc: "Содержание", privacy: "Открыть политику конфиденциальности", legal: "Открыть правовые условия" },
+  pt: { toc: "Conteúdo", privacy: "Ver política de privacidade", legal: "Ver termos legais" },
+} as const;
+
 function renderBody(body: string | readonly string[]) {
   const paragraphs = Array.isArray(body) ? body : [body];
   return paragraphs.map((paragraph) => (
@@ -22,11 +35,8 @@ export default function ProductPolicyPage({ product, kind }: { product: ProductI
   const meta = productPolicyMeta[product];
   const otherKind = kind === "privacy" ? "legal" : "privacy";
   const otherHref = otherKind === "privacy" ? meta.privacyPath : meta.legalPath;
-  const isZh = locale === "zh" || locale === "zh-tw";
-  const otherLabel = isZh
-    ? otherKind === "privacy" ? "查看隐私政策" : "查看法律条款"
-    : otherKind === "privacy" ? "View privacy policy" : "View legal terms";
-  const tocLabel = isZh ? "文档目录" : "Contents";
+  const ui = documentUi[locale] ?? documentUi.en;
+  const otherLabel = otherKind === "privacy" ? ui.privacy : ui.legal;
 
   return (
     <div className="flex flex-col">
@@ -47,7 +57,7 @@ export default function ProductPolicyPage({ product, kind }: { product: ProductI
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-[17rem_1fr] gap-10 lg:gap-16 items-start">
             <aside className="lg:sticky lg:top-24 rounded-3xl border border-white/[0.08] bg-white/[0.015] p-6">
-              <h2 className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{tocLabel}</h2>
+              <h2 className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{ui.toc}</h2>
               <nav className="mt-5 flex flex-col gap-3 text-sm text-muted">
                 {copy.sections.map((section, index) => (
                   <a key={section.title} href={`#section-${index + 1}`} className="hover:text-foreground transition-colors leading-relaxed">
