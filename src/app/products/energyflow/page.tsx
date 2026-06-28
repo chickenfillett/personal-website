@@ -18,14 +18,20 @@ import { usePreloadImages } from "@/lib/usePreloadImages";
 const featureImages = ["quickLog", "themeSwitch", "desktopAlwaysOn", "analytics", "privacy"] as const;
 
 function galleryCopy(locale: string) {
-  const zh = locale === "zh" || locale === "zh-tw";
-  return {
-    eyebrow: zh ? "真实界面" : "Real interface",
-    title: zh ? "查看 EnergyFlow 的完整界面截图。" : "See the full EnergyFlow interface set.",
-    body: zh
-      ? "这里展示你新增的 EnergyFlow 页面截图。切换网站语言后，截图会自动切换到中文或英文版本。"
-      : "This gallery uses the latest EnergyFlow screenshots. Switching the website language also switches the interface screenshots between Chinese and English.",
-  };
+  const copy = {
+    zh: { eyebrow: "真实界面", title: "查看 EnergyFlow 的完整界面截图。", body: "这里展示你新增的 EnergyFlow 页面截图。切换网站语言后，截图会自动切换到中文或英文版本。" },
+    "zh-tw": { eyebrow: "真實介面", title: "查看 EnergyFlow 的完整介面截圖。", body: "這裡展示 EnergyFlow 的最新頁面截圖。切換網站語言後，截圖會自動切換為中文或英文版本。" },
+    en: { eyebrow: "Real interface", title: "See the full EnergyFlow interface set.", body: "This gallery uses the latest EnergyFlow screenshots. Switching the website language also switches the interface screenshots between Chinese and English." },
+    ja: { eyebrow: "実際の画面", title: "EnergyFlow の画面セットを見る。", body: "このギャラリーでは EnergyFlow の最新スクリーンショットを表示します。サイト言語に応じて中国語または英語の画面に切り替わります。" },
+    ko: { eyebrow: "실제 화면", title: "EnergyFlow 전체 화면을 살펴보세요.", body: "이 갤러리는 최신 EnergyFlow 스크린샷을 보여 줍니다. 사이트 언어에 따라 중국어 또는 영어 인터페이스 이미지로 전환됩니다." },
+    fr: { eyebrow: "Interface réelle", title: "Voir l'ensemble des écrans EnergyFlow.", body: "Cette galerie affiche les dernières captures EnergyFlow. Le changement de langue du site bascule aussi les captures entre chinois et anglais." },
+    de: { eyebrow: "Echte Oberfläche", title: "Die vollständige EnergyFlow-Oberfläche ansehen.", body: "Diese Galerie zeigt die neuesten EnergyFlow-Screenshots. Beim Wechsel der Website-Sprache wechseln auch die Oberflächenbilder zwischen Chinesisch und Englisch." },
+    es: { eyebrow: "Interfaz real", title: "Ver el conjunto completo de pantallas de EnergyFlow.", body: "Esta galería usa las capturas más recientes de EnergyFlow. Al cambiar el idioma del sitio, las capturas también cambian entre chino e inglés." },
+    ru: { eyebrow: "Реальный интерфейс", title: "Посмотрите полный набор экранов EnergyFlow.", body: "В этой галерее показаны последние скриншоты EnergyFlow. При смене языка сайта изображения интерфейса переключаются между китайской и английской версиями." },
+    pt: { eyebrow: "Interface real", title: "Veja o conjunto completo de telas do EnergyFlow.", body: "Esta galeria usa as capturas mais recentes do EnergyFlow. Ao trocar o idioma do site, as imagens da interface alternam entre chinês e inglês." },
+  } as const;
+
+  return copy[locale as keyof typeof copy] ?? copy.en;
 }
 
 export default function EnergyFlowPage() {
