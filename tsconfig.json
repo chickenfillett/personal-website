@@ -24,7 +24,7 @@
     ],
     "paths": {
       "@/lib/productPolicies": [
-        "./src/lib/productPoliciesRuntime.ts"
+        "./src/lib/productPoliciesRuntimeFinal.ts"
       ],
       "@/lib/siteCopy": [
         "./src/lib/siteCopyRuntime.ts"
