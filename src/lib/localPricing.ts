@@ -28,7 +28,7 @@ export function selectLocalPrice(prices: readonly PriceItem[], locale: string, b
   const marketMatchers: string[][] = [];
 
   if (region === "CN" || language === "zh" || language.startsWith("zh-cn")) marketMatchers.push(["中国", "china", "cny"]);
-  if (region === "US") marketMatchers.push(["美国", "united states", "usd"]);
+  if (region === "US") marketMatchers.push(["美国", "united states", "usd $14.99"]);
   if (region === "JP" || language.startsWith("ja")) marketMatchers.push(["日本", "japan", "jpy"]);
   if (region === "KR" || language.startsWith("ko")) marketMatchers.push(["韩国", "korea", "krw"]);
   if (region === "CA") marketMatchers.push(["加拿大", "canada", "cad"]);
