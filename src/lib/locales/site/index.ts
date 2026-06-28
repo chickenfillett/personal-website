@@ -10,15 +10,15 @@ import es from "./es";
 import ru from "./ru";
 import pt from "./pt";
 
-export const siteLocaleCopy = {
-  zh,
-  "zh-tw": zhTw,
+export const siteLocaleCopy: Record<Locale, typeof en> = {
+  zh: zh as typeof en,
+  "zh-tw": zhTw as typeof en,
   en,
-  ja,
-  ko,
-  fr,
-  de,
-  es,
-  ru,
-  pt,
-} satisfies Record<Locale, typeof en>;
+  ja: ja as typeof en,
+  ko: ko as typeof en,
+  fr: fr as typeof en,
+  de: de as typeof en,
+  es: es as typeof en,
+  ru: ru as typeof en,
+  pt: pt as typeof en,
+};
