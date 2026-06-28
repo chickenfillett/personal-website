@@ -28,10 +28,31 @@ function deepMerge<T>(base: T, override: unknown): T {
   return merged as T;
 }
 
+function cleanProductPositioning(value: unknown): unknown {
+  if (typeof value === "string") {
+    return value
+      .replaceAll("小工具", "桌面软件")
+      .replaceAll("桌面工具", "桌面软件产品")
+      .replaceAll("desktop tools", "desktop software products")
+      .replaceAll("Desktop tools", "Desktop software products")
+      .replaceAll("small tools", "desktop software products")
+      .replaceAll("Small tools", "Desktop software products");
+  }
+
+  if (Array.isArray(value)) return value.map(cleanProductPositioning);
+
+  if (isPlainObject(value)) {
+    return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, cleanProductPositioning(child)]));
+  }
+
+  return value;
+}
+
 export function getSiteCopy(locale: Locale) {
   const base = getBaseSiteCopy(locale);
   const supplement = siteCopySupplement[locale];
-  return supplement ? deepMerge(base, supplement) : base;
+  const merged = supplement ? deepMerge(base, supplement) : base;
+  return cleanProductPositioning(merged) as typeof merged;
 }
 
 export { navCopy };
