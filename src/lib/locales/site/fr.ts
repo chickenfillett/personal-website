@@ -1,5 +1,5 @@
-import { siteCopy } from "@/lib/siteCopy";
-import { siteCopySupplement } from "@/lib/siteCopySupplement";
+import { siteCopy } from "../../siteCopy";
+import { siteCopySupplement } from "../../siteCopySupplement";
 import { cleanProductPositioning, mergeLocaleCopy } from "./utils";
 
 const copy = mergeLocaleCopy(siteCopy.fr, siteCopySupplement.fr);
