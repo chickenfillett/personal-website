@@ -1,81 +1,102 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import Link from "../components/TransitionLink";
+import SmartScreenshot from "../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import { getSiteCopy } from "@/lib/siteCopy";
+import type { ProductId } from "@/lib/productCommerce";
+import {
+  adhdImages,
+  allAdhdImages,
+  allDeskHavenImages,
+  allEnergyFlowImages,
+  deskHavenImagesForLocale,
+  energyFlowImages,
+  imageLocale,
+} from "@/lib/siteAssets";
+import { usePreloadImages } from "@/lib/usePreloadImages";
 
-const energyflowImages = {
-  zh: "/photo/energyflow-zh-1.png",
-  en: "/photo/energyflow-en-2.png",
-};
+function priceBadge(product: ProductId, locale: string) {
+  const zh = locale === "zh" || locale === "zh-tw";
+  if (product === "adhd") return zh ? "免费" : "Free";
+  if (product === "energyflow") return zh ? "USD $9.99 / ¥45 · 7 天试用" : "USD $9.99 / CNY ¥45 · 7-day trial";
+  return zh ? "USD $8.99 起 / ¥59 · 15 天试用" : "From USD $8.99 / CNY ¥59 · 15-day trial";
+}
 
 export default function Products() {
-  const { locale, t } = useLanguage();
-  const efImage = energyflowImages[locale];
+  const { locale } = useLanguage();
+  const copy = getSiteCopy(locale);
+  const assetLocale = imageLocale(locale);
+  const deskHavenAssets = deskHavenImagesForLocale(locale);
+  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages(locale)]);
+
+  const products = [
+    {
+      id: "energyflow" as const,
+      ...copy.productCards.energyflow,
+      href: "/products/energyflow",
+      image: energyFlowImages[assetLocale].quickLog,
+    },
+    {
+      id: "deskhaven" as const,
+      ...copy.productCards.deskhaven,
+      href: "/products/deskhaven",
+      image: deskHavenAssets.hero,
+    },
+    {
+      id: "adhd" as const,
+      ...copy.productCards.adhd,
+      href: "/products/adhd-focus-timer",
+      image: adhdImages.focus,
+    },
+  ];
 
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1200px] mx-auto px-6 md:px-12 pt-24 pb-16 md:pt-36 md:pb-24">
-        <h1 className="text-3xl md:text-5xl font-medium tracking-tight text-foreground">
-          {t("products.intro.title")}
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24 animate-fade-in">
+        <span className="eyebrow">{copy.products.eyebrow}</span>
+        <h1 className="section-title mt-7 text-[clamp(2.35rem,4.5vw,4.55rem)] leading-[1.08] tracking-[-0.04em] font-medium text-warm-gradient max-w-4xl">
+          {copy.products.title}
         </h1>
-        <p className="mt-6 text-lg text-muted max-w-2xl leading-relaxed">
-          {t("products.intro.description")}
+        <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-3xl">
+          {copy.products.intro}
         </p>
       </section>
 
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pb-24 md:pb-36">
+        <div className="border-t border-white/10">
+          {products.map((product) => (
             <Link
-              href="/products/adhd-focus-timer"
-              className="p-6 bg-surface group hover:border-white/20 border border-transparent transition-colors duration-200"
+              key={product.title}
+              href={product.href}
+              className="index-row grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr_0.55fr] gap-8 items-center py-10 md:py-12 border-b border-white/[0.07] text-muted"
             >
-              <h3 className="text-foreground font-medium group-hover:text-muted transition-colors duration-200">
-                {t("products.adhd.title")}
-              </h3>
-              <p className="mt-3 text-muted text-sm leading-relaxed">
-                {t("products.adhd.description")}
-              </p>
-              <span className="mt-6 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("products.adhd.details")}
-              </span>
-            </Link>
-            <Link
-              href="/products/energyflow"
-              className="p-6 bg-surface group hover:border-white/20 border border-transparent transition-colors duration-200"
-            >
-              <div className="flex-shrink-0 mb-4">
-                <div className="screenshot-container">
-                  <Image
-                    src={efImage}
-                    alt="EnergyFlow"
-                    width={400}
-                    height={300}
-                    className="screenshot-img"
-                  />
-                </div>
+              <div>
+                <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{product.category}</span>
+                <h2 className="mt-4 text-3xl md:text-5xl tracking-[-0.055em] leading-[1.05] text-foreground font-medium">
+                  {product.title}
+                </h2>
+                <p className="mt-5 leading-[1.75] max-w-xl">{product.description}</p>
+                <p className="mt-4 text-sm text-[var(--faint)]">{priceBadge(product.id, locale)}</p>
               </div>
-              <h3 className="text-foreground font-medium group-hover:text-muted transition-colors duration-200">
-                {t("products.energyflow.title")}
-              </h3>
-              <p className="mt-3 text-muted text-sm leading-relaxed">
-                {t("products.energyflow.description")}
-              </p>
-              <span className="mt-4 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("products.energyflow.details")}
-              </span>
+
+              <SmartScreenshot
+                src={product.image}
+                alt={product.title}
+                width={1200}
+                height={760}
+                sizes="(max-width: 1024px) 90vw, 520px"
+                frameClassName="shadow-none"
+                className="object-contain"
+              />
+
+              <div className="flex lg:justify-end">
+                <span className="rounded-full border border-white/10 px-4 py-2 text-sm text-[var(--faint)]">
+                  {product.status} →
+                </span>
+              </div>
             </Link>
-            <div className="p-6 bg-surface">
-              <h3 className="text-foreground font-medium">{t("home.products.product3.title")}</h3>
-              <p className="mt-3 text-muted text-sm leading-relaxed">
-                {t("home.products.product3.description")}
-              </p>
-              <span className="mt-6 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("home.products.comingSoon")}
-              </span>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </div>

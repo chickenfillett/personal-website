@@ -1,104 +1,74 @@
 "use client";
 
-import Link from "next/link";
+import Link from "../components/TransitionLink";
 import { useLanguage } from "@/lib/i18n/context";
+import { getSiteCopy } from "@/lib/siteCopy";
 
 export default function About() {
-  const { t } = useLanguage();
+  const { locale } = useLanguage();
+  const copy = getSiteCopy(locale);
 
   return (
     <div className="flex flex-col">
-      {/* Intro */}
-      <section className="max-w-[1200px] mx-auto px-6 md:px-12 pt-24 pb-16 md:pt-36 md:pb-24 animate-fade-in">
-        <h1 className="text-3xl md:text-5xl font-medium tracking-tight text-foreground">
-          {t("about.intro.title")}
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24 animate-fade-in">
+        <span className="eyebrow">SoloCraft</span>
+        <h1 className="mt-7 text-[clamp(2.7rem,5.2vw,5.1rem)] leading-[1.06] tracking-[-0.045em] font-medium text-warm-gradient max-w-4xl">
+          {copy.about.title}
         </h1>
-        <p className="mt-6 text-lg text-muted max-w-2xl leading-relaxed">
-          {t("about.intro.description")}
+        <p className="mt-8 text-lg md:text-xl text-muted max-w-2xl leading-[1.8]">
+          {copy.about.intro}
         </p>
       </section>
 
-      {/* Story */}
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <div className="max-w-2xl">
-            <p className="text-foreground leading-relaxed">
-              {t("about.story.p1")}
-            </p>
-            <p className="mt-6 text-foreground leading-relaxed">
-              {t("about.story.p2")}
-            </p>
-            <p className="mt-6 text-foreground leading-relaxed">
-              {t("about.story.p3")}
-            </p>
+      <section className="border-t border-white/[0.07]">
+        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
+          <div className="max-w-3xl text-lg leading-[1.85] text-muted">
+            {copy.about.story.map((paragraph) => (
+              <p key={paragraph} className="mt-6 first:mt-0">{paragraph}</p>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Philosophy */}
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
-            {t("about.philosophy.title")}
-          </h2>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="p-6 bg-surface">
-              <h3 className="text-foreground font-medium">{t("about.philosophy.items.minimal.title")}</h3>
-              <p className="mt-3 text-muted text-sm leading-relaxed">
-                {t("about.philosophy.items.minimal.description")}
-              </p>
-            </div>
-            <div className="p-6 bg-surface">
-              <h3 className="text-foreground font-medium">{t("about.philosophy.items.immersive.title")}</h3>
-              <p className="mt-3 text-muted text-sm leading-relaxed">
-                {t("about.philosophy.items.immersive.description")}
-              </p>
-            </div>
-            <div className="p-6 bg-surface">
-              <h3 className="text-foreground font-medium">{t("about.philosophy.items.restraint.title")}</h3>
-              <p className="mt-3 text-muted text-sm leading-relaxed">
-                {t("about.philosophy.items.restraint.description")}
-              </p>
-            </div>
-            <div className="p-6 bg-surface">
-              <h3 className="text-foreground font-medium">{t("about.philosophy.items.dark.title")}</h3>
-              <p className="mt-3 text-muted text-sm leading-relaxed">
-                {t("about.philosophy.items.dark.description")}
-              </p>
-            </div>
+      <section className="border-t border-white/[0.07]">
+        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
+          <span className="eyebrow">{copy.about.philosophyTitle}</span>
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-2 border-t border-l border-white/[0.07]">
+            {copy.about.philosophy.map(([title, body], index) => (
+              <div key={title} className="min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
+                <span className="text-xs text-[var(--faint)] tracking-[0.14em]">0{index + 1}</span>
+                <h3 className="mt-12 text-xl tracking-[-0.045em] font-medium">{title}</h3>
+                <p className="mt-4 text-sm leading-[1.75] text-muted">{body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Tech Stack */}
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
-            {t("about.tech.title")}
-          </h2>
-          <ul className="mt-8 space-y-3 text-foreground">
-            <li>{t("about.tech.items.0")}</li>
-            <li>{t("about.tech.items.1")}</li>
-            <li>{t("about.tech.items.2")}</li>
-            <li>{t("about.tech.items.3")}</li>
+      <section className="border-t border-white/[0.07]">
+        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
+          <span className="eyebrow">{copy.about.techTitle}</span>
+          <ul className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-foreground">
+            {copy.about.tech.map((item) => (
+              <li key={item} className="border border-white/[0.07] bg-white/[0.012] px-5 py-4 text-sm text-muted">
+                {item}
+              </li>
+            ))}
           </ul>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24 text-center">
-          <p className="text-xl md:text-2xl font-medium text-foreground">
-            {t("about.cta.title")}
-          </p>
-          <p className="mt-4 text-muted">
-            {t("about.cta.description")}
-          </p>
+      <section className="border-t border-white/[0.07]">
+        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
+          <h2 className="text-2xl md:text-4xl tracking-[-0.045em] leading-tight font-medium text-foreground">
+            {copy.about.ctaTitle}
+          </h2>
+          <p className="mt-5 text-muted">{copy.about.ctaDescription}</p>
           <Link
             href="/contact"
-            className="mt-8 inline-block text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background transition-colors duration-200"
+            className="mt-8 inline-block rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift"
           >
-            {t("about.cta.button")}
+            {copy.about.ctaButton}
           </Link>
         </div>
       </section>

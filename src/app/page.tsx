@@ -1,362 +1,281 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "./components/TransitionLink";
+import SmartScreenshot from "./components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import { getSiteCopy } from "@/lib/siteCopy";
+import { usePreloadImages } from "@/lib/usePreloadImages";
+import {
+  adhdImages,
+  allAdhdImages,
+  allDeskHavenImages,
+  allEnergyFlowImages,
+  deskHavenImagesForLocale,
+  energyFlowImages,
+  imageLocale,
+} from "@/lib/siteAssets";
 
-const CAROUSEL_INTERVAL = 6000;
-const PRODUCT_COUNT = 2;
-
-const energyflowImages = {
-  zh: "/photo/energyflow-zh-1.png",
-  en: "/photo/energyflow-en-2.png",
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const mix = (a: number, b: number, t: number) => a + (b - a) * t;
+const smoothStep = (edge0: number, edge1: number, x: number) => {
+  const t = clamp((x - edge0) / (edge1 - edge0), 0, 1);
+  return t * t * (3 - 2 * t);
 };
 
 export default function Home() {
-  const { locale, t } = useLanguage();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const activeIndexRef = useRef(0);
-  const isAnimatingRef = useRef(false);
+  const { locale } = useLanguage();
+  const copy = getSiteCopy(locale);
+  const assetLocale = imageLocale(locale);
+  const deskHavenAssets = deskHavenImagesForLocale(locale);
+  const chapterRefs = useRef<HTMLElement[]>([]);
+  const stageRefs = useRef<HTMLElement[]>([]);
+  const valuesRef = useRef(new Map<string, number>());
+  const [heroIndex, setHeroIndex] = useState(0);
 
-  const products = [
+  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages(locale)]);
+
+  const stages = useMemo(() => [
     {
+      id: "energyflow",
       href: "/products/energyflow",
-      image: energyflowImages[locale],
-      label: t("home.featuredEnergyflow.label"),
-      name: t("home.featuredEnergyflow.name"),
-      description: t("home.featuredEnergyflow.description"),
-      tags: [
-        t("home.featuredEnergyflow.tags.quick"),
-        t("home.featuredEnergyflow.tags.analysis"),
-        t("home.featuredEnergyflow.tags.privacy"),
-        t("home.featuredEnergyflow.tags.desktop"),
-      ],
-      cta: t("home.featuredEnergyflow.cta"),
+      title: copy.productCards.energyflow.title,
+      status: copy.productCards.energyflow.status,
+      description: copy.productCards.energyflow.category,
+      image: energyFlowImages[assetLocale].quickLog,
     },
     {
-      href: "/products/adhd-focus-timer",
-      image: "/photo/捕获3.PNG",
-      label: t("home.featured.label"),
-      name: t("home.featured.name"),
-      description: t("home.featured.description"),
-      tags: [
-        t("home.featured.tags.zero"),
-        t("home.featured.tags.forward"),
-        t("home.featured.tags.particles"),
-        t("home.featured.tags.local"),
-      ],
-      cta: t("home.featured.cta"),
+      id: "deskhaven",
+      href: "/products/deskhaven",
+      title: copy.productCards.deskhaven.title,
+      status: copy.productCards.deskhaven.status,
+      description: copy.productCards.deskhaven.category,
+      image: deskHavenAssets.hero,
     },
-  ];
+    {
+      id: "adhd",
+      href: "/products/adhd-focus-timer",
+      title: copy.productCards.adhd.title,
+      status: copy.productCards.adhd.status,
+      description: copy.productCards.adhd.category,
+      image: adhdImages.focus,
+    },
+  ], [assetLocale, copy.productCards, deskHavenAssets.hero]);
 
-  const goTo = useCallback((index: number) => {
-    if (isAnimatingRef.current) return;
-    isAnimatingRef.current = true;
-    setIsAnimating(true);
-    setActiveIndex(index);
-    activeIndexRef.current = index;
-    setTimeout(() => {
-      isAnimatingRef.current = false;
-      setIsAnimating(false);
-    }, 500);
+  const heroItems = useMemo(() => [
+    { title: "EnergyFlow", image: energyFlowImages[assetLocale].quickLog, href: "/products/energyflow" },
+    { title: "DeskHaven", image: deskHavenAssets.hero, href: "/products/deskhaven" },
+    { title: "EnergyFlow Analytics", image: energyFlowImages[assetLocale].analytics, href: "/products/energyflow" },
+    { title: "ADHD Focus Timer", image: adhdImages.focus, href: "/products/adhd-focus-timer" },
+  ], [assetLocale, deskHavenAssets.hero]);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setHeroIndex((current) => (current + 1) % heroItems.length);
+    }, 4200);
+    return () => window.clearInterval(timer);
+  }, [heroItems.length]);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      const viewportCenter = window.innerHeight * 0.52;
+      const strengths = chapterRefs.current.map((chapter) => {
+        if (!chapter) return 0;
+        const rect = chapter.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - viewportCenter);
+        const range = Math.max(window.innerHeight * 0.6, rect.height * 0.52);
+        return smoothStep(0.08, 0.92, 1 - clamp(distance / range, 0, 1));
+      });
+
+      const total = strengths.reduce((sum, value) => sum + value, 0) || 1;
+
+      chapterRefs.current.forEach((chapter, index) => {
+        if (!chapter) return;
+        const key = `chapter-${index}`;
+        const previous = valuesRef.current.get(key) ?? strengths[index] ?? 0;
+        const next = mix(previous, strengths[index] ?? 0, 0.18);
+        valuesRef.current.set(key, next);
+        chapter.style.setProperty("--story-strength", next.toFixed(4));
+      });
+
+      stageRefs.current.forEach((stage, index) => {
+        if (!stage) return;
+        const normalized = (strengths[index] ?? 0) / total;
+        const key = `stage-${index}`;
+        const previous = valuesRef.current.get(key) ?? normalized;
+        const next = mix(previous, normalized, 0.2);
+        const opacity = clamp(next * 1.35, 0, 1);
+        valuesRef.current.set(key, next);
+        stage.style.setProperty("--story-opacity", opacity.toFixed(4));
+        stage.style.zIndex = String(Math.round(opacity * 1000));
+        stage.style.pointerEvents = opacity > 0.55 ? "auto" : "none";
+      });
+
+      frame = requestAnimationFrame(update);
+    };
+
+    frame = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(frame);
   }, []);
 
-  const next = useCallback(() => {
-    goTo((activeIndexRef.current + 1) % PRODUCT_COUNT);
-  }, [goTo]);
-
-  const prev = useCallback(() => {
-    goTo((activeIndexRef.current - 1 + PRODUCT_COUNT) % PRODUCT_COUNT);
-  }, [goTo]);
-
-  useEffect(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(next, CAROUSEL_INTERVAL);
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [next]);
-
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    
-    if (isLeftSwipe) {
-      next();
-    } else if (isRightSwipe) {
-      prev();
-    }
-  };
-
-  const onKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === "ArrowLeft") prev();
-    if (e.key === "ArrowRight") next();
-  }, [next, prev]);
-
-  useEffect(() => {
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onKeyDown]);
-
-  const current = products[activeIndex];
-  const efImage = energyflowImages[locale];
+  const heroTitleClass = locale === "zh" || locale === "zh-tw"
+    ? "hero-title mt-7 text-[clamp(2.45rem,4.8vw,4.75rem)] leading-[1.1] tracking-[-0.035em] font-medium text-warm-gradient max-w-4xl"
+    : "hero-title mt-7 text-[clamp(3rem,6.4vw,5.75rem)] leading-[0.96] tracking-[-0.07em] font-medium text-warm-gradient max-w-4xl";
 
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1200px] mx-auto px-6 md:px-12 pt-32 pb-24 md:pt-48 md:pb-20 animate-fade-in">
-        <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-gradient-hero">
-          {t("home.hero.title")}
-        </h1>
-        <p className="mt-6 text-lg md:text-xl text-muted max-w-xl leading-[1.75]">
-          {t("home.hero.subtitle")}
-        </p>
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 min-h-[calc(100vh-4rem)] grid items-center pt-24 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.95fr] gap-14 lg:gap-20 items-center">
+          <div className="animate-fade-in">
+            <span className="eyebrow">{copy.home.eyebrow}</span>
+            <h1 className={heroTitleClass}>{copy.home.title}</h1>
+            <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.home.intro}</p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link href="#story" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.home.primary}</Link>
+              <Link href="/products" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.home.secondary}</Link>
+            </div>
+            <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
+              {copy.home.notes.map(([title, body]) => (
+                <div key={title} className="text-sm leading-relaxed text-[var(--faint)]">
+                  <strong className="block mb-2 text-muted font-medium">{title}</strong>
+                  {body}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="screen-shell rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
+            <div className="flex items-center justify-between text-xs text-[var(--faint)] uppercase tracking-[0.14em] px-1">
+              <span>{copy.home.currentProduct}</span>
+              <span>{heroItems[heroIndex]?.title}</span>
+            </div>
+            <Link href={heroItems[heroIndex]?.href ?? "/products"} className="block flex-1 min-h-0">
+              <SmartScreenshot
+                src={heroItems[heroIndex]?.image ?? energyFlowImages[assetLocale].quickLog}
+                alt={heroItems[heroIndex]?.title ?? "Product preview"}
+                width={1200}
+                height={820}
+                priority
+                sizes="(max-width: 1024px) 92vw, 560px"
+                frameClassName="shadow-none h-full"
+                className="h-full object-contain"
+              />
+            </Link>
+            <div className="grid grid-cols-3 gap-3">
+              {stages.map((item) => (
+                <Link key={item.id} href={item.href} className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.035] transition-colors">
+                  <div className="text-sm text-foreground font-medium">{item.title}</div>
+                  <div className="mt-1 text-xs text-muted">{item.description}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section className="bg-white/[0.02] border-y border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
-          <div
-            ref={containerRef}
-            className="flex flex-col md:flex-row items-center gap-10 md:gap-16"
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-          >
-            <div
-              className={`flex-1 text-center md:text-left transition-all duration-500 ease-out ${
-                isAnimating
-                  ? "opacity-0 translate-x-4"
-                  : "opacity-100 translate-x-0"
-              }`}
+      <section id="story" className="max-w-[1180px] mx-auto px-5 md:px-8 grid grid-cols-1 lg:grid-cols-[0.86fr_1.14fr] gap-12 lg:gap-20 py-20 md:py-28">
+        <div className="py-4 md:py-12">
+          {copy.home.chapters.map((chapter, index) => (
+            <article
+              key={chapter.id}
+              ref={(element) => {
+                if (element) chapterRefs.current[index] = element;
+              }}
+              className="story-chapter min-h-[72vh] flex flex-col justify-center"
             >
-              <span className="text-xs font-medium text-muted uppercase tracking-wider">
-                {current.label}
-              </span>
-              <h2 className="mt-3 text-2xl md:text-3xl font-medium text-foreground">
-                {current.name}
-              </h2>
-              <p className="mt-4 text-muted leading-[1.75]">
-                {current.description}
-              </p>
-              <div className="mt-4 flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1 text-xs text-muted">
-                {current.tags.map((tag, i) => (
-                  <span key={i} className="flex items-center gap-x-3">
-                    <span>{tag}</span>
-                    {i < current.tags.length - 1 && <span>·</span>}
-                  </span>
+              <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{chapter.num}</span>
+              <h2 className="mt-5 text-[clamp(2.2rem,4.2vw,4.2rem)] leading-[1.06] tracking-[-0.045em] font-medium text-foreground">{chapter.title}</h2>
+              <p className="mt-6 text-muted leading-[1.85] text-lg max-w-xl">{chapter.body}</p>
+              <div className="mt-7 flex flex-wrap gap-2">
+                {chapter.bullets.map((item) => (
+                  <span key={item} className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-muted">{item}</span>
                 ))}
               </div>
-              <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-6">
-                <Link
-                  href={current.href}
-                  className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
-                >
-                  {current.cta}
-                </Link>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={prev}
-                    className="w-8 h-8 flex items-center justify-center text-muted hover:text-foreground transition-colors"
-                    aria-label="Previous"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  <div className="flex items-center gap-2">
-                    {products.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => goTo(i)}
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          i === activeIndex
-                            ? "bg-foreground w-6"
-                            : "bg-white/20 hover:bg-white/40 w-2"
-                        }`}
-                      />
-                    ))}
+            </article>
+          ))}
+        </div>
+
+        <div className="lg:sticky lg:top-24 h-[620px] grid place-items-center">
+          <div className="screen-shell relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
+            <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">Product stage follows scroll</div>
+            {stages.map((stage, index) => (
+              <Link
+                key={stage.id}
+                href={stage.href}
+                ref={(element) => {
+                  if (element) stageRefs.current[index] = element;
+                }}
+                className="story-stage-product absolute inset-[4.8rem_2rem_2rem] block"
+              >
+                <div className="h-full rounded-[1.5rem] border border-white/10 bg-[#14120f] overflow-hidden">
+                  <div className="h-12 border-b border-white/[0.07] flex items-center justify-between px-4 text-xs text-[var(--faint)]">
+                    <span className="text-muted">{stage.title}</span>
+                    <span>{stage.status}</span>
                   </div>
-                  <button
-                    onClick={next}
-                    className="w-8 h-8 flex items-center justify-center text-muted hover:text-foreground transition-colors"
-                    aria-label="Next"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
+                  <div className="p-5 h-[calc(100%-3rem)] flex flex-col justify-between gap-5">
+                    <SmartScreenshot src={stage.image} alt={stage.title} width={900} height={640} priority={index === 0} sizes="(max-width: 1024px) 90vw, 560px" frameClassName="shadow-none flex-1" className="h-full object-contain" />
+                    <div className="flex items-end justify-between gap-6">
+                      <div>
+                        <h3 className="text-2xl tracking-[-0.05em] text-foreground font-medium">{stage.title}</h3>
+                        <p className="mt-1 text-sm text-muted">{stage.description}</p>
+                      </div>
+                      <span className="shrink-0 rounded-full border border-white/10 px-3 py-1.5 text-xs text-[var(--faint)]">→</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div
-              className={`hidden md:block flex-shrink-0 w-[500px] transition-all duration-500 ease-out ${
-                isAnimating
-                  ? "opacity-0 -translate-x-4"
-                  : "opacity-100 translate-x-0"
-              }`}
-            >
-              <div className="screenshot-container">
-                <Image
-                  src={current.image}
-                  alt={current.name}
-                  width={800}
-                  height={600}
-                  className="screenshot-img"
-                  priority={activeIndex === 0}
-                />
-              </div>
-            </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-            <div>
-              <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
-                {t("home.philosophy.title")}
-              </h2>
-              <p className="mt-8 text-2xl md:text-3xl font-medium text-foreground leading-snug">
-                {t("home.philosophy.intro")}
-              </p>
+      <section id="principles" className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+        <span className="eyebrow">{copy.common.operatingPrinciples}</span>
+        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">{copy.home.principlesTitle}</h2>
+        <p className="mt-7 text-lg leading-[1.8] text-muted max-w-2xl">{copy.home.principlesBody}</p>
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 border-t border-l border-white/[0.07]">
+          {copy.home.notes.map(([title, body], index) => (
+            <div key={title} className="min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
+              <span className="text-xs text-[var(--faint)] tracking-[0.14em]">0{index + 1}</span>
+              <h3 className="mt-16 text-xl tracking-[-0.045em] font-medium">{title}</h3>
+              <p className="mt-4 text-sm leading-[1.7] text-muted">{body}</p>
             </div>
-            <div className="flex flex-col gap-10">
-              <div>
-                <h3 className="text-foreground font-medium">{t("home.philosophy.items.minimal.title")}</h3>
-                <p className="mt-2 text-muted leading-relaxed">
-                  {t("home.philosophy.items.minimal.description")}
-                </p>
-              </div>
-              <div>
-                <h3 className="text-foreground font-medium">{t("home.philosophy.items.immersive.title")}</h3>
-                <p className="mt-2 text-muted leading-relaxed">
-                  {t("home.philosophy.items.immersive.description")}
-                </p>
-              </div>
-              <div>
-                <h3 className="text-foreground font-medium">{t("home.philosophy.items.practical.title")}</h3>
-                <p className="mt-2 text-muted leading-relaxed">
-                  {t("home.philosophy.items.practical.description")}
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36">
-          <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
-            {t("home.products.title")}
-          </h2>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Link
-              href="/products"
-              className="p-6 card-premium group hover-lift flex flex-col items-center justify-center text-center"
-            >
-              <h3 className="text-foreground font-medium group-hover:text-muted transition-colors duration-200">
-                {t("home.products.viewAll")}
-              </h3>
-              <span className="mt-3 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("home.products.browse")}
-              </span>
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+        <span className="eyebrow">{copy.common.productIndex}</span>
+        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">{copy.home.productTitle}</h2>
+        <div className="mt-14 border-t border-white/10">
+          {stages.map((stage) => (
+            <Link key={stage.id} href={stage.href} className="index-row grid grid-cols-1 md:grid-cols-[1.2fr_1.8fr_0.7fr_3rem] gap-4 md:gap-8 items-center py-8 border-b border-white/[0.07] text-muted">
+              <strong className="text-2xl md:text-3xl tracking-[-0.06em] text-foreground font-medium">{stage.title}</strong>
+              <span className="leading-relaxed">{stage.description}</span>
+              <span className="text-sm text-[var(--faint)]">{stage.status}</span>
+              <span className="w-10 h-10 rounded-full border border-white/10 grid place-items-center text-[var(--faint)]">→</span>
             </Link>
-            <Link
-              href="/products/energyflow"
-              className="p-6 card-premium group hover-lift"
-            >
-              <div className="flex-shrink-0 mb-4">
-                <div className="screenshot-container">
-                  <Image
-                    src={efImage}
-                    alt="EnergyFlow"
-                    width={400}
-                    height={300}
-                    className="screenshot-img"
-                  />
-                </div>
-              </div>
-              <h3 className="text-foreground font-medium group-hover:text-muted transition-colors duration-200">
-                {t("products.energyflow.title")}
-              </h3>
-              <p className="mt-3 text-muted text-sm leading-[1.75]">
-                {t("products.energyflow.description")}
-              </p>
-              <span className="mt-4 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("products.energyflow.details")}
-              </span>
-            </Link>
-            <div className="p-6 card-premium">
-              <h3 className="text-foreground font-medium">{t("home.products.product3.title")}</h3>
-              <p className="mt-3 text-muted text-sm leading-[1.75]">
-                {t("home.products.product3.description")}
-              </p>
-              <span className="mt-6 inline-block text-xs text-muted border border-white/10 px-3 py-1">
-                {t("home.products.comingSoon")}
-              </span>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+          <div>
+            <span className="eyebrow">Studio note</span>
+            <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium">{copy.home.studioTitle}</h2>
+            <p className="mt-7 text-lg leading-[1.8] text-muted">{copy.home.studioBody}</p>
+          </div>
+          <div className="card-premium rounded-[1.75rem] p-8 md:p-10 self-start">
+            <p className="text-muted leading-[1.8]">{copy.home.studioNote}</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/products" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.viewProducts}</Link>
+              <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.contact}</Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-20">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
-            <Link
-              href="/products/adhd-focus-timer/privacy"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-            >
-              {t("home.policyLinks.privacy")}
-            </Link>
-            <Link
-              href="/products/adhd-focus-timer/refund"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-            >
-              {t("home.policyLinks.refund")}
-            </Link>
-            <Link
-              href="/products/adhd-focus-timer/payment"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-            >
-              {t("home.policyLinks.payment")}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-24 md:py-36 text-center">
-          <p className="text-2xl md:text-3xl font-medium text-foreground leading-snug">
-            {t("home.cta.title")}
-          </p>
-          <p className="mt-4 text-muted">
-            {t("home.cta.description")}
-          </p>
-          <Link
-            href="/contact"
-            className="mt-8 inline-block text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
-          >
-            {t("home.cta.button")}
-          </Link>
         </div>
       </section>
     </div>

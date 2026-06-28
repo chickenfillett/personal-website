@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chicken Fillet — Minimal Desktop Tools",
-  description: "Chicken Fillet is an independent software developer focused on designing minimal, immersive desktop tools.",
+  title: "SoloCraft — Quiet Desktop Tools",
+  description: "SoloCraft is Chicken Fillet's independent desktop software studio, building quiet, privacy-first tools for focused Windows work.",
 };
 
 export default function RootLayout({

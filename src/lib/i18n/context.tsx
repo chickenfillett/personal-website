@@ -1,10 +1,31 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, ReactNode } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  ReactNode,
+} from "react";
 import { zh } from "./zh";
 import { en } from "./en";
 
-type Locale = "zh" | "en";
+export type Locale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
+
+export const supportedLocales: { code: Locale; label: string; nativeName: string }[] = [
+  { code: "zh", label: "Simplified Chinese", nativeName: "简体中文" },
+  { code: "zh-tw", label: "Traditional Chinese", nativeName: "繁體中文" },
+  { code: "en", label: "English", nativeName: "English" },
+  { code: "ja", label: "Japanese", nativeName: "日本語" },
+  { code: "ko", label: "Korean", nativeName: "한국어" },
+  { code: "fr", label: "French", nativeName: "Français" },
+  { code: "de", label: "German", nativeName: "Deutsch" },
+  { code: "es", label: "Spanish", nativeName: "Español" },
+  { code: "ru", label: "Russian", nativeName: "Русский" },
+  { code: "pt", label: "Portuguese", nativeName: "Português" },
+];
 
 interface LanguageContextType {
   locale: Locale;
@@ -14,15 +35,21 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
+const translations = { zh, en } as const;
 
-const translations: Record<Locale, typeof zh> = { zh, en };
+function isLocale(value: string | null): value is Locale {
+  return supportedLocales.some((locale) => locale.code === value);
+}
+
+function translationLocale(locale: Locale): "zh" | "en" {
+  return locale === "zh" || locale === "zh-tw" ? "zh" : "en";
+}
 
 function getNestedValue(obj: unknown, path: string): string {
   const keys = path.split(".");
   let current: unknown = obj;
   for (const key of keys) {
-    if (current === null || current === undefined) return path;
-    if (typeof current !== "object") return path;
+    if (current === null || current === undefined || typeof current !== "object") return path;
     const next = (current as Record<string, unknown>)[key];
     if (next === undefined) return path;
     current = next;
@@ -33,9 +60,18 @@ function getNestedValue(obj: unknown, path: string): string {
 function detectLocale(): Locale {
   if (typeof window === "undefined") return "en";
   const saved = localStorage.getItem("locale");
-  if (saved === "zh" || saved === "en") return saved;
-  const browserLang = navigator.language || "";
-  if (browserLang.toLowerCase().startsWith("zh")) return "zh";
+  if (isLocale(saved)) return saved;
+
+  const browserLang = (navigator.language || "").toLowerCase();
+  if (browserLang === "zh-tw" || browserLang === "zh-hk" || browserLang === "zh-mo") return "zh-tw";
+  if (browserLang.startsWith("zh")) return "zh";
+  if (browserLang.startsWith("ja")) return "ja";
+  if (browserLang.startsWith("ko")) return "ko";
+  if (browserLang.startsWith("fr")) return "fr";
+  if (browserLang.startsWith("de")) return "de";
+  if (browserLang.startsWith("es")) return "es";
+  if (browserLang.startsWith("ru")) return "ru";
+  if (browserLang.startsWith("pt")) return "pt";
   return "en";
 }
 
@@ -43,51 +79,41 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocale] = useState<Locale>("en");
 
   useEffect(() => {
-    const detected = detectLocale();
-    if (detected !== "en") {
-      setLocale(detected);
-    }
+    setLocale(detectLocale());
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const toggleLocale = useCallback(() => {
     setLocale((prev) => {
-      const next = prev === "zh" ? "en" : "zh";
-      if (typeof window !== "undefined") {
-        localStorage.setItem("locale", next);
-      }
+      const index = supportedLocales.findIndex((item) => item.code === prev);
+      const next = supportedLocales[(index + 1) % supportedLocales.length]?.code ?? "en";
+      if (typeof window !== "undefined") localStorage.setItem("locale", next);
       return next;
     });
   }, []);
 
   const handleSetLocale = useCallback((newLocale: Locale) => {
     setLocale(newLocale);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("locale", newLocale);
-    }
+    if (typeof window !== "undefined") localStorage.setItem("locale", newLocale);
   }, []);
 
   const t = useCallback((key: string): string => {
-    return getNestedValue(translations[locale], key);
+    return getNestedValue(translations[translationLocale(locale)], key);
   }, [locale]);
 
-  const value = useMemo(() => ({
-    locale,
-    setLocale: handleSetLocale,
-    toggleLocale,
-    t,
-  }), [locale, handleSetLocale, toggleLocale, t]);
-
-  return (
-    <LanguageContext.Provider value={value}>
-      {children}
-    </LanguageContext.Provider>
+  const value = useMemo(
+    () => ({ locale, setLocale: handleSetLocale, toggleLocale, t }),
+    [locale, handleSetLocale, toggleLocale, t],
   );
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
+  if (!context) throw new Error("useLanguage must be used within LanguageProvider");
   return context;
 }

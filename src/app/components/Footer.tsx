@@ -1,56 +1,57 @@
 "use client";
 
-import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
+import { getSiteCopy } from "@/lib/siteCopy";
+import Link from "./TransitionLink";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { locale } = useLanguage();
+  const { footer } = getSiteCopy(locale);
+  const privacyLabel = locale === "zh" || locale === "zh-tw" ? "隐私政策" : "Privacy";
+  const legalLabel = locale === "zh" || locale === "zh-tw" ? "法律条款" : "Legal";
 
   return (
-    <footer className="border-t border-white/5">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-12">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="flex flex-col gap-2">
-            <span className="text-foreground font-medium">{t("footer.name")}</span>
-            <span className="text-muted text-sm">
-              {t("footer.subtitle")}
-            </span>
+    <footer className="border-t border-white/[0.07]">
+      <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
+          <div>
+            <div className="text-foreground font-medium tracking-tight">SoloCraft</div>
+            <p className="mt-3 text-sm text-muted leading-relaxed max-w-sm">{footer.subtitle}</p>
           </div>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/about"
-              className="text-muted text-sm hover:text-foreground transition-colors duration-200"
-            >
-              {t("footer.about")}
-            </Link>
-            <Link
-              href="/products"
-              className="text-muted text-sm hover:text-foreground transition-colors duration-200"
-            >
-              {t("footer.products")}
-            </Link>
-            <Link
-              href="/contact"
-              className="text-muted text-sm hover:text-foreground transition-colors duration-200"
-            >
-              {t("footer.contact")}
-            </Link>
-            <Link
-              href="/privacy"
-              className="text-muted text-sm hover:text-foreground transition-colors duration-200"
-            >
-              {t("footer.privacy")}
-            </Link>
-            <Link
-              href="/products/adhd-focus-timer/refund"
-              className="text-muted text-sm hover:text-foreground transition-colors duration-200"
-            >
-              {t("footer.refund")}
-            </Link>
+
+          <div>
+            <h3 className="text-xs uppercase tracking-[0.12em] text-[var(--faint)]">{footer.studio}</h3>
+            <div className="mt-4 flex flex-col gap-3 text-sm text-muted">
+              <Link className="hover:text-foreground transition-colors" href="/about">{footer.about}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/contact">{footer.contact}</Link>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xs uppercase tracking-[0.12em] text-[var(--faint)]">{footer.products}</h3>
+            <div className="mt-4 flex flex-col gap-3 text-sm text-muted">
+              <Link className="hover:text-foreground transition-colors" href="/products/energyflow">EnergyFlow</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/deskhaven">DeskHaven</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/adhd-focus-timer">ADHD Focus Timer</Link>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-xs uppercase tracking-[0.12em] text-[var(--faint)]">{footer.legal}</h3>
+            <div className="mt-4 flex flex-col gap-3 text-sm text-muted">
+              <Link className="hover:text-foreground transition-colors" href="/privacy">{footer.privacy}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/energyflow/privacy">EnergyFlow {privacyLabel}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/energyflow/legal">EnergyFlow {legalLabel}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/deskhaven/privacy">DeskHaven {privacyLabel}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/deskhaven/legal">DeskHaven {legalLabel}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/adhd-focus-timer/privacy">ADHD {privacyLabel}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/adhd-focus-timer/legal">ADHD {legalLabel}</Link>
+            </div>
           </div>
         </div>
-        <div className="mt-12 pt-6 border-t border-white/5 text-muted text-xs">
-          &copy; {new Date().getFullYear()} {t("footer.name")}. {t("footer.copyright")}
+
+        <div className="mt-12 pt-6 border-t border-white/[0.06] text-xs text-[var(--faint)]">
+          &copy; {new Date().getFullYear()} SoloCraft. {footer.copyright}
         </div>
       </div>
     </footer>

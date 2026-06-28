@@ -1,266 +1,120 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import Link from "../../components/TransitionLink";
+import ProductPricing from "../../components/ProductPricing";
+import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import { commerceLabels } from "@/lib/productCommerce";
+import { getSiteCopy } from "@/lib/siteCopy";
+import {
+  allEnergyFlowImages,
+  energyFlowGalleryImagesForLocale,
+  energyFlowImages,
+  imageLocale,
+  microsoftStoreLinks,
+} from "@/lib/siteAssets";
+import { usePreloadImages } from "@/lib/usePreloadImages";
 
-const imageMap = {
-  zh: {
-    quickLog: "/photo/energyflow-zh-1.png",
-    themeSwitch: "/photo/energyflow-zh-2.png",
-    desktopAlwaysOn: "/photo/energyflow-zh-5.png",
-    analytics: "/photo/energyflow-zh-4.png",
-    privacy: "/photo/energyflow-zh-3.png",
-  },
-  en: {
-    quickLog: "/photo/energyflow-en-2.png",
-    themeSwitch: "/photo/energyflow-en-5.png",
-    desktopAlwaysOn: "/photo/energyflow-en-1.png",
-    analytics: "/photo/energyflow-en-4.png",
-    privacy: "/photo/energyflow-en-3.png",
-  },
-} as const;
+const featureImages = ["quickLog", "themeSwitch", "desktopAlwaysOn", "analytics", "privacy"] as const;
 
-type ImageKey = keyof typeof imageMap.zh;
+function galleryCopy(locale: string) {
+  const zh = locale === "zh" || locale === "zh-tw";
+  return {
+    eyebrow: zh ? "真实界面" : "Real interface",
+    title: zh ? "查看 EnergyFlow 的完整界面截图。" : "See the full EnergyFlow interface set.",
+    body: zh
+      ? "这里展示你新增的 EnergyFlow 页面截图。切换网站语言后，截图会自动切换到中文或英文版本。"
+      : "This gallery uses the latest EnergyFlow screenshots. Switching the website language also switches the interface screenshots between Chinese and English.",
+  };
+}
 
 export default function EnergyFlowPage() {
-  const { locale, t } = useLanguage();
-
-  const img = (key: ImageKey) => imageMap[locale][key];
+  const { locale } = useLanguage();
+  const copy = getSiteCopy(locale);
+  const images = energyFlowImages[imageLocale(locale)];
+  const gallery = energyFlowGalleryImagesForLocale(locale);
+  const galleryText = galleryCopy(locale);
+  const legalLabel = commerceLabels(locale).legal;
+  usePreloadImages(allEnergyFlowImages());
 
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1200px] mx-auto px-6 md:px-12 pt-24 pb-16 md:pt-36 md:pb-24 animate-fade-in">
-        <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-gradient-hero">
-          {t("energyflowDetail.hero.title")}
-        </h1>
-        <p className="mt-6 text-lg md:text-xl text-muted max-w-2xl leading-[1.75]">
-          {t("energyflowDetail.hero.subtitle")}
-        </p>
-        <p className="mt-4 text-muted max-w-xl leading-[1.75]">
-          {t("energyflowDetail.hero.description")}
-        </p>
-      </section>
-
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <div className="flex flex-col md:flex-row items-start gap-10 md:gap-16">
-            <div className="flex-shrink-0 w-full md:w-[600px]">
-              <div className="screenshot-container">
-                <Image
-                  src={img("quickLog")}
-                  alt="EnergyFlow Quick Log"
-                  width={800}
-                  height={600}
-                  className="screenshot-img"
-                />
-              </div>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
-                {t("energyflowDetail.quickLog.title")}
-              </h2>
-              <p className="mt-6 text-foreground leading-[1.75]">
-                {t("energyflowDetail.quickLog.description")}
-              </p>
-              <div className="mt-6 space-y-3 text-muted text-sm leading-[1.75]">
-                <p>
-                  <span className="text-foreground">{t("energyflowDetail.quickLog.features.level")}</span>{t("energyflowDetail.quickLog.features.levelDesc")}
-                </p>
-                <p>
-                  <span className="text-foreground">{t("energyflowDetail.quickLog.features.status")}</span>{t("energyflowDetail.quickLog.features.statusDesc")}
-                </p>
-                <p>
-                  <span className="text-foreground">{t("energyflowDetail.quickLog.features.source")}</span>{t("energyflowDetail.quickLog.features.sourceDesc")}
-                </p>
-                <p>
-                  <span className="text-foreground">{t("energyflowDetail.quickLog.features.emoji")}</span>{t("energyflowDetail.quickLog.features.emojiDesc")}
-                </p>
-              </div>
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24">
+        <div className="product-page-grid">
+          <div className="animate-fade-in">
+            <span className="eyebrow">{copy.energyflow.eyebrow}</span>
+            <h1 className="mt-7 text-[clamp(2.7rem,5.2vw,5.15rem)] leading-[1.06] tracking-[-0.045em] font-medium text-warm-gradient">
+              {copy.energyflow.title}
+            </h1>
+            <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.energyflow.intro}</p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{copy.energyflow.status}</span>
+              <a href={microsoftStoreLinks.energyflow} target="_blank" rel="noreferrer" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.microsoftStore}</a>
+              <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.getUpdates}</Link>
+              <Link href="/products/energyflow/privacy" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.privacy}</Link>
+              <Link href="/products/energyflow/legal" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{legalLabel}</Link>
             </div>
           </div>
+
+          <SmartScreenshot src={images.quickLog} alt="EnergyFlow quick log" width={1200} height={820} priority sizes="(max-width: 1024px) 92vw, 620px" />
         </div>
       </section>
 
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <div className="flex flex-col md:flex-row-reverse items-start gap-10 md:gap-16">
-            <div className="flex-shrink-0 w-full md:w-[600px]">
-              <div className="screenshot-container">
-                <Image
-                  src={img("themeSwitch")}
-                  alt="EnergyFlow Theme Switch"
-                  width={800}
-                  height={600}
-                  className="screenshot-img"
-                />
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+        <span className="eyebrow">{copy.common.productPromise}</span>
+        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-4xl">{copy.energyflow.promiseTitle}</h2>
+        <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{copy.energyflow.promise}</p>
+      </section>
+
+      <ProductPricing product="energyflow" />
+
+      <section className="border-t border-white/[0.07]">
+        {copy.energyflow.features.map(([title, body], index) => (
+          <div key={title} className="max-w-[1180px] mx-auto px-5 md:px-8 py-16 md:py-24 border-b border-white/[0.07] last:border-b-0">
+            <div className={`detail-rail ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
+              <div className="detail-sticky">
+                <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">0{index + 1}</span>
+                <h2 className="mt-5 text-[clamp(2.15rem,3.9vw,3.9rem)] leading-[1.05] tracking-[-0.045em] font-medium">{title}</h2>
+                <p className="mt-6 text-muted leading-[1.85] text-lg">{body}</p>
               </div>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
-                {t("energyflowDetail.themeSwitch.title")}
-              </h2>
-              <p className="mt-6 text-foreground leading-[1.75]">
-                {t("energyflowDetail.themeSwitch.description")}
-              </p>
-              <div className="mt-6 space-y-3 text-muted text-sm leading-[1.75]">
-                <p>
-                  <span className="text-foreground">{t("energyflowDetail.themeSwitch.features.darkMode")}</span>{t("energyflowDetail.themeSwitch.features.darkModeDesc")}
-                </p>
-                <p>
-                  <span className="text-foreground">{t("energyflowDetail.themeSwitch.features.lightMode")}</span>{t("energyflowDetail.themeSwitch.features.lightModeDesc")}
-                </p>
-              </div>
+              <SmartScreenshot src={images[featureImages[index]]} alt={title} width={1200} height={820} sizes="(max-width: 1024px) 92vw, 680px" />
             </div>
           </div>
+        ))}
+      </section>
+
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+        <span className="eyebrow">{copy.common.experienceFlow}</span>
+        <div className="mt-12 border-t border-white/10">
+          {copy.energyflow.flow.map((item, index) => (
+            <div key={item} className="grid grid-cols-[5rem_1fr] md:grid-cols-[8rem_1fr] gap-6 py-7 border-b border-white/[0.07]">
+              <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{copy.common.step} {index + 1}</span>
+              <p className="text-lg md:text-xl text-muted leading-relaxed">{item}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <h2 className="text-sm font-medium text-muted uppercase tracking-wider text-center">
-            {t("energyflowDetail.desktopAlwaysOn.title")}
+      <section className="border-t border-white/[0.07]">
+        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
+          <span className="eyebrow">{galleryText.eyebrow}</span>
+          <h2 className="section-title mt-7 text-[clamp(2rem,3.8vw,3.55rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-4xl">
+            {galleryText.title}
           </h2>
-          <p className="mt-4 text-muted text-center max-w-xl mx-auto leading-[1.75]">
-            {t("energyflowDetail.desktopAlwaysOn.description")}
-          </p>
-          <div className="mt-12 flex justify-center">
-            <div className="screenshot-container max-w-[700px] w-full">
-              <Image
-                src={img("desktopAlwaysOn")}
-                alt="EnergyFlow Desktop Always-On"
-                width={800}
-                height={600}
-                className="screenshot-img"
+          <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{galleryText.body}</p>
+
+          <div className="mt-14 screenshot-gallery">
+            {gallery.map((screenshot, index) => (
+              <SmartScreenshot
+                key={screenshot}
+                src={screenshot}
+                alt={`EnergyFlow interface screenshot ${index + 1}`}
+                width={1180}
+                height={664}
+                sizes="(max-width: 768px) 92vw, (max-width: 1180px) 44vw, 540px"
+                frameClassName="shadow-none"
               />
-            </div>
-          </div>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            <div>
-              <h3 className="text-foreground font-medium">{t("energyflowDetail.desktopAlwaysOn.features.floatingIcon")}</h3>
-              <p className="mt-2 text-muted text-sm leading-[1.75]">
-                {t("energyflowDetail.desktopAlwaysOn.features.floatingIconDesc")}
-              </p>
-            </div>
-            <div>
-              <h3 className="text-foreground font-medium">{t("energyflowDetail.desktopAlwaysOn.features.hotkey")}</h3>
-              <p className="mt-2 text-muted text-sm leading-[1.75]">
-                {t("energyflowDetail.desktopAlwaysOn.features.hotkeyDesc")}
-              </p>
-            </div>
-            <div>
-              <h3 className="text-foreground font-medium">{t("energyflowDetail.desktopAlwaysOn.features.minimize")}</h3>
-              <p className="mt-2 text-muted text-sm leading-[1.75]">
-                {t("energyflowDetail.desktopAlwaysOn.features.minimizeDesc")}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <h2 className="text-sm font-medium text-muted uppercase tracking-wider text-center">
-            {t("energyflowDetail.analytics.title")}
-          </h2>
-          <p className="mt-4 text-muted text-center max-w-xl mx-auto leading-[1.75]">
-            {t("energyflowDetail.analytics.description")}
-          </p>
-          <div className="mt-12 flex justify-center">
-            <div className="screenshot-container max-w-[800px] w-full">
-              <Image
-                src={img("analytics")}
-                alt="EnergyFlow Analytics"
-                width={800}
-                height={600}
-                className="screenshot-img"
-              />
-            </div>
-          </div>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            <div>
-              <h3 className="text-foreground font-medium">{t("energyflowDetail.analytics.features.pearson")}</h3>
-              <p className="mt-2 text-muted text-sm leading-[1.75]">
-                {t("energyflowDetail.analytics.features.pearsonDesc")}
-              </p>
-            </div>
-            <div>
-              <h3 className="text-foreground font-medium">{t("energyflowDetail.analytics.features.chiSquare")}</h3>
-              <p className="mt-2 text-muted text-sm leading-[1.75]">
-                {t("energyflowDetail.analytics.features.chiSquareDesc")}
-              </p>
-            </div>
-            <div>
-              <h3 className="text-foreground font-medium">{t("energyflowDetail.analytics.features.trends")}</h3>
-              <p className="mt-2 text-muted text-sm leading-[1.75]">
-                {t("energyflowDetail.analytics.features.trendsDesc")}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24">
-          <div className="flex flex-col md:flex-row items-start gap-10 md:gap-16">
-            <div className="flex-shrink-0 w-full md:w-[600px]">
-              <div className="screenshot-container">
-                <Image
-                  src={img("privacy")}
-                  alt="EnergyFlow Privacy Protection"
-                  width={800}
-                  height={600}
-                  className="screenshot-img"
-                />
-              </div>
-            </div>
-            <div className="flex-1">
-              <h2 className="text-sm font-medium text-muted uppercase tracking-wider">
-                {t("energyflowDetail.privacy.title")}
-              </h2>
-              <p className="mt-6 text-foreground leading-[1.75]">
-                {t("energyflowDetail.privacy.description")}
-              </p>
-              <div className="mt-6 space-y-3 text-muted text-sm leading-[1.75]">
-                <p>
-                  <span className="text-foreground">{t("energyflowDetail.privacy.features.encryption")}</span>{t("energyflowDetail.privacy.features.encryptionDesc")}
-                </p>
-                <p>
-                  <span className="text-foreground">{t("energyflowDetail.privacy.features.antiCapture")}</span>{t("energyflowDetail.privacy.features.antiCaptureDesc")}
-                </p>
-                <p>
-                  <span className="text-foreground">{t("energyflowDetail.privacy.features.password")}</span>{t("energyflowDetail.privacy.features.passwordDesc")}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/5">
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-16 md:py-24 text-center">
-          <p className="text-2xl md:text-3xl font-medium text-foreground leading-snug">
-            {t("energyflowDetail.cta.title")}
-          </p>
-          <p className="mt-4 text-muted leading-[1.75]">
-            {t("energyflowDetail.cta.description")}
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <span className="text-sm text-muted border border-white/10 px-6 py-3">
-              {t("energyflowDetail.cta.status")}
-            </span>
-            <Link
-                href="/contact"
-                className="text-sm text-foreground border border-white/20 px-6 py-3 hover:bg-foreground hover:text-background hover-lift transition-colors duration-200"
-              >
-                {t("energyflowDetail.cta.button")}
-              </Link>
-            <Link
-              href="/products/energyflow/privacy"
-              className="text-sm text-muted hover:text-foreground transition-colors duration-200"
-            >
-              {t("energyflowDetail.cta.privacy")}
-            </Link>
+            ))}
           </div>
         </div>
       </section>
