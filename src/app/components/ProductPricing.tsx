@@ -53,7 +53,7 @@ function selectLocalPrice(prices: readonly PriceItem[], locale: string, browserL
 
 export default function ProductPricing({ product }: { product: ProductId }) {
   const { locale } = useLanguage();
-  const [browserLanguage, setBrowserLanguage] = useState(locale);
+  const [browserLanguage, setBrowserLanguage] = useState<string>(locale);
   const labels = commerceLabels(locale);
   const pricing = productPricing(product, locale);
 
