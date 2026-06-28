@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n/context";
-import { getSiteCopy as getBaseSiteCopy, navCopy } from "@/lib/siteCopy";
+import { getSiteCopy as getBaseSiteCopy, navCopy } from "./siteCopy";
 import { siteCopySupplement } from "@/lib/siteCopySupplement";
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
