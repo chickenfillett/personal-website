@@ -34,12 +34,22 @@ function galleryCopy(locale: string) {
   return copy[locale as keyof typeof copy] ?? copy.en;
 }
 
+function flowIntro(locale: string) {
+  const copy = {
+    zh: { title: "从一次快速记录，到一段可调整的工作节奏。", body: "EnergyFlow 的流程不是为了制造更多管理负担，而是把很短的一次记录，逐步变成可回看的工作节奏证据。左侧是你要完成的动作，右侧是应用如何把这些动作转化为趋势、场景和调整依据。", cardTitle: "流程重点", cardBody: "记录越轻，长期数据才越容易坚持；长期数据越稳定，精力变化和工作场景之间的关系才更容易被看见。" },
+    "zh-tw": { title: "從一次快速記錄，到一段可調整的工作節奏。", body: "EnergyFlow 的流程不是為了製造更多管理負擔，而是把很短的一次記錄，逐步變成可回看的工作節奏證據。左側是你要完成的動作，右側是應用如何把這些動作轉化為趨勢、場景和調整依據。", cardTitle: "流程重點", cardBody: "記錄越輕，長期資料才越容易堅持；長期資料越穩定，精力變化和工作場景之間的關係才更容易被看見。" },
+    en: { title: "From one quick log to an adjustable work rhythm.", body: "EnergyFlow is not designed to create another management burden. A short log becomes evidence you can review later: what happened, where the energy changed, and which work patterns deserve adjustment.", cardTitle: "Flow principle", cardBody: "The lighter the log, the more likely the habit survives. The steadier the record, the easier it is to see how work context and energy influence each other." },
+  } as const;
+  return copy[locale as keyof typeof copy] ?? copy.en;
+}
+
 export default function EnergyFlowPage() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
   const images = energyFlowImages[imageLocale(locale)];
   const gallery = energyFlowGalleryImagesForLocale(locale);
   const galleryText = galleryCopy(locale);
+  const flowText = flowIntro(locale);
   const legalLabel = commerceLabels(locale).legal;
   usePreloadImages(allEnergyFlowImages());
 
@@ -90,14 +100,25 @@ export default function EnergyFlowPage() {
       </section>
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
-        <span className="eyebrow">{copy.common.experienceFlow}</span>
-        <div className="mt-12 border-t border-white/10">
-          {copy.energyflow.flow.map((item, index) => (
-            <div key={item} className="grid grid-cols-[5rem_1fr] md:grid-cols-[8rem_1fr] gap-6 py-7 border-b border-white/[0.07]">
-              <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{copy.common.step} {index + 1}</span>
-              <p className="text-lg md:text-xl text-muted leading-relaxed">{item}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-20 items-start">
+          <div className="lg:sticky lg:top-28">
+            <span className="eyebrow">{copy.common.experienceFlow}</span>
+            <h2 className="mt-7 text-[clamp(2rem,3.8vw,3.55rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-3xl">{flowText.title}</h2>
+            <p className="mt-7 text-lg leading-[1.85] text-muted max-w-2xl">{flowText.body}</p>
+            <div className="mt-10 rounded-3xl border border-white/[0.08] bg-white/[0.018] p-6 md:p-7">
+              <div className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{flowText.cardTitle}</div>
+              <p className="mt-4 text-muted leading-[1.8]">{flowText.cardBody}</p>
             </div>
-          ))}
+          </div>
+
+          <div className="border-t border-white/10">
+            {copy.energyflow.flow.map((item, index) => (
+              <div key={item} className="grid grid-cols-[5rem_1fr] md:grid-cols-[8rem_1fr] gap-6 py-8 md:py-10 border-b border-white/[0.07]">
+                <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{copy.common.step} {index + 1}</span>
+                <p className="text-2xl md:text-3xl text-foreground/80 leading-[1.25] tracking-[-0.035em]">{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
