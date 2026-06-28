@@ -47,78 +47,99 @@
 }
 
 .energy-gallery-grid {
-  width: min(100%, 1100px);
+  width: min(100%, 1060px);
   margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 1.6vw, 1.35rem);
-  align-items: stretch;
+  gap: clamp(0.75rem, 1.2vw, 1rem);
+  align-items: start;
 }
 
 .energy-gallery-card {
   min-width: 0;
-  height: clamp(220px, 18vw, 285px);
-  display: flex;
+  justify-self: center;
+  width: 100%;
+  max-width: 330px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(0.45rem, 0.8vw, 0.7rem);
-  border-radius: 1.05rem;
-  border: 1px solid rgba(238, 231, 219, 0.095);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(180, 131, 92, 0.045), transparent 11rem),
-    rgba(238, 231, 219, 0.014);
+  padding: 0;
+  border-radius: 1rem;
+  border: 1px solid rgba(238, 231, 219, 0.11);
+  background: rgba(238, 231, 219, 0.012);
   overflow: hidden;
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.16);
 }
 
 .energy-gallery-image {
   display: block;
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  max-height: 340px;
   object-fit: contain;
-  border-radius: 0.85rem;
+  border-radius: calc(1rem - 1px);
   filter: saturate(0.98) contrast(0.99);
 }
 
+.energy-gallery-card:nth-child(3n + 2) {
+  transform: translateY(1.1rem);
+}
+
+.energy-gallery-card:nth-child(3n + 3) {
+  transform: translateY(0.35rem);
+}
+
 @media (min-width: 1180px) {
+  .energy-gallery-grid {
+    width: min(100%, 1020px);
+  }
+
   .energy-gallery-card {
-    height: 265px;
+    max-width: 315px;
+  }
+
+  .energy-gallery-image {
+    max-height: 320px;
   }
 }
 
 @media (max-width: 920px) {
   .energy-gallery-grid {
-    width: min(100%, 720px);
+    width: min(100%, 700px);
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .energy-gallery-card {
-    height: clamp(210px, 34vw, 270px);
+    max-width: 330px;
+  }
+
+  .energy-gallery-card:nth-child(3n + 2),
+  .energy-gallery-card:nth-child(3n + 3) {
+    transform: none;
   }
 }
 
 @media (max-width: 620px) {
   .energy-gallery-grid {
+    width: min(100%, 380px);
     grid-template-columns: 1fr;
   }
 
   .energy-gallery-card {
-    height: auto;
-    min-height: 0;
+    max-width: 100%;
   }
 
   .energy-gallery-image {
-    width: 100%;
     max-height: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-preview-card,
-  .hero-preview-label {
+  .hero-preview-label,
+  .energy-gallery-card {
     transition-duration: 1ms !important;
     animation-duration: 1ms !important;
+    transform: none !important;
   }
 }
