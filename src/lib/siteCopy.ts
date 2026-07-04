@@ -1,4 +1,7 @@
 import type { Locale } from "@/lib/i18n/context";
+import { getAdhdCopy } from "@/lib/adhdCopy";
+import { siteCopySupplement } from "@/lib/siteCopySupplement";
+import { mergeLocaleCopy } from "@/lib/locales/site/utils";
 
 export const navCopy = {
   zh: { home: "首页", about: "关于", products: "产品", contact: "联系", language: "选择语言" },
@@ -574,6 +577,7 @@ function withLaunchedStatuses(copy: typeof siteCopy.en, locale: Locale): typeof 
 }
 
 export function getSiteCopy(locale: Locale) {
+  const adhd = getAdhdCopy(locale);
   const copy = locale === "zh"
     ? siteCopy.zh
     : {
@@ -581,5 +585,18 @@ export function getSiteCopy(locale: Locale) {
       ...(productLocaleCopy[locale] ?? {}),
     };
 
-  return withLaunchedStatuses(copy as typeof siteCopy.en, locale);
+  const supplemented = mergeLocaleCopy(copy, siteCopySupplement[locale]);
+  const launched = withLaunchedStatuses(supplemented as typeof siteCopy.en, locale);
+
+  return {
+    ...launched,
+    productCards: {
+      ...launched.productCards,
+      adhd: adhd.card,
+    },
+    adhd: {
+      ...launched.adhd,
+      ...adhd.page,
+    },
+  };
 }

@@ -7,7 +7,7 @@ import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 import {
-  adhdImages,
+  adhdImagesForLocale,
   allAdhdImages,
   allDeskHavenImages,
   allEnergyFlowImages,
@@ -28,12 +28,13 @@ export default function Home() {
   const copy = getSiteCopy(locale);
   const assetLocale = imageLocale(locale);
   const deskHavenAssets = deskHavenImagesForLocale(locale);
+  const adhdAssets = adhdImagesForLocale(locale);
   const chapterRefs = useRef<HTMLElement[]>([]);
   const stageRefs = useRef<HTMLElement[]>([]);
   const valuesRef = useRef(new Map<string, number>());
   const [heroIndex, setHeroIndex] = useState(0);
 
-  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages(locale)]);
+  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(locale), ...allDeskHavenImages(locale)]);
 
   const stages = useMemo(() => [
     {
@@ -58,16 +59,16 @@ export default function Home() {
       title: copy.productCards.adhd.title,
       status: copy.productCards.adhd.status,
       description: copy.productCards.adhd.category,
-      image: adhdImages.focus,
+      image: adhdAssets.hero,
     },
-  ], [assetLocale, copy.productCards, deskHavenAssets.hero]);
+  ], [adhdAssets.hero, assetLocale, copy.productCards, deskHavenAssets.hero]);
 
   const heroItems = useMemo(() => [
     { title: "EnergyFlow", image: energyFlowImages[assetLocale].quickLog, href: "/products/energyflow" },
     { title: "DeskHaven", image: deskHavenAssets.hero, href: "/products/deskhaven" },
     { title: "EnergyFlow Analytics", image: energyFlowImages[assetLocale].analytics, href: "/products/energyflow" },
-    { title: "ADHD Focus Timer", image: adhdImages.focus, href: "/products/adhd-focus-timer" },
-  ], [assetLocale, deskHavenAssets.hero]);
+    { title: "ADHD Focus Timer", image: adhdAssets.focus, href: "/products/adhd-focus-timer" },
+  ], [adhdAssets.focus, assetLocale, deskHavenAssets.hero]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -134,8 +135,8 @@ export default function Home() {
             <h1 className={heroTitleClass}>{copy.home.title}</h1>
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.home.intro}</p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link href="#story" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.home.primary}</Link>
-              <Link href="/products" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.home.secondary}</Link>
+              <Link href="#story" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.home.primary}</Link>
+              <Link href="/products" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{copy.home.secondary}</Link>
             </div>
             <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
               {copy.home.notes.map(([title, body]) => (
@@ -210,7 +211,7 @@ export default function Home() {
 
         <div className="lg:sticky lg:top-24 h-[620px] grid place-items-center">
           <div className="screen-shell relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
-            <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">Product stage follows scroll</div>
+            <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">{copy.home.currentProduct}</div>
             {stages.map((stage, index) => (
               <Link
                 key={stage.id}
@@ -220,7 +221,7 @@ export default function Home() {
                 }}
                 className="story-stage-product absolute inset-[4.8rem_2rem_2rem] block"
               >
-                <div className="h-full rounded-[1.5rem] border border-white/10 bg-[#14120f] overflow-hidden">
+                <div className="h-full rounded-[1.5rem] border border-white/10 bg-[var(--surface)] overflow-hidden">
                   <div className="h-12 border-b border-white/[0.07] flex items-center justify-between px-4 text-xs text-[var(--faint)]">
                     <span className="text-muted">{stage.title}</span>
                     <span>{stage.status}</span>
@@ -282,8 +283,8 @@ export default function Home() {
           <div className="card-premium rounded-[1.75rem] p-8 md:p-10 self-start">
             <p className="text-muted leading-[1.8]">{copy.home.studioNote}</p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/products" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.viewProducts}</Link>
-              <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.contact}</Link>
+              <Link href="/products" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.common.viewProducts}</Link>
+              <Link href="/contact" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{copy.common.contact}</Link>
             </div>
           </div>
         </div>

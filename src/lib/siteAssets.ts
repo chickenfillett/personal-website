@@ -2,6 +2,7 @@ import type { Locale } from "@/lib/i18n/context";
 
 export type ImageLocale = "zh" | "en";
 export type DeskHavenAssetLocale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
+export type AdhdAssetLocale = "zh" | "en" | "ja" | "fr" | "de" | "es";
 
 export const microsoftStoreLinks = {
   energyflow: "https://apps.microsoft.com/store/detail/9N7ZWFVC2QQS?cid=DevShareMCLPCS",
@@ -16,6 +17,12 @@ export function deskHavenAssetLocale(locale: Locale): DeskHavenAssetLocale {
   if (["zh", "zh-tw", "en", "ja", "ko", "fr", "de", "es", "ru", "pt"].includes(locale)) {
     return locale as DeskHavenAssetLocale;
   }
+  return "en";
+}
+
+export function adhdAssetLocale(locale: Locale): AdhdAssetLocale {
+  if (locale === "zh" || locale === "zh-tw") return "zh";
+  if (locale === "ja" || locale === "fr" || locale === "de" || locale === "es") return locale;
   return "en";
 }
 
@@ -47,15 +54,33 @@ export function energyFlowGalleryImagesForLocale(locale: Locale) {
   return numberedEnergyFlowScreenshots(imageLocale(locale));
 }
 
-export const adhdImages = {
-  intro: "/photo/捕获.PNG",
-  prep: "/photo/捕获1.PNG",
-  breathing: "/photo/捕获2.PNG",
-  focus: "/photo/捕获3.PNG",
-  ideaFridge: "/photo/捕获4.PNG",
-  achievement: "/photo/捕获5.PNG",
-  privacy: "/photo/捕获6.PNG",
-} as const;
+function numberedAdhdScreenshots(locale: AdhdAssetLocale) {
+  return Array.from(
+    { length: 7 },
+    (_, index) => `/photo/adhd-focus-timer/${locale}/screenshots/screenshot-${String(index + 1).padStart(2, "0")}.webp`,
+  );
+}
+
+export function adhdImagesForLocale(locale: Locale) {
+  const assetLocale = adhdAssetLocale(locale);
+  const screenshots = numberedAdhdScreenshots(assetLocale);
+
+  return {
+    locale: assetLocale,
+    screenshots,
+    hero: screenshots[0],
+    setup: screenshots[0],
+    soundscape: screenshots[0],
+    breathing: screenshots[1],
+    focus: screenshots[2],
+    support: screenshots[3],
+    ideaFridge: screenshots[4],
+    stats: screenshots[5],
+    rest: screenshots[6],
+  };
+}
+
+export const adhdImages = adhdImagesForLocale("en");
 
 function numberedAssets(locale: DeskHavenAssetLocale, folder: "posters" | "screenshots", count: number) {
   const stem = folder === "posters" ? "poster" : "screenshot";
@@ -116,8 +141,9 @@ export function allEnergyFlowImages() {
   ];
 }
 
-export function allAdhdImages() {
-  return Object.values(adhdImages);
+export function allAdhdImages(locale?: Locale) {
+  if (locale) return adhdImagesForLocale(locale).screenshots;
+  return (["zh", "en", "ja", "fr", "de", "es"] as AdhdAssetLocale[]).flatMap(numberedAdhdScreenshots);
 }
 
 export function allDeskHavenImages(locale?: Locale) {
@@ -136,5 +162,5 @@ export function allDeskHavenImages(locale?: Locale) {
 export function productPreviewImage(locale: Locale, product: "energyflow" | "adhd" | "deskhaven") {
   if (product === "energyflow") return energyFlowImages[imageLocale(locale)].quickLog;
   if (product === "deskhaven") return deskHavenImagesForLocale(locale).hero;
-  return adhdImages.focus;
+  return adhdImagesForLocale(locale).hero;
 }

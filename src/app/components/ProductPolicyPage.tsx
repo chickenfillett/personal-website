@@ -48,7 +48,7 @@ export default function ProductPolicyPage({ product, kind }: { product: ProductI
         <p className="mt-8 text-lg md:text-xl leading-[1.85] text-muted max-w-4xl">{copy.intro}</p>
         <p className="mt-6 text-sm text-[var(--faint)]">{copy.updated}</p>
         <div className="mt-10 flex flex-wrap gap-4">
-          <Link href={meta.productPath} className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.back}</Link>
+          <Link href={meta.productPath} className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.back}</Link>
           <Link href={otherHref} className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{otherLabel}</Link>
         </div>
       </section>

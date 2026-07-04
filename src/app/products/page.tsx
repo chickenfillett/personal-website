@@ -10,7 +10,7 @@ import type { ProductId } from "@/lib/productCommerce";
 import { productPricing } from "@/lib/productCommerce";
 import { detectedBrowserLanguage, selectLocalPrice } from "@/lib/localPricing";
 import {
-  adhdImages,
+  adhdImagesForLocale,
   allAdhdImages,
   allDeskHavenImages,
   allEnergyFlowImages,
@@ -32,7 +32,8 @@ export default function Products() {
   const copy = getSiteCopy(locale);
   const assetLocale = imageLocale(locale);
   const deskHavenAssets = deskHavenImagesForLocale(locale);
-  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages(locale)]);
+  const adhdAssets = adhdImagesForLocale(locale);
+  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(locale), ...allDeskHavenImages(locale)]);
 
   useEffect(() => {
     setBrowserLanguage(detectedBrowserLanguage(locale));
@@ -55,9 +56,9 @@ export default function Products() {
       id: "adhd" as const,
       ...copy.productCards.adhd,
       href: "/products/adhd-focus-timer",
-      image: adhdImages.focus,
+      image: adhdAssets.hero,
     },
-  ], [assetLocale, copy.productCards.adhd, copy.productCards.deskhaven, copy.productCards.energyflow, deskHavenAssets.hero]);
+  ], [adhdAssets.hero, assetLocale, copy.productCards.adhd, copy.productCards.deskhaven, copy.productCards.energyflow, deskHavenAssets.hero]);
 
   return (
     <div className="flex flex-col">

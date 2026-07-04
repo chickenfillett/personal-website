@@ -51,6 +51,7 @@ export default function EnergyFlowPage() {
   const galleryText = galleryCopy(locale);
   const flowText = flowIntro(locale);
   const legalLabel = commerceLabels(locale).legal;
+  const labels = commerceLabels(locale);
   usePreloadImages(allEnergyFlowImages());
 
   return (
@@ -63,12 +64,10 @@ export default function EnergyFlowPage() {
               {copy.energyflow.title}
             </h1>
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.energyflow.intro}</p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-3">
               <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{copy.energyflow.status}</span>
-              <a href={microsoftStoreLinks.energyflow} target="_blank" rel="noreferrer" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.microsoftStore}</a>
-              <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.getUpdates}</Link>
-              <Link href="/products/energyflow/privacy" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.privacy}</Link>
-              <Link href="/products/energyflow/legal" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{legalLabel}</Link>
+              <a href={microsoftStoreLinks.energyflow} target="_blank" rel="noreferrer" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.common.microsoftStore}</a>
+              <Link href="#product-info" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{labels.priceEyebrow}</Link>
             </div>
           </div>
 
@@ -82,7 +81,16 @@ export default function EnergyFlowPage() {
         <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{copy.energyflow.promise}</p>
       </section>
 
+      <div id="product-info" />
       <ProductPricing product="energyflow" />
+
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pb-16 md:pb-24">
+        <div className="flex flex-wrap gap-3 border-t border-white/[0.07] pt-8 text-sm">
+          <Link href="/products/energyflow/privacy" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.privacy}</Link>
+          <Link href="/products/energyflow/legal" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{legalLabel}</Link>
+          <Link href="/contact" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.getUpdates}</Link>
+        </div>
+      </section>
 
       <section className="border-t border-white/[0.07]">
         {copy.energyflow.features.map(([title, body], index) => (

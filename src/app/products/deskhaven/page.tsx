@@ -17,6 +17,7 @@ export default function DeskHavenPage() {
   const note = deskHavenPosterSectionCopy(locale);
   const posterCopy = deskHavenPosterStories(locale, assets.locale);
   const legalLabel = commerceLabels(locale).legal;
+  const labels = commerceLabels(locale);
   usePreloadImages(allDeskHavenImages(locale));
 
   return (
@@ -29,12 +30,10 @@ export default function DeskHavenPage() {
               {copy.deskhaven.title}
             </h1>
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.deskhaven.intro}</p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-3">
               <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{copy.deskhaven.status}</span>
-              <Link href="/contact" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.getUpdates}</Link>
-              <Link href="/products/deskhaven/privacy" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.privacy}</Link>
-              <Link href="/products/deskhaven/legal" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{legalLabel}</Link>
-              <Link href="/products" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.backToProducts}</Link>
+              <Link href="/contact" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.common.getUpdates}</Link>
+              <Link href="#product-info" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{labels.priceEyebrow}</Link>
             </div>
           </div>
 
@@ -55,7 +54,16 @@ export default function DeskHavenPage() {
         <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{copy.deskhaven.promise}</p>
       </section>
 
+      <div id="product-info" />
       <ProductPricing product="deskhaven" />
+
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pb-16 md:pb-24">
+        <div className="flex flex-wrap gap-3 border-t border-white/[0.07] pt-8 text-sm">
+          <Link href="/products/deskhaven/privacy" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.privacy}</Link>
+          <Link href="/products/deskhaven/legal" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{legalLabel}</Link>
+          <Link href="/products" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.backToProducts}</Link>
+        </div>
+      </section>
 
       <section className="border-t border-white/[0.07]">
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">

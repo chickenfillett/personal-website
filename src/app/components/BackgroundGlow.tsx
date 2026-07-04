@@ -5,7 +5,7 @@ export default function BackgroundGlow() {
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       <div
         className="absolute left-[-12%] top-[-18%] w-[640px] h-[640px] rounded-full opacity-[0.10] blur-[150px]"
-        style={{ background: "radial-gradient(circle, #b4835c 0%, transparent 68%)" }}
+        style={{ background: "radial-gradient(circle, #74a7ff 0%, transparent 68%)" }}
       />
       <div
         className="absolute right-[-12%] top-[-10%] w-[620px] h-[620px] rounded-full opacity-[0.07] blur-[150px]"

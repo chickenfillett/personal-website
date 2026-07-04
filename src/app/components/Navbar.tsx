@@ -15,19 +15,18 @@ export default function Navbar() {
   useEffect(() => {
     if (!open) return;
 
-    const handlePointerDown = (event: PointerEvent) => {
+    const closeOnOutside = (event: PointerEvent) => {
       if (!menuRef.current?.contains(event.target as Node)) setOpen(false);
     };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
 
-    document.addEventListener("pointerdown", handlePointerDown);
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("pointerdown", closeOnOutside);
+    document.addEventListener("keydown", closeOnEscape);
     return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("pointerdown", closeOnOutside);
+      document.removeEventListener("keydown", closeOnEscape);
     };
   }, [open]);
 
@@ -71,12 +70,13 @@ export default function Navbar() {
               className="language-menu-button"
               aria-label={labels.language}
               aria-expanded={open}
+              aria-haspopup="menu"
               onClick={() => setOpen((value) => !value)}
             >
               <span>{currentLocale.nativeName}</span>
               <span className="language-menu-chevron" aria-hidden="true">⌄</span>
             </button>
-            {open && (
+            {open ? (
               <div className="language-menu-panel" role="menu">
                 {supportedLocales.map((item) => (
                   <button
@@ -92,7 +92,7 @@ export default function Navbar() {
                   </button>
                 ))}
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       </nav>

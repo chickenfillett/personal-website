@@ -1,29 +1,56 @@
 "use client";
 
+import Image from "next/image";
 import Link from "../../components/TransitionLink";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import type { Locale } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
 import { getSiteCopy } from "@/lib/siteCopy";
-import { adhdImages, allAdhdImages, microsoftStoreLinks } from "@/lib/siteAssets";
+import { adhdImagesForLocale, allAdhdImages, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
-const featureImages = [
-  adhdImages.intro,
-  adhdImages.prep,
-  adhdImages.breathing,
-  adhdImages.focus,
-  adhdImages.ideaFridge,
-  adhdImages.achievement,
-  adhdImages.privacy,
-] as const;
+const restGalleryItem: Record<Locale, readonly [string, string]> = {
+  zh: ["休息节奏", "完成专注后进入休息状态，让下一次开始之前有一段缓冲。"],
+  "zh-tw": ["休息節奏", "完成專注後進入休息狀態，讓下一次開始之前有一段緩衝。"],
+  en: ["Rest rhythm", "Move into a calm break after focus, with space before the next session begins."],
+  ja: ["休憩リズム", "集中後に休憩へ入り、次の開始までの余白を作ります。"],
+  ko: ["휴식 리듬", "집중 후 차분한 휴식 상태로 들어가 다음 시작 전 여백을 만듭니다."],
+  fr: ["Rythme de pause", "Passer à une pause calme après le focus, avec de l'espace avant la prochaine session."],
+  de: ["Pausenrhythmus", "Nach dem Fokus in eine ruhige Pause wechseln, bevor die nächste Sitzung beginnt."],
+  es: ["Ritmo de descanso", "Pasa a una pausa tranquila después del foco, con espacio antes de la siguiente sesión."],
+  ru: ["Ритм отдыха", "После фокуса переходите к спокойной паузе, оставляя пространство перед новой сессией."],
+  pt: ["Ritmo de descanso", "Entre em uma pausa calma após o foco, com espaço antes da próxima sessão."],
+};
 
 export default function ADHDFocusTimerPage() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
+  const adhdAssets = adhdImagesForLocale(locale);
   const legalLabel = commerceLabels(locale).legal;
-  usePreloadImages(allAdhdImages());
+  const labels = commerceLabels(locale);
+  usePreloadImages(allAdhdImages(locale));
+
+  const featureImages = [
+    adhdAssets.setup,
+    adhdAssets.soundscape,
+    adhdAssets.soundscape,
+    adhdAssets.breathing,
+    adhdAssets.focus,
+    adhdAssets.ideaFridge,
+    adhdAssets.stats,
+  ] as const;
+
+  const galleryCards = [
+    { image: adhdAssets.screenshots[0], copy: copy.adhd.galleryItems[0] },
+    { image: adhdAssets.screenshots[1], copy: copy.adhd.galleryItems[2] },
+    { image: adhdAssets.screenshots[2], copy: copy.adhd.galleryItems[3] },
+    { image: adhdAssets.screenshots[3], copy: copy.adhd.galleryItems[6] },
+    { image: adhdAssets.screenshots[4], copy: copy.adhd.galleryItems[4] },
+    { image: adhdAssets.screenshots[5], copy: copy.adhd.galleryItems[5] },
+    { image: adhdAssets.screenshots[6], copy: restGalleryItem[locale] },
+  ].filter((item): item is { image: string; copy: readonly [string, string] } => Boolean(item.image && item.copy));
 
   const heroTitleClass = locale === "zh"
     ? "mt-7 text-[clamp(2.55rem,5vw,5rem)] leading-[1.08] tracking-[-0.04em] font-medium text-warm-gradient"
@@ -37,20 +64,18 @@ export default function ADHDFocusTimerPage() {
             <span className="eyebrow">{copy.adhd.eyebrow}</span>
             <h1 className={heroTitleClass}>{copy.adhd.title}</h1>
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.adhd.intro}</p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-3">
               <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{copy.adhd.status}</span>
-              <a href={microsoftStoreLinks.adhd} target="_blank" rel="noreferrer" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.microsoftStore}</a>
-              <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.getUpdates}</Link>
-              <Link href="/products/adhd-focus-timer/privacy" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.privacy}</Link>
-              <Link href="/products/adhd-focus-timer/legal" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{legalLabel}</Link>
+              <a href={microsoftStoreLinks.adhd} target="_blank" rel="noreferrer" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.common.microsoftStore}</a>
+              <Link href="#product-info" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{labels.priceEyebrow}</Link>
             </div>
           </div>
 
           <SmartScreenshot
-            src={adhdImages.focus}
+            src={adhdAssets.hero}
             alt="ADHD Focus Timer focus session"
             width={1200}
-            height={820}
+            height={675}
             priority
             sizes="(max-width: 1024px) 92vw, 620px"
           />
@@ -63,7 +88,16 @@ export default function ADHDFocusTimerPage() {
         <p className="mt-7 text-lg leading-[1.8] text-muted max-w-3xl">{copy.adhd.promise}</p>
       </section>
 
+      <div id="product-info" />
       <ProductPricing product="adhd" />
+
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pb-16 md:pb-24">
+        <div className="flex flex-wrap gap-3 border-t border-white/[0.07] pt-8 text-sm">
+          <Link href="/products/adhd-focus-timer/privacy" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.privacy}</Link>
+          <Link href="/products/adhd-focus-timer/legal" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{legalLabel}</Link>
+          <Link href="/contact" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.getUpdates}</Link>
+        </div>
+      </section>
 
       <section className="border-t border-white/[0.07]">
         {copy.adhd.features.map(([title, body], index) => (
@@ -78,12 +112,40 @@ export default function ADHDFocusTimerPage() {
                 src={featureImages[index]}
                 alt={title}
                 width={1200}
-                height={820}
+                height={675}
                 sizes="(max-width: 1024px) 92vw, 680px"
               />
             </div>
           </div>
         ))}
+      </section>
+
+      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+        <span className="eyebrow">{copy.adhd.galleryEyebrow}</span>
+        <h2 className="mt-7 text-[clamp(2.15rem,4vw,3.8rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-4xl">
+          {copy.adhd.galleryTitle}
+        </h2>
+        <p className="mt-6 text-lg leading-[1.8] text-muted max-w-3xl">{copy.adhd.galleryIntro}</p>
+
+        <div className="adhd-gallery-grid mt-14">
+          {galleryCards.map(({ image, copy: [title, body] }, index) => (
+            <figure key={`${image}-${title}`} className="adhd-gallery-card">
+              <Image
+                src={image}
+                alt={title}
+                width={1180}
+                height={664}
+                sizes="(max-width: 720px) 92vw, (max-width: 1100px) 44vw, 340px"
+                className="adhd-gallery-image"
+              />
+              <figcaption className="adhd-gallery-copy">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <strong>{title}</strong>
+                <p>{body}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </section>
     </div>
   );

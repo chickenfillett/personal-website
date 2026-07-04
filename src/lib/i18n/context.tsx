@@ -82,11 +82,20 @@ function markLanguageReady(locale: Locale) {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>(() => detectLocale());
+  const [locale, setLocale] = useState<Locale>("en");
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    const detected = detectLocale();
+    setLocale(detected);
+    markLanguageReady(detected);
+    setReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
     markLanguageReady(locale);
-  }, [locale]);
+  }, [locale, ready]);
 
   const toggleLocale = useCallback(() => {
     setLocale((prev) => {

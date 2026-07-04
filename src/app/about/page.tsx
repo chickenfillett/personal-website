@@ -66,7 +66,7 @@ export default function About() {
           <p className="mt-5 text-muted">{copy.about.ctaDescription}</p>
           <Link
             href="/contact"
-            className="mt-8 inline-block rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift"
+            className="primary-action mt-8 inline-block rounded-full px-5 py-3 text-sm font-medium hover-lift"
           >
             {copy.about.ctaButton}
           </Link>

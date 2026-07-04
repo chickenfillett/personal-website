@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/context";
 
-export const siteCopySupplement: Partial<Record<Locale, any>> = {
+export const siteCopySupplement: Partial<Record<Locale, unknown>> = {
   "zh-tw": {
     common: {
       productPromise: "產品承諾",
