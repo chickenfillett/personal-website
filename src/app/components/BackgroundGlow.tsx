@@ -4,16 +4,16 @@ export default function BackgroundGlow() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       <div
-        className="absolute left-[-12%] top-[-18%] w-[640px] h-[640px] rounded-full opacity-[0.10] blur-[150px]"
-        style={{ background: "radial-gradient(circle, #74a7ff 0%, transparent 68%)" }}
+        className="absolute left-[-18%] top-[8%] h-[28rem] w-[82rem] opacity-[0.16] blur-[92px] rotate-[-18deg]"
+        style={{ background: "linear-gradient(90deg, transparent 0%, rgba(116,167,255,.55) 42%, rgba(105,230,197,.3) 58%, transparent 100%)" }}
       />
       <div
-        className="absolute right-[-12%] top-[-10%] w-[620px] h-[620px] rounded-full opacity-[0.07] blur-[150px]"
-        style={{ background: "radial-gradient(circle, #7d8668 0%, transparent 70%)" }}
+        className="absolute right-[-22%] top-[18%] h-[24rem] w-[78rem] opacity-[0.12] blur-[110px] rotate-[22deg]"
+        style={{ background: "linear-gradient(90deg, transparent 0%, rgba(149,121,255,.4) 44%, rgba(116,167,255,.32) 60%, transparent 100%)" }}
       />
       <div
-        className="absolute left-[25%] bottom-[-24%] w-[760px] h-[760px] rounded-full opacity-[0.06] blur-[180px]"
-        style={{ background: "radial-gradient(circle, #6f7b82 0%, transparent 70%)" }}
+        className="absolute left-[8%] bottom-[-10%] h-[18rem] w-[90rem] opacity-[0.10] blur-[120px] rotate-[-7deg]"
+        style={{ background: "linear-gradient(90deg, transparent 0%, rgba(105,230,197,.34) 48%, rgba(226,232,240,.14) 64%, transparent 100%)" }}
       />
     </div>
   );

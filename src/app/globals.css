@@ -106,6 +106,69 @@ body::after {
   background-size: 180px 180px;
 }
 
+.ambient-depth-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(5, 6, 7, 0.18), rgba(5, 6, 7, 0.76)),
+    radial-gradient(circle at 50% 18%, rgba(116, 167, 255, 0.08), transparent 34rem);
+  transform-style: preserve-3d;
+}
+
+.ambient-depth-canvas,
+.ambient-depth-grid,
+.ambient-depth-plane,
+.ambient-depth-vignette {
+  position: absolute;
+  inset: 0;
+}
+
+.ambient-depth-canvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.86;
+  mix-blend-mode: screen;
+}
+
+.ambient-depth-grid {
+  opacity: 0.18;
+  transform: perspective(900px) rotateX(62deg) translateY(20vh) translateZ(-130px);
+  transform-origin: center bottom;
+  background-image:
+    linear-gradient(rgba(116, 167, 255, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(105, 230, 197, 0.12) 1px, transparent 1px);
+  background-size: 92px 92px;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 58%, transparent 84%);
+}
+
+.ambient-depth-plane {
+  filter: blur(34px);
+  opacity: 0.58;
+  mix-blend-mode: screen;
+  transform-style: preserve-3d;
+}
+
+.ambient-depth-plane-a {
+  inset: 8% -18% 48% -18%;
+  transform: perspective(1100px) rotateX(58deg) rotateZ(-10deg) translateZ(-80px);
+  background: linear-gradient(90deg, transparent, rgba(116, 167, 255, 0.16), rgba(105, 230, 197, 0.11), transparent);
+}
+
+.ambient-depth-plane-b {
+  inset: 46% -16% 10% -16%;
+  transform: perspective(1100px) rotateX(66deg) rotateZ(8deg) translateZ(-180px);
+  background: linear-gradient(100deg, transparent, rgba(149, 121, 255, 0.12), rgba(116, 167, 255, 0.1), transparent);
+}
+
+.ambient-depth-vignette {
+  background:
+    radial-gradient(circle at center, transparent 0%, transparent 42%, rgba(0, 0, 0, 0.36) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.62), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.6));
+}
+
 .text-gradient-hero,
 .text-warm-gradient {
   background: linear-gradient(180deg, #f8fbff 0%, #aeb9c7 100%);
@@ -133,13 +196,19 @@ body::after {
 
 .card-premium {
   border: 1px solid var(--line-soft);
-  background: linear-gradient(180deg, rgba(226, 232, 240, 0.026), rgba(226, 232, 240, 0.008));
-  transition: border-color 220ms cubic-bezier(.22, 1, .36, 1), background 220ms cubic-bezier(.22, 1, .36, 1), transform 220ms cubic-bezier(.22, 1, .36, 1);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.045), transparent 36%),
+    linear-gradient(180deg, rgba(226, 232, 240, 0.026), rgba(226, 232, 240, 0.008));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 28px 82px rgba(0, 0, 0, 0.24);
+  transform: translateZ(0);
+  transition: border-color 220ms cubic-bezier(.22, 1, .36, 1), background 220ms cubic-bezier(.22, 1, .36, 1), transform 220ms cubic-bezier(.22, 1, .36, 1), box-shadow 220ms cubic-bezier(.22, 1, .36, 1);
 }
 
 .card-premium:hover {
   border-color: rgba(226, 232, 240, 0.18);
   background: linear-gradient(180deg, rgba(226, 232, 240, 0.04), rgba(226, 232, 240, 0.012));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055), 0 34px 105px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px) translateZ(16px);
 }
 
 .hover-lift {
@@ -191,7 +260,13 @@ body::after {
     linear-gradient(145deg, rgba(13, 18, 25, 0.96), rgba(4, 5, 7, 0.98));
   padding: 8px;
   overflow: hidden;
-  box-shadow: 0 42px 120px rgba(0, 0, 0, 0.34);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    inset 0 -1px 0 rgba(116, 167, 255, 0.06),
+    0 42px 120px rgba(0, 0, 0, 0.34),
+    0 0 70px rgba(116, 167, 255, 0.07);
+  transform: translateZ(0);
+  transform-style: preserve-3d;
 }
 
 .screenshot-image,
@@ -211,15 +286,50 @@ body::after {
   transform: translateY(0);
 }
 
+.product-page-grid {
+  perspective: 1400px;
+}
+
+.product-page-grid > .screenshot-frame,
+.detail-rail .screenshot-frame {
+  transition: transform 520ms cubic-bezier(.22, 1, .36, 1), box-shadow 520ms cubic-bezier(.22, 1, .36, 1), border-color 520ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.product-page-grid > .screenshot-frame {
+  transform: rotateY(-5deg) rotateX(2deg) translateZ(18px);
+}
+
+.product-page-grid > .screenshot-frame:hover,
+.detail-rail .screenshot-frame:hover {
+  border-color: rgba(116, 167, 255, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.065),
+    inset 0 -1px 0 rgba(105, 230, 197, 0.075),
+    0 46px 138px rgba(0, 0, 0, 0.38),
+    0 0 96px rgba(116, 167, 255, 0.11);
+}
+
+.product-page-grid > .screenshot-frame:hover {
+  transform: rotateY(-2deg) rotateX(1deg) translateY(-4px) translateZ(34px);
+}
+
+.detail-rail .screenshot-frame {
+  transform: translateZ(10px);
+}
+
+.detail-rail .screenshot-frame:hover {
+  transform: translateY(-3px) translateZ(24px);
+}
+
 .story-chapter {
   opacity: calc(0.24 + var(--story-strength, 0) * 0.76);
-  transform: translateY(calc(22px - var(--story-strength, 0) * 22px)) scale(calc(0.985 + var(--story-strength, 0) * 0.015));
+  transform: translateY(calc(22px - var(--story-strength, 0) * 22px)) translateZ(calc(var(--story-strength, 0) * 26px)) scale(calc(0.985 + var(--story-strength, 0) * 0.015));
   transition: opacity 120ms linear, transform 120ms linear;
 }
 
 .story-stage-product {
   opacity: var(--story-opacity, 0);
-  transform: translateY(calc((1 - var(--story-opacity, 0)) * 26px)) scale(calc(0.982 + var(--story-opacity, 0) * 0.018));
+  transform: translateY(calc((1 - var(--story-opacity, 0)) * 26px)) translateZ(calc(var(--story-opacity, 0) * 34px)) rotateX(calc((1 - var(--story-opacity, 0)) * 4deg)) scale(calc(0.982 + var(--story-opacity, 0) * 0.018));
   filter: blur(calc((1 - var(--story-opacity, 0)) * 3px));
   pointer-events: none;
   transition: filter 80ms linear;
@@ -230,7 +340,36 @@ body::after {
   background:
     radial-gradient(circle at 38% 0%, rgba(116, 167, 255, 0.095), transparent 18rem),
     linear-gradient(145deg, rgba(12, 17, 24, 0.96), rgba(4, 5, 7, 0.98));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 70px 170px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    inset 0 -1px 0 rgba(105, 230, 197, 0.055),
+    0 70px 170px rgba(0, 0, 0, 0.45),
+    0 0 90px rgba(116, 167, 255, 0.075);
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+  position: relative;
+}
+
+.screen-shell::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.13), transparent 23%, transparent 70%, rgba(105, 230, 197, 0.07)),
+    radial-gradient(circle at 72% 18%, rgba(116, 167, 255, 0.14), transparent 26rem);
+  opacity: 0.62;
+  mix-blend-mode: screen;
+}
+
+.depth-lift {
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(.22, 1, .36, 1), box-shadow 420ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.depth-lift:hover {
+  transform: rotateX(1.4deg) rotateY(-1.8deg) translateY(-4px) translateZ(22px);
 }
 
 .language-menu {

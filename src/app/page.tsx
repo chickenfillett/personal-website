@@ -148,7 +148,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="screen-shell rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
+          <div className="screen-shell depth-lift rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
             <div className="flex items-center justify-between text-xs text-[var(--faint)] uppercase tracking-[0.14em] px-1">
               <span>{copy.home.currentProduct}</span>
               <span className="hero-preview-label" key={heroItems[heroIndex]?.title}>{heroItems[heroIndex]?.title}</span>
@@ -210,7 +210,7 @@ export default function Home() {
         </div>
 
         <div className="lg:sticky lg:top-24 h-[620px] grid place-items-center">
-          <div className="screen-shell relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
+          <div className="screen-shell depth-lift relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
             <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">{copy.home.currentProduct}</div>
             {stages.map((stage, index) => (
               <Link
