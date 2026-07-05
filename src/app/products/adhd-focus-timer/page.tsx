@@ -5,24 +5,10 @@ import Link from "../../components/TransitionLink";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
-import type { Locale } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { adhdImagesForLocale, allAdhdImages, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
-
-const restGalleryItem: Record<Locale, readonly [string, string]> = {
-  zh: ["休息节奏", "完成专注后进入休息状态，让下一次开始之前有一段缓冲。"],
-  "zh-tw": ["休息節奏", "完成專注後進入休息狀態，讓下一次開始之前有一段緩衝。"],
-  en: ["Rest rhythm", "Move into a calm break after focus, with space before the next session begins."],
-  ja: ["休憩リズム", "集中後に休憩へ入り、次の開始までの余白を作ります。"],
-  ko: ["휴식 리듬", "집중 후 차분한 휴식 상태로 들어가 다음 시작 전 여백을 만듭니다."],
-  fr: ["Rythme de pause", "Passer à une pause calme après le focus, avec de l'espace avant la prochaine session."],
-  de: ["Pausenrhythmus", "Nach dem Fokus in eine ruhige Pause wechseln, bevor die nächste Sitzung beginnt."],
-  es: ["Ritmo de descanso", "Pasa a una pausa tranquila después del foco, con espacio antes de la siguiente sesión."],
-  ru: ["Ритм отдыха", "После фокуса переходите к спокойной паузе, оставляя пространство перед новой сессией."],
-  pt: ["Ritmo de descanso", "Entre em uma pausa calma após o foco, com espaço antes da próxima sessão."],
-};
 
 export default function ADHDFocusTimerPage() {
   const { locale } = useLanguage();
@@ -31,6 +17,7 @@ export default function ADHDFocusTimerPage() {
   const legalLabel = commerceLabels(locale).legal;
   const labels = commerceLabels(locale);
   usePreloadImages(allAdhdImages(locale));
+  const galleryItems = copy.adhd.galleryItems as readonly (readonly [string, string])[];
 
   const featureImages = [
     adhdAssets.setup,
@@ -43,13 +30,13 @@ export default function ADHDFocusTimerPage() {
   ] as const;
 
   const galleryCards = [
-    { image: adhdAssets.screenshots[0], copy: copy.adhd.galleryItems[0] },
-    { image: adhdAssets.screenshots[1], copy: copy.adhd.galleryItems[2] },
-    { image: adhdAssets.screenshots[2], copy: copy.adhd.galleryItems[3] },
-    { image: adhdAssets.screenshots[3], copy: copy.adhd.galleryItems[6] },
-    { image: adhdAssets.screenshots[4], copy: copy.adhd.galleryItems[4] },
-    { image: adhdAssets.screenshots[5], copy: copy.adhd.galleryItems[5] },
-    { image: adhdAssets.screenshots[6], copy: restGalleryItem[locale] },
+    { image: adhdAssets.screenshots[0], copy: galleryItems[0] },
+    { image: adhdAssets.screenshots[1], copy: galleryItems[2] },
+    { image: adhdAssets.screenshots[2], copy: galleryItems[3] },
+    { image: adhdAssets.screenshots[3], copy: galleryItems[6] },
+    { image: adhdAssets.screenshots[4], copy: galleryItems[4] },
+    { image: adhdAssets.screenshots[5], copy: galleryItems[5] },
+    { image: adhdAssets.screenshots[6], copy: galleryItems[7] },
   ].filter((item): item is { image: string; copy: readonly [string, string] } => Boolean(item.image && item.copy));
 
   const heroTitleClass = locale === "zh"

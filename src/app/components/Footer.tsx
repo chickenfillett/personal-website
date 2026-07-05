@@ -2,13 +2,13 @@
 
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
+import { commerceLabels } from "@/lib/productCommerce";
 import Link from "./TransitionLink";
 
 export default function Footer() {
   const { locale } = useLanguage();
   const { footer } = getSiteCopy(locale);
-  const privacyLabel = locale === "zh" || locale === "zh-tw" ? "隐私政策" : "Privacy";
-  const legalLabel = locale === "zh" || locale === "zh-tw" ? "法律条款" : "Legal";
+  const labels = commerceLabels(locale);
 
   return (
     <footer className="border-t border-white/[0.07]">
@@ -40,12 +40,12 @@ export default function Footer() {
             <h3 className="text-xs uppercase tracking-[0.12em] text-[var(--faint)]">{footer.legal}</h3>
             <div className="mt-4 flex flex-col gap-3 text-sm text-muted">
               <Link className="hover:text-foreground transition-colors" href="/privacy">{footer.privacy}</Link>
-              <Link className="hover:text-foreground transition-colors" href="/products/energyflow/privacy">EnergyFlow {privacyLabel}</Link>
-              <Link className="hover:text-foreground transition-colors" href="/products/energyflow/legal">EnergyFlow {legalLabel}</Link>
-              <Link className="hover:text-foreground transition-colors" href="/products/deskhaven/privacy">DeskHaven {privacyLabel}</Link>
-              <Link className="hover:text-foreground transition-colors" href="/products/deskhaven/legal">DeskHaven {legalLabel}</Link>
-              <Link className="hover:text-foreground transition-colors" href="/products/adhd-focus-timer/privacy">ADHD {privacyLabel}</Link>
-              <Link className="hover:text-foreground transition-colors" href="/products/adhd-focus-timer/legal">ADHD {legalLabel}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/energyflow/privacy">EnergyFlow {labels.privacy}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/energyflow/legal">EnergyFlow {labels.legal}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/deskhaven/privacy">DeskHaven {labels.privacy}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/deskhaven/legal">DeskHaven {labels.legal}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/adhd-focus-timer/privacy">ADHD {labels.privacy}</Link>
+              <Link className="hover:text-foreground transition-colors" href="/products/adhd-focus-timer/legal">ADHD {labels.legal}</Link>
             </div>
           </div>
         </div>

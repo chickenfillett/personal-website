@@ -218,7 +218,18 @@ export const siteCopy = {
         "积累工作场景",
         "查看能量趋势",
         "调整工作节奏"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "真实界面",
+        "title": "查看 EnergyFlow 的完整界面截图。",
+        "body": "这里按截图自身比例展示真实界面，不再把图片硬塞进固定比例方框。截图会控制在较小尺寸，避免在大屏幕上被拉大后显得粗糙。"
+      },
+      "flowIntro": {
+        "title": "从一次快速记录，到一段可调整的工作节奏。",
+        "body": "EnergyFlow 的流程不是为了制造更多管理负担，而是把很短的一次记录，逐步变成可回看的工作节奏证据。左侧是你要完成的动作，右侧是应用如何把这些动作转化为趋势、场景和调整依据。",
+        "cardTitle": "流程重点",
+        "cardBody": "记录越轻，长期数据才越容易坚持；长期数据越稳定，精力变化和工作场景之间的关系才更容易被看见。"
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / 桌面文件避风港",
@@ -336,6 +347,10 @@ export const siteCopy = {
         [
           "支持与设置",
           "语言、声音、隐私与支持入口集中在清晰位置。"
+        ],
+        [
+          "休息节奏",
+          "完成专注后进入休息状态，让下一次开始之前有一段缓冲。"
         ]
       ]
     },
@@ -635,7 +650,18 @@ export const siteCopy = {
         "累積工作場景",
         "查看能量趨勢",
         "調整工作節奏"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "真實介面",
+        "title": "查看 EnergyFlow 的完整介面截圖。",
+        "body": "這裡按截圖自身比例展示真實介面，不再把圖片硬塞進固定比例方框。截圖會控制在較小尺寸，避免在大螢幕上被拉大後顯得粗糙。"
+      },
+      "flowIntro": {
+        "title": "從一次快速記錄，到一段可調整的工作節奏。",
+        "body": "EnergyFlow 的流程不是為了製造更多管理負擔，而是把很短的一次記錄，逐步變成可回看的工作節奏證據。左側是你要完成的動作，右側是應用如何把這些動作轉化為趨勢、場景和調整依據。",
+        "cardTitle": "流程重點",
+        "cardBody": "記錄越輕，長期資料才越容易堅持；長期資料越穩定，精力變化和工作場景之間的關係才更容易被看見。"
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / 桌面文件避風港",
@@ -753,6 +779,10 @@ export const siteCopy = {
         [
           "支援與設定",
           "語言、聲音、隱私與支援入口集中在清晰位置。"
+        ],
+        [
+          "休息節奏",
+          "完成專注後進入休息狀態，讓下一次開始之前有一段緩衝。"
         ]
       ]
     },
@@ -1052,7 +1082,18 @@ export const siteCopy = {
         "Accumulate context",
         "Review energy patterns",
         "Adjust work rhythm"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "Real interface",
+        "title": "See the full EnergyFlow interface set.",
+        "body": "The gallery follows each screenshot's natural proportion instead of forcing fixed frames. Captures stay modest in size so they remain clean on large screens."
+      },
+      "flowIntro": {
+        "title": "From one quick log to an adjustable work rhythm.",
+        "body": "EnergyFlow is not designed to create another management burden. A short log becomes evidence you can review later: what happened, where energy changed, and which work patterns deserve adjustment.",
+        "cardTitle": "Flow principle",
+        "cardBody": "The lighter the log, the more likely the habit survives. The steadier the record, the easier it is to see how work context and energy influence each other."
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / Desktop File Haven",
@@ -1170,6 +1211,10 @@ export const siteCopy = {
         [
           "Support and settings",
           "Language, sound, privacy, and support stay easy to find."
+        ],
+        [
+          "Rest rhythm",
+          "Move into a calm break after focus, with space before the next session begins."
         ]
       ]
     },
@@ -1469,7 +1514,18 @@ export const siteCopy = {
         "文脈を蓄積",
         "傾向を確認",
         "働き方を調整"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "実際の画面",
+        "title": "EnergyFlow の画面セットを見る。",
+        "body": "各スクリーンショットの自然な比率で表示し、固定フレームへ無理に押し込みません。大画面で粗く見えないよう控えめなサイズにしています。"
+      },
+      "flowIntro": {
+        "title": "数秒の記録から、調整できる作業リズムへ。",
+        "body": "EnergyFlow は管理作業を増やすためのものではありません。短い記録を積み重ねることで、何が起きたのか、どこでエネルギーが変わったのか、どの作業パターンを見直すべきかを後から確認できます。",
+        "cardTitle": "流れの考え方",
+        "cardBody": "記録が軽いほど習慣は続きます。記録が安定するほど、作業文脈とエネルギーの関係が見えやすくなります。"
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / デスクトップファイルの避難所",
@@ -1587,6 +1643,10 @@ export const siteCopy = {
         [
           "サポートと設定",
           "言語、音、プライバシー、サポートを見つけやすく配置します。"
+        ],
+        [
+          "休憩リズム",
+          "集中後に休憩へ入り、次の開始までの余白を作ります。"
         ]
       ]
     },
@@ -1886,7 +1946,18 @@ export const siteCopy = {
         "맥락 축적",
         "패턴 확인",
         "리듬 조정"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "실제 화면",
+        "title": "EnergyFlow 전체 화면을 살펴보세요.",
+        "body": "각 스크린샷의 원래 비율을 따라 표시하며 고정된 프레임에 억지로 넣지 않습니다. 큰 화면에서 거칠어 보이지 않도록 크기를 줄였습니다."
+      },
+      "flowIntro": {
+        "title": "짧은 기록에서 조정 가능한 작업 리듬으로.",
+        "body": "EnergyFlow는 또 다른 관리 부담을 만들기 위한 도구가 아닙니다. 짧은 기록이 쌓이면 무엇이 있었는지, 어디에서 에너지가 바뀌었는지, 어떤 작업 패턴을 조정해야 하는지 나중에 확인할 수 있습니다.",
+        "cardTitle": "흐름의 원칙",
+        "cardBody": "기록이 가벼울수록 습관은 오래갑니다. 기록이 안정될수록 작업 맥락과 에너지의 관계가 더 잘 보입니다."
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / 데스크톱 파일 안식처",
@@ -2004,6 +2075,10 @@ export const siteCopy = {
         [
           "지원과 설정",
           "언어, 소리, 개인정보, 지원을 쉽게 찾을 수 있습니다."
+        ],
+        [
+          "휴식 리듬",
+          "집중 후 차분한 휴식 상태로 들어가 다음 시작 전 여백을 만듭니다."
         ]
       ]
     },
@@ -2303,7 +2378,18 @@ export const siteCopy = {
         "Accumuler le contexte",
         "Lire les tendances",
         "Ajuster le rythme"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "Interface réelle",
+        "title": "Voir l'ensemble des écrans EnergyFlow.",
+        "body": "La galerie respecte les proportions naturelles de chaque capture au lieu de les forcer dans des cadres fixes. Les images restent plus petites pour éviter un rendu grossier sur grand écran."
+      },
+      "flowIntro": {
+        "title": "D’un relevé rapide à un rythme de travail ajustable.",
+        "body": "EnergyFlow n’ajoute pas une couche de gestion. Un court relevé devient une trace à relire : ce qui s’est passé, où l’énergie a changé, et quels schémas de travail méritent d’être ajustés.",
+        "cardTitle": "Principe du flux",
+        "cardBody": "Plus la saisie est légère, plus l’habitude tient. Plus les données sont régulières, plus le lien entre contexte de travail et énergie devient visible."
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / Havre de fichiers desktop",
@@ -2421,6 +2507,10 @@ export const siteCopy = {
         [
           "Support et réglages",
           "Langue, son, confidentialité et support restent faciles à trouver."
+        ],
+        [
+          "Rythme de pause",
+          "Passer à une pause calme après le focus, avec de l’espace avant la prochaine session."
         ]
       ]
     },
@@ -2720,7 +2810,18 @@ export const siteCopy = {
         "Kontext sammeln",
         "Muster prüfen",
         "Rhythmus anpassen"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "Echte Oberfläche",
+        "title": "Die vollständige EnergyFlow-Oberfläche ansehen.",
+        "body": "Die Galerie folgt den natürlichen Proportionen der Screenshots und zwingt sie nicht mehr in feste Rahmen. Die Bilder bleiben kleiner, damit sie auf großen Displays nicht grob wirken."
+      },
+      "flowIntro": {
+        "title": "Vom schnellen Eintrag zu einem anpassbaren Arbeitsrhythmus.",
+        "body": "EnergyFlow soll keine weitere Verwaltungsschicht schaffen. Ein kurzer Eintrag wird zu einem später lesbaren Hinweis: was passiert ist, wo Energie kippte und welche Arbeitsmuster Anpassung brauchen.",
+        "cardTitle": "Prinzip des Ablaufs",
+        "cardBody": "Je leichter der Eintrag, desto eher bleibt die Gewohnheit. Je stabiler die Daten, desto klarer wird der Zusammenhang zwischen Arbeitskontext und Energie."
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / Desktop-Dateihafen",
@@ -2838,6 +2939,10 @@ export const siteCopy = {
         [
           "Support und Einstellungen",
           "Sprache, Klang, Datenschutz und Support bleiben leicht auffindbar."
+        ],
+        [
+          "Pausenrhythmus",
+          "Nach dem Fokus in eine ruhige Pause wechseln, bevor die nächste Sitzung beginnt."
         ]
       ]
     },
@@ -3137,7 +3242,18 @@ export const siteCopy = {
         "Acumular contexto",
         "Revisar patrones",
         "Ajustar ritmo"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "Interfaz real",
+        "title": "Ver el conjunto completo de pantallas de EnergyFlow.",
+        "body": "La galería respeta la proporción natural de cada captura en lugar de forzar marcos fijos. Las imágenes se muestran más pequeñas para no verse ásperas en pantallas grandes."
+      },
+      "flowIntro": {
+        "title": "De un registro rápido a un ritmo de trabajo ajustable.",
+        "body": "EnergyFlow no añade otra carga de gestión. Un registro breve se convierte en evidencia para revisar después: qué ocurrió, dónde cambió la energía y qué patrones de trabajo conviene ajustar.",
+        "cardTitle": "Principio del flujo",
+        "cardBody": "Cuanto más ligero es el registro, más probable es que el hábito sobreviva. Cuanto más estable es el historial, más clara se vuelve la relación entre contexto y energía."
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / Refugio de archivos",
@@ -3255,6 +3371,10 @@ export const siteCopy = {
         [
           "Soporte y ajustes",
           "Idioma, sonido, privacidad y soporte quedan fáciles de encontrar."
+        ],
+        [
+          "Ritmo de descanso",
+          "Pasa a una pausa tranquila después del foco, con espacio antes de la siguiente sesión."
         ]
       ]
     },
@@ -3554,7 +3674,18 @@ export const siteCopy = {
         "Accumulate context",
         "Review energy patterns",
         "Adjust work rhythm"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "Реальный интерфейс",
+        "title": "Посмотрите полный набор экранов EnergyFlow.",
+        "body": "Галерея сохраняет естественные пропорции каждого снимка и больше не помещает их в жёсткие рамки. Изображения уменьшены, чтобы не выглядеть грубо на больших экранах."
+      },
+      "flowIntro": {
+        "title": "От быстрой записи к рабочему ритму, который можно настроить.",
+        "body": "EnergyFlow не создает еще один слой управления. Короткая запись становится материалом для просмотра: что произошло, где изменилась энергия и какие рабочие паттерны стоит скорректировать.",
+        "cardTitle": "Принцип процесса",
+        "cardBody": "Чем легче запись, тем дольше держится привычка. Чем стабильнее история, тем проще увидеть связь между рабочим контекстом и энергией."
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / Убежище для файлов",
@@ -3672,6 +3803,10 @@ export const siteCopy = {
         [
           "Поддержка и настройки",
           "Язык, звук, приватность и поддержка находятся в понятном месте."
+        ],
+        [
+          "Ритм отдыха",
+          "После фокуса переходите к спокойной паузе, оставляя пространство перед новой сессией."
         ]
       ]
     },
@@ -3971,7 +4106,18 @@ export const siteCopy = {
         "Accumulate context",
         "Review energy patterns",
         "Adjust work rhythm"
-      ]
+      ],
+      "gallery": {
+        "eyebrow": "Interface real",
+        "title": "Veja o conjunto completo de telas do EnergyFlow.",
+        "body": "A galeria respeita a proporção natural de cada captura em vez de forçar molduras fixas. As imagens ficam menores para não parecerem ásperas em telas grandes."
+      },
+      "flowIntro": {
+        "title": "De um registro rápido a um ritmo de trabalho ajustável.",
+        "body": "EnergyFlow não cria mais uma camada de gestão. Um registro curto vira evidência para rever depois: o que aconteceu, onde a energia mudou e quais padrões de trabalho merecem ajuste.",
+        "cardTitle": "Princípio do fluxo",
+        "cardBody": "Quanto mais leve o registro, mais fácil manter o hábito. Quanto mais estável o histórico, mais clara fica a relação entre contexto e energia."
+      }
     },
     "deskhaven": {
       "eyebrow": "DeskHaven / Refúgio de arquivos",
@@ -4089,6 +4235,10 @@ export const siteCopy = {
         [
           "Suporte e ajustes",
           "Idioma, som, privacidade e suporte ficam fáceis de encontrar."
+        ],
+        [
+          "Ritmo de descanso",
+          "Entre em uma pausa calma após o foco, com espaço antes da próxima sessão."
         ]
       ]
     },
