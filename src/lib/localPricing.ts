@@ -1,4 +1,5 @@
-import type { ProductPricingCopy } from "@/lib/productCommerce";
+import type { Locale } from "@/lib/i18n/context";
+import { productPricing, type ProductId, type ProductPricingCopy } from "@/lib/productCommerce";
 
 export type PriceItem = ProductPricingCopy["prices"][number];
 
@@ -27,15 +28,15 @@ export function selectLocalPrice(prices: readonly PriceItem[], locale: string, b
   const language = normalize(candidate || locale);
   const marketMatchers: string[][] = [];
 
-  if (region === "CN" || language === "zh" || language.startsWith("zh-cn")) marketMatchers.push(["中国", "china", "cny"]);
-  if (region === "US") marketMatchers.push(["美国", "united states", "usd $14.99"]);
-  if (region === "JP" || language.startsWith("ja")) marketMatchers.push(["日本", "japan", "jpy"]);
-  if (region === "KR" || language.startsWith("ko")) marketMatchers.push(["韩国", "korea", "krw"]);
-  if (region === "CA") marketMatchers.push(["加拿大", "canada", "cad"]);
-  if (region === "SG") marketMatchers.push(["新加坡", "singapore", "sgd"]);
-  if (region === "CH") marketMatchers.push(["瑞士", "switzerland", "chf"]);
+  if (region === "CN" || language === "zh" || language.startsWith("zh-cn")) marketMatchers.push(["china", "cny", "¥"]);
+  if (region === "US") marketMatchers.push(["united states", "usd $14.99"]);
+  if (region === "JP" || language.startsWith("ja")) marketMatchers.push(["japan", "jpy"]);
+  if (region === "KR" || language.startsWith("ko")) marketMatchers.push(["korea", "krw"]);
+  if (region === "CA") marketMatchers.push(["canada", "cad"]);
+  if (region === "SG") marketMatchers.push(["singapore", "sgd"]);
+  if (region === "CH") marketMatchers.push(["switzerland", "chf"]);
   if (["DE", "FR", "ES", "IT", "NL", "BE", "AT", "FI", "IE", "PT"].includes(region) || language.startsWith("de") || language.startsWith("fr") || language.startsWith("es") || language.startsWith("pt")) {
-    marketMatchers.push(["德国/欧元市场", "德國/歐元市場", "germany / euro markets", "euro", "eur"]);
+    marketMatchers.push(["germany / euro markets", "euro", "eur"]);
   }
 
   for (const matcher of marketMatchers) {
@@ -43,5 +44,9 @@ export function selectLocalPrice(prices: readonly PriceItem[], locale: string, b
     if (found) return found;
   }
 
-  return prices.find((price) => includesAny(price.market, ["默认市场组", "預設市場組", "default market group", "standard", "padrão", "predeterminado"])) ?? prices[0];
+  return prices.find((price) => includesAny(price.market, ["default market group", "standard", "padrão", "predeterminado"])) ?? prices[0];
+}
+
+export function selectLocalProductPrice(product: ProductId, locale: Locale, browserLanguage: string) {
+  return selectLocalPrice(productPricing(product, locale).prices, locale, browserLanguage);
 }

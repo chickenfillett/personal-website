@@ -9,8 +9,6 @@ import React, {
   useState,
   ReactNode,
 } from "react";
-import { zh } from "./zh";
-import { en } from "./en";
 
 export type Locale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
 
@@ -31,30 +29,12 @@ interface LanguageContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   toggleLocale: () => void;
-  t: (key: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
-const translations = { zh, en } as const;
 
 function isLocale(value: string | null): value is Locale {
   return supportedLocales.some((locale) => locale.code === value);
-}
-
-function translationLocale(locale: Locale): "zh" | "en" {
-  return locale === "zh" || locale === "zh-tw" ? "zh" : "en";
-}
-
-function getNestedValue(obj: unknown, path: string): string {
-  const keys = path.split(".");
-  let current: unknown = obj;
-  for (const key of keys) {
-    if (current === null || current === undefined || typeof current !== "object") return path;
-    const next = (current as Record<string, unknown>)[key];
-    if (next === undefined) return path;
-    current = next;
-  }
-  return typeof current === "string" ? current : path;
 }
 
 function detectLocale(): Locale {
@@ -82,11 +62,20 @@ function markLanguageReady(locale: Locale) {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>(() => detectLocale());
+  const [locale, setLocale] = useState<Locale>("en");
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    const detected = detectLocale();
+    setLocale(detected);
+    markLanguageReady(detected);
+    setReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
     markLanguageReady(locale);
-  }, [locale]);
+  }, [locale, ready]);
 
   const toggleLocale = useCallback(() => {
     setLocale((prev) => {
@@ -102,13 +91,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (typeof window !== "undefined") localStorage.setItem("locale", newLocale);
   }, []);
 
-  const t = useCallback((key: string): string => {
-    return getNestedValue(translations[translationLocale(locale)], key);
-  }, [locale]);
-
   const value = useMemo(
-    () => ({ locale, setLocale: handleSetLocale, toggleLocale, t }),
-    [locale, handleSetLocale, toggleLocale, t],
+    () => ({ locale, setLocale: handleSetLocale, toggleLocale }),
+    [locale, handleSetLocale, toggleLocale],
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

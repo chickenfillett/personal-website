@@ -184,14 +184,31 @@ const topicCopy = {
   },
 } satisfies Record<Locale, Record<PosterTopic, PosterStory>>;
 
-const sectionCopy = {
+type PosterSectionCopy = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  galleryEyebrow: string;
+  galleryTitle: string;
+  galleryBody: string;
+};
+
+const sectionCopy: Record<Locale, PosterSectionCopy> = {
   zh: {
     eyebrow: "核心能力",
-    title: "每张产品图都对应 DeskHaven 的一个真实工作场景。",
-    body: "这里按海报内容配套说明：本地空间、搜索、归档、关系图、后台整理、AI 工具链、明暗模式、密码/密钥与数据控制。不同语言的海报顺序会按对应资源自动匹配。",
+    title: "用海报先看清 DeskHaven 的完整产品气质。",
+    body: "每张海报对应一个真实能力：本地空间、搜索、归档、关系图、后台整理、AI 工具链、明暗模式、密码/密钥与数据控制。不同语言会自动匹配对应海报。",
     galleryEyebrow: "真实界面",
     galleryTitle: "查看 DeskHaven 的实际工作界面。",
-    galleryBody: "从仪表盘、文件台到设置与隐私控制，这里展示的是当前语言版本的真实界面。",
+    galleryBody: "从仪表盘、文件台到设置与隐私控制，下方展示当前语言版本的真实界面。",
+  },
+  "zh-tw": {
+    eyebrow: "核心能力",
+    title: "每張產品圖都對應 DeskHaven 的一個真實工作場景。",
+    body: "這裡依海報內容搭配說明：本地空間、搜尋、歸檔、關係圖、背景整理、AI 工具鏈、明暗模式、密碼/金鑰與資料控制。不同語言的海報順序會依對應資源自動匹配。",
+    galleryEyebrow: "真實介面",
+    galleryTitle: "查看 DeskHaven 的實際工作介面。",
+    galleryBody: "從儀表板、文件台到設定與隱私控制，這裡展示的是目前語言版本的真實介面。",
   },
   en: {
     eyebrow: "Core capabilities",
@@ -201,7 +218,63 @@ const sectionCopy = {
     galleryTitle: "See DeskHaven's actual working screens.",
     galleryBody: "From dashboard and file desk to settings and privacy controls, this gallery shows the real interface for the selected language.",
   },
-} as const;
+  ja: {
+    eyebrow: "主要機能",
+    title: "各プロダクトビジュアルは DeskHaven の実際の作業場面に対応しています。",
+    body: "選択中の言語のポスター順に合わせて、ローカル空間、検索、アーカイブ、関係グラフ、バックグラウンド整理、AI ツール、テーマ、認証情報、データ管理を説明します。",
+    galleryEyebrow: "実際の画面",
+    galleryTitle: "DeskHaven の作業画面を見る。",
+    galleryBody: "ダッシュボード、ファイルデスク、設定、プライバシー管理まで、現在の言語版の実画面を掲載しています。",
+  },
+  ko: {
+    eyebrow: "핵심 기능",
+    title: "각 제품 이미지는 DeskHaven의 실제 작업 흐름과 연결됩니다.",
+    body: "선택한 언어의 포스터 순서에 맞춰 로컬 공간, 검색, 보관, 관계 그래프, 백그라운드 정리, AI 도구, 테마, 자격 증명, 데이터 제어를 설명합니다.",
+    galleryEyebrow: "실제 화면",
+    galleryTitle: "DeskHaven의 실제 작업 화면을 확인하세요.",
+    galleryBody: "대시보드와 파일 데스크부터 설정 및 개인정보 제어까지 현재 언어 버전의 실제 인터페이스를 보여줍니다.",
+  },
+  fr: {
+    eyebrow: "Capacités clés",
+    title: "Chaque visuel présente un vrai flux de travail DeskHaven.",
+    body: "Les notes suivent l'ordre réel des affiches de la langue choisie : espace local, recherche, archives, relations, organisation en arrière-plan, outils IA, thèmes, identifiants et contrôle des données.",
+    galleryEyebrow: "Interface réelle",
+    galleryTitle: "Voir les écrans de travail réels de DeskHaven.",
+    galleryBody: "Du tableau de bord au bureau de fichiers, jusqu'aux réglages et contrôles de confidentialité, cette galerie montre l'interface de la langue sélectionnée.",
+  },
+  de: {
+    eyebrow: "Kernfunktionen",
+    title: "Jedes Produktmotiv gehört zu einem echten DeskHaven-Workflow.",
+    body: "Die Hinweise folgen der tatsächlichen Poster-Reihenfolge der gewählten Sprache: lokaler Bereich, Suche, Archiv, Beziehungen, Hintergrundordnung, KI-Werkzeuge, Themen, Zugangsdaten und Datenkontrolle.",
+    galleryEyebrow: "Echte Oberfläche",
+    galleryTitle: "Die tatsächlichen Arbeitsansichten von DeskHaven ansehen.",
+    galleryBody: "Vom Dashboard und Dateischreibtisch bis zu Einstellungen und Datenschutz zeigt die Galerie die reale Oberfläche der aktuellen Sprache.",
+  },
+  es: {
+    eyebrow: "Capacidades clave",
+    title: "Cada visual muestra un flujo real de trabajo en DeskHaven.",
+    body: "Las notas siguen el orden real de los pósteres del idioma elegido: espacio local, búsqueda, archivo, relaciones, organización en segundo plano, herramientas de IA, temas, credenciales y control de datos.",
+    galleryEyebrow: "Interfaz real",
+    galleryTitle: "Mira las pantallas reales de trabajo de DeskHaven.",
+    galleryBody: "Desde el panel y el escritorio de archivos hasta ajustes y privacidad, esta galería muestra la interfaz real del idioma seleccionado.",
+  },
+  ru: {
+    eyebrow: "Ключевые возможности",
+    title: "Каждый визуальный блок связан с реальным сценарием DeskHaven.",
+    body: "Описание следует порядку постеров выбранного языка: локальное пространство, поиск, архив, связи, фоновая организация, AI-инструменты, темы, учетные данные и контроль данных.",
+    galleryEyebrow: "Реальный интерфейс",
+    galleryTitle: "Посмотрите рабочие экраны DeskHaven.",
+    galleryBody: "От панели и файлового стола до настроек и приватности: здесь показан реальный интерфейс выбранного языка.",
+  },
+  pt: {
+    eyebrow: "Recursos principais",
+    title: "Cada visual do produto corresponde a um fluxo real do DeskHaven.",
+    body: "As notas seguem a ordem real dos pôsteres no idioma selecionado: espaço local, pesquisa, arquivo, relações, organização em segundo plano, ferramentas de IA, temas, credenciais e controle de dados.",
+    galleryEyebrow: "Interface real",
+    galleryTitle: "Veja as telas reais de trabalho do DeskHaven.",
+    galleryBody: "Do painel e mesa de arquivos às configurações e controles de privacidade, a galeria mostra a interface real do idioma selecionado.",
+  },
+};
 
 function languageCopy(locale: Locale) {
   return topicCopy[locale] ?? topicCopy.en;
@@ -213,5 +286,5 @@ export function deskHavenPosterStories(locale: Locale, assetLocale: DeskHavenAss
 }
 
 export function deskHavenPosterSectionCopy(locale: Locale) {
-  return locale === "zh" || locale === "zh-tw" ? sectionCopy.zh : sectionCopy.en;
+  return sectionCopy[locale] ?? sectionCopy.en;
 }

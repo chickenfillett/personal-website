@@ -4,17 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "./components/TransitionLink";
 import SmartScreenshot from "./components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import { NumberedCardGrid } from "./components/NumberedCardGrid";
+import { DisplayHeading } from "./components/Typography";
+import { productCatalog, productCatalogPreloadImages, productPreviewSlides } from "@/lib/productCatalog";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { usePreloadImages } from "@/lib/usePreloadImages";
-import {
-  adhdImages,
-  allAdhdImages,
-  allDeskHavenImages,
-  allEnergyFlowImages,
-  deskHavenImagesForLocale,
-  energyFlowImages,
-  imageLocale,
-} from "@/lib/siteAssets";
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 const mix = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -26,48 +20,16 @@ const smoothStep = (edge0: number, edge1: number, x: number) => {
 export default function Home() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
-  const assetLocale = imageLocale(locale);
-  const deskHavenAssets = deskHavenImagesForLocale(locale);
   const chapterRefs = useRef<HTMLElement[]>([]);
   const stageRefs = useRef<HTMLElement[]>([]);
   const valuesRef = useRef(new Map<string, number>());
   const [heroIndex, setHeroIndex] = useState(0);
 
-  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages(locale)]);
+  usePreloadImages(productCatalogPreloadImages(locale));
 
-  const stages = useMemo(() => [
-    {
-      id: "energyflow",
-      href: "/products/energyflow",
-      title: copy.productCards.energyflow.title,
-      status: copy.productCards.energyflow.status,
-      description: copy.productCards.energyflow.category,
-      image: energyFlowImages[assetLocale].quickLog,
-    },
-    {
-      id: "deskhaven",
-      href: "/products/deskhaven",
-      title: copy.productCards.deskhaven.title,
-      status: copy.productCards.deskhaven.status,
-      description: copy.productCards.deskhaven.category,
-      image: deskHavenAssets.hero,
-    },
-    {
-      id: "adhd",
-      href: "/products/adhd-focus-timer",
-      title: copy.productCards.adhd.title,
-      status: copy.productCards.adhd.status,
-      description: copy.productCards.adhd.category,
-      image: adhdImages.focus,
-    },
-  ], [assetLocale, copy.productCards, deskHavenAssets.hero]);
+  const stages = useMemo(() => productCatalog(locale), [locale]);
 
-  const heroItems = useMemo(() => [
-    { title: "EnergyFlow", image: energyFlowImages[assetLocale].quickLog, href: "/products/energyflow" },
-    { title: "DeskHaven", image: deskHavenAssets.hero, href: "/products/deskhaven" },
-    { title: "EnergyFlow Analytics", image: energyFlowImages[assetLocale].analytics, href: "/products/energyflow" },
-    { title: "ADHD Focus Timer", image: adhdImages.focus, href: "/products/adhd-focus-timer" },
-  ], [assetLocale, deskHavenAssets.hero]);
+  const heroItems = useMemo(() => productPreviewSlides(locale), [locale]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -121,21 +83,17 @@ export default function Home() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  const heroTitleClass = locale === "zh" || locale === "zh-tw"
-    ? "hero-title mt-7 text-[clamp(2.45rem,4.8vw,4.75rem)] leading-[1.1] tracking-[-0.035em] font-medium text-warm-gradient max-w-4xl"
-    : "hero-title mt-7 text-[clamp(3rem,6.4vw,5.75rem)] leading-[0.96] tracking-[-0.07em] font-medium text-warm-gradient max-w-4xl";
-
   return (
     <div className="flex flex-col">
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 min-h-[calc(100vh-4rem)] grid items-center pt-24 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.95fr] gap-14 lg:gap-20 items-center">
           <div className="animate-fade-in">
             <span className="eyebrow">{copy.home.eyebrow}</span>
-            <h1 className={heroTitleClass}>{copy.home.title}</h1>
+            <DisplayHeading variant="hero" gradient>{copy.home.title}</DisplayHeading>
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.home.intro}</p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link href="#story" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.home.primary}</Link>
-              <Link href="/products" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.home.secondary}</Link>
+              <Link href="#story" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.home.primary}</Link>
+              <Link href="/products" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{copy.home.secondary}</Link>
             </div>
             <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
               {copy.home.notes.map(([title, body]) => (
@@ -147,7 +105,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="screen-shell rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
+          <div className="screen-shell surface-depth depth-lift rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
             <div className="flex items-center justify-between text-xs text-[var(--faint)] uppercase tracking-[0.14em] px-1">
               <span>{copy.home.currentProduct}</span>
               <span className="hero-preview-label" key={heroItems[heroIndex]?.title}>{heroItems[heroIndex]?.title}</span>
@@ -176,9 +134,9 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-3 gap-3">
               {stages.map((item) => (
-                <Link key={item.id} href={item.href} className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.035] transition-colors">
+                <Link key={item.id} href={item.href} className="surface-depth rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.03] transition-colors">
                   <div className="text-sm text-foreground font-medium">{item.title}</div>
-                  <div className="mt-1 text-xs text-muted">{item.description}</div>
+                  <div className="mt-1 text-xs text-muted">{item.category}</div>
                 </Link>
               ))}
             </div>
@@ -197,7 +155,7 @@ export default function Home() {
               className="story-chapter min-h-[72vh] flex flex-col justify-center"
             >
               <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{chapter.num}</span>
-              <h2 className="mt-5 text-[clamp(2.2rem,4.2vw,4.2rem)] leading-[1.06] tracking-[-0.045em] font-medium text-foreground">{chapter.title}</h2>
+              <DisplayHeading variant="feature">{chapter.title}</DisplayHeading>
               <p className="mt-6 text-muted leading-[1.85] text-lg max-w-xl">{chapter.body}</p>
               <div className="mt-7 flex flex-wrap gap-2">
                 {chapter.bullets.map((item) => (
@@ -209,8 +167,8 @@ export default function Home() {
         </div>
 
         <div className="lg:sticky lg:top-24 h-[620px] grid place-items-center">
-          <div className="screen-shell relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
-            <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">Product stage follows scroll</div>
+          <div className="screen-shell surface-depth depth-lift relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
+            <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">{copy.home.currentProduct}</div>
             {stages.map((stage, index) => (
               <Link
                 key={stage.id}
@@ -220,7 +178,7 @@ export default function Home() {
                 }}
                 className="story-stage-product absolute inset-[4.8rem_2rem_2rem] block"
               >
-                <div className="h-full rounded-[1.5rem] border border-white/10 bg-[#14120f] overflow-hidden">
+                <div className="surface-depth h-full rounded-[1.5rem] border border-white/10 bg-[var(--surface)] overflow-hidden">
                   <div className="h-12 border-b border-white/[0.07] flex items-center justify-between px-4 text-xs text-[var(--faint)]">
                     <span className="text-muted">{stage.title}</span>
                     <span>{stage.status}</span>
@@ -230,7 +188,7 @@ export default function Home() {
                     <div className="flex items-end justify-between gap-6">
                       <div>
                         <h3 className="text-2xl tracking-[-0.05em] text-foreground font-medium">{stage.title}</h3>
-                        <p className="mt-1 text-sm text-muted">{stage.description}</p>
+                        <p className="mt-1 text-sm text-muted">{stage.category}</p>
                       </div>
                       <span className="shrink-0 rounded-full border border-white/10 px-3 py-1.5 text-xs text-[var(--faint)]">→</span>
                     </div>
@@ -244,22 +202,14 @@ export default function Home() {
 
       <section id="principles" className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <span className="eyebrow">{copy.common.operatingPrinciples}</span>
-        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">{copy.home.principlesTitle}</h2>
+        <DisplayHeading variant="section">{copy.home.principlesTitle}</DisplayHeading>
         <p className="mt-7 text-lg leading-[1.8] text-muted max-w-2xl">{copy.home.principlesBody}</p>
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 border-t border-l border-white/[0.07]">
-          {copy.home.notes.map(([title, body], index) => (
-            <div key={title} className="min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
-              <span className="text-xs text-[var(--faint)] tracking-[0.14em]">0{index + 1}</span>
-              <h3 className="mt-16 text-xl tracking-[-0.045em] font-medium">{title}</h3>
-              <p className="mt-4 text-sm leading-[1.7] text-muted">{body}</p>
-            </div>
-          ))}
-        </div>
+        <NumberedCardGrid items={copy.home.notes} />
       </section>
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <span className="eyebrow">{copy.common.productIndex}</span>
-        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">{copy.home.productTitle}</h2>
+        <DisplayHeading variant="section">{copy.home.productTitle}</DisplayHeading>
         <div className="mt-14 border-t border-white/10">
           {stages.map((stage) => (
             <Link key={stage.id} href={stage.href} className="index-row grid grid-cols-1 md:grid-cols-[1.2fr_1.8fr_0.7fr_3rem] gap-4 md:gap-8 items-center py-8 border-b border-white/[0.07] text-muted">
@@ -275,15 +225,15 @@ export default function Home() {
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           <div>
-            <span className="eyebrow">Studio note</span>
-            <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium">{copy.home.studioTitle}</h2>
+            <span className="eyebrow">{copy.footer.studio}</span>
+            <DisplayHeading variant="section">{copy.home.studioTitle}</DisplayHeading>
             <p className="mt-7 text-lg leading-[1.8] text-muted">{copy.home.studioBody}</p>
           </div>
-          <div className="card-premium rounded-[1.75rem] p-8 md:p-10 self-start">
+          <div className="card-premium surface-depth rounded-[1.75rem] p-8 md:p-10 self-start">
             <p className="text-muted leading-[1.8]">{copy.home.studioNote}</p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/products" className="rounded-full bg-[#e6dccd] text-[#171410] px-5 py-3 text-sm font-medium hover-lift">{copy.common.viewProducts}</Link>
-              <Link href="/contact" className="rounded-full border border-white/15 px-5 py-3 text-sm text-foreground hover:bg-white/[0.04] hover-lift">{copy.common.contact}</Link>
+              <Link href="/products" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.common.viewProducts}</Link>
+              <Link href="/contact" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{copy.common.contact}</Link>
             </div>
           </div>
         </div>

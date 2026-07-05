@@ -2,27 +2,18 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "../components/TransitionLink";
+import { PageHero } from "../components/PageHero";
 import SmartScreenshot from "../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 import type { ProductId } from "@/lib/productCommerce";
-import { productPricing } from "@/lib/productCommerce";
-import { detectedBrowserLanguage, selectLocalPrice } from "@/lib/localPricing";
-import {
-  adhdImages,
-  allAdhdImages,
-  allDeskHavenImages,
-  allEnergyFlowImages,
-  deskHavenImagesForLocale,
-  energyFlowImages,
-  imageLocale,
-} from "@/lib/siteAssets";
+import { detectedBrowserLanguage, selectLocalProductPrice } from "@/lib/localPricing";
+import { productCatalog, productCatalogPreloadImages } from "@/lib/productCatalog";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 function localPriceBadge(product: ProductId, locale: Locale, browserLanguage: string) {
-  const pricing = productPricing(product, locale);
-  const localPrice = selectLocalPrice(pricing.prices, locale, browserLanguage);
+  const localPrice = selectLocalProductPrice(product, locale, browserLanguage);
   return localPrice?.current ?? "";
 }
 
@@ -30,46 +21,17 @@ export default function Products() {
   const { locale } = useLanguage();
   const [browserLanguage, setBrowserLanguage] = useState<string>(() => detectedBrowserLanguage(locale));
   const copy = getSiteCopy(locale);
-  const assetLocale = imageLocale(locale);
-  const deskHavenAssets = deskHavenImagesForLocale(locale);
-  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(), ...allDeskHavenImages(locale)]);
+  usePreloadImages(productCatalogPreloadImages(locale));
 
   useEffect(() => {
     setBrowserLanguage(detectedBrowserLanguage(locale));
   }, [locale]);
 
-  const products = useMemo(() => [
-    {
-      id: "energyflow" as const,
-      ...copy.productCards.energyflow,
-      href: "/products/energyflow",
-      image: energyFlowImages[assetLocale].quickLog,
-    },
-    {
-      id: "deskhaven" as const,
-      ...copy.productCards.deskhaven,
-      href: "/products/deskhaven",
-      image: deskHavenAssets.hero,
-    },
-    {
-      id: "adhd" as const,
-      ...copy.productCards.adhd,
-      href: "/products/adhd-focus-timer",
-      image: adhdImages.focus,
-    },
-  ], [assetLocale, copy.productCards.adhd, copy.productCards.deskhaven, copy.productCards.energyflow, deskHavenAssets.hero]);
+  const products = useMemo(() => productCatalog(locale), [locale]);
 
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24 animate-fade-in">
-        <span className="eyebrow">{copy.products.eyebrow}</span>
-        <h1 className="section-title mt-7 text-[clamp(2.35rem,4.5vw,4.55rem)] leading-[1.08] tracking-[-0.04em] font-medium text-warm-gradient max-w-4xl">
-          {copy.products.title}
-        </h1>
-        <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-3xl">
-          {copy.products.intro}
-        </p>
-      </section>
+      <PageHero eyebrow={copy.products.eyebrow} title={copy.products.title} intro={copy.products.intro} wide animated />
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 pb-24 md:pb-36">
         <div className="border-t border-white/10">
@@ -77,11 +39,11 @@ export default function Products() {
             <Link
               key={product.title}
               href={product.href}
-              className="index-row grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr_0.55fr] gap-8 items-center py-10 md:py-12 border-b border-white/[0.07] text-muted"
+              className="index-row grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr_auto] gap-8 lg:gap-10 items-center py-10 md:py-12 border-b border-white/[0.07] text-muted"
             >
-              <div>
+              <div className="min-w-0">
                 <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{product.category}</span>
-                <h2 className="mt-4 text-3xl md:text-5xl tracking-[-0.055em] leading-[1.05] text-foreground font-medium">
+                <h2 className="mt-4 product-index-title text-foreground font-medium">
                   {product.title}
                 </h2>
                 <p className="mt-5 leading-[1.75] max-w-xl">{product.description}</p>
@@ -99,8 +61,8 @@ export default function Products() {
               />
 
               <div className="flex lg:justify-end">
-                <span className="rounded-full border border-white/10 px-4 py-2 text-sm text-[var(--faint)]">
-                  {product.status} →
+                <span className="product-index-action rounded-full border border-white/10 px-4 py-2 text-sm text-[var(--faint)]">
+                  {product.status} <span aria-hidden="true">→</span>
                 </span>
               </div>
             </Link>
