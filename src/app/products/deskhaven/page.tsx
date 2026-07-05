@@ -2,6 +2,7 @@
 
 import { ProductInfoLinks } from "../../components/ProductActions";
 import { ProductHero, ProductPromise } from "../../components/ProductHero";
+import { NumberedCardGrid } from "../../components/NumberedCardGrid";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
@@ -96,15 +97,7 @@ export default function DeskHavenPage() {
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <span className="eyebrow">{copy.common.designPrinciples}</span>
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 border-t border-l border-white/[0.07]">
-          {copy.deskhaven.principles.map(([title, body], index) => (
-            <div key={title} className="min-h-[240px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
-              <span className="text-xs text-[var(--faint)] tracking-[0.14em]">0{index + 1}</span>
-              <h3 className="mt-16 text-xl tracking-[-0.045em] font-medium">{title}</h3>
-              <p className="mt-4 text-sm leading-[1.7] text-muted">{body}</p>
-            </div>
-          ))}
-        </div>
+        <NumberedCardGrid items={copy.deskhaven.principles} />
       </section>
 
       <section className="border-t border-white/[0.07]">

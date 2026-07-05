@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "../components/TransitionLink";
+import { PageHero } from "../components/PageHero";
 import SmartScreenshot from "../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/context";
@@ -62,15 +63,7 @@ export default function Products() {
 
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24 animate-fade-in">
-        <span className="eyebrow">{copy.products.eyebrow}</span>
-        <h1 className="section-title mt-7 text-[clamp(2.35rem,4.5vw,4.55rem)] leading-[1.08] tracking-[-0.04em] font-medium text-warm-gradient max-w-4xl">
-          {copy.products.title}
-        </h1>
-        <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-3xl">
-          {copy.products.intro}
-        </p>
-      </section>
+      <PageHero eyebrow={copy.products.eyebrow} title={copy.products.title} intro={copy.products.intro} wide animated />
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 pb-24 md:pb-36">
         <div className="border-t border-white/10">

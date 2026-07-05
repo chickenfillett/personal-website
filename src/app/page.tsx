@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "./components/TransitionLink";
 import SmartScreenshot from "./components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
+import { NumberedCardGrid } from "./components/NumberedCardGrid";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 import {
@@ -245,15 +246,7 @@ export default function Home() {
         <span className="eyebrow">{copy.common.operatingPrinciples}</span>
         <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">{copy.home.principlesTitle}</h2>
         <p className="mt-7 text-lg leading-[1.8] text-muted max-w-2xl">{copy.home.principlesBody}</p>
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 border-t border-l border-white/[0.07]">
-          {copy.home.notes.map(([title, body], index) => (
-            <div key={title} className="min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
-              <span className="text-xs text-[var(--faint)] tracking-[0.14em]">0{index + 1}</span>
-              <h3 className="mt-16 text-xl tracking-[-0.045em] font-medium">{title}</h3>
-              <p className="mt-4 text-sm leading-[1.7] text-muted">{body}</p>
-            </div>
-          ))}
-        </div>
+        <NumberedCardGrid items={copy.home.notes} />
       </section>
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">

@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "../components/TransitionLink";
+import { NumberedCardGrid } from "../components/NumberedCardGrid";
+import { PageHero } from "../components/PageHero";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 
@@ -10,15 +12,7 @@ export default function About() {
 
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24 animate-fade-in">
-        <span className="eyebrow">SoloCraft</span>
-        <h1 className="mt-7 text-[clamp(2.7rem,5.2vw,5.1rem)] leading-[1.06] tracking-[-0.045em] font-medium text-warm-gradient max-w-4xl">
-          {copy.about.title}
-        </h1>
-        <p className="mt-8 text-lg md:text-xl text-muted max-w-2xl leading-[1.8]">
-          {copy.about.intro}
-        </p>
-      </section>
+      <PageHero eyebrow="SoloCraft" title={copy.about.title} intro={copy.about.intro} animated />
 
       <section className="border-t border-white/[0.07]">
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
@@ -33,15 +27,7 @@ export default function About() {
       <section className="border-t border-white/[0.07]">
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
           <span className="eyebrow">{copy.about.philosophyTitle}</span>
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-2 border-t border-l border-white/[0.07]">
-            {copy.about.philosophy.map(([title, body], index) => (
-              <div key={title} className="min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
-                <span className="text-xs text-[var(--faint)] tracking-[0.14em]">0{index + 1}</span>
-                <h3 className="mt-12 text-xl tracking-[-0.045em] font-medium">{title}</h3>
-                <p className="mt-4 text-sm leading-[1.75] text-muted">{body}</p>
-              </div>
-            ))}
-          </div>
+          <NumberedCardGrid items={copy.about.philosophy} columns={2} titleOffset="medium" />
         </div>
       </section>
 
