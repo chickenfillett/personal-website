@@ -510,7 +510,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "產品承諾",
       "experienceFlow": "體驗流程",
-      "productIndex": "產品索引",
+      "productIndex": "產品入口",
       "operatingPrinciples": "工作原則",
       "designPrinciples": "設計原則",
       "step": "步驟",
@@ -586,15 +586,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "少一點干擾，多一點掌控感。",
       "principlesBody": "SoloCraft 的產品不追求複雜功能堆疊，而是把一個明確場景做完整：看清精力變化，順利進入專注，或者把分散文件重新整理成可找回的秩序。",
-      "productTitle": "依照當下的工作狀態，選擇真正需要的桌面產品。",
+      "productTitle": "從今天最困擾你的問題開始。",
       "studioTitle": "小工具，也要經得起長期使用。",
       "studioBody": "我更在意產品能否安靜地融入日常，而不是第一次打開時有多熱鬧。真實截圖、清晰隱私說明和可驗證的功能，比花俏包裝更重要。",
       "studioNote": "EnergyFlow、DeskHaven 和 ADHD Focus Timer 分別面向精力記錄、文件整理和低阻力專注。你可以從任意產品頁直接查看功能、截圖、隱私說明和下載入口。"
     },
     "products": {
-      "eyebrow": "產品索引",
-      "title": "找到現在最需要的那一個產品。",
-      "intro": "這裡不是產品清單，而是三個真實工作問題的入口：精力為什麼被消耗、文件為什麼找不回、專注為什麼遲遲開始不了。每個頁面都展示真實介面、價格、隱私說明和下載入口。"
+      "eyebrow": "產品入口",
+      "title": "把日常工作裡最消耗人的阻力，交給合適的桌面工具。",
+      "intro": "EnergyFlow 幫你看清精力被什麼消耗，DeskHaven 讓本地文件重新回到掌控之中，ADHD Focus Timer 降低開始專注的門檻。進入產品頁即可查看真實介面、價格、隱私說明與 Microsoft Store 下載入口。"
     },
     "productCards": {
       "energyflow": {
@@ -749,8 +749,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "介面截圖",
-      "galleryTitle": "目前語言的完整介面截圖。",
-      "galleryIntro": "截圖會跟隨網站語言切換。沒有對應截圖的語言會使用最接近的可用版本，不影響頁面文案本地化。",
+      "galleryTitle": "ADHD Focus Timer 1.5.0 的真實介面。",
+      "galleryIntro": "從準備頁、聲音混音、呼吸過渡到專注計時、想法暫存與統計回看，這組截圖展示完整的專注流程。介面截圖會隨網站語言自動切換。",
       "galleryItems": [
         [
           "專注準備",
@@ -1374,7 +1374,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "製品の約束",
       "experienceFlow": "体験の流れ",
-      "productIndex": "製品一覧",
+      "productIndex": "製品入口",
       "operatingPrinciples": "運用原則",
       "designPrinciples": "設計原則",
       "step": "ステップ",
@@ -1450,15 +1450,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "邪魔を少なく、コントロールを多く。",
       "principlesBody": "SoloCraft は機能の多さより、ひとつの場面を最後まで支えることを重視します。",
-      "productTitle": "いまの作業状態に合うデスクトップ製品を選ぶ。",
+      "productTitle": "今日いちばん集中を削っている問題から始める。",
       "studioTitle": "小さなツールを長く使える形に。",
       "studioBody": "初回の派手さより、毎日の作業に静かに馴染むかを大切にします。",
       "studioNote": "各製品ページでは機能、スクリーンショット、プライバシー、ダウンロード導線を確認できます。"
     },
     "products": {
-      "eyebrow": "製品一覧",
-      "title": "いちばん負担になっている問題から選ぶ。",
-      "intro": "ここは単なる製品一覧ではありません。エネルギーが削られる、ファイルが見つからない、集中を始めるまでが重い。その三つのデスクトップ課題に向き合う入口です。各ページで実際の画面、価格、プライバシー、入手方法を確認できます。"
+      "eyebrow": "製品入口",
+      "title": "日々の小さな抵抗を、使い続けられるデスクトップツールへ。",
+      "intro": "EnergyFlow は消耗の原因を見えるようにし、DeskHaven はローカルファイルを再び扱いやすくし、ADHD Focus Timer は集中を始める抵抗を下げます。各製品ページで実際の画面、価格、プライバシー、Microsoft Store の入手方法を確認できます。"
     },
     "productCards": {
       "energyflow": {
@@ -1613,8 +1613,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "画面スクリーンショット",
-      "galleryTitle": "現在の言語に合わせた画面。",
-      "galleryIntro": "スクリーンショットはサイト言語に合わせて切り替わります。対応画像がない言語では最も近い画像を使い、文案はその言語のまま表示します。",
+      "galleryTitle": "ADHD Focus Timer 1.5.0 の実際の画面。",
+      "galleryIntro": "準備、サウンドミックス、呼吸への切り替え、集中タイマー、Idea Fridge、統計の振り返りまで、集中の流れを実画面で確認できます。対応する画像がある言語では自動で切り替わります。",
       "galleryItems": [
         [
           "集中準備",
@@ -1806,7 +1806,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "제품 약속",
       "experienceFlow": "경험 흐름",
-      "productIndex": "제품 목록",
+      "productIndex": "제품 입구",
       "operatingPrinciples": "운영 원칙",
       "designPrinciples": "설계 원칙",
       "step": "단계",
@@ -1882,15 +1882,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "방해는 줄이고, 통제감은 높입니다.",
       "principlesBody": "SoloCraft는 기능을 쌓기보다 하나의 명확한 상황을 끝까지 완성하는 데 집중합니다.",
-      "productTitle": "지금의 작업 상태에 맞는 데스크톱 제품을 선택하세요.",
+      "productTitle": "오늘 집중을 가장 많이 빼앗는 문제부터 시작하세요.",
       "studioTitle": "작은 도구도 오래 쓸 수 있어야 합니다.",
       "studioBody": "처음 열었을 때의 화려함보다 일상에 조용히 어울리는지를 더 중요하게 봅니다.",
       "studioNote": "각 제품 페이지에서 기능, 스크린샷, 개인정보 설명, 다운로드 경로를 바로 확인할 수 있습니다."
     },
     "products": {
-      "eyebrow": "제품 목록",
-      "title": "가장 많은 주의를 빼앗는 문제부터 시작하세요.",
-      "intro": "이곳은 단순한 제품 목록이 아닙니다. 에너지가 사라지는 이유, 파일을 다시 찾기 어려운 이유, 집중을 시작하기 힘든 이유를 다루는 세 가지 입구입니다. 각 제품 페이지에서 실제 화면, 가격, 개인정보 보호, 다운로드 경로를 확인할 수 있습니다."
+      "eyebrow": "제품 입구",
+      "title": "매일 반복되는 데스크톱의 부담을 실제로 쓰는 도구로 줄입니다.",
+      "intro": "EnergyFlow는 무엇이 에너지를 소모하는지 보여주고, DeskHaven은 로컬 파일을 다시 통제 가능한 상태로 정리하며, ADHD Focus Timer는 집중을 시작하는 부담을 낮춥니다. 각 제품 페이지에서 실제 화면, 가격, 개인정보 안내, Microsoft Store 다운로드 경로를 확인할 수 있습니다."
     },
     "productCards": {
       "energyflow": {
@@ -2045,8 +2045,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "인터페이스 스크린샷",
-      "galleryTitle": "현재 언어에 맞춘 화면.",
-      "galleryIntro": "스크린샷은 웹사이트 언어에 따라 바뀝니다. 대응 이미지가 없는 언어는 가장 가까운 이미지를 사용하며, 문구는 계속 현지화됩니다.",
+      "galleryTitle": "ADHD Focus Timer 1.5.0 실제 화면.",
+      "galleryIntro": "준비 화면, 사운드 믹서, 호흡 전환, 집중 타이머, Idea Fridge, 누적 통계까지 전체 집중 흐름을 실제 화면으로 확인할 수 있습니다. 대응 이미지가 있는 언어는 자동으로 전환됩니다.",
       "galleryItems": [
         [
           "집중 준비",
@@ -2238,7 +2238,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "Promesse produit",
       "experienceFlow": "Parcours",
-      "productIndex": "Index des produits",
+      "productIndex": "Entrée produits",
       "operatingPrinciples": "Principes",
       "designPrinciples": "Principes de design",
       "step": "Étape",
@@ -2314,15 +2314,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "Moins d'interruption, plus de contrôle.",
       "principlesBody": "SoloCraft ne cherche pas l'accumulation de fonctions, mais un flux clair rendu complet.",
-      "productTitle": "Choisir le produit qui correspond à votre état de travail du moment.",
+      "productTitle": "Commencez par ce qui vous coûte de l’attention aujourd’hui.",
       "studioTitle": "De petits outils faits pour durer.",
       "studioBody": "Je privilégie l'intégration calme au quotidien plutôt que l'effet spectaculaire au premier lancement.",
       "studioNote": "Chaque page produit montre les fonctions, captures, notes de confidentialité et options de téléchargement."
     },
     "products": {
-      "eyebrow": "Index des produits",
-      "title": "Commencez par le problème qui vous coûte le plus d’attention.",
-      "intro": "Ce n’est pas un simple catalogue. C’est l’entrée vers trois problèmes de bureau très concrets : l’énergie qui disparaît, les fichiers qui deviennent difficiles à retrouver, et la concentration qui demande trop d’effort pour démarrer. Chaque page présente l’interface réelle, le prix, la confidentialité et le lien Store."
+      "eyebrow": "Entrée produits",
+      "title": "Transformez la friction du bureau en outil vraiment utilisable.",
+      "intro": "EnergyFlow révèle ce qui vide votre énergie, DeskHaven remet les fichiers locaux sous contrôle, et ADHD Focus Timer réduit l’effort nécessaire pour commencer. Chaque page produit présente l’interface réelle, le prix, la confidentialité et le lien Microsoft Store."
     },
     "productCards": {
       "energyflow": {
@@ -2477,8 +2477,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "Captures d'écran",
-      "galleryTitle": "Captures adaptées à la langue actuelle.",
-      "galleryIntro": "Les captures changent avec la langue du site. Les langues sans capture dédiée utilisent la version disponible la plus proche, tout en gardant les textes localisés.",
+      "galleryTitle": "L’interface réelle d’ADHD Focus Timer 1.5.0.",
+      "galleryIntro": "De la préparation au mixage sonore, puis de la respiration au chronomètre, à l’Idea Fridge et aux statistiques, ces captures montrent le parcours complet de concentration. Les images changent automatiquement quand la langue dispose d’un jeu dédié.",
       "galleryItems": [
         [
           "Préparation",
@@ -2670,7 +2670,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "Produktversprechen",
       "experienceFlow": "Ablauf",
-      "productIndex": "Produktübersicht",
+      "productIndex": "Produkteinstieg",
       "operatingPrinciples": "Arbeitsprinzipien",
       "designPrinciples": "Designprinzipien",
       "step": "Schritt",
@@ -2746,15 +2746,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "Weniger Unterbrechung, mehr Kontrolle.",
       "principlesBody": "SoloCraft stapelt keine Funktionen, sondern macht klare Szenarien vollständig nutzbar.",
-      "productTitle": "Wähle das Produkt, das zu deinem aktuellen Arbeitszustand passt.",
+      "productTitle": "Beginne mit dem Problem, das heute am meisten Aufmerksamkeit kostet.",
       "studioTitle": "Kleine Werkzeuge für wiederholte Nutzung.",
       "studioBody": "Wichtiger als der erste laute Eindruck ist, ob ein Produkt ruhig in den Alltag passt.",
       "studioNote": "Jede Produktseite zeigt Funktionen, Screenshots, Datenschutz und Downloadwege."
     },
     "products": {
-      "eyebrow": "Produktübersicht",
-      "title": "Beginne mit dem Problem, das dir am meisten Aufmerksamkeit kostet.",
-      "intro": "Das ist kein bloßer Produktkatalog. Es sind drei Einstiege in echte Desktop-Probleme: Energie, die verschwindet, Dateien, denen man nicht mehr vertraut, und Fokus, der zu schwer startet. Jede Produktseite zeigt echte Oberfläche, Preis, Datenschutz und Store-Pfad."
+      "eyebrow": "Produkteinstieg",
+      "title": "Mach alltägliche Desktop-Reibung zu einem Werkzeug, das du wirklich nutzt.",
+      "intro": "EnergyFlow zeigt, was Energie kostet, DeskHaven bringt lokale Dateien zurück unter Kontrolle, und ADHD Focus Timer senkt die Hürde zum Starten. Jede Produktseite zeigt echte Oberflächen, Preise, Datenschutz und den Microsoft-Store-Weg."
     },
     "productCards": {
       "energyflow": {
@@ -2909,8 +2909,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "Oberflächen-Screenshots",
-      "galleryTitle": "Screenshots in der aktuellen Sprache.",
-      "galleryIntro": "Screenshots wechseln mit der Website-Sprache. Sprachen ohne passende Bilder nutzen die nächstgelegene verfügbare Version, während der Text lokalisiert bleibt.",
+      "galleryTitle": "Die echte Oberfläche von ADHD Focus Timer 1.5.0.",
+      "galleryIntro": "Von Vorbereitung, Sound-Mix und Atemübergang bis zu Fokuszeit, Idea Fridge und Statistik zeigt diese Galerie den vollständigen Fokusablauf. Passende Sprachversionen wechseln automatisch mit der Website-Sprache.",
       "galleryItems": [
         [
           "Fokus vorbereiten",
@@ -3102,7 +3102,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "Promesa del producto",
       "experienceFlow": "Flujo de experiencia",
-      "productIndex": "Índice de productos",
+      "productIndex": "Entrada de productos",
       "operatingPrinciples": "Principios",
       "designPrinciples": "Principios de diseño",
       "step": "Paso",
@@ -3178,15 +3178,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "Menos interrupción, más control.",
       "principlesBody": "SoloCraft no acumula funciones; completa un escenario claro de principio a fin.",
-      "productTitle": "Elige el producto que encaja con tu estado de trabajo actual.",
+      "productTitle": "Empieza por el problema que más atención te quita hoy.",
       "studioTitle": "Herramientas pequeñas para uso repetido.",
       "studioBody": "Me importa más que un producto encaje en el día a día que su impacto inicial.",
       "studioNote": "Cada página muestra funciones, capturas, privacidad y opciones de descarga."
     },
     "products": {
-      "eyebrow": "Índice de productos",
-      "title": "Empieza por el problema que más atención te está costando.",
-      "intro": "Esto no es un catálogo. Es una entrada a tres problemas reales de escritorio: energía que desaparece, archivos que cuesta volver a encontrar y foco que exige demasiado esfuerzo para empezar. Cada página muestra interfaz real, precio, privacidad y enlace de Store."
+      "eyebrow": "Entrada de productos",
+      "title": "Convierte la fricción diaria del escritorio en una herramienta útil.",
+      "intro": "EnergyFlow muestra qué consume tu energía, DeskHaven devuelve el control a tus archivos locales y ADHD Focus Timer reduce la resistencia para empezar. Cada página de producto incluye interfaz real, precio, privacidad y enlace de Microsoft Store."
     },
     "productCards": {
       "energyflow": {
@@ -3341,8 +3341,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "Capturas de interfaz",
-      "galleryTitle": "Capturas para el idioma actual.",
-      "galleryIntro": "Las capturas cambian con el idioma del sitio. Los idiomas sin capturas propias usan la versión disponible más cercana, manteniendo el texto localizado.",
+      "galleryTitle": "La interfaz real de ADHD Focus Timer 1.5.0.",
+      "galleryIntro": "Desde la preparación y la mezcla de sonido hasta la respiración, el temporizador, Idea Fridge y las estadísticas, estas capturas muestran el flujo completo de concentración. Las imágenes cambian automáticamente cuando existe una versión para el idioma.",
       "galleryItems": [
         [
           "Preparar foco",
@@ -3534,7 +3534,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "Обещание продукта",
       "experienceFlow": "Сценарий работы",
-      "productIndex": "Каталог продуктов",
+      "productIndex": "Вход в продукты",
       "operatingPrinciples": "Принципы",
       "designPrinciples": "Принципы дизайна",
       "step": "Шаг",
@@ -3610,15 +3610,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "Меньше отвлечений, больше контроля.",
       "principlesBody": "SoloCraft не гонится за количеством функций, а доводит конкретный сценарий до целостного состояния.",
-      "productTitle": "Выберите продукт под текущее состояние работы.",
+      "productTitle": "Начните с проблемы, которая сегодня сильнее всего забирает внимание.",
       "studioTitle": "Небольшие инструменты для ежедневного использования.",
       "studioBody": "Важнее не громкий первый запуск, а спокойная интеграция в ежедневную работу.",
       "studioNote": "На страницах продуктов есть функции, скриншоты, приватность и пути загрузки."
     },
     "products": {
-      "eyebrow": "Каталог продуктов",
-      "title": "Начните с проблемы, которая забирает больше всего внимания.",
-      "intro": "Это не просто каталог. Это три входа в реальные desktop-проблемы: энергия уходит незаметно, файлы теряют порядок, а фокус слишком трудно начать. На каждой странице есть реальный интерфейс, цена, приватность и путь в Store."
+      "eyebrow": "Вход в продукты",
+      "title": "Превратите ежедневное трение на рабочем столе в инструмент, которым удобно пользоваться.",
+      "intro": "EnergyFlow показывает, что забирает энергию, DeskHaven возвращает контроль над локальными файлами, а ADHD Focus Timer снижает сопротивление перед стартом. На каждой странице продукта есть реальный интерфейс, цена, приватность и путь в Microsoft Store."
     },
     "productCards": {
       "energyflow": {
@@ -3773,8 +3773,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "Скриншоты интерфейса",
-      "galleryTitle": "Скриншоты для текущего языка.",
-      "galleryIntro": "Скриншоты меняются вместе с языком сайта. Если для языка нет отдельного набора, используется ближайшая доступная версия, а текст остаётся локализованным.",
+      "galleryTitle": "Реальный интерфейс ADHD Focus Timer 1.5.0.",
+      "galleryIntro": "От подготовки и микширования звука до дыхательного перехода, таймера, Idea Fridge и статистики — эти скриншоты показывают полный путь фокуса. Изображения автоматически меняются, когда для языка есть отдельный набор.",
       "galleryItems": [
         [
           "Подготовка фокуса",
@@ -3966,7 +3966,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "Promessa do produto",
       "experienceFlow": "Fluxo de experiência",
-      "productIndex": "Índice de produtos",
+      "productIndex": "Entrada de produtos",
       "operatingPrinciples": "Princípios",
       "designPrinciples": "Princípios de design",
       "step": "Etapa",
@@ -4042,15 +4042,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "Menos interrupção, mais controle.",
       "principlesBody": "SoloCraft não empilha funções; completa um fluxo claro de trabalho.",
-      "productTitle": "Escolha o produto que combina com seu estado de trabalho atual.",
+      "productTitle": "Comece pelo problema que mais rouba sua atenção hoje.",
       "studioTitle": "Ferramentas pequenas para uso diário.",
       "studioBody": "Importa mais encaixar-se calmamente no dia a dia do que impressionar no primeiro lançamento.",
       "studioNote": "Cada página mostra recursos, capturas, privacidade e caminhos de download."
     },
     "products": {
-      "eyebrow": "Índice de produtos",
-      "title": "Comece pelo problema que mais está custando atenção.",
-      "intro": "Isto não é apenas um catálogo. É a entrada para três problemas reais no desktop: energia que desaparece, arquivos que perdem ordem e foco que exige esforço demais para começar. Cada página mostra interface real, preço, privacidade e caminho da Store."
+      "eyebrow": "Entrada de produtos",
+      "title": "Transforme o atrito diário do desktop em uma ferramenta que você realmente usa.",
+      "intro": "EnergyFlow mostra o que consome sua energia, DeskHaven devolve controle aos arquivos locais e ADHD Focus Timer reduz a resistência para começar. Cada página de produto inclui interface real, preço, privacidade e caminho da Microsoft Store."
     },
     "productCards": {
       "energyflow": {
@@ -4205,8 +4205,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "Capturas da interface",
-      "galleryTitle": "Capturas para o idioma atual.",
-      "galleryIntro": "As capturas mudam com o idioma do site. Idiomas sem capturas próprias usam a versão disponível mais próxima, mantendo o texto localizado.",
+      "galleryTitle": "A interface real do ADHD Focus Timer 1.5.0.",
+      "galleryIntro": "Da preparação e mixagem de som à respiração, ao timer, ao Idea Fridge e às estatísticas, estas capturas mostram o fluxo completo de foco. As imagens mudam automaticamente quando há versão disponível para o idioma.",
       "galleryItems": [
         [
           "Preparar foco",
