@@ -86,15 +86,15 @@ export const copy = {
     ],
     "principlesTitle": "방해는 줄이고, 통제감은 높입니다.",
     "principlesBody": "SoloCraft는 기능을 쌓기보다 하나의 명확한 상황을 끝까지 완성하는 데 집중합니다.",
-    "productTitle": "오늘 집중을 가장 많이 빼앗는 문제부터 시작하세요.",
+    "productTitle": "집중력이 새어 나가는 지점에서 시작하세요.",
     "studioTitle": "작은 도구도 오래 쓸 수 있어야 합니다.",
     "studioBody": "처음 열었을 때의 화려함보다 일상에 조용히 어울리는지를 더 중요하게 봅니다.",
     "studioNote": "각 제품 페이지에서 기능, 스크린샷, 개인정보 설명, 다운로드 경로를 바로 확인할 수 있습니다."
   },
   "products": {
-    "eyebrow": "제품 입구",
-    "title": "매일 반복되는 데스크톱의 부담을 실제로 쓰는 도구로 줄입니다.",
-    "intro": "EnergyFlow는 무엇이 에너지를 소모하는지 보여주고, DeskHaven은 로컬 파일을 다시 통제 가능한 상태로 정리하며, ADHD Focus Timer는 집중을 시작하는 부담을 낮춥니다. 각 제품 페이지에서 실제 화면, 가격, 개인정보 안내, Microsoft Store 다운로드 경로를 확인할 수 있습니다."
+    "eyebrow": "제품",
+    "title": "에너지, 파일, 집중을 위한 조용한 자리.",
+    "intro": "EnergyFlow는 하루의 에너지 변화를 읽기 쉽게 만들고, DeskHaven은 로컬 파일의 혼란을 정리하며, ADHD Focus Timer는 집중을 더 가볍게 시작하도록 돕습니다. 각 제품 페이지에서 실제 화면, 가격, 개인정보 안내, Microsoft Store 다운로드 경로를 확인할 수 있습니다."
   },
   "productCards": {
     "energyflow": {

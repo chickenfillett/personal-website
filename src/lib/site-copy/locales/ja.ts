@@ -86,15 +86,15 @@ export const copy = {
     ],
     "principlesTitle": "邪魔を少なく、コントロールを多く。",
     "principlesBody": "SoloCraft は機能の多さより、ひとつの場面を最後まで支えることを重視します。",
-    "productTitle": "今日いちばん集中を削っている問題から始める。",
+    "productTitle": "集中力がこぼれている場所から始める。",
     "studioTitle": "小さなツールを長く使える形に。",
     "studioBody": "初回の派手さより、毎日の作業に静かに馴染むかを大切にします。",
     "studioNote": "各製品ページでは機能、スクリーンショット、プライバシー、ダウンロード導線を確認できます。"
   },
   "products": {
-    "eyebrow": "製品入口",
-    "title": "日々の小さな抵抗を、使い続けられるデスクトップツールへ。",
-    "intro": "EnergyFlow は消耗の原因を見えるようにし、DeskHaven はローカルファイルを再び扱いやすくし、ADHD Focus Timer は集中を始める抵抗を下げます。各製品ページで実際の画面、価格、プライバシー、Microsoft Store の入手方法を確認できます。"
+    "eyebrow": "製品",
+    "title": "エネルギー、ファイル、集中のための静かな居場所。",
+    "intro": "EnergyFlow は日々のエネルギー変化を読み取りやすくし、DeskHaven はローカルファイルの散らかりを整え、ADHD Focus Timer は集中の始まりを軽くします。各製品ページで実際の画面、価格、プライバシー、Microsoft Store の入手方法を確認できます。"
   },
   "productCards": {
     "energyflow": {

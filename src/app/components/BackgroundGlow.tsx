@@ -3,6 +3,10 @@
 export default function BackgroundGlow() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="ambient-structure ambient-structure-a" />
+      <div className="ambient-structure ambient-structure-b" />
+      <div className="ambient-filament ambient-filament-a" />
+      <div className="ambient-filament ambient-filament-b" />
       <div
         className="absolute left-[-18%] top-[8%] h-[28rem] w-[82rem] opacity-[0.16] blur-[92px] rotate-[-18deg]"
         style={{ background: "linear-gradient(90deg, transparent 0%, rgba(116,167,255,.55) 42%, rgba(105,230,197,.3) 58%, transparent 100%)" }}

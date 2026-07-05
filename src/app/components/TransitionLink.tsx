@@ -1,7 +1,6 @@
 "use client";
 
 import Link, { LinkProps } from "next/link";
-import { useRouter } from "next/navigation";
 import { AnchorHTMLAttributes, ReactNode, forwardRef } from "react";
 
 type TransitionLinkProps = LinkProps & AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -12,8 +11,6 @@ const TransitionLink = forwardRef<HTMLAnchorElement, TransitionLinkProps>(functi
   { href, target, children, onClick, ...props },
   ref,
 ) {
-  const router = useRouter();
-
   return (
     <Link
       ref={ref}
@@ -31,14 +28,10 @@ const TransitionLink = forwardRef<HTMLAnchorElement, TransitionLinkProps>(functi
           return;
         }
 
-        if (!href.startsWith("/") || href === window.location.pathname) return;
+        if (!href.startsWith("/")) return;
 
-        event.preventDefault();
         document.documentElement.classList.add("route-transitioning");
-        window.setTimeout(() => {
-          router.push(href);
-          window.setTimeout(() => document.documentElement.classList.remove("route-transitioning"), 180);
-        }, 90);
+        window.setTimeout(() => document.documentElement.classList.remove("route-transitioning"), 260);
       }}
       {...props}
     >

@@ -86,15 +86,15 @@ export const copy = {
     ],
     "principlesTitle": "Less interruption. More control.",
     "principlesBody": "SoloCraft products do not chase feature bloat. Each one finishes a specific job: understanding energy patterns, easing into focus, or turning scattered files into a system you can trust.",
-    "productTitle": "Start with the problem that is costing you attention today.",
+    "productTitle": "Start where your day is leaking attention.",
     "studioTitle": "Small tools made for repeated use.",
     "studioBody": "I care more about whether a product fits quietly into daily work than whether it feels loud on first launch. Real screenshots, clear privacy notes, and verifiable behavior matter more than decoration.",
     "studioNote": "EnergyFlow, DeskHaven, and ADHD Focus Timer cover energy tracking, file organization, and low-resistance focus. Each product page shows features, screenshots, privacy notes, and download options directly."
   },
   "products": {
-    "eyebrow": "Product entry",
-    "title": "Turn daily desktop friction into a tool you can actually use.",
-    "intro": "EnergyFlow shows what drains your energy, DeskHaven brings local files back under control, and ADHD Focus Timer lowers the resistance of starting. Each product page includes real interface captures, pricing, privacy notes, and the Microsoft Store path."
+    "eyebrow": "Products",
+    "title": "A quiet place for energy, files, and focus.",
+    "intro": "EnergyFlow turns daily energy changes into a readable pattern, DeskHaven restores order to local files, and ADHD Focus Timer makes it easier to begin. Each product page includes real interface captures, pricing, privacy notes, and a Microsoft Store path."
   },
   "productCards": {
     "energyflow": {

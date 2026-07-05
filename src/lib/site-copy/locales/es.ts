@@ -86,15 +86,15 @@ export const copy = {
     ],
     "principlesTitle": "Menos interrupción, más control.",
     "principlesBody": "SoloCraft no acumula funciones; completa un escenario claro de principio a fin.",
-    "productTitle": "Empieza por el problema que más atención te quita hoy.",
+    "productTitle": "Empieza donde tu día pierde atención.",
     "studioTitle": "Herramientas pequeñas para uso repetido.",
     "studioBody": "Me importa más que un producto encaje en el día a día que su impacto inicial.",
     "studioNote": "Cada página muestra funciones, capturas, privacidad y opciones de descarga."
   },
   "products": {
-    "eyebrow": "Entrada de productos",
-    "title": "Convierte la fricción diaria del escritorio en una herramienta útil.",
-    "intro": "EnergyFlow muestra qué consume tu energía, DeskHaven devuelve el control a tus archivos locales y ADHD Focus Timer reduce la resistencia para empezar. Cada página de producto incluye interfaz real, precio, privacidad y enlace de Microsoft Store."
+    "eyebrow": "Productos",
+    "title": "Un lugar tranquilo para la energía, los archivos y la concentración.",
+    "intro": "EnergyFlow convierte los cambios de energía en patrones legibles, DeskHaven devuelve orden a los archivos locales y ADHD Focus Timer hace más fácil empezar. Cada página incluye interfaz real, precio, privacidad y enlace de Microsoft Store."
   },
   "productCards": {
     "energyflow": {

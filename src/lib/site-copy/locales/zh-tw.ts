@@ -86,15 +86,15 @@ export const copy = {
     ],
     "principlesTitle": "少一點干擾，多一點掌控感。",
     "principlesBody": "SoloCraft 的產品不追求複雜功能堆疊，而是把一個明確場景做完整：看清精力變化，順利進入專注，或者把分散文件重新整理成可找回的秩序。",
-    "productTitle": "從今天最困擾你的問題開始。",
+    "productTitle": "從正在消耗你的地方，進入合適的工具。",
     "studioTitle": "小工具，也要經得起長期使用。",
     "studioBody": "我更在意產品能否安靜地融入日常，而不是第一次打開時有多熱鬧。真實截圖、清晰隱私說明和可驗證的功能，比花俏包裝更重要。",
     "studioNote": "EnergyFlow、DeskHaven 和 ADHD Focus Timer 分別面向精力記錄、文件整理和低阻力專注。你可以從任意產品頁直接查看功能、截圖、隱私說明和下載入口。"
   },
   "products": {
-    "eyebrow": "產品入口",
-    "title": "把日常工作裡最消耗人的阻力，交給合適的桌面工具。",
-    "intro": "EnergyFlow 幫你看清精力被什麼消耗，DeskHaven 讓本地文件重新回到掌控之中，ADHD Focus Timer 降低開始專注的門檻。進入產品頁即可查看真實介面、價格、隱私說明與 Microsoft Store 下載入口。"
+    "eyebrow": "產品",
+    "title": "為精力、文件和專注，各留一個安靜可靠的位置。",
+    "intro": "EnergyFlow 記錄工作日裡的精力變化，DeskHaven 收攏本地文件的混亂，ADHD Focus Timer 幫你更輕地開始一段專注。每個產品頁都提供真實介面、價格、隱私說明與 Microsoft Store 下載入口。"
   },
   "productCards": {
     "energyflow": {

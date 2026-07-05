@@ -74,7 +74,7 @@ export default function Navbar() {
               onClick={() => setOpen((value) => !value)}
             >
               <span>{currentLocale.nativeName}</span>
-              <span className="language-menu-chevron" aria-hidden="true">⌄</span>
+              <span className="language-menu-chevron" aria-hidden="true">v</span>
             </button>
             {open ? (
               <div className="language-menu-panel" role="menu">

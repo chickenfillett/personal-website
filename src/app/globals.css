@@ -12,16 +12,16 @@
   --surface-2: #0d121a;
   --line: rgba(226, 232, 240, 0.14);
   --line-soft: rgba(226, 232, 240, 0.075);
-  --font-latin-display: "Aptos Display", "SF Pro Display", "Segoe UI Variable Display", "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --font-latin-display: "Aptos Display", "Segoe UI Variable Display", "Bahnschrift", "SF Pro Display", "Inter Tight", "Helvetica Neue", Arial, sans-serif;
   --font-latin-text: "Aptos", "SF Pro Text", "Segoe UI Variable Text", "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-cjk-sc: "Noto Sans CJK SC", "Source Han Sans SC", "MiSans", "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei UI", sans-serif;
-  --font-cjk-sc-display: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", "Noto Sans CJK SC", serif;
+  --font-cjk-sc-display: "Microsoft YaHei UI Light", "DengXian Light", "Noto Sans CJK SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei UI", sans-serif;
   --font-cjk-tc: "Noto Sans CJK TC", "Source Han Sans TC", "PingFang TC", "Microsoft JhengHei UI", sans-serif;
-  --font-cjk-tc-display: "Noto Serif CJK TC", "Source Han Serif TC", "Songti TC", "PMingLiU", "Noto Sans CJK TC", serif;
+  --font-cjk-tc-display: "Microsoft JhengHei UI Light", "Noto Sans CJK TC", "Source Han Sans TC", "PingFang TC", "Microsoft JhengHei UI", sans-serif;
   --font-ja: "Noto Sans CJK JP", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
-  --font-ja-display: "Noto Serif CJK JP", "Yu Mincho", "Hiragino Mincho ProN", "Noto Sans CJK JP", serif;
+  --font-ja-display: "Yu Gothic Light", "Yu Gothic UI Light", "Hiragino Sans", "Noto Sans CJK JP", "Meiryo", sans-serif;
   --font-ko: "Noto Sans CJK KR", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  --font-ko-display: "Noto Serif CJK KR", "Batang", "Noto Sans CJK KR", serif;
+  --font-ko-display: "Malgun Gothic Semilight", "Pretendard", "Noto Sans CJK KR", "Apple SD Gothic Neo", sans-serif;
   --font-cyrillic: "Aptos", "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", Arial, sans-serif;
   --font-cyrillic-display: "Aptos Display", "Georgia", "Segoe UI Variable Display", serif;
   --font-body: var(--font-latin-text);
@@ -81,7 +81,7 @@ h3,
 .text-gradient-hero,
 .text-warm-gradient {
   font-family: var(--font-display);
-  font-weight: 520;
+  font-weight: 430;
   font-variation-settings: "opsz" 32;
 }
 
@@ -227,12 +227,71 @@ body::after {
     linear-gradient(90deg, rgba(0, 0, 0, 0.62), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.6));
 }
 
+.ambient-structure {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.34;
+  filter: blur(0.2px);
+  mix-blend-mode: screen;
+  mask-image: linear-gradient(90deg, transparent, black 18%, black 76%, transparent);
+}
+
+.ambient-structure-a {
+  inset: 6% -16% auto -10%;
+  height: 28rem;
+  transform: rotate(-7deg);
+  background:
+    repeating-linear-gradient(90deg, rgba(116, 167, 255, 0.14) 0 1px, transparent 1px 74px),
+    linear-gradient(90deg, transparent, rgba(116, 167, 255, 0.08), rgba(110, 231, 210, 0.05), transparent);
+}
+
+.ambient-structure-b {
+  inset: auto -18% 4% -12%;
+  height: 24rem;
+  transform: rotate(5deg);
+  background:
+    repeating-linear-gradient(90deg, rgba(183, 160, 255, 0.1) 0 1px, transparent 1px 88px),
+    linear-gradient(90deg, transparent, rgba(183, 160, 255, 0.06), rgba(116, 167, 255, 0.05), transparent);
+}
+
+.ambient-filament {
+  position: absolute;
+  height: 1px;
+  pointer-events: none;
+  opacity: 0.62;
+  filter: drop-shadow(0 0 12px rgba(116, 167, 255, 0.38));
+  background: linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.2), rgba(116, 167, 255, 0.46), transparent);
+}
+
+.ambient-filament-a {
+  left: 10%;
+  right: 8%;
+  top: 31%;
+  transform: rotate(-5deg);
+}
+
+.ambient-filament-b {
+  left: 18%;
+  right: 18%;
+  bottom: 23%;
+  transform: rotate(4deg);
+  opacity: 0.38;
+}
+
 .text-gradient-hero,
 .text-warm-gradient {
   background: linear-gradient(180deg, #fbfdff 0%, #d8e2ee 52%, #9dacba 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.page-hero-title {
+  font-size: clamp(2.25rem, 4.1vw, 4.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+  font-weight: 420;
+  text-wrap: balance;
 }
 
 .eyebrow {
@@ -539,8 +598,15 @@ body::after {
 
 .language-menu-chevron {
   color: var(--faint);
-  font-size: 0.95rem;
+  font-size: 0.62rem;
   line-height: 1;
+  transform: scaleX(1.15);
+  transition: transform 180ms cubic-bezier(.22, 1, .36, 1), color 180ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.language-menu-button[aria-expanded="true"] .language-menu-chevron {
+  color: var(--muted);
+  transform: scaleX(1.15) rotate(180deg);
 }
 
 .language-menu-panel {
@@ -686,8 +752,8 @@ body::after {
 }
 
 .product-index-title {
-  line-height: 1.08;
-  letter-spacing: -0.035em;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
