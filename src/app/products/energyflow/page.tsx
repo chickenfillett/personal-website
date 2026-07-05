@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { ProductHeroActions, ProductInfoLinks } from "../../components/ProductActions";
+import { ProductInfoLinks } from "../../components/ProductActions";
 import { ProductFeatureSections } from "../../components/ProductFeatureSections";
+import { ProductHero, ProductPromise } from "../../components/ProductHero";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
@@ -32,32 +33,20 @@ export default function EnergyFlowPage() {
 
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24">
-        <div className="product-page-grid">
-          <div className="animate-fade-in">
-            <span className="eyebrow">{copy.energyflow.eyebrow}</span>
-            <h1 className="mt-7 text-[clamp(2.7rem,5.2vw,5.15rem)] leading-[1.06] tracking-[-0.045em] font-medium text-warm-gradient">
-              {copy.energyflow.title}
-            </h1>
-            <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.energyflow.intro}</p>
-            <ProductHeroActions
-              status={copy.energyflow.status}
-              actions={[
-                { href: microsoftStoreLinks.energyflow, label: copy.common.microsoftStore, external: true, variant: "primary" },
-                { href: "#product-info", label: labels.priceEyebrow },
-              ]}
-            />
-          </div>
+      <ProductHero
+        eyebrow={copy.energyflow.eyebrow}
+        title={copy.energyflow.title}
+        intro={copy.energyflow.intro}
+        status={copy.energyflow.status}
+        actions={[
+          { href: microsoftStoreLinks.energyflow, label: copy.common.microsoftStore, external: true, variant: "primary" },
+          { href: "#product-info", label: labels.priceEyebrow },
+        ]}
+      >
+        <SmartScreenshot src={images.quickLog} alt="EnergyFlow quick log" width={1200} height={820} priority sizes="(max-width: 1024px) 92vw, 620px" />
+      </ProductHero>
 
-          <SmartScreenshot src={images.quickLog} alt="EnergyFlow quick log" width={1200} height={820} priority sizes="(max-width: 1024px) 92vw, 620px" />
-        </div>
-      </section>
-
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
-        <span className="eyebrow">{copy.common.productPromise}</span>
-        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-4xl">{copy.energyflow.promiseTitle}</h2>
-        <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{copy.energyflow.promise}</p>
-      </section>
+      <ProductPromise eyebrow={copy.common.productPromise} title={copy.energyflow.promiseTitle} body={copy.energyflow.promise} />
 
       <div id="product-info" />
       <ProductPricing product="energyflow" />

@@ -1,6 +1,6 @@
 import Link from "./TransitionLink";
 
-type ProductAction = {
+export type ProductAction = {
   href: string;
   label: string;
   external?: boolean;

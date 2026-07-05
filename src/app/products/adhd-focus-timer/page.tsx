@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { ProductHeroActions, ProductInfoLinks } from "../../components/ProductActions";
+import { ProductInfoLinks } from "../../components/ProductActions";
 import { ProductFeatureSections } from "../../components/ProductFeatureSections";
+import { ProductHero, ProductPromise } from "../../components/ProductHero";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
@@ -40,41 +41,29 @@ export default function ADHDFocusTimerPage() {
     { image: adhdAssets.screenshots[6], copy: galleryItems[7] },
   ].filter((item): item is { image: string; copy: readonly [string, string] } => Boolean(item.image && item.copy));
 
-  const heroTitleClass = "hero-title mt-7 text-[clamp(2.45rem,5.4vw,5.2rem)] leading-[1.05] tracking-[-0.04em] font-medium text-warm-gradient";
-
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24">
-        <div className="product-page-grid">
-          <div className="animate-fade-in">
-            <span className="eyebrow">{copy.adhd.eyebrow}</span>
-            <h1 className={heroTitleClass}>{copy.adhd.title}</h1>
-            <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.adhd.intro}</p>
-            <ProductHeroActions
-              status={copy.adhd.status}
-              actions={[
-                { href: microsoftStoreLinks.adhd, label: copy.common.microsoftStore, external: true, variant: "primary" },
-                { href: "#product-info", label: labels.priceEyebrow },
-              ]}
-            />
-          </div>
+      <ProductHero
+        eyebrow={copy.adhd.eyebrow}
+        title={copy.adhd.title}
+        intro={copy.adhd.intro}
+        status={copy.adhd.status}
+        actions={[
+          { href: microsoftStoreLinks.adhd, label: copy.common.microsoftStore, external: true, variant: "primary" },
+          { href: "#product-info", label: labels.priceEyebrow },
+        ]}
+      >
+        <SmartScreenshot
+          src={adhdAssets.hero}
+          alt="ADHD Focus Timer focus session"
+          width={1200}
+          height={675}
+          priority
+          sizes="(max-width: 1024px) 92vw, 620px"
+        />
+      </ProductHero>
 
-          <SmartScreenshot
-            src={adhdAssets.hero}
-            alt="ADHD Focus Timer focus session"
-            width={1200}
-            height={675}
-            priority
-            sizes="(max-width: 1024px) 92vw, 620px"
-          />
-        </div>
-      </section>
-
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
-        <span className="eyebrow">{copy.common.productPromise}</span>
-        <h2 className="mt-7 text-[clamp(2.35rem,4.7vw,4.55rem)] leading-[1.04] tracking-[-0.05em] font-medium max-w-4xl">{copy.adhd.promiseTitle}</h2>
-        <p className="mt-7 text-lg leading-[1.8] text-muted max-w-3xl">{copy.adhd.promise}</p>
-      </section>
+      <ProductPromise eyebrow={copy.common.productPromise} title={copy.adhd.promiseTitle} body={copy.adhd.promise} />
 
       <div id="product-info" />
       <ProductPricing product="adhd" />

@@ -1,6 +1,7 @@
 "use client";
 
-import { ProductHeroActions, ProductInfoLinks } from "../../components/ProductActions";
+import { ProductInfoLinks } from "../../components/ProductActions";
+import { ProductHero, ProductPromise } from "../../components/ProductHero";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
@@ -22,39 +23,27 @@ export default function DeskHavenPage() {
 
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24">
-        <div className="product-page-grid">
-          <div className="animate-fade-in">
-            <span className="eyebrow">{copy.deskhaven.eyebrow}</span>
-            <h1 className="mt-7 text-[clamp(2.7rem,5.2vw,5.1rem)] leading-[1.06] tracking-[-0.045em] font-medium text-warm-gradient">
-              {copy.deskhaven.title}
-            </h1>
-            <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.deskhaven.intro}</p>
-            <ProductHeroActions
-              status={copy.deskhaven.status}
-              actions={[
-                { href: "/contact", label: copy.common.getUpdates, variant: "primary" },
-                { href: "#product-info", label: labels.priceEyebrow },
-              ]}
-            />
-          </div>
+      <ProductHero
+        eyebrow={copy.deskhaven.eyebrow}
+        title={copy.deskhaven.title}
+        intro={copy.deskhaven.intro}
+        status={copy.deskhaven.status}
+        actions={[
+          { href: "/contact", label: copy.common.getUpdates, variant: "primary" },
+          { href: "#product-info", label: labels.priceEyebrow },
+        ]}
+      >
+        <SmartScreenshot
+          src={assets.hero}
+          alt="DeskHaven product poster"
+          width={1120}
+          height={630}
+          priority
+          sizes="(max-width: 1024px) 92vw, 620px"
+        />
+      </ProductHero>
 
-          <SmartScreenshot
-            src={assets.hero}
-            alt="DeskHaven product poster"
-            width={1120}
-            height={630}
-            priority
-            sizes="(max-width: 1024px) 92vw, 620px"
-          />
-        </div>
-      </section>
-
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
-        <span className="eyebrow">{copy.common.productPromise}</span>
-        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-4xl">{copy.deskhaven.promiseTitle}</h2>
-        <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{copy.deskhaven.promise}</p>
-      </section>
+      <ProductPromise eyebrow={copy.common.productPromise} title={copy.deskhaven.promiseTitle} body={copy.deskhaven.promise} />
 
       <div id="product-info" />
       <ProductPricing product="deskhaven" />
