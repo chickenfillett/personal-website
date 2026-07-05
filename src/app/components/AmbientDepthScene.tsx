@@ -101,6 +101,32 @@ export default function AmbientDepthScene() {
       context.fill();
     };
 
+    const drawOrbit = (time: number, index: number) => {
+      const phase = time * 0.00012 + index * 1.7;
+      const cx = width * (0.34 + Math.sin(phase) * 0.08);
+      const cy = height * (0.42 + Math.cos(phase * 0.8) * 0.05);
+      const rx = width * (0.34 + index * 0.045);
+      const ry = height * (0.1 + index * 0.018);
+      const start = -0.25 * Math.PI + Math.sin(phase) * 0.18;
+      const end = start + Math.PI * (0.92 + index * 0.12);
+      const gradient = context.createLinearGradient(cx - rx, cy, cx + rx, cy);
+      gradient.addColorStop(0, "transparent");
+      gradient.addColorStop(0.42, "rgba(114, 167, 255, 0.16)");
+      gradient.addColorStop(0.7, "rgba(110, 231, 210, 0.09)");
+      gradient.addColorStop(1, "transparent");
+
+      context.save();
+      context.globalAlpha = reducedMotion ? 0.08 : 0.18 - index * 0.025;
+      context.strokeStyle = gradient;
+      context.lineWidth = 0.8;
+      context.translate(cx, cy);
+      context.rotate(-0.22 + index * 0.08);
+      context.beginPath();
+      context.ellipse(0, 0, rx, ry, 0, start, end);
+      context.stroke();
+      context.restore();
+    };
+
     const render = (time: number) => {
       const delta = clamp(time - lastTime, 8, 34);
       lastTime = time;
@@ -114,8 +140,9 @@ export default function AmbientDepthScene() {
       const drift = reducedMotion ? 0 : Math.sin(time * 0.00018) * 0.08;
       drawBeam([0, 0, width, height], "rgba(85, 145, 255, 0.12)", 0.72, drift);
       drawBeam([width, 0, 0, height], "rgba(90, 235, 204, 0.09)", 0.56, -drift * 0.7);
+      for (let i = 0; i < 3; i += 1) drawOrbit(time, i);
 
-      context.globalAlpha = reducedMotion ? 0.12 : 0.18;
+      context.globalAlpha = reducedMotion ? 0.1 : 0.14;
       context.strokeStyle = "rgba(150, 190, 255, 0.18)";
       context.lineWidth = 1;
       for (let i = 0; i < 4; i += 1) {

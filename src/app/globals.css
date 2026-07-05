@@ -1,23 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050607;
-  --foreground: #edf2f7;
-  --muted: #9aa4af;
-  --faint: #68727e;
-  --accent: #74a7ff;
-  --accent-2: #69e6c5;
-  --surface: #0b0e12;
-  --surface-2: #111722;
+  --background: #020305;
+  --foreground: #f2f6fb;
+  --muted: #9da8b5;
+  --faint: #687482;
+  --accent: #72a7ff;
+  --accent-2: #6ee7d2;
+  --accent-3: #b7a0ff;
+  --surface: #080b10;
+  --surface-2: #0d121a;
   --line: rgba(226, 232, 240, 0.14);
   --line-soft: rgba(226, 232, 240, 0.075);
-  --font-latin-display: "SF Pro Display", "Aptos Display", "Segoe UI Variable Display", "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-latin-text: "SF Pro Text", "Aptos", "Segoe UI Variable Text", "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-cjk-sc: "MiSans", "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
-  --font-cjk-tc: "MiSans TC", "PingFang TC", "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
-  --font-ja: "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
-  --font-ko: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  --font-cyrillic: "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", Arial, sans-serif;
+  --font-latin-display: "Aptos Display", "SF Pro Display", "Segoe UI Variable Display", "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --font-latin-text: "Aptos", "SF Pro Text", "Segoe UI Variable Text", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-cjk-sc: "Noto Sans CJK SC", "Source Han Sans SC", "MiSans", "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei UI", sans-serif;
+  --font-cjk-sc-display: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", "Noto Sans CJK SC", serif;
+  --font-cjk-tc: "Noto Sans CJK TC", "Source Han Sans TC", "PingFang TC", "Microsoft JhengHei UI", sans-serif;
+  --font-cjk-tc-display: "Noto Serif CJK TC", "Source Han Serif TC", "Songti TC", "PMingLiU", "Noto Sans CJK TC", serif;
+  --font-ja: "Noto Sans CJK JP", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
+  --font-ja-display: "Noto Serif CJK JP", "Yu Mincho", "Hiragino Mincho ProN", "Noto Sans CJK JP", serif;
+  --font-ko: "Noto Sans CJK KR", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-ko-display: "Noto Serif CJK KR", "Batang", "Noto Sans CJK KR", serif;
+  --font-cyrillic: "Aptos", "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", Arial, sans-serif;
+  --font-cyrillic-display: "Aptos Display", "Georgia", "Segoe UI Variable Display", serif;
   --font-body: var(--font-latin-text);
   --font-display: var(--font-latin-display);
   --font-code: "SF Mono", "Cascadia Mono", "Segoe UI Mono", Consolas, monospace;
@@ -38,22 +44,33 @@ html {
   background: var(--background);
 }
 
+html.route-transitioning main {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
 html:not([data-language-ready="true"]) body {
   opacity: 0;
 }
 
 body {
   background:
-    radial-gradient(circle at 18% 6%, rgba(116, 167, 255, 0.12), transparent 31rem),
-    radial-gradient(circle at 88% 8%, rgba(105, 230, 197, 0.075), transparent 34rem),
-    radial-gradient(circle at 50% 108%, rgba(149, 121, 255, 0.075), transparent 36rem),
-    linear-gradient(180deg, #050607 0%, #07090d 44%, #040506 100%);
+    radial-gradient(circle at 18% 4%, rgba(94, 139, 255, 0.105), transparent 32rem),
+    radial-gradient(circle at 88% 10%, rgba(76, 220, 196, 0.065), transparent 34rem),
+    radial-gradient(circle at 44% 112%, rgba(162, 139, 255, 0.07), transparent 36rem),
+    linear-gradient(180deg, #020305 0%, #05070b 46%, #020304 100%);
   color: var(--foreground);
   font-family: var(--font-body);
   font-feature-settings: "kern", "liga", "calt";
   letter-spacing: -0.006em;
   overflow-x: hidden;
   transition: opacity 120ms ease-out;
+}
+
+main {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 180ms cubic-bezier(.22, 1, .36, 1), transform 180ms cubic-bezier(.22, 1, .36, 1);
 }
 
 h1,
@@ -64,33 +81,33 @@ h3,
 .text-gradient-hero,
 .text-warm-gradient {
   font-family: var(--font-display);
-  font-weight: 560;
+  font-weight: 520;
   font-variation-settings: "opsz" 32;
 }
 
 html[lang="zh"] {
   --font-body: var(--font-cjk-sc);
-  --font-display: var(--font-cjk-sc);
+  --font-display: var(--font-cjk-sc-display);
 }
 
 html[lang="zh-tw"] {
   --font-body: var(--font-cjk-tc);
-  --font-display: var(--font-cjk-tc);
+  --font-display: var(--font-cjk-tc-display);
 }
 
 html[lang="ja"] {
   --font-body: var(--font-ja);
-  --font-display: var(--font-ja);
+  --font-display: var(--font-ja-display);
 }
 
 html[lang="ko"] {
   --font-body: var(--font-ko);
-  --font-display: var(--font-ko);
+  --font-display: var(--font-ko-display);
 }
 
 html[lang="ru"] {
   --font-body: var(--font-cyrillic);
-  --font-display: var(--font-cyrillic);
+  --font-display: var(--font-cyrillic-display);
 }
 
 html[lang="ja"] body,
@@ -127,11 +144,12 @@ body::before {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.22;
+  opacity: 0.16;
   background-image:
-    linear-gradient(rgba(226, 232, 240, 0.024) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(226, 232, 240, 0.018) 1px, transparent 1px);
-  background-size: 58px 58px;
+    linear-gradient(rgba(226, 232, 240, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226, 232, 240, 0.014) 1px, transparent 1px),
+    radial-gradient(circle at 1px 1px, rgba(116, 167, 255, 0.09) 1px, transparent 1.6px);
+  background-size: 72px 72px, 72px 72px, 144px 144px;
   mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent);
 }
 
@@ -153,8 +171,8 @@ body::after {
   pointer-events: none;
   overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(5, 6, 7, 0.18), rgba(5, 6, 7, 0.76)),
-    radial-gradient(circle at 50% 18%, rgba(116, 167, 255, 0.08), transparent 34rem);
+    linear-gradient(180deg, rgba(2, 3, 5, 0.14), rgba(2, 3, 5, 0.82)),
+    radial-gradient(circle at 50% 18%, rgba(116, 167, 255, 0.07), transparent 34rem);
   transform-style: preserve-3d;
 }
 
@@ -174,7 +192,7 @@ body::after {
 }
 
 .ambient-depth-grid {
-  opacity: 0.18;
+  opacity: 0.13;
   transform: perspective(900px) rotateX(62deg) translateY(20vh) translateZ(-130px);
   transform-origin: center bottom;
   background-image:
@@ -211,7 +229,7 @@ body::after {
 
 .text-gradient-hero,
 .text-warm-gradient {
-  background: linear-gradient(180deg, #f8fbff 0%, #aeb9c7 100%);
+  background: linear-gradient(180deg, #fbfdff 0%, #d8e2ee 52%, #9dacba 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -225,7 +243,7 @@ body::after {
   font-family: var(--font-display);
   font-size: 0.72rem;
   font-style: italic;
-  font-weight: 520;
+  font-weight: 540;
   letter-spacing: 0.145em;
   text-transform: uppercase;
   opacity: 0.92;
@@ -242,7 +260,7 @@ body::after {
   border: 1px solid var(--line-soft);
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.045), transparent 36%),
-    linear-gradient(180deg, rgba(226, 232, 240, 0.026), rgba(226, 232, 240, 0.008));
+    linear-gradient(180deg, rgba(226, 232, 240, 0.024), rgba(226, 232, 240, 0.007));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045), 0 28px 82px rgba(0, 0, 0, 0.24);
   transform: translateZ(0);
   transition: border-color 220ms cubic-bezier(.22, 1, .36, 1), background 220ms cubic-bezier(.22, 1, .36, 1), transform 220ms cubic-bezier(.22, 1, .36, 1), box-shadow 220ms cubic-bezier(.22, 1, .36, 1);
@@ -265,8 +283,8 @@ body::after {
 
 .primary-action {
   border: 1px solid rgba(226, 232, 240, 0.18);
-  background: linear-gradient(180deg, #f5f8fb 0%, #cfd8e3 100%);
-  color: #050607;
+  background: linear-gradient(180deg, #fbfdff 0%, #d7e2ef 100%);
+  color: #020305;
 }
 
 .secondary-action {
@@ -603,6 +621,29 @@ body::after {
 .index-row > :last-child {
   position: relative;
   z-index: 2;
+}
+
+.product-index-title {
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.product-index-action {
+  display: inline-flex;
+  min-width: 7.5rem;
+  justify-content: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  transform: translateZ(0);
+}
+
+html[lang="zh"] .product-index-title,
+html[lang="zh-tw"] .product-index-title,
+html[lang="ja"] .product-index-title,
+html[lang="ko"] .product-index-title {
+  line-height: 1.18;
+  letter-spacing: 0;
 }
 
 .product-page-grid {

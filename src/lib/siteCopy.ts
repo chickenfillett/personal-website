@@ -78,7 +78,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "产品承诺",
       "experienceFlow": "体验流程",
-      "productIndex": "产品索引",
+      "productIndex": "产品入口",
       "operatingPrinciples": "工作原则",
       "designPrinciples": "设计原则",
       "step": "步骤",
@@ -154,15 +154,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "少一点干扰，多一点掌控感。",
       "principlesBody": "SoloCraft 的产品不追求复杂功能堆叠，而是把一个明确场景做完整：看清精力变化，顺利进入专注，或者把分散文件重新整理成可找回的秩序。",
-      "productTitle": "按当前的工作状态，选择真正需要的桌面产品。",
+      "productTitle": "从今天最困扰你的问题开始。",
       "studioTitle": "小工具，也要经得起长期使用。",
       "studioBody": "我更在意产品能否安静地融入日常，而不是第一次打开时有多热闹。真实截图、清晰隐私说明和可验证的功能，比花哨包装更重要。",
       "studioNote": "EnergyFlow、DeskHaven 和 ADHD Focus Timer 分别面向精力记录、文件整理和低阻力专注。你可以从任意产品页直接查看功能、截图、隐私说明和下载入口。"
     },
     "products": {
-      "eyebrow": "产品索引",
-      "title": "找到现在最需要的那一个产品。",
-      "intro": "这里不是产品清单，而是三个真实工作问题的入口：精力为什么被消耗、文件为什么找不回、专注为什么迟迟开始不了。每个页面都展示真实界面、价格、隐私说明和下载入口。"
+      "eyebrow": "产品入口",
+      "title": "把分散的日常阻力，交给合适的桌面工具。",
+      "intro": "EnergyFlow 让你看清精力被什么消耗，DeskHaven 帮你重新掌控本地文件，ADHD Focus Timer 降低开始专注的阻力。进入产品页即可查看真实界面、价格、隐私说明与 Microsoft Store 下载入口。"
     },
     "productCards": {
       "energyflow": {
@@ -221,14 +221,14 @@ export const siteCopy = {
       ],
       "gallery": {
         "eyebrow": "真实界面",
-        "title": "查看 EnergyFlow 的完整界面截图。",
-        "body": "这里按截图自身比例展示真实界面，不再把图片硬塞进固定比例方框。截图会控制在较小尺寸，避免在大屏幕上被拉大后显得粗糙。"
+        "title": "从快速记录到趋势分析，一次看清 EnergyFlow 的工作方式。",
+        "body": "截图保留原始界面比例，展示日常打卡、趋势回看、统计分析和设置细节。你看到的就是应用里的真实流程。"
       },
       "flowIntro": {
         "title": "从一次快速记录，到一段可调整的工作节奏。",
-        "body": "EnergyFlow 的流程不是为了制造更多管理负担，而是把很短的一次记录，逐步变成可回看的工作节奏证据。左侧是你要完成的动作，右侧是应用如何把这些动作转化为趋势、场景和调整依据。",
+        "body": "EnergyFlow 不要求你重新管理人生，只保留一次很轻的记录动作。坚持一段时间后，会议、任务切换、休息方式与精力变化之间的关系会逐渐清晰。",
         "cardTitle": "流程重点",
-        "cardBody": "记录越轻，长期数据才越容易坚持；长期数据越稳定，精力变化和工作场景之间的关系才更容易被看见。"
+        "cardBody": "记录越轻，越容易长期坚持；数据越稳定，越能看见哪些安排正在恢复你，哪些安排正在消耗你。"
       }
     },
     "deskhaven": {
@@ -317,8 +317,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "界面截图",
-      "galleryTitle": "当前语言的完整界面截图。",
-      "galleryIntro": "截图会跟随网站语言切换。没有对应截图的语言会使用最接近的可用版本，不影响页面文案本地化。",
+      "galleryTitle": "ADHD Focus Timer 1.5.0 的真实界面。",
+      "galleryIntro": "从准备页、声音混音、呼吸过渡到专注计时、想法暂存与统计回看，这组截图展示完整的专注流程。界面截图会随网站语言自动切换。",
       "galleryItems": [
         [
           "专注准备",
@@ -942,7 +942,7 @@ export const siteCopy = {
     "common": {
       "productPromise": "Product promise",
       "experienceFlow": "Experience flow",
-      "productIndex": "Product index",
+      "productIndex": "Product entry",
       "operatingPrinciples": "Operating principles",
       "designPrinciples": "Design principles",
       "step": "Step",
@@ -1018,15 +1018,15 @@ export const siteCopy = {
       ],
       "principlesTitle": "Less interruption. More control.",
       "principlesBody": "SoloCraft products do not chase feature bloat. Each one finishes a specific job: understanding energy patterns, easing into focus, or turning scattered files into a system you can trust.",
-      "productTitle": "Choose the product that matches the work state you are in.",
+      "productTitle": "Start with the problem that is costing you attention today.",
       "studioTitle": "Small tools made for repeated use.",
       "studioBody": "I care more about whether a product fits quietly into daily work than whether it feels loud on first launch. Real screenshots, clear privacy notes, and verifiable behavior matter more than decoration.",
       "studioNote": "EnergyFlow, DeskHaven, and ADHD Focus Timer cover energy tracking, file organization, and low-resistance focus. Each product page shows features, screenshots, privacy notes, and download options directly."
     },
     "products": {
-      "eyebrow": "Product index",
-      "title": "Start with the problem that is costing you the most attention.",
-      "intro": "This is not a catalog. It is a map of three recurring desktop problems: energy that disappears, files that become hard to trust, and focus that takes too much effort to start. Each product page shows real UI, pricing, privacy notes, and the Store path."
+      "eyebrow": "Product entry",
+      "title": "Turn daily desktop friction into a tool you can actually use.",
+      "intro": "EnergyFlow shows what drains your energy, DeskHaven brings local files back under control, and ADHD Focus Timer lowers the resistance of starting. Each product page includes real interface captures, pricing, privacy notes, and the Microsoft Store path."
     },
     "productCards": {
       "energyflow": {
@@ -1085,12 +1085,12 @@ export const siteCopy = {
       ],
       "gallery": {
         "eyebrow": "Real interface",
-        "title": "See the full EnergyFlow interface set.",
-        "body": "The gallery follows each screenshot's natural proportion instead of forcing fixed frames. Captures stay modest in size so they remain clean on large screens."
+        "title": "See how EnergyFlow moves from quick logging to useful review.",
+        "body": "The screenshots keep their natural interface proportions and show the real flow: daily logging, trend review, statistical analysis, and settings."
       },
       "flowIntro": {
         "title": "From one quick log to an adjustable work rhythm.",
-        "body": "EnergyFlow is not designed to create another management burden. A short log becomes evidence you can review later: what happened, where energy changed, and which work patterns deserve adjustment.",
+        "body": "EnergyFlow does not ask you to manage your life again. It keeps the capture lightweight, then turns repeated check-ins into a clearer view of meetings, context switches, recovery, and drain.",
         "cardTitle": "Flow principle",
         "cardBody": "The lighter the log, the more likely the habit survives. The steadier the record, the easier it is to see how work context and energy influence each other."
       }
@@ -1181,8 +1181,8 @@ export const siteCopy = {
         ]
       ],
       "galleryEyebrow": "Interface screenshots",
-      "galleryTitle": "Screenshots for the current language.",
-      "galleryIntro": "Screenshots switch with the website language. Locales without matching ADHD screenshots use the closest available version while keeping copy fully localized.",
+      "galleryTitle": "The real ADHD Focus Timer 1.5.0 interface.",
+      "galleryIntro": "From setup, sound mixing, and breathing transition to focus timing, Idea Fridge, and cumulative stats, these screenshots show the complete focus flow. Interface captures switch with the website language when matching assets are available.",
       "galleryItems": [
         [
           "Focus setup",

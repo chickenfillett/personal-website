@@ -196,11 +196,11 @@ type PosterSectionCopy = {
 const sectionCopy: Record<Locale, PosterSectionCopy> = {
   zh: {
     eyebrow: "核心能力",
-    title: "每张产品图都对应 DeskHaven 的一个真实工作场景。",
-    body: "这里按海报内容配套说明：本地空间、搜索、归档、关系图、后台整理、AI 工具链、明暗模式、密码/密钥与数据控制。不同语言的海报顺序会按对应资源自动匹配。",
+    title: "用海报先看清 DeskHaven 的完整产品气质。",
+    body: "每张海报对应一个真实能力：本地空间、搜索、归档、关系图、后台整理、AI 工具链、明暗模式、密码/密钥与数据控制。不同语言会自动匹配对应海报。",
     galleryEyebrow: "真实界面",
     galleryTitle: "查看 DeskHaven 的实际工作界面。",
-    galleryBody: "从仪表盘、文件台到设置与隐私控制，这里展示的是当前语言版本的真实界面。",
+    galleryBody: "从仪表盘、文件台到设置与隐私控制，下方展示当前语言版本的真实界面。",
   },
   "zh-tw": {
     eyebrow: "核心能力",

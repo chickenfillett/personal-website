@@ -39,11 +39,11 @@ export default function Products() {
             <Link
               key={product.title}
               href={product.href}
-              className="index-row grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr_0.55fr] gap-8 items-center py-10 md:py-12 border-b border-white/[0.07] text-muted"
+              className="index-row grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr_auto] gap-8 lg:gap-10 items-center py-10 md:py-12 border-b border-white/[0.07] text-muted"
             >
-              <div>
+              <div className="min-w-0">
                 <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{product.category}</span>
-                <h2 className="mt-4 text-3xl md:text-5xl tracking-[-0.055em] leading-[1.05] text-foreground font-medium">
+                <h2 className="mt-4 product-index-title text-3xl md:text-4xl text-foreground font-medium">
                   {product.title}
                 </h2>
                 <p className="mt-5 leading-[1.75] max-w-xl">{product.description}</p>
@@ -61,8 +61,8 @@ export default function Products() {
               />
 
               <div className="flex lg:justify-end">
-                <span className="rounded-full border border-white/10 px-4 py-2 text-sm text-[var(--faint)]">
-                  {product.status} →
+                <span className="product-index-action rounded-full border border-white/10 px-4 py-2 text-sm text-[var(--faint)]">
+                  {product.status} <span aria-hidden="true">→</span>
                 </span>
               </div>
             </Link>
