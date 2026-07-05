@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "./typography-fixes.css";
-import "./visual-refinements.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AmbientDepthScene from "./components/AmbientDepthScene";

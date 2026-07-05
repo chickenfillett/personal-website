@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "../../components/TransitionLink";
+import { ProductHeroActions, ProductInfoLinks } from "../../components/ProductActions";
+import { ProductFeatureSections } from "../../components/ProductFeatureSections";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
@@ -49,11 +50,13 @@ export default function ADHDFocusTimerPage() {
             <span className="eyebrow">{copy.adhd.eyebrow}</span>
             <h1 className={heroTitleClass}>{copy.adhd.title}</h1>
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.adhd.intro}</p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{copy.adhd.status}</span>
-              <a href={microsoftStoreLinks.adhd} target="_blank" rel="noreferrer" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.common.microsoftStore}</a>
-              <Link href="#product-info" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{labels.priceEyebrow}</Link>
-            </div>
+            <ProductHeroActions
+              status={copy.adhd.status}
+              actions={[
+                { href: microsoftStoreLinks.adhd, label: copy.common.microsoftStore, external: true, variant: "primary" },
+                { href: "#product-info", label: labels.priceEyebrow },
+              ]}
+            />
           </div>
 
           <SmartScreenshot
@@ -76,34 +79,20 @@ export default function ADHDFocusTimerPage() {
       <div id="product-info" />
       <ProductPricing product="adhd" />
 
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pb-16 md:pb-24">
-        <div className="flex flex-wrap gap-3 border-t border-white/[0.07] pt-8 text-sm">
-          <Link href="/products/adhd-focus-timer/privacy" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.privacy}</Link>
-          <Link href="/products/adhd-focus-timer/legal" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{legalLabel}</Link>
-          <Link href="/contact" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.getUpdates}</Link>
-        </div>
-      </section>
+      <ProductInfoLinks
+        actions={[
+          { href: "/products/adhd-focus-timer/privacy", label: copy.common.privacy },
+          { href: "/products/adhd-focus-timer/legal", label: legalLabel },
+          { href: "/contact", label: copy.common.getUpdates },
+        ]}
+      />
 
-      <section className="border-t border-white/[0.07]">
-        {copy.adhd.features.map(([title, body], index) => (
-          <div key={title} className="max-w-[1180px] mx-auto px-5 md:px-8 py-16 md:py-24 border-b border-white/[0.07] last:border-b-0">
-            <div className={`detail-rail ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
-              <div className="detail-sticky">
-                <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">0{index + 1}</span>
-                <h2 className="mt-5 text-[clamp(2.15rem,3.9vw,3.9rem)] leading-[1.05] tracking-[-0.045em] font-medium">{title}</h2>
-                <p className="mt-6 text-muted leading-[1.8] text-lg">{body}</p>
-              </div>
-              <SmartScreenshot
-                src={featureImages[index]}
-                alt={title}
-                width={1200}
-                height={675}
-                sizes="(max-width: 1024px) 92vw, 680px"
-              />
-            </div>
-          </div>
-        ))}
-      </section>
+      <ProductFeatureSections
+        features={copy.adhd.features}
+        images={featureImages}
+        imageWidth={1200}
+        imageHeight={675}
+      />
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <span className="eyebrow">{copy.adhd.galleryEyebrow}</span>

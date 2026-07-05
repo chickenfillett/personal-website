@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "../../components/TransitionLink";
+import { ProductHeroActions, ProductInfoLinks } from "../../components/ProductActions";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
@@ -30,11 +30,13 @@ export default function DeskHavenPage() {
               {copy.deskhaven.title}
             </h1>
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.deskhaven.intro}</p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{copy.deskhaven.status}</span>
-              <Link href="/contact" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.common.getUpdates}</Link>
-              <Link href="#product-info" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{labels.priceEyebrow}</Link>
-            </div>
+            <ProductHeroActions
+              status={copy.deskhaven.status}
+              actions={[
+                { href: "/contact", label: copy.common.getUpdates, variant: "primary" },
+                { href: "#product-info", label: labels.priceEyebrow },
+              ]}
+            />
           </div>
 
           <SmartScreenshot
@@ -57,13 +59,13 @@ export default function DeskHavenPage() {
       <div id="product-info" />
       <ProductPricing product="deskhaven" />
 
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 pb-16 md:pb-24">
-        <div className="flex flex-wrap gap-3 border-t border-white/[0.07] pt-8 text-sm">
-          <Link href="/products/deskhaven/privacy" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.privacy}</Link>
-          <Link href="/products/deskhaven/legal" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{legalLabel}</Link>
-          <Link href="/products" className="secondary-action rounded-full px-4 py-2.5 hover-lift">{copy.common.backToProducts}</Link>
-        </div>
-      </section>
+      <ProductInfoLinks
+        actions={[
+          { href: "/products/deskhaven/privacy", label: copy.common.privacy },
+          { href: "/products/deskhaven/legal", label: legalLabel },
+          { href: "/products", label: copy.common.backToProducts },
+        ]}
+      />
 
       <section className="border-t border-white/[0.07]">
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">

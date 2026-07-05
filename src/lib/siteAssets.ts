@@ -3,6 +3,7 @@ import type { Locale } from "@/lib/i18n/context";
 export type ImageLocale = "zh" | "en";
 export type DeskHavenAssetLocale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
 export type AdhdAssetLocale = "zh" | "en" | "ja" | "fr" | "de" | "es";
+export type SizedImage = { src: string; width: number; height: number };
 
 export const microsoftStoreLinks = {
   energyflow: "https://apps.microsoft.com/store/detail/9N7ZWFVC2QQS?cid=DevShareMCLPCS",
@@ -50,8 +51,46 @@ function numberedEnergyFlowScreenshots(locale: ImageLocale) {
   );
 }
 
-export function energyFlowGalleryImagesForLocale(locale: Locale) {
-  return numberedEnergyFlowScreenshots(imageLocale(locale));
+const energyFlowGallerySizes: Record<ImageLocale, readonly Omit<SizedImage, "src">[]> = {
+  zh: [
+    { width: 589, height: 585 },
+    { width: 699, height: 889 },
+    { width: 704, height: 889 },
+    { width: 695, height: 891 },
+    { width: 709, height: 893 },
+    { width: 705, height: 900 },
+    { width: 709, height: 892 },
+    { width: 707, height: 890 },
+    { width: 590, height: 597 },
+    { width: 671, height: 797 },
+    { width: 694, height: 885 },
+    { width: 690, height: 640 },
+    { width: 697, height: 634 },
+  ],
+  en: [
+    { width: 588, height: 593 },
+    { width: 714, height: 874 },
+    { width: 591, height: 589 },
+    { width: 713, height: 890 },
+    { width: 715, height: 901 },
+    { width: 706, height: 888 },
+    { width: 708, height: 900 },
+    { width: 707, height: 887 },
+    { width: 704, height: 882 },
+    { width: 687, height: 818 },
+    { width: 708, height: 893 },
+    { width: 691, height: 678 },
+    { width: 693, height: 640 },
+  ],
+};
+
+export function energyFlowGalleryForLocale(locale: Locale): SizedImage[] {
+  const assetLocale = imageLocale(locale);
+  const screenshots = numberedEnergyFlowScreenshots(assetLocale);
+  return screenshots.map((src, index) => ({
+    src,
+    ...energyFlowGallerySizes[assetLocale][index],
+  }));
 }
 
 function numberedAdhdScreenshots(locale: AdhdAssetLocale) {
