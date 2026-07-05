@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ProductId } from "@/lib/productCommerce";
 import { commerceLabels, productPricing } from "@/lib/productCommerce";
-import { detectedBrowserLanguage, selectLocalPrice } from "@/lib/localPricing";
+import { detectedBrowserLanguage, selectLocalProductPrice } from "@/lib/localPricing";
 import { useLanguage } from "@/lib/i18n/context";
 
 export default function ProductPricing({ product }: { product: ProductId }) {
@@ -17,8 +17,8 @@ export default function ProductPricing({ product }: { product: ProductId }) {
   }, [locale]);
 
   const localPrice = useMemo(
-    () => selectLocalPrice(pricing.prices, locale, browserLanguage),
-    [browserLanguage, locale, pricing.prices],
+    () => selectLocalProductPrice(product, locale, browserLanguage),
+    [browserLanguage, locale, product],
   );
 
   return (

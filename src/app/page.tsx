@@ -5,17 +5,9 @@ import Link from "./components/TransitionLink";
 import SmartScreenshot from "./components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { NumberedCardGrid } from "./components/NumberedCardGrid";
+import { productCatalog, productCatalogPreloadImages, productPreviewSlides } from "@/lib/productCatalog";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { usePreloadImages } from "@/lib/usePreloadImages";
-import {
-  adhdImagesForLocale,
-  allAdhdImages,
-  allDeskHavenImages,
-  allEnergyFlowImages,
-  deskHavenImagesForLocale,
-  energyFlowImages,
-  imageLocale,
-} from "@/lib/siteAssets";
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 const mix = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -27,49 +19,16 @@ const smoothStep = (edge0: number, edge1: number, x: number) => {
 export default function Home() {
   const { locale } = useLanguage();
   const copy = getSiteCopy(locale);
-  const assetLocale = imageLocale(locale);
-  const deskHavenAssets = deskHavenImagesForLocale(locale);
-  const adhdAssets = adhdImagesForLocale(locale);
   const chapterRefs = useRef<HTMLElement[]>([]);
   const stageRefs = useRef<HTMLElement[]>([]);
   const valuesRef = useRef(new Map<string, number>());
   const [heroIndex, setHeroIndex] = useState(0);
 
-  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(locale), ...allDeskHavenImages(locale)]);
+  usePreloadImages(productCatalogPreloadImages(locale));
 
-  const stages = useMemo(() => [
-    {
-      id: "energyflow",
-      href: "/products/energyflow",
-      title: copy.productCards.energyflow.title,
-      status: copy.productCards.energyflow.status,
-      description: copy.productCards.energyflow.category,
-      image: energyFlowImages[assetLocale].quickLog,
-    },
-    {
-      id: "deskhaven",
-      href: "/products/deskhaven",
-      title: copy.productCards.deskhaven.title,
-      status: copy.productCards.deskhaven.status,
-      description: copy.productCards.deskhaven.category,
-      image: deskHavenAssets.hero,
-    },
-    {
-      id: "adhd",
-      href: "/products/adhd-focus-timer",
-      title: copy.productCards.adhd.title,
-      status: copy.productCards.adhd.status,
-      description: copy.productCards.adhd.category,
-      image: adhdAssets.hero,
-    },
-  ], [adhdAssets.hero, assetLocale, copy.productCards, deskHavenAssets.hero]);
+  const stages = useMemo(() => productCatalog(locale), [locale]);
 
-  const heroItems = useMemo(() => [
-    { title: "EnergyFlow", image: energyFlowImages[assetLocale].quickLog, href: "/products/energyflow" },
-    { title: "DeskHaven", image: deskHavenAssets.hero, href: "/products/deskhaven" },
-    { title: "EnergyFlow Analytics", image: energyFlowImages[assetLocale].analytics, href: "/products/energyflow" },
-    { title: "ADHD Focus Timer", image: adhdAssets.focus, href: "/products/adhd-focus-timer" },
-  ], [adhdAssets.focus, assetLocale, deskHavenAssets.hero]);
+  const heroItems = useMemo(() => productPreviewSlides(locale), [locale]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -178,7 +137,7 @@ export default function Home() {
               {stages.map((item) => (
                 <Link key={item.id} href={item.href} className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.035] transition-colors">
                   <div className="text-sm text-foreground font-medium">{item.title}</div>
-                  <div className="mt-1 text-xs text-muted">{item.description}</div>
+                  <div className="mt-1 text-xs text-muted">{item.category}</div>
                 </Link>
               ))}
             </div>
@@ -230,7 +189,7 @@ export default function Home() {
                     <div className="flex items-end justify-between gap-6">
                       <div>
                         <h3 className="text-2xl tracking-[-0.05em] text-foreground font-medium">{stage.title}</h3>
-                        <p className="mt-1 text-sm text-muted">{stage.description}</p>
+                        <p className="mt-1 text-sm text-muted">{stage.category}</p>
                       </div>
                       <span className="shrink-0 rounded-full border border-white/10 px-3 py-1.5 text-xs text-[var(--faint)]">→</span>
                     </div>

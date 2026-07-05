@@ -1,4 +1,5 @@
-import type { ProductPricingCopy } from "@/lib/productCommerce";
+import type { Locale } from "@/lib/i18n/context";
+import { productPricing, type ProductId, type ProductPricingCopy } from "@/lib/productCommerce";
 
 export type PriceItem = ProductPricingCopy["prices"][number];
 
@@ -44,4 +45,8 @@ export function selectLocalPrice(prices: readonly PriceItem[], locale: string, b
   }
 
   return prices.find((price) => includesAny(price.market, ["default market group", "standard", "padrão", "predeterminado"])) ?? prices[0];
+}
+
+export function selectLocalProductPrice(product: ProductId, locale: Locale, browserLanguage: string) {
+  return selectLocalPrice(productPricing(product, locale).prices, locale, browserLanguage);
 }

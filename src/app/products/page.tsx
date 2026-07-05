@@ -8,22 +8,12 @@ import { useLanguage } from "@/lib/i18n/context";
 import type { Locale } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 import type { ProductId } from "@/lib/productCommerce";
-import { productPricing } from "@/lib/productCommerce";
-import { detectedBrowserLanguage, selectLocalPrice } from "@/lib/localPricing";
-import {
-  adhdImagesForLocale,
-  allAdhdImages,
-  allDeskHavenImages,
-  allEnergyFlowImages,
-  deskHavenImagesForLocale,
-  energyFlowImages,
-  imageLocale,
-} from "@/lib/siteAssets";
+import { detectedBrowserLanguage, selectLocalProductPrice } from "@/lib/localPricing";
+import { productCatalog, productCatalogPreloadImages } from "@/lib/productCatalog";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 function localPriceBadge(product: ProductId, locale: Locale, browserLanguage: string) {
-  const pricing = productPricing(product, locale);
-  const localPrice = selectLocalPrice(pricing.prices, locale, browserLanguage);
+  const localPrice = selectLocalProductPrice(product, locale, browserLanguage);
   return localPrice?.current ?? "";
 }
 
@@ -31,35 +21,13 @@ export default function Products() {
   const { locale } = useLanguage();
   const [browserLanguage, setBrowserLanguage] = useState<string>(() => detectedBrowserLanguage(locale));
   const copy = getSiteCopy(locale);
-  const assetLocale = imageLocale(locale);
-  const deskHavenAssets = deskHavenImagesForLocale(locale);
-  const adhdAssets = adhdImagesForLocale(locale);
-  usePreloadImages([...allEnergyFlowImages(), ...allAdhdImages(locale), ...allDeskHavenImages(locale)]);
+  usePreloadImages(productCatalogPreloadImages(locale));
 
   useEffect(() => {
     setBrowserLanguage(detectedBrowserLanguage(locale));
   }, [locale]);
 
-  const products = useMemo(() => [
-    {
-      id: "energyflow" as const,
-      ...copy.productCards.energyflow,
-      href: "/products/energyflow",
-      image: energyFlowImages[assetLocale].quickLog,
-    },
-    {
-      id: "deskhaven" as const,
-      ...copy.productCards.deskhaven,
-      href: "/products/deskhaven",
-      image: deskHavenAssets.hero,
-    },
-    {
-      id: "adhd" as const,
-      ...copy.productCards.adhd,
-      href: "/products/adhd-focus-timer",
-      image: adhdAssets.hero,
-    },
-  ], [adhdAssets.hero, assetLocale, copy.productCards.adhd, copy.productCards.deskhaven, copy.productCards.energyflow, deskHavenAssets.hero]);
+  const products = useMemo(() => productCatalog(locale), [locale]);
 
   return (
     <div className="flex flex-col">

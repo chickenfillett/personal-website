@@ -197,9 +197,3 @@ export function allDeskHavenImages(locale?: Locale) {
     return [...posters, ...screenshots];
   });
 }
-
-export function productPreviewImage(locale: Locale, product: "energyflow" | "adhd" | "deskhaven") {
-  if (product === "energyflow") return energyFlowImages[imageLocale(locale)].quickLog;
-  if (product === "deskhaven") return deskHavenImagesForLocale(locale).hero;
-  return adhdImagesForLocale(locale).hero;
-}
