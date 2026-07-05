@@ -5,6 +5,7 @@ import type { ProductId } from "@/lib/productCommerce";
 import { commerceLabels, productPricing } from "@/lib/productCommerce";
 import { detectedBrowserLanguage, selectLocalProductPrice } from "@/lib/localPricing";
 import { useLanguage } from "@/lib/i18n/context";
+import { DisplayHeading } from "./Typography";
 
 export default function ProductPricing({ product }: { product: ProductId }) {
   const { locale } = useLanguage();
@@ -26,9 +27,7 @@ export default function ProductPricing({ product }: { product: ProductId }) {
       <span className="eyebrow">{pricing.eyebrow}</span>
       <div className="mt-7 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start">
         <div>
-          <h2 className="text-[clamp(2rem,3.8vw,3.55rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-3xl">
-            {pricing.title}
-          </h2>
+          <DisplayHeading variant="section" className="mt-0">{pricing.title}</DisplayHeading>
           <p className="mt-6 text-lg leading-[1.85] text-muted">{labels.pricingIntro}</p>
         </div>
 

@@ -43,7 +43,7 @@ export default function Products() {
             >
               <div className="min-w-0">
                 <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{product.category}</span>
-                <h2 className="mt-4 product-index-title text-[clamp(1.75rem,3vw,2.75rem)] text-foreground font-medium">
+                <h2 className="mt-4 product-index-title text-foreground font-medium">
                   {product.title}
                 </h2>
                 <p className="mt-5 leading-[1.75] max-w-xl">{product.description}</p>

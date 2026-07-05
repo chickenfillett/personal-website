@@ -76,8 +76,6 @@ main {
 h1,
 h2,
 h3,
-.hero-title,
-.section-title,
 .text-gradient-hero,
 .text-warm-gradient {
   font-family: var(--font-display);
@@ -116,21 +114,6 @@ html[lang="ru"] body,
 html[lang="zh"] body,
 html[lang="zh-tw"] body {
   letter-spacing: 0;
-}
-
-html[lang="ja"] .hero-title,
-html[lang="ko"] .hero-title {
-  font-size: clamp(2.35rem, 5vw, 4.45rem);
-  line-height: 1.12;
-  letter-spacing: 0;
-  max-width: 58rem;
-}
-
-html[lang="ja"] .section-title,
-html[lang="ko"] .section-title,
-html[lang="ru"] .section-title {
-  letter-spacing: 0;
-  line-height: 1.15;
 }
 
 ::selection {
@@ -286,12 +269,73 @@ body::after {
   background-clip: text;
 }
 
-.page-hero-title {
+.site-heading {
+  font-family: var(--font-display);
+  font-weight: 420;
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+  color: var(--foreground);
+}
+
+.site-heading-hero {
+  margin-top: 1.75rem;
+  max-width: 44rem;
+  font-size: clamp(2.15rem, 3.35vw, 3.35rem);
+  line-height: 1.14;
+}
+
+.site-heading-page {
+  margin-top: 1.75rem;
+  max-width: 56rem;
   font-size: clamp(2.25rem, 4.1vw, 4.25rem);
   line-height: 1.1;
-  letter-spacing: -0.018em;
-  font-weight: 420;
-  text-wrap: balance;
+}
+
+.site-heading-section {
+  margin-top: 1.75rem;
+  max-width: 52rem;
+  font-size: clamp(2.1rem, 3.7vw, 3.55rem);
+  line-height: 1.1;
+}
+
+.site-heading-feature {
+  margin-top: 1.25rem;
+  max-width: 40rem;
+  font-size: clamp(1.9rem, 3.3vw, 3.35rem);
+  line-height: 1.12;
+}
+
+.site-heading-legal {
+  margin-top: 1.75rem;
+  max-width: 56rem;
+  font-size: clamp(2.05rem, 3.35vw, 3.45rem);
+  line-height: 1.14;
+}
+
+html[lang="zh"] .site-heading,
+html[lang="zh-tw"] .site-heading,
+html[lang="ja"] .site-heading,
+html[lang="ko"] .site-heading {
+  letter-spacing: 0;
+}
+
+html[lang="zh"] .site-heading-hero,
+html[lang="zh-tw"] .site-heading-hero,
+html[lang="ja"] .site-heading-hero,
+html[lang="ko"] .site-heading-hero {
+  max-width: 40rem;
+  font-size: clamp(2.05rem, 3.1vw, 3.1rem);
+  line-height: 1.18;
+}
+
+html[lang="fr"] .site-heading-hero,
+html[lang="de"] .site-heading-hero,
+html[lang="es"] .site-heading-hero,
+html[lang="pt"] .site-heading-hero,
+html[lang="ru"] .site-heading-hero {
+  max-width: 42rem;
+  font-size: clamp(2rem, 3vw, 3.05rem);
+  line-height: 1.16;
 }
 
 .eyebrow {
@@ -388,6 +432,23 @@ body::after {
     background 260ms cubic-bezier(.22, 1, .36, 1),
     box-shadow 260ms cubic-bezier(.22, 1, .36, 1),
     transform 260ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.surface-depth::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 18%),
+    linear-gradient(110deg, rgba(116, 167, 255, 0.06), transparent 36%),
+    radial-gradient(circle at 100% 100%, rgba(0, 0, 0, 0.42), transparent 46%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    inset 0 -18px 36px rgba(0, 0, 0, 0.18);
+  opacity: 0.72;
+  transform: translateZ(1px);
 }
 
 .surface-depth:hover {
@@ -752,6 +813,7 @@ body::after {
 }
 
 .product-index-title {
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
   line-height: 1.12;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -827,67 +889,6 @@ html[lang="ko"] .product-index-title {
     transition-duration: 0.001ms !important;
     animation-duration: 0.001ms !important;
   }
-}
-
-/* Multilingual hero typography safeguards */
-.hero-title,
-.product-page-grid h1,
-section.animate-fade-in > h1,
-main > div > section:first-child h1 {
-  font-size: clamp(2.15rem, 3.35vw, 3.35rem) !important;
-  line-height: 1.14 !important;
-  letter-spacing: -0.012em !important;
-  max-width: 44rem;
-  text-wrap: balance;
-}
-
-.section-title,
-main section h2 {
-  text-wrap: balance;
-}
-
-.product-page-grid p,
-main > div > section:first-child p {
-  max-width: 42rem;
-}
-
-html[lang="zh"] .hero-title,
-html[lang="zh-tw"] .hero-title,
-html[lang="ja"] .hero-title,
-html[lang="ko"] .hero-title,
-html[lang="zh"] .product-page-grid h1,
-html[lang="zh-tw"] .product-page-grid h1,
-html[lang="ja"] .product-page-grid h1,
-html[lang="ko"] .product-page-grid h1,
-html[lang="zh"] main > div > section:first-child h1,
-html[lang="zh-tw"] main > div > section:first-child h1,
-html[lang="ja"] main > div > section:first-child h1,
-html[lang="ko"] main > div > section:first-child h1 {
-  font-size: clamp(2.05rem, 3.15vw, 3.15rem) !important;
-  line-height: 1.18 !important;
-  letter-spacing: 0 !important;
-  max-width: 40rem;
-}
-
-html[lang="fr"] .hero-title,
-html[lang="de"] .hero-title,
-html[lang="es"] .hero-title,
-html[lang="pt"] .hero-title,
-html[lang="ru"] .hero-title,
-html[lang="fr"] .product-page-grid h1,
-html[lang="de"] .product-page-grid h1,
-html[lang="es"] .product-page-grid h1,
-html[lang="pt"] .product-page-grid h1,
-html[lang="ru"] .product-page-grid h1,
-html[lang="fr"] main > div > section:first-child h1,
-html[lang="de"] main > div > section:first-child h1,
-html[lang="es"] main > div > section:first-child h1,
-html[lang="pt"] main > div > section:first-child h1,
-html[lang="ru"] main > div > section:first-child h1 {
-  font-size: clamp(2rem, 3vw, 3.05rem) !important;
-  line-height: 1.16 !important;
-  letter-spacing: -0.014em !important;
-  max-width: 42rem;
 }
 
 .hero-preview-stage {
@@ -1062,59 +1063,25 @@ html[lang="ru"] main > div > section:first-child h1 {
 }
 
 @media (min-width: 1180px) {
-  .hero-title,
-  .product-page-grid h1,
-  section.animate-fade-in > h1,
-  main > div > section:first-child h1 {
-    font-size: 3.35rem !important;
-  }
-
-  html[lang="zh"] .hero-title,
-  html[lang="zh-tw"] .hero-title,
-  html[lang="ja"] .hero-title,
-  html[lang="ko"] .hero-title,
-  html[lang="zh"] .product-page-grid h1,
-  html[lang="zh-tw"] .product-page-grid h1,
-  html[lang="ja"] .product-page-grid h1,
-  html[lang="ko"] .product-page-grid h1,
-  html[lang="zh"] main > div > section:first-child h1,
-  html[lang="zh-tw"] main > div > section:first-child h1,
-  html[lang="ja"] main > div > section:first-child h1,
-  html[lang="ko"] main > div > section:first-child h1 {
-    font-size: 3.15rem !important;
-  }
-
-  html[lang="fr"] .hero-title,
-  html[lang="de"] .hero-title,
-  html[lang="es"] .hero-title,
-  html[lang="pt"] .hero-title,
-  html[lang="ru"] .hero-title,
-  html[lang="fr"] .product-page-grid h1,
-  html[lang="de"] .product-page-grid h1,
-  html[lang="es"] .product-page-grid h1,
-  html[lang="pt"] .product-page-grid h1,
-  html[lang="ru"] .product-page-grid h1,
-  html[lang="fr"] main > div > section:first-child h1,
-  html[lang="de"] main > div > section:first-child h1,
-  html[lang="es"] main > div > section:first-child h1,
-  html[lang="pt"] main > div > section:first-child h1,
-  html[lang="ru"] main > div > section:first-child h1 {
-    font-size: 3.05rem !important;
-  }
-
   .energy-gallery-grid {
     width: min(100%, 1020px);
   }
 }
 
 @media (max-width: 920px) {
-  .hero-title,
-  .product-page-grid h1,
-  section.animate-fade-in > h1,
-  main > div > section:first-child h1 {
-    font-size: clamp(2.1rem, 9vw, 3rem) !important;
-    line-height: 1.15 !important;
+  .site-heading-hero,
+  .site-heading-page,
+  .site-heading-legal {
     max-width: 100%;
+    font-size: clamp(2.05rem, 8vw, 3rem);
+    line-height: 1.16;
+  }
+
+  .site-heading-section,
+  .site-heading-feature {
+    max-width: 100%;
+    font-size: clamp(1.85rem, 7vw, 2.75rem);
+    line-height: 1.16;
   }
 
   .energy-gallery-grid {

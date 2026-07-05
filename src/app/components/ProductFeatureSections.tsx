@@ -1,4 +1,5 @@
 import SmartScreenshot from "./SmartScreenshot";
+import { DisplayHeading } from "./Typography";
 
 export function ProductFeatureSections({
   features,
@@ -18,7 +19,7 @@ export function ProductFeatureSections({
           <div className={`detail-rail ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
             <div className="detail-sticky">
               <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">0{index + 1}</span>
-              <h2 className="mt-5 text-[clamp(2.15rem,3.9vw,3.9rem)] leading-[1.05] tracking-[-0.045em] font-medium">{title}</h2>
+              <DisplayHeading variant="feature">{title}</DisplayHeading>
               <p className="mt-6 text-muted leading-[1.85] text-lg">{body}</p>
             </div>
             <SmartScreenshot

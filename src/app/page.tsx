@@ -5,6 +5,7 @@ import Link from "./components/TransitionLink";
 import SmartScreenshot from "./components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { NumberedCardGrid } from "./components/NumberedCardGrid";
+import { DisplayHeading } from "./components/Typography";
 import { productCatalog, productCatalogPreloadImages, productPreviewSlides } from "@/lib/productCatalog";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { usePreloadImages } from "@/lib/usePreloadImages";
@@ -82,15 +83,13 @@ export default function Home() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  const heroTitleClass = "hero-title mt-7 text-[clamp(2.45rem,5.4vw,5.2rem)] leading-[1.05] tracking-[-0.04em] font-medium text-warm-gradient max-w-4xl";
-
   return (
     <div className="flex flex-col">
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 min-h-[calc(100vh-4rem)] grid items-center pt-24 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.95fr] gap-14 lg:gap-20 items-center">
           <div className="animate-fade-in">
             <span className="eyebrow">{copy.home.eyebrow}</span>
-            <h1 className={heroTitleClass}>{copy.home.title}</h1>
+            <DisplayHeading variant="hero" gradient>{copy.home.title}</DisplayHeading>
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.home.intro}</p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link href="#story" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.home.primary}</Link>
@@ -156,7 +155,7 @@ export default function Home() {
               className="story-chapter min-h-[72vh] flex flex-col justify-center"
             >
               <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{chapter.num}</span>
-              <h2 className="mt-5 text-[clamp(2.2rem,4.2vw,4.2rem)] leading-[1.06] tracking-[-0.045em] font-medium text-foreground">{chapter.title}</h2>
+              <DisplayHeading variant="feature">{chapter.title}</DisplayHeading>
               <p className="mt-6 text-muted leading-[1.85] text-lg max-w-xl">{chapter.body}</p>
               <div className="mt-7 flex flex-wrap gap-2">
                 {chapter.bullets.map((item) => (
@@ -203,14 +202,14 @@ export default function Home() {
 
       <section id="principles" className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <span className="eyebrow">{copy.common.operatingPrinciples}</span>
-        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">{copy.home.principlesTitle}</h2>
+        <DisplayHeading variant="section">{copy.home.principlesTitle}</DisplayHeading>
         <p className="mt-7 text-lg leading-[1.8] text-muted max-w-2xl">{copy.home.principlesBody}</p>
         <NumberedCardGrid items={copy.home.notes} />
       </section>
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <span className="eyebrow">{copy.common.productIndex}</span>
-        <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium max-w-3xl">{copy.home.productTitle}</h2>
+        <DisplayHeading variant="section">{copy.home.productTitle}</DisplayHeading>
         <div className="mt-14 border-t border-white/10">
           {stages.map((stage) => (
             <Link key={stage.id} href={stage.href} className="index-row grid grid-cols-1 md:grid-cols-[1.2fr_1.8fr_0.7fr_3rem] gap-4 md:gap-8 items-center py-8 border-b border-white/[0.07] text-muted">
@@ -227,7 +226,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           <div>
             <span className="eyebrow">{copy.footer.studio}</span>
-            <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium">{copy.home.studioTitle}</h2>
+            <DisplayHeading variant="section">{copy.home.studioTitle}</DisplayHeading>
             <p className="mt-7 text-lg leading-[1.8] text-muted">{copy.home.studioBody}</p>
           </div>
           <div className="card-premium surface-depth rounded-[1.75rem] p-8 md:p-10 self-start">

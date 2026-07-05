@@ -5,6 +5,7 @@ import { ProductHero, ProductPromise } from "../../components/ProductHero";
 import { NumberedCardGrid } from "../../components/NumberedCardGrid";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
+import { DisplayHeading } from "../../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
 import { deskHavenPosterSectionCopy, deskHavenPosterStories } from "@/lib/deskhavenPosterCopy";
@@ -62,9 +63,7 @@ export default function DeskHavenPage() {
           <span className="eyebrow">{note.eyebrow}</span>
           <div className="mt-7 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-start">
             <div className="detail-sticky">
-              <h2 className="section-title text-[clamp(2rem,3.7vw,3.45rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-3xl">
-                {note.title}
-              </h2>
+              <DisplayHeading variant="section" className="mt-0">{note.title}</DisplayHeading>
               <p className="mt-6 text-lg leading-[1.85] text-muted">{note.body}</p>
             </div>
 
@@ -103,9 +102,7 @@ export default function DeskHavenPage() {
       <section className="border-t border-white/[0.07]">
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
           <span className="eyebrow">{note.galleryEyebrow}</span>
-          <h2 className="section-title mt-7 text-[clamp(2rem,3.8vw,3.55rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-4xl">
-            {note.galleryTitle}
-          </h2>
+          <DisplayHeading variant="section">{note.galleryTitle}</DisplayHeading>
           <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{note.galleryBody}</p>
 
           <div className="mt-14 screenshot-gallery">

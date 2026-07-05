@@ -3,6 +3,7 @@
 import Link from "../components/TransitionLink";
 import { NumberedCardGrid } from "../components/NumberedCardGrid";
 import { PageHero } from "../components/PageHero";
+import { DisplayHeading } from "../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 
@@ -46,9 +47,7 @@ export default function About() {
 
       <section className="border-t border-white/[0.07]">
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
-          <h2 className="text-2xl md:text-4xl tracking-[-0.045em] leading-tight font-medium text-foreground">
-            {copy.about.ctaTitle}
-          </h2>
+          <DisplayHeading variant="section" className="mt-0">{copy.about.ctaTitle}</DisplayHeading>
           <p className="mt-5 text-muted">{copy.about.ctaDescription}</p>
           <Link
             href="/contact"

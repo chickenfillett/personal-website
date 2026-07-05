@@ -6,6 +6,7 @@ import { ProductFeatureSections } from "../../components/ProductFeatureSections"
 import { ProductHero, ProductPromise } from "../../components/ProductHero";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
+import { DisplayHeading } from "../../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
 import { getSiteCopy } from "@/lib/siteCopy";
@@ -85,9 +86,7 @@ export default function ADHDFocusTimerPage() {
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <span className="eyebrow">{copy.adhd.galleryEyebrow}</span>
-        <h2 className="mt-7 text-[clamp(2.15rem,4vw,3.8rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-4xl">
-          {copy.adhd.galleryTitle}
-        </h2>
+        <DisplayHeading variant="section">{copy.adhd.galleryTitle}</DisplayHeading>
         <p className="mt-6 text-lg leading-[1.8] text-muted max-w-3xl">{copy.adhd.galleryIntro}</p>
 
         <div className="adhd-gallery-grid mt-14">

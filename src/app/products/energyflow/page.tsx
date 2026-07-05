@@ -6,6 +6,7 @@ import { ProductFeatureSections } from "../../components/ProductFeatureSections"
 import { ProductHero, ProductPromise } from "../../components/ProductHero";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
+import { DisplayHeading } from "../../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
 import { getSiteCopy } from "@/lib/siteCopy";
@@ -70,7 +71,7 @@ export default function EnergyFlowPage() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-20 items-start">
           <div className="lg:sticky lg:top-28">
             <span className="eyebrow">{copy.common.experienceFlow}</span>
-            <h2 className="mt-7 text-[clamp(2rem,3.8vw,3.55rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-3xl">{flowText.title}</h2>
+            <DisplayHeading variant="section">{flowText.title}</DisplayHeading>
             <p className="mt-7 text-lg leading-[1.85] text-muted max-w-2xl">{flowText.body}</p>
             <div className="mt-10 rounded-3xl border border-white/[0.08] bg-white/[0.018] p-6 md:p-7">
               <div className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{flowText.cardTitle}</div>
@@ -92,9 +93,7 @@ export default function EnergyFlowPage() {
       <section className="border-t border-white/[0.07]">
         <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
           <span className="eyebrow">{galleryText.eyebrow}</span>
-          <h2 className="section-title mt-7 text-[clamp(2rem,3.8vw,3.55rem)] leading-[1.08] tracking-[-0.04em] font-medium max-w-4xl">
-            {galleryText.title}
-          </h2>
+          <DisplayHeading variant="section">{galleryText.title}</DisplayHeading>
           <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{galleryText.body}</p>
 
           <div className="mt-14 energy-gallery-grid">

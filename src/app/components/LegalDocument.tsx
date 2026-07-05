@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { DisplayHeading } from "./Typography";
 
 export type LegalDocumentSection = {
   title: string;
@@ -31,9 +32,7 @@ export function LegalDocumentHero({
   return (
     <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-36 pb-14 md:pb-20">
       <span className="eyebrow">{eyebrow}</span>
-      <h1 className="mt-7 text-[clamp(2.15rem,3.8vw,3.65rem)] leading-[1.12] tracking-[-0.035em] font-medium text-warm-gradient max-w-4xl">
-        {title}
-      </h1>
+      <DisplayHeading variant="legal" gradient>{title}</DisplayHeading>
       <p className="mt-8 text-lg md:text-xl leading-[1.85] text-muted max-w-4xl">{intro}</p>
       {updated && <p className="mt-6 text-sm text-[var(--faint)]">{updated}</p>}
       {actions && <div className="mt-10 flex flex-wrap gap-4">{actions}</div>}
