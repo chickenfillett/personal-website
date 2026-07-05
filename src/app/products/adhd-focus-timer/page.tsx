@@ -39,9 +39,7 @@ export default function ADHDFocusTimerPage() {
     { image: adhdAssets.screenshots[6], copy: galleryItems[7] },
   ].filter((item): item is { image: string; copy: readonly [string, string] } => Boolean(item.image && item.copy));
 
-  const heroTitleClass = locale === "zh"
-    ? "mt-7 text-[clamp(2.55rem,5vw,5rem)] leading-[1.08] tracking-[-0.04em] font-medium text-warm-gradient"
-    : "mt-7 text-[clamp(3rem,7vw,6rem)] leading-[0.96] tracking-[-0.07em] font-medium text-warm-gradient";
+  const heroTitleClass = "hero-title mt-7 text-[clamp(2.45rem,5.4vw,5.2rem)] leading-[1.05] tracking-[-0.04em] font-medium text-warm-gradient";
 
   return (
     <div className="flex flex-col">

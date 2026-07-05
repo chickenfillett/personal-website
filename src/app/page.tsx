@@ -122,9 +122,7 @@ export default function Home() {
     return () => cancelAnimationFrame(frame);
   }, []);
 
-  const heroTitleClass = locale === "zh" || locale === "zh-tw"
-    ? "hero-title mt-7 text-[clamp(2.45rem,4.8vw,4.75rem)] leading-[1.1] tracking-[-0.035em] font-medium text-warm-gradient max-w-4xl"
-    : "hero-title mt-7 text-[clamp(3rem,6.4vw,5.75rem)] leading-[0.96] tracking-[-0.07em] font-medium text-warm-gradient max-w-4xl";
+  const heroTitleClass = "hero-title mt-7 text-[clamp(2.45rem,5.4vw,5.2rem)] leading-[1.05] tracking-[-0.04em] font-medium text-warm-gradient max-w-4xl";
 
   return (
     <div className="flex flex-col">
@@ -276,7 +274,7 @@ export default function Home() {
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           <div>
-            <span className="eyebrow">Studio note</span>
+            <span className="eyebrow">{copy.footer.studio}</span>
             <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium">{copy.home.studioTitle}</h2>
             <p className="mt-7 text-lg leading-[1.8] text-muted">{copy.home.studioBody}</p>
           </div>
