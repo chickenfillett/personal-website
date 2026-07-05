@@ -11,6 +11,9 @@ type Particle = {
   hue: number;
   size: number;
   phase: number;
+  kind: "dust" | "streak" | "facet";
+  length: number;
+  angle: number;
 };
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
@@ -48,6 +51,9 @@ export default function AmbientDepthScene() {
       hue: Math.random() > 0.58 ? 170 : Math.random() > 0.35 ? 214 : 258,
       size: 0.45 + Math.random() * 1.65,
       phase: Math.random() * Math.PI * 2,
+      kind: Math.random() > 0.86 ? "facet" : Math.random() > 0.58 ? "streak" : "dust",
+      length: 12 + Math.random() * 46,
+      angle: -0.9 + Math.random() * 0.34,
     });
 
     const resize = () => {
@@ -109,6 +115,17 @@ export default function AmbientDepthScene() {
       drawBeam([0, 0, width, height], "rgba(85, 145, 255, 0.12)", 0.72, drift);
       drawBeam([width, 0, 0, height], "rgba(90, 235, 204, 0.09)", 0.56, -drift * 0.7);
 
+      context.globalAlpha = reducedMotion ? 0.12 : 0.18;
+      context.strokeStyle = "rgba(150, 190, 255, 0.18)";
+      context.lineWidth = 1;
+      for (let i = 0; i < 4; i += 1) {
+        const y = height * (0.18 + i * 0.18) + Math.sin(time * 0.00022 + i) * 18;
+        context.beginPath();
+        context.moveTo(width * -0.05, y);
+        context.bezierCurveTo(width * 0.25, y - 42, width * 0.64, y + 58, width * 1.06, y - 26);
+        context.stroke();
+      }
+
       for (const particle of particles) {
         if (!reducedMotion) {
           particle.x += (particle.vx * delta * (0.3 + particle.z) + pointer.x * 0.018 * particle.z);
@@ -124,9 +141,28 @@ export default function AmbientDepthScene() {
         const twinkle = 0.46 + Math.sin(particle.phase) * 0.18;
         context.globalAlpha = (0.15 + particle.z * 0.33) * twinkle;
         context.fillStyle = `hsla(${particle.hue}, 92%, 72%, 1)`;
-        context.beginPath();
-        context.arc(particle.x, particle.y, particle.size * depth, 0, Math.PI * 2);
-        context.fill();
+
+        if (particle.kind === "streak") {
+          const length = particle.length * depth;
+          context.globalAlpha *= 0.64;
+          context.strokeStyle = `hsla(${particle.hue}, 92%, 72%, 0.82)`;
+          context.lineWidth = Math.max(0.45, particle.size * 0.42);
+          context.beginPath();
+          context.moveTo(particle.x, particle.y);
+          context.lineTo(particle.x + Math.cos(particle.angle) * length, particle.y + Math.sin(particle.angle) * length);
+          context.stroke();
+        } else if (particle.kind === "facet") {
+          const size = particle.size * depth * 2.4;
+          context.save();
+          context.translate(particle.x, particle.y);
+          context.rotate(particle.angle + Math.sin(particle.phase) * 0.18);
+          context.fillRect(-size * 0.5, -size * 0.5, size, size);
+          context.restore();
+        } else {
+          context.beginPath();
+          context.arc(particle.x, particle.y, particle.size * depth, 0, Math.PI * 2);
+          context.fill();
+        }
       }
 
       context.globalCompositeOperation = "source-over";

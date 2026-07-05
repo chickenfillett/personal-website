@@ -23,9 +23,6 @@
       }
     ],
     "paths": {
-      "@/lib/productPolicies": [
-        "./src/lib/productPoliciesRuntime.ts"
-      ],
       "@/lib/siteCopy": [
         "./src/lib/siteCopy.ts"
       ],
@@ -45,8 +42,6 @@
     "dist/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "src/lib/siteCopyRuntime.ts",
-    "src/lib/locales/site/**/*.ts"
+    "node_modules"
   ]
 }
