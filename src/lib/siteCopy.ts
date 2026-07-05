@@ -3645,35 +3645,35 @@ export const siteCopy = {
       "title": "Поймите, куда уходит энергия рабочего дня.",
       "intro": "Записывайте уровень энергии, контекст, источник и настроение за несколько секунд.",
       "status": "Доступно",
-      "promiseTitle": "Not a to-do list. A record of your working energy.",
-      "promise": "EnergyFlow does not judge whether you worked hard enough. It helps turn daily feelings into a timeline you can review, so patterns around recovery, drain, and schedule choices become easier to see.",
+      "promiseTitle": "Не список задач, а журнал рабочей энергии.",
+      "promise": "EnergyFlow не оценивает, достаточно ли вы старались. Он помогает превратить ежедневные ощущения в историю, где легче увидеть восстановление, истощение и решения по расписанию.",
       "features": [
         [
-          "Three-second logging",
-          "Record energy level, work status, energy source, and mood with minimal friction."
+          "Запись за несколько секунд",
+          "Фиксируйте уровень энергии, рабочее состояние, источник восстановления и настроение без лишних шагов."
         ],
         [
-          "Dark or light clarity",
-          "Deep mode for focus and light mode for daytime work, without loud interface noise."
+          "Тёмная и светлая ясность",
+          "Тёмный режим подходит для фокуса, светлый — для дневной работы; интерфейс не отвлекает лишним шумом."
         ],
         [
-          "Always on desktop",
-          "A floating entry and hotkey make logging appear, record, and disappear without breaking flow."
+          "Всегда рядом на рабочем столе",
+          "Плавающий вход и горячая клавиша позволяют быстро открыть запись, сохранить состояние и вернуться к работе."
         ],
         [
-          "Statistical insight",
-          "Pearson correlation and Chi-square analysis help reveal which contexts really affect energy."
+          "Статистические подсказки",
+          "Корреляция Пирсона и критерий хи-квадрат помогают увидеть, какие контексты действительно связаны с энергией."
         ],
         [
-          "Privacy protection",
-          "Energy state data is sensitive. EnergyFlow is designed with local-first privacy as the default."
+          "Защита приватности",
+          "Данные о состоянии чувствительны, поэтому EnergyFlow проектируется с локальным и приватным подходом по умолчанию."
         ]
       ],
       "flow": [
-        "Capture state",
-        "Accumulate context",
-        "Review energy patterns",
-        "Adjust work rhythm"
+        "Записать состояние",
+        "Накопить контекст",
+        "Понять паттерны энергии",
+        "Настроить рабочий ритм"
       ],
       "gallery": {
         "eyebrow": "Реальный интерфейс",
@@ -3692,46 +3692,46 @@ export const siteCopy = {
       "title": "Личный рабочий стол для каждого файла.",
       "intro": "DeskHaven организует локальные Windows-файлы через архив, карту связей, контроль приватности и тихую автоматизацию.",
       "status": "Доступно",
-      "promiseTitle": "Not another folder. A local system for file order.",
-      "promise": "The vault gathers and archives, search brings files back quickly, relationship maps make context visible, and backup plus privacy controls keep important data recoverable, exportable, and under your control.",
+      "promiseTitle": "Не ещё одна папка, а локальная система порядка.",
+      "promise": "Хранилище собирает и архивирует, поиск быстро возвращает файлы, карта связей показывает контекст, а резервное копирование и настройки приватности помогают сохранять данные под вашим контролем.",
       "features": [
         [
-          "Overview before detail",
-          "The dashboard summarizes file count, relationships, encryption state, and storage trends so users know whether their desktop is under control."
+          "Обзор перед деталями",
+          "Панель показывает количество файлов, связи, состояние шифрования и динамику хранения, чтобы сразу было понятно, под контролем ли рабочий стол."
         ],
         [
-          "File vault",
-          "The vault manages local files, metadata, and archive state. It is a quiet local layer, not another cloud drive."
+          "Файловое хранилище",
+          "Хранилище управляет локальными файлами, метаданными и архивным состоянием. Это спокойный локальный слой, а не ещё один облачный диск."
         ],
         [
-          "Relationship map",
-          "Files, tags, topics, and projects can be seen as relationships. Users do not only find files; they understand why files matter."
+          "Карта связей",
+          "Файлы, теги, темы и проекты видны как связи. Пользователь не только находит файл, но и понимает, почему он важен."
         ],
         [
-          "Privacy and control",
-          "Keys, import, export, encryption, and control options live in one clear place. Important data should remain under user control."
+          "Приватность и контроль",
+          "Ключи, импорт, экспорт, шифрование и настройки управления находятся в одном понятном месте. Важные данные остаются под контролем пользователя."
         ],
         [
-          "Automation that stays quiet",
-          "Background automation, paths, switches, and language settings are grouped clearly, so cleanup does not become another daily system."
+          "Тихая автоматизация",
+          "Фоновая автоматизация, пути, переключатели и язык собраны ясно, чтобы порядок не превращался в ещё одну ежедневную обязанность."
         ]
       ],
       "principles": [
         [
-          "Local-first",
-          "Important files and indexes are handled locally by default."
+          "Локальный подход",
+          "Важные файлы и индексы по умолчанию обрабатываются локально."
         ],
         [
-          "Controlled",
-          "Users should know where files are and how to recover them."
+          "Контроль",
+          "Пользователь должен понимать, где находятся файлы и как их восстановить."
         ],
         [
-          "Relational",
-          "Projects, tags, and content connections should be understandable."
+          "Связи понятны",
+          "Связи между проектами, тегами и содержимым должны быть читаемыми."
         ],
         [
-          "Low-friction",
-          "Organization should happen naturally without becoming a new burden."
+          "Меньше трения",
+          "Организация должна происходить естественно, не превращаясь в новую нагрузку."
         ]
       ]
     },
@@ -4077,35 +4077,35 @@ export const siteCopy = {
       "title": "Entenda para onde vai sua energia de trabalho.",
       "intro": "Registre nível de energia, contexto, fonte e humor em poucos segundos.",
       "status": "Disponível",
-      "promiseTitle": "Not a to-do list. A record of your working energy.",
-      "promise": "EnergyFlow does not judge whether you worked hard enough. It helps turn daily feelings into a timeline you can review, so patterns around recovery, drain, and schedule choices become easier to see.",
+      "promiseTitle": "Não é uma lista de tarefas. É um registro da sua energia de trabalho.",
+      "promise": "EnergyFlow não julga se você se esforçou o bastante. Ele transforma sensações diárias em uma linha do tempo para rever recuperação, desgaste e escolhas de rotina com mais clareza.",
       "features": [
         [
-          "Three-second logging",
-          "Record energy level, work status, energy source, and mood with minimal friction."
+          "Registro em poucos segundos",
+          "Registre nível de energia, estado de trabalho, fonte de recuperação e humor com o mínimo de atrito."
         ],
         [
-          "Dark or light clarity",
-          "Deep mode for focus and light mode for daytime work, without loud interface noise."
+          "Clareza no modo escuro ou claro",
+          "Modo escuro para foco e modo claro para trabalho diurno, sem ruído visual desnecessário."
         ],
         [
-          "Always on desktop",
-          "A floating entry and hotkey make logging appear, record, and disappear without breaking flow."
+          "Sempre à mão no desktop",
+          "Entrada flutuante e atalho permitem abrir, registrar e voltar ao fluxo sem interromper o trabalho."
         ],
         [
-          "Statistical insight",
-          "Pearson correlation and Chi-square analysis help reveal which contexts really affect energy."
+          "Leitura estatística",
+          "Correlação de Pearson e teste qui-quadrado ajudam a revelar quais contextos realmente afetam sua energia."
         ],
         [
-          "Privacy protection",
-          "Energy state data is sensitive. EnergyFlow is designed with local-first privacy as the default."
+          "Proteção de privacidade",
+          "Dados de energia são sensíveis. EnergyFlow é projetado com privacidade local como padrão."
         ]
       ],
       "flow": [
-        "Capture state",
-        "Accumulate context",
-        "Review energy patterns",
-        "Adjust work rhythm"
+        "Registrar estado",
+        "Acumular contexto",
+        "Rever padrões de energia",
+        "Ajustar o ritmo"
       ],
       "gallery": {
         "eyebrow": "Interface real",
@@ -4124,46 +4124,46 @@ export const siteCopy = {
       "title": "Uma mesa privada para cada arquivo.",
       "intro": "DeskHaven organiza arquivos locais do Windows com arquivo, mapa de relações, privacidade e automação tranquila.",
       "status": "Disponível",
-      "promiseTitle": "Not another folder. A local system for file order.",
-      "promise": "The vault gathers and archives, search brings files back quickly, relationship maps make context visible, and backup plus privacy controls keep important data recoverable, exportable, and under your control.",
+      "promiseTitle": "Não é só outra pasta. É uma ordem local para seus arquivos.",
+      "promise": "O cofre reúne e arquiva, a busca traz arquivos de volta rapidamente, os mapas de relação deixam o contexto visível, e backup com privacidade mantém dados importantes recuperáveis, exportáveis e sob seu controle.",
       "features": [
         [
-          "Overview before detail",
-          "The dashboard summarizes file count, relationships, encryption state, and storage trends so users know whether their desktop is under control."
+          "Visão geral antes dos detalhes",
+          "O painel resume quantidade de arquivos, relações, criptografia e tendências de armazenamento para mostrar se o desktop está sob controle."
         ],
         [
-          "File vault",
-          "The vault manages local files, metadata, and archive state. It is a quiet local layer, not another cloud drive."
+          "Cofre de arquivos",
+          "O cofre gerencia arquivos locais, metadados e estado de arquivamento. É uma camada local tranquila, não outro disco em nuvem."
         ],
         [
-          "Relationship map",
-          "Files, tags, topics, and projects can be seen as relationships. Users do not only find files; they understand why files matter."
+          "Mapa de relações",
+          "Arquivos, tags, temas e projetos aparecem como relações. O usuário não apenas encontra arquivos; entende por que eles importam."
         ],
         [
-          "Privacy and control",
-          "Keys, import, export, encryption, and control options live in one clear place. Important data should remain under user control."
+          "Privacidade e controle",
+          "Chaves, importação, exportação, criptografia e controles ficam em um lugar claro. Dados importantes devem continuar sob controle do usuário."
         ],
         [
-          "Automation that stays quiet",
-          "Background automation, paths, switches, and language settings are grouped clearly, so cleanup does not become another daily system."
+          "Automação silenciosa",
+          "Automação em segundo plano, caminhos, opções e idioma ficam agrupados para que a organização não vire outro sistema diário."
         ]
       ],
       "principles": [
         [
-          "Local-first",
-          "Important files and indexes are handled locally by default."
+          "Local primeiro",
+          "Arquivos e índices importantes são tratados localmente por padrão."
         ],
         [
-          "Controlled",
-          "Users should know where files are and how to recover them."
+          "Controle claro",
+          "O usuário deve saber onde os arquivos estão e como recuperá-los."
         ],
         [
-          "Relational",
-          "Projects, tags, and content connections should be understandable."
+          "Relações legíveis",
+          "Conexões entre projetos, tags e conteúdo devem ser compreensíveis."
         ],
         [
-          "Low-friction",
-          "Organization should happen naturally without becoming a new burden."
+          "Menos atrito",
+          "A organização deve acontecer naturalmente, sem virar uma nova carga."
         ]
       ]
     },

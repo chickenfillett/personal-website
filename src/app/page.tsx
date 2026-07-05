@@ -106,7 +106,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="screen-shell depth-lift rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
+          <div className="screen-shell surface-depth depth-lift rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
             <div className="flex items-center justify-between text-xs text-[var(--faint)] uppercase tracking-[0.14em] px-1">
               <span>{copy.home.currentProduct}</span>
               <span className="hero-preview-label" key={heroItems[heroIndex]?.title}>{heroItems[heroIndex]?.title}</span>
@@ -135,7 +135,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-3 gap-3">
               {stages.map((item) => (
-                <Link key={item.id} href={item.href} className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.035] transition-colors">
+                <Link key={item.id} href={item.href} className="surface-depth rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.03] transition-colors">
                   <div className="text-sm text-foreground font-medium">{item.title}</div>
                   <div className="mt-1 text-xs text-muted">{item.category}</div>
                 </Link>
@@ -168,7 +168,7 @@ export default function Home() {
         </div>
 
         <div className="lg:sticky lg:top-24 h-[620px] grid place-items-center">
-          <div className="screen-shell depth-lift relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
+          <div className="screen-shell surface-depth depth-lift relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
             <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">{copy.home.currentProduct}</div>
             {stages.map((stage, index) => (
               <Link
@@ -179,7 +179,7 @@ export default function Home() {
                 }}
                 className="story-stage-product absolute inset-[4.8rem_2rem_2rem] block"
               >
-                <div className="h-full rounded-[1.5rem] border border-white/10 bg-[var(--surface)] overflow-hidden">
+                <div className="surface-depth h-full rounded-[1.5rem] border border-white/10 bg-[var(--surface)] overflow-hidden">
                   <div className="h-12 border-b border-white/[0.07] flex items-center justify-between px-4 text-xs text-[var(--faint)]">
                     <span className="text-muted">{stage.title}</span>
                     <span>{stage.status}</span>
@@ -230,7 +230,7 @@ export default function Home() {
             <h2 className="mt-7 text-[clamp(2.35rem,4.6vw,4.35rem)] leading-[1.05] tracking-[-0.045em] font-medium">{copy.home.studioTitle}</h2>
             <p className="mt-7 text-lg leading-[1.8] text-muted">{copy.home.studioBody}</p>
           </div>
-          <div className="card-premium rounded-[1.75rem] p-8 md:p-10 self-start">
+          <div className="card-premium surface-depth rounded-[1.75rem] p-8 md:p-10 self-start">
             <p className="text-muted leading-[1.8]">{copy.home.studioNote}</p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/products" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.common.viewProducts}</Link>

@@ -13,7 +13,7 @@ export function NumberedCardGrid({
   return (
     <div className={`mt-16 grid grid-cols-1 ${gridColumns} border-t border-l border-white/[0.07]`}>
       {items.map(([title, body], index) => (
-        <div key={title} className="min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
+        <div key={title} className="surface-depth min-h-[220px] p-6 border-r border-b border-white/[0.07] bg-white/[0.012]">
           <span className="text-xs text-[var(--faint)] tracking-[0.14em]">0{index + 1}</span>
           <h3 className={`${titleMargin} text-xl tracking-[-0.045em] font-medium`}>{title}</h3>
           <p className="mt-4 text-sm leading-[1.75] text-muted">{body}</p>
