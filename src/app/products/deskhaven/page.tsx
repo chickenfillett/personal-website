@@ -10,7 +10,7 @@ import { useLanguage } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
 import { deskHavenPosterSectionCopy, deskHavenPosterStories } from "@/lib/deskhavenPosterCopy";
 import { getSiteCopy } from "@/lib/siteCopy";
-import { allDeskHavenImages, deskHavenImagesForLocale } from "@/lib/siteAssets";
+import { allDeskHavenImages, deskHavenImagesForLocale, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 export default function DeskHavenPage() {
@@ -31,7 +31,7 @@ export default function DeskHavenPage() {
         intro={copy.deskhaven.intro}
         status={copy.deskhaven.status}
         actions={[
-          { href: "/contact", label: copy.common.getUpdates, variant: "primary" },
+          { href: microsoftStoreLinks.deskhaven, label: copy.common.microsoftStore, external: true, variant: "primary" },
           { href: "#product-info", label: labels.priceEyebrow },
         ]}
       >
