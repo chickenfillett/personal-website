@@ -120,11 +120,17 @@ export function productPricing(product: ProductId, locale: Locale): ProductPrici
 
   return {
     ...text,
-    prices: rows.map((row) => ({
-      market: market[row.market] ?? row.market,
-      current: row.current === "free" ? label.free : row.current,
-      ...("scheduled" in row && row.scheduled ? { scheduled: row.scheduled } : {}),
-    })),
+    prices: rows.map((row): ProductPricingCopy["prices"][number] => {
+      const scheduled = "scheduled" in row && typeof row.scheduled === "string" && row.scheduled.length > 0
+        ? row.scheduled
+        : undefined;
+
+      return {
+        market: market[row.market] ?? row.market,
+        current: row.current === "free" ? label.free : row.current,
+        ...(scheduled ? { scheduled } : {}),
+      };
+    }),
   };
 }
 
