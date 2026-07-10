@@ -7,6 +7,7 @@ export type SizedImage = { src: string; width: number; height: number };
 
 export const microsoftStoreLinks = {
   energyflow: "https://apps.microsoft.com/store/detail/9N7ZWFVC2QQS?cid=DevShareMCLPCS",
+  deskhaven: "https://apps.microsoft.com/store/detail/9NC6V7Z8C474?cid=DevShareMCLPCS",
   adhd: "https://apps.microsoft.com/store/detail/9MWWCZJPGW4Q?cid=DevShareMCLPCS",
 } as const;
 

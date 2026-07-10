@@ -425,13 +425,10 @@ html[lang="ru"] .site-heading-hero {
 .surface-depth {
   position: relative;
   isolation: isolate;
-  transform-style: preserve-3d;
-  transform: translateZ(0) rotateX(0) rotateY(0);
   transition:
     border-color 260ms cubic-bezier(.22, 1, .36, 1),
     background 260ms cubic-bezier(.22, 1, .36, 1),
-    box-shadow 260ms cubic-bezier(.22, 1, .36, 1),
-    transform 260ms cubic-bezier(.22, 1, .36, 1);
+    box-shadow 260ms cubic-bezier(.22, 1, .36, 1);
 }
 
 .surface-depth::before {
@@ -457,7 +454,6 @@ html[lang="ru"] .site-heading-hero {
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 30px 100px rgba(0, 0, 0, 0.34),
     0 0 58px rgba(114, 167, 255, 0.075);
-  transform: translateZ(12px) rotateX(0.45deg) rotateY(-0.55deg);
 }
 
 @keyframes fade-in {
@@ -553,10 +549,8 @@ html[lang="ru"] .site-heading-hero {
 
 .story-stage-product {
   opacity: var(--story-opacity, 0);
-  transform: translateZ(calc(var(--story-opacity, 0) * 40px)) rotateX(calc((1 - var(--story-opacity, 0)) * 3deg)) rotateY(calc((1 - var(--story-opacity, 0)) * -1.2deg)) scale(calc(0.982 + var(--story-opacity, 0) * 0.018));
-  filter: blur(calc((1 - var(--story-opacity, 0)) * 2px));
   pointer-events: none;
-  transition: filter 80ms linear;
+  transition: opacity 120ms linear;
 }
 
 .screen-shell {
@@ -588,13 +582,11 @@ html[lang="ru"] .site-heading-hero {
 }
 
 .depth-lift {
-  transform-style: preserve-3d;
-  transition: transform 420ms cubic-bezier(.22, 1, .36, 1), box-shadow 420ms cubic-bezier(.22, 1, .36, 1), border-color 420ms cubic-bezier(.22, 1, .36, 1);
+  transition: box-shadow 420ms cubic-bezier(.22, 1, .36, 1), border-color 420ms cubic-bezier(.22, 1, .36, 1);
 }
 
 .depth-lift:hover {
   border-color: rgba(226, 232, 240, 0.18);
-  transform: rotateX(0.65deg) rotateY(-0.8deg) translateZ(18px);
 }
 
 .language-menu {
@@ -896,8 +888,6 @@ html[lang="ko"] .product-index-title {
   overflow: hidden;
   border-radius: 1.55rem;
   isolation: isolate;
-  perspective: 1000px;
-  transform-style: preserve-3d;
 }
 
 .hero-preview-card {
@@ -905,19 +895,13 @@ html[lang="ko"] .product-index-title {
   inset: 0;
   display: block;
   opacity: 0;
-  transform: translateY(18px) scale(0.975);
-  filter: blur(8px);
   pointer-events: none;
-  transition:
-    opacity 680ms cubic-bezier(.22, 1, .36, 1),
-    transform 680ms cubic-bezier(.22, 1, .36, 1),
-    filter 680ms cubic-bezier(.22, 1, .36, 1);
+  transition: opacity 360ms cubic-bezier(.22, 1, .36, 1);
+  will-change: opacity;
 }
 
 .hero-preview-card.is-active {
   opacity: 1;
-  transform: translateY(0) translateZ(22px) rotateX(1deg) rotateY(-1.4deg) scale(1);
-  filter: blur(0);
   pointer-events: auto;
   z-index: 2;
 }
@@ -927,18 +911,58 @@ html[lang="ko"] .product-index-title {
 }
 
 .hero-preview-label {
-  animation: hero-label-in 420ms cubic-bezier(.22, 1, .36, 1);
+  transition: opacity 180ms cubic-bezier(.22, 1, .36, 1);
 }
 
-@keyframes hero-label-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero-preview-shell,
+.story-preview-shell {
+  contain: layout paint;
+}
+
+.hero-preview-image-frame,
+.story-stage-image-frame {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 1.08rem;
+}
+
+.hero-preview-image-frame {
+  overflow: hidden;
+}
+
+.hero-preview-chip {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 220ms cubic-bezier(.22, 1, .36, 1), background 220ms cubic-bezier(.22, 1, .36, 1), box-shadow 220ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.hero-preview-chip:hover {
+  border-color: rgba(116, 167, 255, 0.24);
+  background: rgba(226, 232, 240, 0.032);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 0 36px rgba(116, 167, 255, 0.055);
+}
+
+.story-stage-card {
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 26px 90px rgba(0, 0, 0, 0.24);
+}
+
+.story-stage-card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.075), transparent 28%),
+    radial-gradient(circle at 80% 20%, rgba(116, 167, 255, 0.1), transparent 18rem);
+  opacity: 0.68;
+  mix-blend-mode: screen;
 }
 
 .energy-gallery-grid {

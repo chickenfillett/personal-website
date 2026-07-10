@@ -42,6 +42,7 @@ export default function Home() {
     let frame = 0;
 
     const update = () => {
+      frame = 0;
       const viewportCenter = window.innerHeight * 0.52;
       const strengths = chapterRefs.current.map((chapter) => {
         if (!chapter) return 0;
@@ -75,12 +76,22 @@ export default function Home() {
         stage.style.zIndex = String(Math.round(opacity * 1000));
         stage.style.pointerEvents = opacity > 0.55 ? "auto" : "none";
       });
+    };
 
+    const requestUpdate = () => {
+      if (frame) return;
       frame = requestAnimationFrame(update);
     };
 
-    frame = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(frame);
+    requestUpdate();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+    };
   }, []);
 
   return (
@@ -105,7 +116,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="screen-shell surface-depth depth-lift rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
+          <div className="screen-shell hero-preview-shell rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
             <div className="flex items-center justify-between text-xs text-[var(--faint)] uppercase tracking-[0.14em] px-1">
               <span>{copy.home.currentProduct}</span>
               <span className="hero-preview-label" key={heroItems[heroIndex]?.title}>{heroItems[heroIndex]?.title}</span>
@@ -126,7 +137,7 @@ export default function Home() {
                     height={820}
                     priority={index === 0}
                     sizes="(max-width: 1024px) 92vw, 560px"
-                    frameClassName="shadow-none h-full"
+                    frameClassName="hero-preview-image-frame h-full"
                     className="h-full object-contain"
                   />
                 </Link>
@@ -134,7 +145,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-3 gap-3">
               {stages.map((item) => (
-                <Link key={item.id} href={item.href} className="surface-depth rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4 hover:bg-white/[0.03] transition-colors">
+                <Link key={item.id} href={item.href} className="hero-preview-chip rounded-2xl border border-white/[0.08] bg-white/[0.018] p-4">
                   <div className="text-sm text-foreground font-medium">{item.title}</div>
                   <div className="mt-1 text-xs text-muted">{item.category}</div>
                 </Link>
@@ -167,7 +178,7 @@ export default function Home() {
         </div>
 
         <div className="lg:sticky lg:top-24 h-[620px] grid place-items-center">
-          <div className="screen-shell surface-depth depth-lift relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
+          <div className="screen-shell story-preview-shell relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
             <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">{copy.home.currentProduct}</div>
             {stages.map((stage, index) => (
               <Link
@@ -178,13 +189,13 @@ export default function Home() {
                 }}
                 className="story-stage-product absolute inset-[4.8rem_2rem_2rem] block"
               >
-                <div className="surface-depth h-full rounded-[1.5rem] border border-white/10 bg-[var(--surface)] overflow-hidden">
+                <div className="story-stage-card h-full rounded-[1.5rem] border border-white/10 bg-[var(--surface)] overflow-hidden">
                   <div className="h-12 border-b border-white/[0.07] flex items-center justify-between px-4 text-xs text-[var(--faint)]">
                     <span className="text-muted">{stage.title}</span>
                     <span>{stage.status}</span>
                   </div>
                   <div className="p-5 h-[calc(100%-3rem)] flex flex-col justify-between gap-5">
-                    <SmartScreenshot src={stage.image} alt={stage.title} width={900} height={640} priority={index === 0} sizes="(max-width: 1024px) 90vw, 560px" frameClassName="shadow-none flex-1" className="h-full object-contain" />
+                    <SmartScreenshot src={stage.image} alt={stage.title} width={900} height={640} priority={index === 0} sizes="(max-width: 1024px) 90vw, 560px" frameClassName="story-stage-image-frame flex-1" className="h-full object-contain" />
                     <div className="flex items-end justify-between gap-6">
                       <div>
                         <h3 className="text-2xl tracking-[-0.05em] text-foreground font-medium">{stage.title}</h3>

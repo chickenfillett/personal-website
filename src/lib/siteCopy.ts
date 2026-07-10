@@ -1,2 +1,2 @@
-export { getSiteCopy, navCopy, siteCopy } from "@/lib/site-copy";
-export type { NavCopy, SiteCopy } from "@/lib/site-copy";
+export { getSiteCopy, navCopy, siteCopy } from "@/lib/siteContent";
+export type { NavCopy, SiteCopy } from "@/lib/siteContent";

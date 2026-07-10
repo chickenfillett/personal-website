@@ -56,7 +56,6 @@ export default function EnergyFlowPage() {
         actions={[
           { href: "/products/energyflow/privacy", label: copy.common.privacy },
           { href: "/products/energyflow/legal", label: legalLabel },
-          { href: "/contact", label: copy.common.getUpdates },
         ]}
       />
 

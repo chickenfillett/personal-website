@@ -73,7 +73,6 @@ export default function ADHDFocusTimerPage() {
         actions={[
           { href: "/products/adhd-focus-timer/privacy", label: copy.common.privacy },
           { href: "/products/adhd-focus-timer/legal", label: legalLabel },
-          { href: "/contact", label: copy.common.getUpdates },
         ]}
       />
 
