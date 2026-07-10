@@ -3,9 +3,6 @@ import { getSiteCopy } from "@/lib/siteCopy";
 import type { ProductId } from "@/lib/productCommerce";
 import {
   adhdImagesForLocale,
-  allAdhdImages,
-  allDeskHavenImages,
-  allEnergyFlowImages,
   deskHavenImagesForLocale,
   energyFlowImages,
   imageLocale,
@@ -63,5 +60,5 @@ export function productPreviewSlides(locale: Locale) {
 }
 
 export function productCatalogPreloadImages(locale: Locale) {
-  return [...allEnergyFlowImages(), ...allAdhdImages(locale), ...allDeskHavenImages(locale)];
+  return Array.from(new Set(productPreviewSlides(locale).map((item) => item.image)));
 }
