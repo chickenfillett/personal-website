@@ -1,25 +1,36 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Locale, supportedLocales, useLanguage } from "@/lib/i18n/context";
 import { navCopy } from "@/lib/siteCopy";
 import Link from "./TransitionLink";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const { locale, setLocale } = useLanguage();
-  const [open, setOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement | null>(null);
+  const [languageOpen, setLanguageOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const controlsRef = useRef<HTMLDivElement | null>(null);
   const labels = navCopy[locale] ?? navCopy.en;
   const currentLocale = supportedLocales.find((item) => item.code === locale) ?? supportedLocales[2];
 
+  const anyMenuOpen = languageOpen || mobileOpen;
+
   useEffect(() => {
-    if (!open) return;
+    if (!anyMenuOpen) return;
 
     const closeOnOutside = (event: PointerEvent) => {
-      if (!menuRef.current?.contains(event.target as Node)) setOpen(false);
+      if (!controlsRef.current?.contains(event.target as Node)) {
+        setLanguageOpen(false);
+        setMobileOpen(false);
+      }
     };
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setLanguageOpen(false);
+        setMobileOpen(false);
+      }
     };
 
     document.addEventListener("pointerdown", closeOnOutside);
@@ -28,55 +39,86 @@ export default function Navbar() {
       document.removeEventListener("pointerdown", closeOnOutside);
       document.removeEventListener("keydown", closeOnEscape);
     };
-  }, [open]);
+  }, [anyMenuOpen]);
+
+  useEffect(() => {
+    setLanguageOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
 
   const navLinks = [
     { href: "/", label: labels.home },
-    { href: "/about", label: labels.about },
     { href: "/products", label: labels.products },
+    { href: "/about", label: labels.about },
     { href: "/contact", label: labels.contact },
   ];
 
   const chooseLocale = (nextLocale: Locale) => {
     setLocale(nextLocale);
-    setOpen(false);
+    setLanguageOpen(false);
   };
 
+  const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-background/80 backdrop-blur-xl">
-      <nav className="max-w-[1180px] mx-auto px-5 md:px-8 h-16 flex items-center justify-between gap-6">
-        <Link href="/" className="flex items-baseline gap-2 text-foreground tracking-tight shrink-0">
-          <span className="font-semibold">SoloCraft</span>
-          <span className="hidden sm:inline text-xs text-muted tracking-normal">by Chicken Fillet</span>
+    <header className="brand-header sticky top-0 z-50 border-b border-white/[0.06] bg-background/80 backdrop-blur-xl">
+      <nav className="max-w-[1180px] mx-auto px-5 md:px-8 h-16 flex items-center justify-between gap-6" aria-label="Primary navigation">
+        <Link href="/" className="brand-wordmark flex items-center gap-3 text-foreground tracking-tight shrink-0" aria-label="SoloCraft home">
+          <span className="brand-mark" aria-hidden="true"><span /></span>
+          <span className="flex items-baseline gap-2">
+            <span className="font-semibold">SoloCraft</span>
+            <span className="hidden sm:inline text-xs text-muted tracking-normal">by Chicken Fillet</span>
+          </span>
         </Link>
 
-        <div className="flex items-center gap-3 md:gap-7 text-sm text-muted">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="hidden sm:inline hover:text-foreground transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link href="/products" className="sm:hidden hover:text-foreground transition-colors">
-            {labels.products}
-          </Link>
+        <div ref={controlsRef} className="relative flex items-center gap-2 md:gap-5 text-sm text-muted">
+          <div className="hidden md:flex items-center gap-7">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                className="brand-nav-link hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
-          <div ref={menuRef} className="language-menu">
+          <button
+            type="button"
+            className="mobile-menu-button md:hidden"
+            aria-label="Open navigation"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => {
+              setMobileOpen((value) => !value);
+              setLanguageOpen(false);
+            }}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 8h14M5 12h14M5 16h14" />
+            </svg>
+          </button>
+
+          <div className="language-menu">
             <button
               type="button"
               className="language-menu-button"
               aria-label={labels.language}
-              aria-expanded={open}
+              aria-expanded={languageOpen}
               aria-haspopup="menu"
-              onClick={() => setOpen((value) => !value)}
+              onClick={() => {
+                setLanguageOpen((value) => !value);
+                setMobileOpen(false);
+              }}
             >
               <span>{currentLocale.nativeName}</span>
-              <span className="language-menu-chevron" aria-hidden="true">v</span>
+              <svg className="language-menu-chevron" viewBox="0 0 12 8" aria-hidden="true">
+                <path d="m1.5 1.5 4.5 4 4.5-4" />
+              </svg>
             </button>
-            {open ? (
+            {languageOpen ? (
               <div className="language-menu-panel" role="menu">
                 {supportedLocales.map((item) => (
                   <button
@@ -94,6 +136,25 @@ export default function Navbar() {
               </div>
             ) : null}
           </div>
+
+          {mobileOpen ? (
+            <div id="mobile-navigation" className="mobile-navigation-panel md:hidden">
+              <div className="mobile-navigation-label">SoloCraft</div>
+              {navLinks.map((link, index) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className="mobile-navigation-link"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{link.label}</strong>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" /></svg>
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </div>
       </nav>
     </header>
