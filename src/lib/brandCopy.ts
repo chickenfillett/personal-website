@@ -14,7 +14,7 @@ type BrandOverride = {
   footer?: Partial<SiteCopy["footer"]>;
 };
 
-const brandOverrides = {
+const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
   zh: {
     home: {
       eyebrow: "独立软件工作室 / Windows",
@@ -213,7 +213,7 @@ const brandOverrides = {
       studioTitle: "Uma equipa pequena também pode criar produtos profundos.",
     },
   },
-} as const satisfies Partial<Record<Locale, BrandOverride>>;
+};
 
 export function applyBrandCopy(locale: Locale, base: SiteCopy): SiteCopy {
   const override = brandOverrides[locale];
