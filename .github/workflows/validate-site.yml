@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
+  issues: write
 
 concurrency:
   group: validate-site-${{ github.event.pull_request.number }}
@@ -32,6 +34,7 @@ jobs:
         run: npm ci
 
       - name: Build site
+        id: build
         shell: bash
         run: |
           set +e
@@ -43,3 +46,19 @@ jobs:
             exit "$status"
           fi
           tail -n 40 build-output.log
+
+      - name: Publish build diagnostics
+        if: failure() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          {
+            echo '### Build diagnostics'
+            echo
+            echo '```text'
+            tail -n 80 build-output.log
+            echo '```'
+          } > build-comment.md
+          gh pr comment "$PR_NUMBER" --body-file build-comment.md
