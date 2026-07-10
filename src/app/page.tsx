@@ -25,24 +25,72 @@ export default function Home() {
   const valuesRef = useRef(new Map<string, number>());
   const [heroIndex, setHeroIndex] = useState(0);
 
-  usePreloadImages(productCatalogPreloadImages(locale));
-
   const stages = useMemo(() => productCatalog(locale), [locale]);
-
   const heroItems = useMemo(() => productPreviewSlides(locale), [locale]);
+  const preloadImages = useMemo(() => productCatalogPreloadImages(locale), [locale]);
+  const activeHero = heroItems[heroIndex] ?? heroItems[0];
+
+  usePreloadImages(preloadImages);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setHeroIndex((current) => (current + 1) % heroItems.length);
-    }, 4200);
-    return () => window.clearInterval(timer);
+    setHeroIndex(0);
+  }, [locale]);
+
+  useEffect(() => {
+    if (heroItems.length < 2) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timer = 0;
+
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = 0;
+    };
+
+    const start = () => {
+      stop();
+      if (document.hidden || reducedMotion.matches) return;
+      timer = window.setInterval(() => {
+        setHeroIndex((current) => (current + 1) % heroItems.length);
+      }, 5200);
+    };
+
+    const handleVisibility = () => start();
+    const handleMotion = () => start();
+
+    start();
+    document.addEventListener("visibilitychange", handleVisibility);
+    reducedMotion.addEventListener("change", handleMotion);
+
+    return () => {
+      stop();
+      document.removeEventListener("visibilitychange", handleVisibility);
+      reducedMotion.removeEventListener("change", handleMotion);
+    };
   }, [heroItems.length]);
 
   useEffect(() => {
+    const motionQuery = window.matchMedia("(min-width: 1024px) and (prefers-reduced-motion: no-preference)");
     let frame = 0;
+
+    const setStaticState = () => {
+      chapterRefs.current.forEach((chapter) => chapter?.style.setProperty("--story-strength", "1"));
+      stageRefs.current.forEach((stage, index) => {
+        if (!stage) return;
+        const visible = index === 0;
+        stage.style.setProperty("--story-opacity", visible ? "1" : "0");
+        stage.style.zIndex = visible ? "2" : "0";
+        stage.style.pointerEvents = visible ? "auto" : "none";
+      });
+    };
 
     const update = () => {
       frame = 0;
+      if (!motionQuery.matches) {
+        setStaticState();
+        return;
+      }
+
       const viewportCenter = window.innerHeight * 0.52;
       const strengths = chapterRefs.current.map((chapter) => {
         if (!chapter) return 0;
@@ -83,32 +131,39 @@ export default function Home() {
       frame = requestAnimationFrame(update);
     };
 
+    const handleModeChange = () => {
+      valuesRef.current.clear();
+      requestUpdate();
+    };
+
     requestUpdate();
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
+    motionQuery.addEventListener("change", handleModeChange);
 
     return () => {
       if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
+      motionQuery.removeEventListener("change", handleModeChange);
     };
   }, []);
 
   return (
     <div className="flex flex-col">
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 min-h-[calc(100vh-4rem)] grid items-center pt-24 pb-16">
+      <section className="brand-hero max-w-[1180px] mx-auto px-5 md:px-8 min-h-[calc(100vh-4rem)] grid items-center pt-24 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.95fr] gap-14 lg:gap-20 items-center">
-          <div className="animate-fade-in">
+          <div className="brand-hero-copy animate-fade-in">
             <span className="eyebrow">{copy.home.eyebrow}</span>
             <DisplayHeading variant="hero" gradient>{copy.home.title}</DisplayHeading>
             <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{copy.home.intro}</p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link href="#story" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.home.primary}</Link>
-              <Link href="/products" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{copy.home.secondary}</Link>
+              <Link href="/about" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{copy.home.secondary}</Link>
             </div>
-            <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl">
+            <div className="brand-note-grid mt-14 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 max-w-3xl">
               {copy.home.notes.map(([title, body]) => (
-                <div key={title} className="text-sm leading-relaxed text-[var(--faint)]">
+                <div key={title} className="brand-note text-sm leading-relaxed text-[var(--faint)]">
                   <strong className="block mb-2 text-muted font-medium">{title}</strong>
                   {body}
                 </div>
@@ -119,29 +174,27 @@ export default function Home() {
           <div className="screen-shell hero-preview-shell rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
             <div className="flex items-center justify-between text-xs text-[var(--faint)] uppercase tracking-[0.14em] px-1">
               <span>{copy.home.currentProduct}</span>
-              <span className="hero-preview-label" key={heroItems[heroIndex]?.title}>{heroItems[heroIndex]?.title}</span>
+              <span className="hero-preview-label" key={activeHero?.title}>{activeHero?.title}</span>
             </div>
             <div className="hero-preview-stage flex-1 min-h-0">
-              {heroItems.map((item, index) => (
+              {activeHero ? (
                 <Link
-                  key={item.title}
-                  href={item.href}
-                  aria-hidden={index !== heroIndex}
-                  tabIndex={index === heroIndex ? 0 : -1}
-                  className={`hero-preview-card ${index === heroIndex ? "is-active" : ""}`}
+                  key={`${locale}-${heroIndex}-${activeHero.image}`}
+                  href={activeHero.href}
+                  className="hero-preview-card is-active brand-preview-enter"
                 >
                   <SmartScreenshot
-                    src={item.image}
-                    alt={item.title}
+                    src={activeHero.image}
+                    alt={activeHero.title}
                     width={1200}
                     height={820}
-                    priority={index === 0}
+                    priority={heroIndex === 0}
                     sizes="(max-width: 1024px) 92vw, 560px"
                     frameClassName="hero-preview-image-frame h-full"
                     className="h-full object-contain"
                   />
                 </Link>
-              ))}
+              ) : null}
             </div>
             <div className="grid grid-cols-3 gap-3">
               {stages.map((item) => (
@@ -211,7 +264,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="principles" className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
+      <section id="principles" className="brand-principles max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
         <span className="eyebrow">{copy.common.operatingPrinciples}</span>
         <DisplayHeading variant="section">{copy.home.principlesTitle}</DisplayHeading>
         <p className="mt-7 text-lg leading-[1.8] text-muted max-w-2xl">{copy.home.principlesBody}</p>
