@@ -16,11 +16,11 @@ type Particle = {
   angle: number;
 };
 
-const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+type NavigatorWithConnection = Navigator & {
+  connection?: { saveData?: boolean; effectiveType?: string };
+};
 
-function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 export default function AmbientDepthScene() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -33,14 +33,25 @@ export default function AmbientDepthScene() {
     const context = canvas.getContext("2d", { alpha: true });
     if (!context) return;
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    const connection = (navigator as NavigatorWithConnection).connection;
+    const lowPower =
+      (navigator.hardwareConcurrency > 0 && navigator.hardwareConcurrency <= 4) ||
+      connection?.saveData === true ||
+      connection?.effectiveType === "2g" ||
+      connection?.effectiveType === "slow-2g";
+    const frameInterval = 1000 / (lowPower ? 24 : 30);
+
     let width = 0;
     let height = 0;
     let dpr = 1;
     let frame = 0;
     let resizeFrame = 0;
     let lastTime = performance.now();
+    let lastPaint = 0;
+    let active = !document.hidden;
     let particles: Particle[] = [];
-    const reducedMotion = prefersReducedMotion();
 
     const createParticle = (): Particle => ({
       x: Math.random() * width,
@@ -60,7 +71,7 @@ export default function AmbientDepthScene() {
       const rect = canvas.getBoundingClientRect();
       const nextWidth = Math.max(1, rect.width || window.innerWidth);
       const nextHeight = Math.max(1, rect.height || window.innerHeight);
-      dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+      dpr = Math.min(window.devicePixelRatio || 1, lowPower ? 1.25 : 1.5);
       const nextCanvasWidth = Math.round(nextWidth * dpr);
       const nextCanvasHeight = Math.round(nextHeight * dpr);
       if (canvas.width === nextCanvasWidth && canvas.height === nextCanvasHeight) return;
@@ -71,7 +82,15 @@ export default function AmbientDepthScene() {
       canvas.height = nextCanvasHeight;
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const targetCount = reducedMotion ? 34 : width < 760 ? 58 : 118;
+      const targetCount = reducedMotion
+        ? 24
+        : lowPower
+          ? width < 760
+            ? 34
+            : 58
+          : width < 760
+            ? 46
+            : 92;
       particles = Array.from({ length: targetCount }, createParticle);
     };
 
@@ -128,7 +147,15 @@ export default function AmbientDepthScene() {
     };
 
     const render = (time: number) => {
-      const delta = clamp(time - lastTime, 8, 34);
+      if (!active) return;
+
+      if (!reducedMotion && time - lastPaint < frameInterval) {
+        frame = requestAnimationFrame(render);
+        return;
+      }
+
+      lastPaint = time;
+      const delta = clamp(time - lastTime, 8, 42);
       lastTime = time;
       const pointer = pointerRef.current;
       pointer.x += (pointer.tx - pointer.x) * 0.045;
@@ -140,13 +167,13 @@ export default function AmbientDepthScene() {
       const drift = reducedMotion ? 0 : Math.sin(time * 0.00018) * 0.08;
       drawBeam([0, 0, width, height], "rgba(85, 145, 255, 0.12)", 0.72, drift);
       drawBeam([width, 0, 0, height], "rgba(90, 235, 204, 0.09)", 0.56, -drift * 0.7);
-      for (let i = 0; i < 3; i += 1) drawOrbit(time, i);
+      for (let index = 0; index < 3; index += 1) drawOrbit(time, index);
 
       context.globalAlpha = reducedMotion ? 0.1 : 0.14;
       context.strokeStyle = "rgba(150, 190, 255, 0.18)";
       context.lineWidth = 1;
-      for (let i = 0; i < 4; i += 1) {
-        const y = height * (0.18 + i * 0.18) + Math.sin(time * 0.00022 + i) * 18;
+      for (let index = 0; index < 4; index += 1) {
+        const y = height * (0.18 + index * 0.18) + Math.sin(time * 0.00022 + index) * 18;
         context.beginPath();
         context.moveTo(width * -0.05, y);
         context.bezierCurveTo(width * 0.25, y - 42, width * 0.64, y + 58, width * 1.06, y - 26);
@@ -155,8 +182,8 @@ export default function AmbientDepthScene() {
 
       for (const particle of particles) {
         if (!reducedMotion) {
-          particle.x += (particle.vx * delta * (0.3 + particle.z) + pointer.x * 0.018 * particle.z);
-          particle.y += (particle.vy * delta * (0.4 + particle.z) + pointer.y * 0.012 * particle.z);
+          particle.x += particle.vx * delta * (0.3 + particle.z) + pointer.x * 0.018 * particle.z;
+          particle.y += particle.vy * delta * (0.4 + particle.z) + pointer.y * 0.012 * particle.z;
           particle.phase += 0.008 * delta;
         }
 
@@ -194,7 +221,7 @@ export default function AmbientDepthScene() {
 
       context.globalCompositeOperation = "source-over";
       context.globalAlpha = 1;
-      if (!reducedMotion) frame = requestAnimationFrame(render);
+      if (!reducedMotion && active) frame = requestAnimationFrame(render);
     };
 
     const handlePointerMove = (event: PointerEvent) => {
@@ -202,20 +229,31 @@ export default function AmbientDepthScene() {
       pointerRef.current.ty = (event.clientY / window.innerHeight - 0.5) * 2;
     };
 
+    const handleVisibility = () => {
+      active = !document.hidden;
+      cancelAnimationFrame(frame);
+      if (active) {
+        lastTime = performance.now();
+        frame = requestAnimationFrame(render);
+      }
+    };
+
     resize();
-    scheduleResize();
     const observer = new ResizeObserver(scheduleResize);
     observer.observe(canvas);
     window.addEventListener("resize", scheduleResize);
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
-    frame = requestAnimationFrame(render);
+    document.addEventListener("visibilitychange", handleVisibility);
+    if (finePointer && !reducedMotion) window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    if (active) frame = requestAnimationFrame(render);
 
     return () => {
+      active = false;
       cancelAnimationFrame(frame);
       cancelAnimationFrame(resizeFrame);
       observer.disconnect();
       window.removeEventListener("resize", scheduleResize);
-      window.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("visibilitychange", handleVisibility);
+      if (finePointer && !reducedMotion) window.removeEventListener("pointermove", handlePointerMove);
     };
   }, []);
 
