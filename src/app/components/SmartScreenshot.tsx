@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { optimizedImagePath } from "@/lib/siteAssets";
 
 type SmartScreenshotProps = {
   src: string;
@@ -23,10 +24,13 @@ export default function SmartScreenshot({
   className = "",
   frameClassName = "",
 }: SmartScreenshotProps) {
+  const preferredSrc = optimizedImagePath(src);
+
   return (
     <div className={`screenshot-frame ${frameClassName}`}>
       <Image
-        src={src}
+        key={preferredSrc}
+        src={preferredSrc}
         alt={alt}
         width={width}
         height={height}
@@ -34,6 +38,12 @@ export default function SmartScreenshot({
         sizes={sizes}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
+        onError={(event) => {
+          const image = event.currentTarget;
+          if (preferredSrc === src || image.dataset.fallbackApplied === "true") return;
+          image.dataset.fallbackApplied = "true";
+          image.src = src;
+        }}
         className={`screenshot-image is-loaded ${className}`}
       />
     </div>

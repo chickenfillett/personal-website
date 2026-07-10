@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./brand-v4.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AmbientDepthScene from "./components/AmbientDepthScene";
@@ -7,8 +8,20 @@ import BackgroundGlow from "./components/BackgroundGlow";
 import { LanguageProvider } from "@/lib/i18n/context";
 
 export const metadata: Metadata = {
-  title: "SoloCraft - Quiet Desktop Tools",
-  description: "SoloCraft is Chicken Fillet's independent desktop software studio, building quiet, privacy-first tools for focused Windows work.",
+  title: {
+    default: "SoloCraft — Quiet software for Windows",
+    template: "%s — SoloCraft",
+  },
+  description: "Independent, local-first Windows software for energy awareness, file order, and gentler focus.",
+  applicationName: "SoloCraft",
+  creator: "Chicken Fillet",
+  category: "technology",
+  keywords: ["SoloCraft", "Windows apps", "local-first software", "EnergyFlow", "DeskHaven", "ADHD Focus Timer"],
+  openGraph: {
+    title: "SoloCraft — Quiet software for Windows",
+    description: "Independent, local-first tools that make digital work calmer, clearer, and easier to control.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
