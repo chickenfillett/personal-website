@@ -8,10 +8,9 @@ import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { DisplayHeading } from "../../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
-import { commerceLabels } from "@/lib/productCommerce";
+import { commerceLabels, productPricing } from "@/lib/productCommerce";
 import { getSiteCopy } from "@/lib/siteCopy";
 import {
-  allEnergyFlowImages,
   energyFlowGalleryForLocale,
   energyFlowImages,
   imageLocale,
@@ -29,8 +28,13 @@ export default function EnergyFlowPage() {
   const galleryText = copy.energyflow.gallery;
   const flowText = copy.energyflow.flowIntro;
   const legalLabel = commerceLabels(locale).legal;
-  const labels = commerceLabels(locale);
-  usePreloadImages(allEnergyFlowImages());
+  const pricing = productPricing("energyflow", locale);
+  const preloadImages = [
+    ...Object.values(images),
+    ...gallery.slice(0, 3).map((item) => item.src),
+  ];
+
+  usePreloadImages(preloadImages, true, 8);
 
   return (
     <div className="flex flex-col">
@@ -41,7 +45,7 @@ export default function EnergyFlowPage() {
         status={copy.energyflow.status}
         actions={[
           { href: microsoftStoreLinks.energyflow, label: copy.common.microsoftStore, external: true, variant: "primary" },
-          { href: "#product-info", label: labels.priceEyebrow },
+          { href: "#product-info", label: pricing.eyebrow },
         ]}
       >
         <SmartScreenshot src={images.quickLog} alt="EnergyFlow quick log" width={1200} height={820} priority sizes="(max-width: 1024px) 92vw, 620px" />
