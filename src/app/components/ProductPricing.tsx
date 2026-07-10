@@ -12,6 +12,7 @@ export default function ProductPricing({ product }: { product: ProductId }) {
   const [browserLanguage, setBrowserLanguage] = useState<string>(() => detectedBrowserLanguage(locale));
   const labels = commerceLabels(locale);
   const pricing = productPricing(product, locale);
+  const isFree = pricing.prices.length > 0 && pricing.prices.every((item) => item.current === labels.free);
 
   useEffect(() => {
     setBrowserLanguage(detectedBrowserLanguage(locale));
@@ -28,13 +29,13 @@ export default function ProductPricing({ product }: { product: ProductId }) {
       <div className="mt-7 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start">
         <div>
           <DisplayHeading variant="section" className="mt-0">{pricing.title}</DisplayHeading>
-          <p className="mt-6 text-lg leading-[1.85] text-muted">{labels.pricingIntro}</p>
+          <p className="mt-6 text-lg leading-[1.85] text-muted">{pricing.summary}</p>
         </div>
 
         <div className="border border-white/[0.08] bg-white/[0.018]">
           <div className="grid grid-cols-1 sm:grid-cols-2 border-b border-white/[0.07]">
             <div className="p-5 border-b sm:border-b-0 sm:border-r border-white/[0.07]">
-              <div className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{labels.trial}</div>
+              <div className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{isFree ? labels.free : labels.trial}</div>
               <p className="mt-3 text-sm leading-[1.75] text-muted">{pricing.trial}</p>
             </div>
             <div className="p-5">
