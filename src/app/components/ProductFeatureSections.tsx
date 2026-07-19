@@ -13,22 +13,24 @@ export function ProductFeatureSections({
   imageHeight: number;
 }) {
   return (
-    <section className="border-t border-white/[0.07]">
+    <section className="product-feature-section">
       {features.map(([title, body], index) => (
-        <div key={title} className="max-w-[1180px] mx-auto px-5 md:px-8 py-16 md:py-24 border-b border-white/[0.07] last:border-b-0">
-          <div className={`detail-rail ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
-            <div className="detail-sticky">
-              <span className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">0{index + 1}</span>
+        <div key={`${title}-${index}`} className="product-feature-row">
+          <div className={`detail-rail ${index % 2 === 1 ? "product-feature-row-reverse" : ""}`}>
+            <div className="detail-sticky product-feature-copy">
+              <span className="product-feature-index">{String(index + 1).padStart(2, "0")}</span>
               <DisplayHeading variant="feature">{title}</DisplayHeading>
-              <p className="mt-6 text-muted leading-[1.85] text-lg">{body}</p>
+              <p>{body}</p>
             </div>
-            <SmartScreenshot
-              src={images[index] ?? images[0]}
-              alt={title}
-              width={imageWidth}
-              height={imageHeight}
-              sizes="(max-width: 1024px) 92vw, 680px"
-            />
+            <div className="product-feature-media">
+              <SmartScreenshot
+                src={images[index] ?? images[0]}
+                alt={title}
+                width={imageWidth}
+                height={imageHeight}
+                sizes="(max-width: 1024px) 92vw, 680px"
+              />
+            </div>
           </div>
         </div>
       ))}

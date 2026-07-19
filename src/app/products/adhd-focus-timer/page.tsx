@@ -1,16 +1,15 @@
 "use client";
 
-import Image from "next/image";
 import { ProductInfoLinks } from "../../components/ProductActions";
 import { ProductFeatureSections } from "../../components/ProductFeatureSections";
 import { ProductHero, ProductPromise } from "../../components/ProductHero";
+import { ProductMediaGallery } from "../../components/ProductMediaGallery";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
-import { DisplayHeading } from "../../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
 import { getSiteCopy } from "@/lib/siteCopy";
-import { adhdImagesForLocale, allAdhdImages, microsoftStoreLinks } from "@/lib/siteAssets";
+import { adhdImagesForLocale, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 export default function ADHDFocusTimerPage() {
@@ -19,7 +18,7 @@ export default function ADHDFocusTimerPage() {
   const adhdAssets = adhdImagesForLocale(locale);
   const legalLabel = commerceLabels(locale).legal;
   const labels = commerceLabels(locale);
-  usePreloadImages(allAdhdImages(locale));
+  usePreloadImages([adhdAssets.hero, adhdAssets.breathing, ...adhdAssets.screenshots.slice(0, 2)], true, 6);
   const galleryItems = copy.adhd.galleryItems as readonly (readonly [string, string])[];
 
   const featureImages = [
@@ -43,7 +42,7 @@ export default function ADHDFocusTimerPage() {
   ].filter((item): item is { image: string; copy: readonly [string, string] } => Boolean(item.image && item.copy));
 
   return (
-    <div className="flex flex-col">
+    <div className="product-page" data-product="adhd">
       <ProductHero
         eyebrow={copy.adhd.eyebrow}
         title={copy.adhd.title}
@@ -73,6 +72,7 @@ export default function ADHDFocusTimerPage() {
         actions={[
           { href: "/products/adhd-focus-timer/privacy", label: copy.common.privacy },
           { href: "/products/adhd-focus-timer/legal", label: legalLabel },
+          { href: "/products", label: copy.common.backToProducts },
         ]}
       />
 
@@ -83,31 +83,17 @@ export default function ADHDFocusTimerPage() {
         imageHeight={675}
       />
 
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
-        <span className="eyebrow">{copy.adhd.galleryEyebrow}</span>
-        <DisplayHeading variant="section">{copy.adhd.galleryTitle}</DisplayHeading>
-        <p className="mt-6 text-lg leading-[1.8] text-muted max-w-3xl">{copy.adhd.galleryIntro}</p>
-
-        <div className="adhd-gallery-grid mt-14">
-          {galleryCards.map(({ image, copy: [title, body] }, index) => (
-            <figure key={`${image}-${title}`} className="adhd-gallery-card">
-              <Image
-                src={image}
-                alt={title}
-                width={1180}
-                height={664}
-                sizes="(max-width: 720px) 92vw, (max-width: 1100px) 44vw, 340px"
-                className="adhd-gallery-image"
-              />
-              <figcaption className="adhd-gallery-copy">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <strong>{title}</strong>
-                <p>{body}</p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
+      <ProductMediaGallery
+        eyebrow={copy.adhd.galleryEyebrow}
+        title={copy.adhd.galleryTitle}
+        intro={copy.adhd.galleryIntro}
+        images={galleryCards.map((item) => item.image)}
+        items={galleryCards.map((item) => item.copy)}
+        imageWidth={1180}
+        imageHeight={664}
+        imageShape="landscape"
+        productName="ADHD Focus Timer"
+      />
     </div>
   );
 }

@@ -43,7 +43,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
     productCards: {
       energyflow: {
         category: "工作精力洞察",
-        description: "免费记录工作中的精力变化，看见会议、任务与恢复方式带来的真实影响。",
+        description: "免费记录精力、情绪与压力变化，通过时间线和分析报告回看长期规律。",
         status: "免费",
       },
       deskhaven: {
@@ -57,7 +57,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
     },
     energyflow: {
       title: "看见工作如何消耗你，也看见什么正在恢复你。",
-      intro: "EnergyFlow 是一款免费的 Windows 精力记录工具。几秒钟的状态记录会沉淀成可回看的工作能量轨迹，帮助理解会议、任务切换、恢复方式与长期状态之间的关系。",
+      intro: "EnergyFlow 是一款免费的 Windows 精力与情绪记录工具。通过桌面入口快速记录精力、情绪、压力来源和活动，也能加入图片或录音；时间线、分析报告与本地加密备份帮助你长期回看。",
       status: "免费",
       promiseTitle: "不是另一张待办清单，而是一面关于工作状态的镜子。",
       promise: "当记录足够轻，模式才会逐渐浮现。EnergyFlow 将主观感受保留下来，再通过趋势和统计，把模糊的疲惫变成可以理解、可以调整的线索。",
@@ -128,7 +128,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
     productCards: {
       energyflow: {
         category: "Work energy intelligence",
-        description: "Track work energy for free and see how meetings, tasks, and recovery habits shape your state.",
+        description: "Track energy, mood, and pressure for free, then review long-term patterns in timelines and reports.",
         status: "Free",
       },
       deskhaven: {
@@ -142,7 +142,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
     },
     energyflow: {
       title: "See what work takes from you—and what gives energy back.",
-      intro: "EnergyFlow is a free Windows app for tracking and understanding work energy. A few seconds of logging becomes a history you can review, revealing how meetings, context switches, recovery habits, and daily structure shape your state over time.",
+      intro: "EnergyFlow is a free Windows app for energy and mood tracking. Capture energy, emotion, pressure, and activity from the desktop, add images or audio when useful, then review the timeline, reports, and encrypted local backups.",
       status: "Free",
       promiseTitle: "Not another task list. A mirror for the way work feels.",
       promise: "When logging stays light, patterns have room to emerge. EnergyFlow preserves subjective signals, then uses trends and statistics to turn vague exhaustion into clues you can understand and act on.",
@@ -194,7 +194,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
     },
     productCards: { energyflow: { status: "免費" } },
     energyflow: {
-      intro: "EnergyFlow 是一款免費的 Windows 精力記錄工具，將輕量記錄轉化為可回看的工作能量軌跡。",
+      intro: "EnergyFlow 是免費的 Windows 精力與情緒記錄工具，可快速記錄壓力、活動、圖片與錄音，並透過時間軸、分析報告和本地加密備份長期回顧。",
       status: "免費",
     },
     about: {
@@ -215,7 +215,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
       studioTitle: "静かで一貫したデスクトップソフトウェア体系。",
     },
     productCards: { energyflow: { status: "無料" } },
-    energyflow: { intro: "EnergyFlow は、仕事中のエネルギー変化を記録し、振り返るための無料 Windows アプリです。", status: "無料" },
+    energyflow: { intro: "EnergyFlow は、エネルギー、気分、ストレス、活動を記録し、タイムラインと分析で振り返る無料の Windows アプリです。画像・音声・暗号化ローカルバックアップにも対応します。", status: "無料" },
     about: {
       intro: "抑制、明快さ、ローカルファーストを軸にした Windows デスクトップソフトウェア。",
       story: [
@@ -234,7 +234,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
       studioTitle: "조용하고 일관된 데스크톱 소프트웨어 체계.",
     },
     productCards: { energyflow: { status: "무료" } },
-    energyflow: { intro: "EnergyFlow는 업무 에너지 변화를 기록하고 되돌아볼 수 있는 무료 Windows 앱입니다.", status: "무료" },
+    energyflow: { intro: "EnergyFlow는 에너지, 기분, 압박, 활동을 기록하고 타임라인과 분석으로 되돌아보는 무료 Windows 앱입니다. 이미지, 오디오, 암호화된 로컬 백업도 지원합니다.", status: "무료" },
     about: {
       intro: "절제, 명확성, 로컬 우선 원칙으로 설계한 Windows 데스크톱 소프트웨어.",
       story: [
@@ -253,7 +253,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
       studioTitle: "Un ensemble cohérent de logiciels de bureau calmes.",
     },
     productCards: { energyflow: { status: "Gratuit" } },
-    energyflow: { intro: "EnergyFlow est une application Windows gratuite pour suivre et comprendre l’évolution de l’énergie au travail.", status: "Gratuit" },
+    energyflow: { intro: "EnergyFlow est une application Windows gratuite pour noter énergie, humeur, pression et activité, puis relire la chronologie et les analyses. Images, audio et sauvegardes locales chiffrées sont pris en charge.", status: "Gratuit" },
     about: {
       intro: "Des logiciels Windows guidés par la retenue, la clarté et une approche local-first.",
       story: [
@@ -272,7 +272,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
       studioTitle: "Ein ruhiges, zusammenhängendes System von Desktop-Software.",
     },
     productCards: { energyflow: { status: "Kostenlos" } },
-    energyflow: { intro: "EnergyFlow ist eine kostenlose Windows-App zum Erfassen und Verstehen der Energie im Arbeitsalltag.", status: "Kostenlos" },
+    energyflow: { intro: "EnergyFlow ist eine kostenlose Windows-App für Energie, Stimmung, Belastung und Aktivitäten. Zeitleiste, Analysen, Bilder, Audio und verschlüsselte lokale Backups unterstützen den langfristigen Rückblick.", status: "Kostenlos" },
     about: {
       intro: "Windows-Software, geprägt von Zurückhaltung, Klarheit und Local-first-Kontrolle.",
       story: [
@@ -291,7 +291,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
       studioTitle: "Un sistema coherente de software de escritorio sereno.",
     },
     productCards: { energyflow: { status: "Gratis" } },
-    energyflow: { intro: "EnergyFlow es una aplicación gratuita para Windows que permite registrar y comprender la energía durante el trabajo.", status: "Gratis" },
+    energyflow: { intro: "EnergyFlow es una aplicación gratuita para Windows que registra energía, ánimo, presión y actividad. Incluye cronología, análisis, imágenes, audio y copias locales cifradas.", status: "Gratis" },
     about: {
       intro: "Software para Windows definido por la sobriedad, la claridad y el control local-first.",
       story: [
@@ -310,7 +310,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
       studioTitle: "Целостная система спокойных настольных приложений.",
     },
     productCards: { energyflow: { status: "Бесплатно" } },
-    energyflow: { intro: "EnergyFlow — бесплатное приложение для Windows, которое помогает отслеживать и понимать энергию во время работы.", status: "Бесплатно" },
+    energyflow: { intro: "EnergyFlow — бесплатное приложение для Windows для записей об энергии, настроении, нагрузке и занятиях. В нём есть временная шкала, аналитика, изображения, аудио и зашифрованные локальные копии.", status: "Бесплатно" },
     about: {
       intro: "Программное обеспечение для Windows, основанное на сдержанности, ясности и локальном контроле.",
       story: [
@@ -329,7 +329,7 @@ const brandOverrides: Partial<Record<Locale, BrandOverride>> = {
       studioTitle: "Um sistema coerente de software de ambiente de trabalho sereno.",
     },
     productCards: { energyflow: { status: "Grátis" } },
-    energyflow: { intro: "EnergyFlow é uma aplicação gratuita para Windows que ajuda a registar e compreender a energia durante o trabalho.", status: "Grátis" },
+    energyflow: { intro: "EnergyFlow é uma aplicação gratuita para Windows que regista energia, humor, pressão e atividades. Inclui linha temporal, análises, imagens, áudio e cópias locais cifradas.", status: "Grátis" },
     about: {
       intro: "Software Windows orientado por contenção, clareza e controlo local-first.",
       story: [

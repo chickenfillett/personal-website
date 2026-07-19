@@ -119,7 +119,7 @@ const zhCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "职场能量仪表盘",
-      "description": "记录精力等级、工作状态和恢复来源，用趋势与统计查看变化。",
+      "description": "记录精力、情绪、压力和活动，通过时间线与分析报告回看长期变化。",
       "status": "已推出"
     },
     "deskhaven": {
@@ -173,7 +173,7 @@ const zhCopy = {
     "gallery": {
       "eyebrow": "真实界面",
       "title": "从快速记录到趋势分析，一次看清 EnergyFlow 的工作方式。",
-      "body": "截图保留原始界面比例，展示日常打卡、趋势回看、统计分析和设置细节。你看到的就是应用里的真实流程。"
+      "body": "13 张真实界面依次展示本地解锁、快速记录、多媒体、呼吸练习、时间线、分析、提醒和加密备份。"
     },
     "flowIntro": {
       "title": "从一次快速记录，到一段可调整的工作节奏。",
@@ -560,7 +560,7 @@ const zhTwCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "職場能量儀表板",
-      "description": "記錄精力等級、工作狀態和恢復來源，用趨勢與統計查看變化。",
+      "description": "記錄精力、情緒、壓力和活動，透過時間軸與分析報告回看長期變化。",
       "status": "已推出"
     },
     "deskhaven": {
@@ -614,7 +614,7 @@ const zhTwCopy = {
     "gallery": {
       "eyebrow": "真實介面",
       "title": "查看 EnergyFlow 的完整介面截圖。",
-      "body": "這裡按截圖自身比例展示真實介面，不再把圖片硬塞進固定比例方框。截圖會控制在較小尺寸，避免在大螢幕上被拉大後顯得粗糙。"
+      "body": "13 張真實介面依序展示本地解鎖、快速記錄、多媒體、呼吸練習、時間軸、分析、提醒與加密備份。"
     },
     "flowIntro": {
       "title": "從一次快速記錄，到一段可調整的工作節奏。",
@@ -1001,7 +1001,7 @@ const enCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "Workplace energy dashboard",
-      "description": "Log energy level, work state, and recovery sources, then review changes with trends and statistics.",
+      "description": "Track energy, mood, pressure, and activity, then review long-term changes in timelines and reports.",
       "status": "Available"
     },
     "deskhaven": {
@@ -1055,7 +1055,7 @@ const enCopy = {
     "gallery": {
       "eyebrow": "Real interface",
       "title": "See how EnergyFlow moves from quick logging to useful review.",
-      "body": "The screenshots keep their natural interface proportions and show the real flow: daily logging, trend review, statistical analysis, and settings."
+      "body": "Thirteen real screens cover local access, quick and multimedia records, breathing, timeline, analysis, reminders, and encrypted backups."
     },
     "flowIntro": {
       "title": "From one quick log to an adjustable work rhythm.",
@@ -1442,7 +1442,7 @@ const jaCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "仕事のエネルギーダッシュボード",
-      "description": "エネルギー、作業状態、回復要因を記録し、傾向と統計で変化を確認します。",
+      "description": "エネルギー、気分、ストレス、活動を記録し、タイムラインと分析で長期的な変化を確認します。",
       "status": "公開中"
     },
     "deskhaven": {
@@ -1496,7 +1496,7 @@ const jaCopy = {
     "gallery": {
       "eyebrow": "実際の画面",
       "title": "EnergyFlow の画面セットを見る。",
-      "body": "各スクリーンショットの自然な比率で表示し、固定フレームへ無理に押し込みません。大画面で粗く見えないよう控えめなサイズにしています。"
+      "body": "13 枚の実画面で、ローカルロック、記録、マルチメディア、呼吸、タイムライン、分析、通知、暗号化バックアップを紹介します。"
     },
     "flowIntro": {
       "title": "数秒の記録から、調整できる作業リズムへ。",
@@ -1883,7 +1883,7 @@ const koCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "업무 에너지 대시보드",
-      "description": "에너지 수준, 업무 상태, 회복 요인을 기록하고 추세와 통계로 변화를 확인합니다.",
+      "description": "에너지, 기분, 압박, 활동을 기록하고 타임라인과 분석으로 장기 변화를 확인합니다.",
       "status": "출시됨"
     },
     "deskhaven": {
@@ -1937,7 +1937,7 @@ const koCopy = {
     "gallery": {
       "eyebrow": "실제 화면",
       "title": "EnergyFlow 전체 화면을 살펴보세요.",
-      "body": "각 스크린샷의 원래 비율을 따라 표시하며 고정된 프레임에 억지로 넣지 않습니다. 큰 화면에서 거칠어 보이지 않도록 크기를 줄였습니다."
+      "body": "13개의 실제 화면에서 로컬 잠금, 빠른 기록, 멀티미디어, 호흡, 타임라인, 분석, 알림, 암호화 백업을 확인할 수 있습니다."
     },
     "flowIntro": {
       "title": "짧은 기록에서 조정 가능한 작업 리듬으로.",
@@ -2324,7 +2324,7 @@ const frCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "Tableau d'énergie au travail",
-      "description": "Enregistrez l'énergie, le contexte de travail et les sources de récupération, puis relisez les tendances.",
+      "description": "Notez énergie, humeur, pression et activité, puis relisez leur évolution dans la chronologie et les rapports.",
       "status": "Disponible"
     },
     "deskhaven": {
@@ -2378,7 +2378,7 @@ const frCopy = {
     "gallery": {
       "eyebrow": "Interface réelle",
       "title": "Voir l'ensemble des écrans EnergyFlow.",
-      "body": "La galerie respecte les proportions naturelles de chaque capture au lieu de les forcer dans des cadres fixes. Les images restent plus petites pour éviter un rendu grossier sur grand écran."
+      "body": "Treize écrans réels présentent l’accès local, les relevés rapides et multimédias, la respiration, la chronologie, les analyses, les rappels et les sauvegardes chiffrées."
     },
     "flowIntro": {
       "title": "D’un relevé rapide à un rythme de travail ajustable.",
@@ -2765,7 +2765,7 @@ const deCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "Energie-Dashboard für Arbeit",
-      "description": "Energie, Arbeitsstatus und Erholung erfassen und Veränderungen mit Trends und Statistiken prüfen.",
+      "description": "Energie, Stimmung, Belastung und Aktivitäten erfassen und langfristige Veränderungen in Zeitleiste und Analysen prüfen.",
       "status": "Verfügbar"
     },
     "deskhaven": {
@@ -2819,7 +2819,7 @@ const deCopy = {
     "gallery": {
       "eyebrow": "Echte Oberfläche",
       "title": "Die vollständige EnergyFlow-Oberfläche ansehen.",
-      "body": "Die Galerie folgt den natürlichen Proportionen der Screenshots und zwingt sie nicht mehr in feste Rahmen. Die Bilder bleiben kleiner, damit sie auf großen Displays nicht grob wirken."
+      "body": "Dreizehn echte Ansichten zeigen lokalen Zugang, schnelle und multimediale Einträge, Atmung, Zeitleiste, Analysen, Erinnerungen und verschlüsselte Backups."
     },
     "flowIntro": {
       "title": "Vom schnellen Eintrag zu einem anpassbaren Arbeitsrhythmus.",
@@ -3206,7 +3206,7 @@ const esCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "Panel de energía laboral",
-      "description": "Registra energía, estado de trabajo y fuentes de recuperación, y revisa cambios con tendencias.",
+      "description": "Registra energía, ánimo, presión y actividad, y revisa cambios a largo plazo en la cronología y los informes.",
       "status": "Disponible"
     },
     "deskhaven": {
@@ -3260,7 +3260,7 @@ const esCopy = {
     "gallery": {
       "eyebrow": "Interfaz real",
       "title": "Ver el conjunto completo de pantallas de EnergyFlow.",
-      "body": "La galería respeta la proporción natural de cada captura en lugar de forzar marcos fijos. Las imágenes se muestran más pequeñas para no verse ásperas en pantallas grandes."
+      "body": "Trece pantallas reales muestran acceso local, registros rápidos y multimedia, respiración, cronología, análisis, recordatorios y copias cifradas."
     },
     "flowIntro": {
       "title": "De un registro rápido a un ritmo de trabajo ajustable.",
@@ -3647,7 +3647,7 @@ const ruCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "Панель рабочей энергии",
-      "description": "Записывайте энергию, рабочее состояние и восстановление, затем смотрите изменения в трендах.",
+      "description": "Записывайте энергию, настроение, нагрузку и занятия, а затем смотрите долгосрочные изменения на шкале и в отчётах.",
       "status": "Доступно"
     },
     "deskhaven": {
@@ -3701,7 +3701,7 @@ const ruCopy = {
     "gallery": {
       "eyebrow": "Реальный интерфейс",
       "title": "Посмотрите полный набор экранов EnergyFlow.",
-      "body": "Галерея сохраняет естественные пропорции каждого снимка и больше не помещает их в жёсткие рамки. Изображения уменьшены, чтобы не выглядеть грубо на больших экранах."
+      "body": "Тринадцать реальных экранов показывают локальный доступ, быстрые и мультимедийные записи, дыхание, временную шкалу, аналитику, напоминания и зашифрованные копии."
     },
     "flowIntro": {
       "title": "От быстрой записи к рабочему ритму, который можно настроить.",
@@ -4088,7 +4088,7 @@ const ptCopy = {
     "energyflow": {
       "title": "EnergyFlow",
       "category": "Painel de energia no trabalho",
-      "description": "Registre energia, estado de trabalho e fontes de recuperação, depois veja mudanças em tendências.",
+      "description": "Registe energia, humor, pressão e atividades e reveja mudanças de longo prazo na linha temporal e nos relatórios.",
       "status": "Disponível"
     },
     "deskhaven": {
@@ -4142,7 +4142,7 @@ const ptCopy = {
     "gallery": {
       "eyebrow": "Interface real",
       "title": "Veja o conjunto completo de telas do EnergyFlow.",
-      "body": "A galeria respeita a proporção natural de cada captura em vez de forçar molduras fixas. As imagens ficam menores para não parecerem ásperas em telas grandes."
+      "body": "Treze ecrãs reais mostram acesso local, registos rápidos e multimédia, respiração, linha temporal, análises, lembretes e cópias cifradas."
     },
     "flowIntro": {
       "title": "De um registro rápido a um ritmo de trabalho ajustável.",
@@ -4457,6 +4457,264 @@ export const siteCopy = {
 
 export function getSiteCopy(locale: Locale): SiteCopy {
   return (siteCopy[locale] ?? siteCopy.en) as SiteCopy;
+}
+
+export type EnergyFlowMediaItem = readonly [title: string, body: string];
+
+export type EnergyFlowMediaCopy = {
+  posters: readonly [EnergyFlowMediaItem, EnergyFlowMediaItem, EnergyFlowMediaItem, EnergyFlowMediaItem];
+  screenshots: readonly [
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+    EnergyFlowMediaItem,
+  ];
+};
+
+export const energyFlowMediaContent = {
+  zh: {
+    posters: [
+      ["几秒完成一次完整记录", "在同一页选择精力、状态、来源和情绪，也可以补充文字、图片或录音。"],
+      ["按时间线回看每一次变化", "按日期浏览记录，并用状态、复盘、表情、文字、音频或图片快速筛选。"],
+      ["私人记录只留在你的设备", "PIN 锁、内容防截取和本地加密备份共同保护精力与情绪数据。"],
+      ["用报告理解消耗与恢复", "趋势、分布、压力、恢复和相关性分析，把长期记录整理成清晰结论。"],
+    ],
+    screenshots: [
+      ["本地加密解锁", "使用四位 PIN 进入应用，保护设备上的私人记录。"],
+      ["快速记录", "选择当前精力、工作状态、触发来源和情绪，几秒即可保存。"],
+      ["精力与情绪记录", "同时记录精力等级、当前状态、影响因素和更完整的情绪。"],
+      ["多媒体记录", "为一条记录加入文字、图片、录音或正念练习。"],
+      ["正念呼吸", "在应用内短暂停顿，用呼吸节奏平稳恢复。"],
+      ["完整时间线", "按日期查看全部记录，保留每次状态变化的上下文。"],
+      ["搜索与分类筛选", "通过关键词、日期和内容类型快速找到过去的记录。"],
+      ["分析报告总览", "用关键指标和趋势图快速了解近期精力、稳定性与恢复情况。"],
+      ["趋势与分布", "比较不同时段、日期和精力区间，查看状态如何变化。"],
+      ["压力与恢复分析", "识别常见压力来源、恢复方式与工作恢复平衡。"],
+      ["自定义标签与贴纸", "按自己的工作和生活习惯调整状态、来源、情绪与贴纸。"],
+      ["提醒管理", "设置多个提醒、间隔计时和免打扰时段。"],
+      ["备份与数据管理", "导出、校验和恢复加密备份，也可生成可读报告。"],
+    ],
+  },
+  "zh-tw": {
+    posters: [
+      ["幾秒完成一次完整記錄", "在同一頁選擇精力、狀態、來源與情緒，也能補充文字、圖片或錄音。"],
+      ["沿著時間軸回看每次變化", "依日期瀏覽記錄，並以狀態、回顧、表情、文字、音訊或圖片快速篩選。"],
+      ["私人記錄只留在你的裝置", "PIN 鎖、內容防擷取與本地加密備份共同保護精力和情緒資料。"],
+      ["用報告理解消耗與恢復", "趨勢、分布、壓力、恢復與相關性分析，將長期記錄整理成清楚結論。"],
+    ],
+    screenshots: [
+      ["本地加密解鎖", "使用四位 PIN 進入應用程式，保護裝置上的私人記錄。"],
+      ["快速記錄", "選擇目前精力、工作狀態、觸發來源和情緒，幾秒即可儲存。"],
+      ["精力與情緒記錄", "同時記錄精力等級、目前狀態、影響因素與更完整的情緒。"],
+      ["多媒體記錄", "為一筆記錄加入文字、圖片、錄音或正念練習。"],
+      ["正念呼吸", "在應用程式內短暫停下，跟隨呼吸節奏平穩恢復。"],
+      ["完整時間軸", "依日期查看所有記錄，保留每次狀態變化的情境。"],
+      ["搜尋與分類篩選", "透過關鍵字、日期和內容類型快速找到過去的記錄。"],
+      ["分析報告總覽", "用關鍵指標與趨勢圖了解近期精力、穩定度和恢復情況。"],
+      ["趨勢與分布", "比較不同時段、日期和精力區間，查看狀態如何變化。"],
+      ["壓力與恢復分析", "辨識常見壓力來源、恢復方式和工作恢復平衡。"],
+      ["自訂標籤與貼紙", "依自己的工作與生活習慣調整狀態、來源、情緒和貼紙。"],
+      ["提醒管理", "設定多個提醒、間隔計時與勿擾時段。"],
+      ["備份與資料管理", "匯出、驗證及還原加密備份，也能產生可讀報告。"],
+    ],
+  },
+  en: {
+    posters: [
+      ["Capture a complete check-in in seconds", "Choose energy, state, trigger, and mood on one screen, with optional text, images, or audio."],
+      ["Review every change on a timeline", "Browse by date and filter by state, reflection, emoji, text, audio, or image."],
+      ["Keep private records on your device", "PIN access, capture protection, and encrypted local backups protect personal energy and mood data."],
+      ["Understand drain and recovery", "Trends, distributions, pressure, recovery, and correlation reports turn history into useful findings."],
+    ],
+    screenshots: [
+      ["Local encrypted access", "Open EnergyFlow with a four-digit PIN and protect private records on the device."],
+      ["Quick record", "Choose energy, work state, trigger, and mood, then save in seconds."],
+      ["Energy and mood context", "Capture energy level, current state, influencing factors, and a fuller emotional picture."],
+      ["Multimedia entries", "Add text, an image, audio, or a mindful pause to an entry."],
+      ["Mindful breathing", "Pause inside the app and follow a steady breathing rhythm before continuing."],
+      ["Complete timeline", "Review every entry by date while keeping the context around each change."],
+      ["Search and filters", "Find earlier entries with keywords, date ranges, and content-type filters."],
+      ["Analytics overview", "Read recent energy, stability, recovery, and trend indicators at a glance."],
+      ["Trends and distribution", "Compare periods, days, and energy ranges to see how your state changes."],
+      ["Pressure and recovery", "Identify recurring pressure sources, recovery methods, and work-recovery balance."],
+      ["Custom labels and stickers", "Adapt states, triggers, emotions, and stickers to your own routines."],
+      ["Reminder management", "Create multiple reminders, interval timers, and do-not-disturb periods."],
+      ["Backup and data control", "Export, verify, and restore encrypted backups, or generate a readable report."],
+    ],
+  },
+  ja: {
+    posters: [
+      ["数秒で状態をまとめて記録", "エネルギー、状態、要因、気分を一画面で選び、文章・画像・音声も追加できます。"],
+      ["変化をタイムラインで振り返る", "日付順に記録を確認し、状態、振り返り、絵文字、文章、音声、画像で絞り込めます。"],
+      ["個人的な記録は端末の中に", "PIN、画面取得保護、暗号化ローカルバックアップでエネルギーと気分の記録を守ります。"],
+      ["消耗と回復をレポートで理解", "傾向、分布、ストレス、回復、相関の分析が、長期記録を読みやすい結果にまとめます。"],
+    ],
+    screenshots: [
+      ["ローカル暗号化ロック", "4 桁の PIN でアプリを開き、端末内の個人的な記録を保護します。"],
+      ["クイック記録", "エネルギー、作業状態、要因、気分を選び、数秒で保存できます。"],
+      ["エネルギーと気分", "エネルギー段階、現在の状態、影響要因、より詳しい感情をまとめて残します。"],
+      ["マルチメディア記録", "文章、画像、音声、マインドフルネスを一つの記録に追加できます。"],
+      ["マインドフル呼吸", "アプリ内で一度立ち止まり、一定の呼吸リズムで落ち着きを取り戻します。"],
+      ["完全なタイムライン", "すべての記録を日付順に確認し、状態変化の背景も残します。"],
+      ["検索と分類フィルター", "キーワード、期間、内容タイプから過去の記録をすばやく探せます。"],
+      ["分析レポート概要", "最近のエネルギー、安定性、回復、傾向を主要指標で確認します。"],
+      ["傾向と分布", "時間帯、曜日、エネルギー範囲を比較し、状態の変化を把握します。"],
+      ["ストレスと回復", "繰り返すストレス要因、回復方法、仕事と回復のバランスを確認します。"],
+      ["カスタムラベルとステッカー", "状態、要因、感情、ステッカーを自分の習慣に合わせて調整できます。"],
+      ["リマインダー管理", "複数の通知、インターバルタイマー、通知停止時間を設定できます。"],
+      ["バックアップとデータ管理", "暗号化バックアップの書き出し、検証、復元と、読みやすいレポート作成に対応します。"],
+    ],
+  },
+  ko: {
+    posters: [
+      ["몇 초 만에 한 번의 기록을 완성", "에너지, 상태, 원인, 기분을 한 화면에서 선택하고 텍스트, 이미지, 오디오도 추가할 수 있습니다."],
+      ["타임라인에서 모든 변화를 확인", "날짜별로 기록을 보고 상태, 회고, 이모지, 텍스트, 오디오, 이미지로 필터링합니다."],
+      ["개인 기록은 내 기기에만", "PIN 잠금, 화면 캡처 보호, 암호화된 로컬 백업으로 에너지와 기분 데이터를 보호합니다."],
+      ["보고서로 소모와 회복을 이해", "추세, 분포, 압박, 회복, 상관관계 분석이 장기 기록을 명확한 결과로 정리합니다."],
+    ],
+    screenshots: [
+      ["로컬 암호화 잠금", "네 자리 PIN으로 앱을 열고 기기에 저장된 개인 기록을 보호합니다."],
+      ["빠른 기록", "현재 에너지, 업무 상태, 원인, 기분을 선택해 몇 초 안에 저장합니다."],
+      ["에너지와 감정 기록", "에너지 단계, 현재 상태, 영향 요인, 더 자세한 감정을 함께 기록합니다."],
+      ["멀티미디어 기록", "기록에 텍스트, 이미지, 오디오 또는 마음챙김 활동을 추가합니다."],
+      ["마음챙김 호흡", "앱 안에서 잠시 멈추고 일정한 호흡 리듬으로 회복합니다."],
+      ["전체 타임라인", "모든 기록을 날짜별로 확인하고 상태 변화의 맥락을 보존합니다."],
+      ["검색과 분류 필터", "키워드, 날짜 범위, 콘텐츠 유형으로 이전 기록을 빠르게 찾습니다."],
+      ["분석 보고서 개요", "최근 에너지, 안정성, 회복, 추세 지표를 한눈에 확인합니다."],
+      ["추세와 분포", "시간대, 요일, 에너지 구간을 비교해 상태 변화를 살펴봅니다."],
+      ["압박과 회복 분석", "반복되는 압박 요인, 회복 방법, 업무와 회복의 균형을 확인합니다."],
+      ["사용자 지정 라벨과 스티커", "상태, 원인, 감정, 스티커를 자신의 생활 방식에 맞게 조정합니다."],
+      ["알림 관리", "여러 알림, 인터벌 타이머, 방해 금지 시간을 설정합니다."],
+      ["백업과 데이터 관리", "암호화 백업을 내보내고 검증하거나 복원하며 읽기 쉬운 보고서도 생성합니다."],
+    ],
+  },
+  fr: {
+    posters: [
+      ["Un relevé complet en quelques secondes", "Choisissez énergie, état, facteur et humeur sur un seul écran, avec texte, image ou audio en option."],
+      ["Relire chaque changement dans la chronologie", "Parcourez les dates et filtrez par état, réflexion, emoji, texte, audio ou image."],
+      ["Vos notes privées restent sur l’appareil", "Code PIN, protection contre la capture et sauvegardes locales chiffrées protègent les données personnelles."],
+      ["Comprendre fatigue et récupération", "Tendances, répartitions, pression, récupération et corrélations transforment l’historique en constats lisibles."],
+    ],
+    screenshots: [
+      ["Accès local chiffré", "Ouvrez EnergyFlow avec un code PIN à quatre chiffres et protégez les notes privées de l’appareil."],
+      ["Saisie rapide", "Choisissez énergie, état de travail, facteur et humeur, puis enregistrez en quelques secondes."],
+      ["Énergie et humeur", "Réunissez niveau d’énergie, état actuel, facteurs d’influence et émotions détaillées."],
+      ["Notes multimédias", "Ajoutez du texte, une image, un enregistrement audio ou une pause consciente."],
+      ["Respiration consciente", "Faites une courte pause dans l’application et suivez un rythme respiratoire régulier."],
+      ["Chronologie complète", "Relisez toutes les entrées par date tout en conservant le contexte de chaque changement."],
+      ["Recherche et filtres", "Retrouvez une entrée par mot-clé, période et type de contenu."],
+      ["Vue d’ensemble analytique", "Consultez en un regard énergie récente, stabilité, récupération et tendances."],
+      ["Tendances et répartition", "Comparez périodes, jours et niveaux d’énergie pour suivre l’évolution de votre état."],
+      ["Pression et récupération", "Repérez les sources de pression, les méthodes de récupération et leur équilibre."],
+      ["Libellés et stickers personnalisés", "Adaptez états, facteurs, émotions et stickers à vos propres habitudes."],
+      ["Gestion des rappels", "Créez plusieurs rappels, minuteurs d’intervalle et périodes sans interruption."],
+      ["Sauvegarde et contrôle des données", "Exportez, vérifiez et restaurez les sauvegardes chiffrées ou générez un rapport lisible."],
+    ],
+  },
+  de: {
+    posters: [
+      ["Ein vollständiger Eintrag in wenigen Sekunden", "Energie, Zustand, Auslöser und Stimmung auf einer Seite wählen und bei Bedarf Text, Bild oder Audio ergänzen."],
+      ["Jede Veränderung in der Zeitleiste prüfen", "Einträge nach Datum ansehen und nach Zustand, Reflexion, Emoji, Text, Audio oder Bild filtern."],
+      ["Private Aufzeichnungen bleiben auf dem Gerät", "PIN-Zugang, Aufnahmeschutz und verschlüsselte lokale Backups schützen persönliche Energie- und Stimmungsdaten."],
+      ["Belastung und Erholung verstehen", "Trends, Verteilungen, Belastung, Erholung und Korrelationen machen langfristige Aufzeichnungen verständlich."],
+    ],
+    screenshots: [
+      ["Lokal verschlüsselter Zugang", "EnergyFlow mit einer vierstelligen PIN öffnen und private Einträge auf dem Gerät schützen."],
+      ["Schneller Eintrag", "Energie, Arbeitszustand, Auslöser und Stimmung wählen und in Sekunden speichern."],
+      ["Energie und Stimmung", "Energieniveau, aktuellen Zustand, Einflussfaktoren und ein genaueres Gefühl gemeinsam erfassen."],
+      ["Multimedia-Einträge", "Text, Bild, Audio oder eine Achtsamkeitspause zu einem Eintrag hinzufügen."],
+      ["Achtsames Atmen", "Kurz in der App innehalten und mit einem gleichmäßigen Atemrhythmus zur Ruhe kommen."],
+      ["Vollständige Zeitleiste", "Alle Einträge nach Datum prüfen und den Kontext jeder Veränderung bewahren."],
+      ["Suche und Filter", "Frühere Einträge über Stichwort, Zeitraum und Inhaltstyp finden."],
+      ["Analyseübersicht", "Aktuelle Energie, Stabilität, Erholung und Trends auf einen Blick erfassen."],
+      ["Trends und Verteilung", "Zeiträume, Tage und Energiebereiche vergleichen und Veränderungen erkennen."],
+      ["Belastung und Erholung", "Wiederkehrende Belastungen, Erholungsmethoden und die Balance dazwischen erkennen."],
+      ["Eigene Labels und Sticker", "Zustände, Auslöser, Gefühle und Sticker an den eigenen Alltag anpassen."],
+      ["Erinnerungen verwalten", "Mehrere Erinnerungen, Intervalltimer und Ruhezeiten festlegen."],
+      ["Backup und Datenkontrolle", "Verschlüsselte Backups exportieren, prüfen und wiederherstellen oder einen lesbaren Bericht erstellen."],
+    ],
+  },
+  es: {
+    posters: [
+      ["Un registro completo en pocos segundos", "Elige energía, estado, causa y ánimo en una pantalla, con texto, imagen o audio opcionales."],
+      ["Revisa cada cambio en la cronología", "Navega por fecha y filtra por estado, reflexión, emoji, texto, audio o imagen."],
+      ["Tus registros privados se quedan en el dispositivo", "El PIN, la protección de captura y las copias locales cifradas protegen los datos personales."],
+      ["Comprende desgaste y recuperación", "Tendencias, distribución, presión, recuperación y correlaciones convierten el historial en conclusiones claras."],
+    ],
+    screenshots: [
+      ["Acceso local cifrado", "Abre EnergyFlow con un PIN de cuatro dígitos y protege los registros del dispositivo."],
+      ["Registro rápido", "Elige energía, estado de trabajo, causa y ánimo, y guarda en pocos segundos."],
+      ["Energía y estado de ánimo", "Registra nivel de energía, estado actual, factores y una imagen emocional más completa."],
+      ["Registros multimedia", "Añade texto, una imagen, audio o una pausa consciente a cada registro."],
+      ["Respiración consciente", "Haz una pausa dentro de la aplicación y sigue un ritmo de respiración estable."],
+      ["Cronología completa", "Revisa todos los registros por fecha y conserva el contexto de cada cambio."],
+      ["Búsqueda y filtros", "Encuentra registros anteriores por palabra clave, fechas y tipo de contenido."],
+      ["Resumen de análisis", "Consulta energía reciente, estabilidad, recuperación y tendencias de un vistazo."],
+      ["Tendencias y distribución", "Compara periodos, días y rangos de energía para ver cómo cambia tu estado."],
+      ["Presión y recuperación", "Identifica fuentes de presión, formas de recuperarte y el equilibrio entre ambas."],
+      ["Etiquetas y stickers personalizados", "Adapta estados, causas, emociones y stickers a tus propias rutinas."],
+      ["Gestión de recordatorios", "Crea varios avisos, temporizadores por intervalos y periodos sin interrupciones."],
+      ["Copias y control de datos", "Exporta, verifica y restaura copias cifradas o genera un informe legible."],
+    ],
+  },
+  ru: {
+    posters: [
+      ["Полная запись за несколько секунд", "Выберите энергию, состояние, причину и настроение на одном экране, при желании добавьте текст, изображение или аудио."],
+      ["Просматривайте изменения на временной шкале", "Открывайте записи по датам и фильтруйте их по состоянию, заметкам, эмодзи, тексту, аудио или изображениям."],
+      ["Личные записи остаются на устройстве", "PIN-код, защита от захвата экрана и зашифрованные локальные копии защищают личные данные."],
+      ["Понимайте нагрузку и восстановление", "Тренды, распределения, давление, восстановление и корреляции превращают историю в понятные выводы."],
+    ],
+    screenshots: [
+      ["Локальный зашифрованный доступ", "Открывайте EnergyFlow четырёхзначным PIN-кодом и защищайте личные записи на устройстве."],
+      ["Быстрая запись", "Выберите энергию, рабочее состояние, причину и настроение, затем сохраните за несколько секунд."],
+      ["Энергия и настроение", "Сохраняйте уровень энергии, текущее состояние, влияющие факторы и более точные эмоции."],
+      ["Мультимедийные записи", "Добавляйте к записи текст, изображение, аудио или короткую практику осознанности."],
+      ["Осознанное дыхание", "Сделайте паузу в приложении и восстановитесь с помощью ровного ритма дыхания."],
+      ["Полная временная шкала", "Просматривайте все записи по датам и сохраняйте контекст каждого изменения."],
+      ["Поиск и фильтры", "Находите старые записи по ключевым словам, датам и типу содержимого."],
+      ["Обзор аналитики", "Смотрите недавнюю энергию, стабильность, восстановление и тренды на одном экране."],
+      ["Тренды и распределение", "Сравнивайте периоды, дни и диапазоны энергии, чтобы видеть изменения состояния."],
+      ["Давление и восстановление", "Определяйте повторяющиеся источники нагрузки, способы восстановления и баланс между ними."],
+      ["Свои метки и стикеры", "Настройте состояния, причины, эмоции и стикеры под собственные привычки."],
+      ["Управление напоминаниями", "Создавайте несколько напоминаний, интервальные таймеры и периоды без уведомлений."],
+      ["Резервные копии и данные", "Экспортируйте, проверяйте и восстанавливайте зашифрованные копии или создавайте читаемый отчёт."],
+    ],
+  },
+  pt: {
+    posters: [
+      ["Um registo completo em poucos segundos", "Escolha energia, estado, causa e humor num só ecrã, com texto, imagem ou áudio opcionais."],
+      ["Reveja cada mudança na linha temporal", "Consulte por data e filtre por estado, reflexão, emoji, texto, áudio ou imagem."],
+      ["Os registos privados ficam no dispositivo", "PIN, proteção contra captura e cópias locais cifradas protegem dados pessoais de energia e humor."],
+      ["Compreenda desgaste e recuperação", "Tendências, distribuições, pressão, recuperação e correlações transformam o histórico em conclusões claras."],
+    ],
+    screenshots: [
+      ["Acesso local cifrado", "Abra o EnergyFlow com um PIN de quatro dígitos e proteja os registos guardados no dispositivo."],
+      ["Registo rápido", "Escolha energia, estado de trabalho, causa e humor e guarde em poucos segundos."],
+      ["Energia e humor", "Registe o nível de energia, o estado atual, os fatores e uma visão emocional mais completa."],
+      ["Registos multimédia", "Adicione texto, imagem, áudio ou uma pausa consciente a cada registo."],
+      ["Respiração consciente", "Faça uma pausa dentro da aplicação e siga um ritmo respiratório estável."],
+      ["Linha temporal completa", "Reveja todos os registos por data e mantenha o contexto de cada mudança."],
+      ["Pesquisa e filtros", "Encontre registos anteriores por palavra-chave, período e tipo de conteúdo."],
+      ["Visão geral da análise", "Consulte energia recente, estabilidade, recuperação e tendências num relance."],
+      ["Tendências e distribuição", "Compare períodos, dias e níveis de energia para perceber mudanças de estado."],
+      ["Pressão e recuperação", "Identifique fontes de pressão, formas de recuperação e o equilíbrio entre ambas."],
+      ["Etiquetas e stickers personalizados", "Adapte estados, causas, emoções e stickers às suas rotinas."],
+      ["Gestão de lembretes", "Crie vários lembretes, temporizadores de intervalo e períodos sem interrupções."],
+      ["Cópias e controlo de dados", "Exporte, verifique e restaure cópias cifradas ou gere um relatório legível."],
+    ],
+  },
+} as const satisfies Record<Locale, EnergyFlowMediaCopy>;
+
+export function getEnergyFlowMediaCopy(locale: Locale): EnergyFlowMediaCopy {
+  return energyFlowMediaContent[locale] ?? energyFlowMediaContent.en;
 }
 
 export type CommerceLabelCopy = {

@@ -24,15 +24,15 @@ export default function ProductPricing({ product }: { product: ProductId }) {
   );
 
   return (
-    <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28 border-t border-white/[0.07]">
+    <section className="product-pricing-section">
       <span className="eyebrow">{pricing.eyebrow}</span>
-      <div className="mt-7 grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-start">
-        <div>
+      <div className="product-pricing-grid">
+        <div className="product-pricing-copy">
           <DisplayHeading variant="section" className="mt-0">{pricing.title}</DisplayHeading>
           <p className="mt-6 text-lg leading-[1.85] text-muted">{pricing.summary}</p>
         </div>
 
-        <div className="border border-white/[0.08] bg-white/[0.018]">
+        <div className="product-pricing-panel border border-white/[0.08] bg-white/[0.018]">
           <div className="grid grid-cols-1 sm:grid-cols-2 border-b border-white/[0.07]">
             <div className="p-5 border-b sm:border-b-0 sm:border-r border-white/[0.07]">
               <div className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{isFree ? labels.free : labels.trial}</div>

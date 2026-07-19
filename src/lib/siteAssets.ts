@@ -1,9 +1,9 @@
 import type { Locale } from "@/lib/i18n/context";
 
-export type ImageLocale = "zh" | "en";
+export type EnergyFlowAssetLocale = "zh" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "pt";
+export type EnergyFlowPosterLocale = "zh" | "en";
 export type DeskHavenAssetLocale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
 export type AdhdAssetLocale = "zh" | "en" | "ja" | "fr" | "de" | "es";
-export type SizedImage = { src: string; width: number; height: number };
 
 export const microsoftStoreLinks = {
   energyflow: "https://apps.microsoft.com/store/detail/9N7ZWFVC2QQS?cid=DevShareMCLPCS",
@@ -11,8 +11,16 @@ export const microsoftStoreLinks = {
   adhd: "https://apps.microsoft.com/store/detail/9MWWCZJPGW4Q?cid=DevShareMCLPCS",
 } as const;
 
-export function imageLocale(locale: string): ImageLocale {
-  return locale === "zh" ? "zh" : "en";
+export function energyFlowAssetLocale(locale: Locale): EnergyFlowAssetLocale {
+  if (locale === "zh" || locale === "zh-tw") return "zh";
+  if (["en", "ja", "ko", "fr", "de", "es", "pt"].includes(locale)) {
+    return locale as EnergyFlowAssetLocale;
+  }
+  return "en";
+}
+
+export function energyFlowPosterLocale(locale: Locale): EnergyFlowPosterLocale {
+  return locale === "zh" || locale === "zh-tw" ? "zh" : "en";
 }
 
 export function deskHavenAssetLocale(locale: Locale): DeskHavenAssetLocale {
@@ -28,70 +36,37 @@ export function adhdAssetLocale(locale: Locale): AdhdAssetLocale {
   return "en";
 }
 
-export const energyFlowImages = {
-  zh: {
-    quickLog: "/photo/energyflow-zh-1.png",
-    themeSwitch: "/photo/energyflow-zh-2.png",
-    privacy: "/photo/energyflow-zh-3.png",
-    analytics: "/photo/energyflow-zh-4.png",
-    desktopAlwaysOn: "/photo/energyflow-zh-5.png",
-  },
-  en: {
-    desktopAlwaysOn: "/photo/energyflow-en-1.png",
-    quickLog: "/photo/energyflow-en-2.png",
-    privacy: "/photo/energyflow-en-3.png",
-    analytics: "/photo/energyflow-en-4.png",
-    themeSwitch: "/photo/energyflow-en-5.png",
-  },
-} as const;
-
-function numberedEnergyFlowScreenshots(locale: ImageLocale) {
+function numberedEnergyFlowScreenshots(locale: EnergyFlowAssetLocale) {
   return Array.from(
     { length: 13 },
     (_, index) => `/photo/energyflow/${locale}/screenshots/screenshot-${String(index + 1).padStart(2, "0")}.webp`,
   );
 }
 
-const energyFlowGallerySizes: Record<ImageLocale, readonly Omit<SizedImage, "src">[]> = {
-  zh: [
-    { width: 589, height: 585 },
-    { width: 699, height: 889 },
-    { width: 704, height: 889 },
-    { width: 695, height: 891 },
-    { width: 709, height: 893 },
-    { width: 705, height: 900 },
-    { width: 709, height: 892 },
-    { width: 707, height: 890 },
-    { width: 590, height: 597 },
-    { width: 671, height: 797 },
-    { width: 694, height: 885 },
-    { width: 690, height: 640 },
-    { width: 697, height: 634 },
-  ],
-  en: [
-    { width: 588, height: 593 },
-    { width: 714, height: 874 },
-    { width: 591, height: 589 },
-    { width: 713, height: 890 },
-    { width: 715, height: 901 },
-    { width: 706, height: 888 },
-    { width: 708, height: 900 },
-    { width: 707, height: 887 },
-    { width: 704, height: 882 },
-    { width: 687, height: 818 },
-    { width: 708, height: 893 },
-    { width: 691, height: 678 },
-    { width: 693, height: 640 },
-  ],
-};
+function numberedEnergyFlowPosters(locale: EnergyFlowPosterLocale) {
+  return Array.from(
+    { length: 4 },
+    (_, index) => `/photo/energyflow/${locale}/posters/poster-${String(index + 1).padStart(2, "0")}.webp`,
+  );
+}
 
-export function energyFlowGalleryForLocale(locale: Locale): SizedImage[] {
-  const assetLocale = imageLocale(locale);
+export function energyFlowImagesForLocale(locale: Locale) {
+  const assetLocale = energyFlowAssetLocale(locale);
+  const posterLocale = energyFlowPosterLocale(locale);
   const screenshots = numberedEnergyFlowScreenshots(assetLocale);
-  return screenshots.map((src, index) => ({
-    src,
-    ...energyFlowGallerySizes[assetLocale][index],
-  }));
+  const posters = numberedEnergyFlowPosters(posterLocale);
+
+  return {
+    locale: assetLocale,
+    posterLocale,
+    posters,
+    screenshots,
+    hero: posters[0],
+    quickRecord: posters[0],
+    timeline: posters[1],
+    privacy: posters[2],
+    analytics: posters[3],
+  };
 }
 
 function numberedAdhdScreenshots(locale: AdhdAssetLocale) {
@@ -172,13 +147,16 @@ export function optimizedImagePath(src: string) {
   return `/photo-optimized/${src.slice("/photo/".length, dot)}.webp`;
 }
 
-export function allEnergyFlowImages() {
-  return [
-    ...Object.values(energyFlowImages.zh),
-    ...Object.values(energyFlowImages.en),
-    ...numberedEnergyFlowScreenshots("zh"),
-    ...numberedEnergyFlowScreenshots("en"),
-  ];
+export function allEnergyFlowImages(locale?: Locale) {
+  if (locale) {
+    const assets = energyFlowImagesForLocale(locale);
+    return [...assets.posters, ...assets.screenshots];
+  }
+
+  const screenshots = (["zh", "en", "ja", "ko", "fr", "de", "es", "pt"] as EnergyFlowAssetLocale[])
+    .flatMap(numberedEnergyFlowScreenshots);
+  const posters = (["zh", "en"] as EnergyFlowPosterLocale[]).flatMap(numberedEnergyFlowPosters);
+  return [...posters, ...screenshots];
 }
 
 export function allAdhdImages(locale?: Locale) {

@@ -1,16 +1,16 @@
 "use client";
 
 import { ProductInfoLinks } from "../../components/ProductActions";
+import { ProductFeatureSections } from "../../components/ProductFeatureSections";
 import { ProductHero, ProductPromise } from "../../components/ProductHero";
-import { NumberedCardGrid } from "../../components/NumberedCardGrid";
+import { ProductMediaGallery } from "../../components/ProductMediaGallery";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
-import { DisplayHeading } from "../../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
 import { deskHavenPosterSectionCopy, deskHavenPosterStories } from "@/lib/deskhavenPosterCopy";
 import { getSiteCopy } from "@/lib/siteCopy";
-import { allDeskHavenImages, deskHavenImagesForLocale, microsoftStoreLinks } from "@/lib/siteAssets";
+import { deskHavenImagesForLocale, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 export default function DeskHavenPage() {
@@ -21,10 +21,10 @@ export default function DeskHavenPage() {
   const posterCopy = deskHavenPosterStories(locale, assets.locale);
   const legalLabel = commerceLabels(locale).legal;
   const labels = commerceLabels(locale);
-  usePreloadImages(allDeskHavenImages(locale));
+  usePreloadImages([assets.hero, assets.posters[0], ...assets.screenshots.slice(0, 2)], true, 6);
 
   return (
-    <div className="flex flex-col">
+    <div className="product-page" data-product="deskhaven">
       <ProductHero
         eyebrow={copy.deskhaven.eyebrow}
         title={copy.deskhaven.title}
@@ -58,68 +58,23 @@ export default function DeskHavenPage() {
         ]}
       />
 
-      <section className="border-t border-white/[0.07]">
-        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
-          <span className="eyebrow">{note.eyebrow}</span>
-          <div className="mt-7 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-start">
-            <div className="detail-sticky">
-              <DisplayHeading variant="section" className="mt-0">{note.title}</DisplayHeading>
-              <p className="mt-6 text-lg leading-[1.85] text-muted">{note.body}</p>
-            </div>
+      <ProductFeatureSections
+        features={posterCopy}
+        images={assets.posters}
+        imageWidth={1120}
+        imageHeight={630}
+      />
 
-            <div className="poster-stack">
-              {assets.posters.map((poster, index) => {
-                const story = posterCopy[index] ?? posterCopy[0];
-
-                return (
-                  <article key={poster} className="poster-story-card">
-                    <SmartScreenshot
-                      src={poster}
-                      alt={`DeskHaven poster ${index + 1}`}
-                      width={1120}
-                      height={630}
-                      sizes="(max-width: 1024px) 92vw, 680px"
-                      frameClassName="shadow-none"
-                    />
-                    <div className="poster-story-copy">
-                      <span>0{index + 1}</span>
-                      <h3>{story[0]}</h3>
-                      <p>{story[1]}</p>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
-        <span className="eyebrow">{copy.common.designPrinciples}</span>
-        <NumberedCardGrid items={copy.deskhaven.principles} />
-      </section>
-
-      <section className="border-t border-white/[0.07]">
-        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32">
-          <span className="eyebrow">{note.galleryEyebrow}</span>
-          <DisplayHeading variant="section">{note.galleryTitle}</DisplayHeading>
-          <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{note.galleryBody}</p>
-
-          <div className="mt-14 screenshot-gallery">
-            {assets.screenshots.map((screenshot, index) => (
-              <SmartScreenshot
-                key={screenshot}
-                src={screenshot}
-                alt={`DeskHaven interface screenshot ${index + 1}`}
-                width={1180}
-                height={664}
-                sizes="(max-width: 768px) 92vw, (max-width: 1180px) 44vw, 540px"
-                frameClassName="shadow-none"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProductMediaGallery
+        eyebrow={note.galleryEyebrow}
+        title={note.galleryTitle}
+        intro={note.galleryBody}
+        images={assets.screenshots}
+        imageWidth={1180}
+        imageHeight={664}
+        imageShape="landscape"
+        productName="DeskHaven"
+      />
     </div>
   );
 }

@@ -18,16 +18,16 @@ export function ProductHero({
   children: ReactNode;
 }) {
   return (
-    <section className="max-w-[1180px] mx-auto px-5 md:px-8 pt-28 md:pt-40 pb-16 md:pb-24">
+    <section className="product-hero-section">
       <div className="product-page-grid">
-        <div className="animate-fade-in">
+        <div className="product-hero-copy animate-fade-in">
           <span className="eyebrow">{eyebrow}</span>
           <DisplayHeading variant="hero" gradient>{title}</DisplayHeading>
           <p className="mt-8 text-lg md:text-xl leading-[1.8] text-muted max-w-2xl">{intro}</p>
           <ProductHeroActions status={status} actions={actions} />
         </div>
 
-        {children}
+        <div className="product-hero-media">{children}</div>
       </div>
     </section>
   );
@@ -43,10 +43,14 @@ export function ProductPromise({
   body: string;
 }) {
   return (
-    <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
-      <span className="eyebrow">{eyebrow}</span>
-      <DisplayHeading variant="section">{title}</DisplayHeading>
-      <p className="mt-7 text-lg leading-[1.85] text-muted max-w-3xl">{body}</p>
+    <section className="product-promise-section">
+      <div className="product-promise-grid">
+        <span className="eyebrow">{eyebrow}</span>
+        <div>
+          <DisplayHeading variant="section" className="mt-0">{title}</DisplayHeading>
+          <p>{body}</p>
+        </div>
+      </div>
     </section>
   );
 }

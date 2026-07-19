@@ -40,8 +40,8 @@ export function ProductHeroActions({
   actions: readonly ProductAction[];
 }) {
   return (
-    <div className="mt-10 flex flex-wrap gap-3">
-      <span className="rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{status}</span>
+    <div className="product-hero-actions mt-10 flex flex-wrap gap-3">
+      <span className="product-status rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{status}</span>
       {actions.map((action) => (
         <ActionLink key={`${action.href}-${action.label}`} action={action} />
       ))}
@@ -51,8 +51,8 @@ export function ProductHeroActions({
 
 export function ProductInfoLinks({ actions }: { actions: readonly ProductAction[] }) {
   return (
-    <section className="max-w-[1180px] mx-auto px-5 md:px-8 pb-16 md:pb-24">
-      <div className="flex flex-wrap gap-3 border-t border-white/[0.07] pt-8 text-sm">
+    <section className="product-info-links-section">
+      <div className="product-info-links">
         {actions.map((action) => (
           <ActionLink key={`${action.href}-${action.label}`} action={action} compact />
         ))}

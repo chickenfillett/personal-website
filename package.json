@@ -7,7 +7,8 @@
     "build": "node scripts/optimize-images.mjs && next build",
     "start": "next start",
     "lint": "eslint",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "import:energyflow": "node scripts/import-energyflow-assets.mjs"
   },
   "dependencies": {
     "next": "16.2.4",

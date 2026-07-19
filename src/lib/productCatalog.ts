@@ -4,8 +4,7 @@ import type { ProductId } from "@/lib/productCommerce";
 import {
   adhdImagesForLocale,
   deskHavenImagesForLocale,
-  energyFlowImages,
-  imageLocale,
+  energyFlowImagesForLocale,
 } from "@/lib/siteAssets";
 
 export type ProductCatalogItem = {
@@ -20,7 +19,7 @@ export type ProductCatalogItem = {
 
 export function productCatalog(locale: Locale): ProductCatalogItem[] {
   const copy = getSiteCopy(locale);
-  const assetLocale = imageLocale(locale);
+  const energyFlowAssets = energyFlowImagesForLocale(locale);
   const deskHavenAssets = deskHavenImagesForLocale(locale);
   const adhdAssets = adhdImagesForLocale(locale);
 
@@ -29,7 +28,7 @@ export function productCatalog(locale: Locale): ProductCatalogItem[] {
       id: "energyflow",
       ...copy.productCards.energyflow,
       href: "/products/energyflow",
-      image: energyFlowImages[assetLocale].quickLog,
+      image: energyFlowAssets.quickRecord,
     },
     {
       id: "deskhaven",
@@ -47,14 +46,14 @@ export function productCatalog(locale: Locale): ProductCatalogItem[] {
 }
 
 export function productPreviewSlides(locale: Locale) {
-  const assetLocale = imageLocale(locale);
+  const energyFlowAssets = energyFlowImagesForLocale(locale);
   const deskHavenAssets = deskHavenImagesForLocale(locale);
   const adhdAssets = adhdImagesForLocale(locale);
 
   return [
-    { title: "EnergyFlow", image: energyFlowImages[assetLocale].quickLog, href: "/products/energyflow" },
+    { title: "EnergyFlow", image: energyFlowAssets.quickRecord, href: "/products/energyflow" },
     { title: "DeskHaven", image: deskHavenAssets.hero, href: "/products/deskhaven" },
-    { title: "EnergyFlow Analytics", image: energyFlowImages[assetLocale].analytics, href: "/products/energyflow" },
+    { title: "EnergyFlow Analytics", image: energyFlowAssets.analytics, href: "/products/energyflow" },
     { title: "ADHD Focus Timer", image: adhdAssets.focus, href: "/products/adhd-focus-timer" },
   ];
 }
