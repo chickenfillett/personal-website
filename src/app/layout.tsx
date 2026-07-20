@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "./brand-v4.css";
-import "./brand-polish.css";
-import "./product-system.css";
-import "./visual-depth.css";
+import "./brand.css";
+import "./products.css";
+import "./effects.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AmbientDepthScene from "./components/AmbientDepthScene";

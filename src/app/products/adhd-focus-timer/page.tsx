@@ -8,7 +8,7 @@ import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
-import { getSiteCopy } from "@/lib/siteCopy";
+import { getSiteCopy } from "@/content/siteContent";
 import { adhdImagesForLocale, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 

@@ -4,8 +4,9 @@ import { LegalDocumentHero, LegalDocumentSections } from "./LegalDocument";
 import Link from "./TransitionLink";
 import type { PolicyKind } from "@/lib/productPolicies";
 import { productPolicyCopy } from "@/lib/productPolicies";
-import type { ProductId } from "@/lib/productCommerce";
-import { commerceLabels, productPolicyMeta } from "@/lib/productCommerce";
+import type { ProductId } from "@/domain/products";
+import { productPolicyMeta } from "@/domain/products";
+import { commerceLabels } from "@/lib/productCommerce";
 import { useLanguage } from "@/lib/i18n/context";
 
 export default function ProductPolicyPage({ product, kind }: { product: ProductId; kind: PolicyKind }) {

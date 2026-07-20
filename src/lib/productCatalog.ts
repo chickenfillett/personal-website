@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/context";
-import { getSiteCopy } from "@/lib/siteCopy";
-import type { ProductId } from "@/lib/productCommerce";
+import { getSiteCopy } from "@/content/siteContent";
+import type { ProductId } from "@/domain/products";
 import {
   adhdImagesForLocale,
   deskHavenImagesForLocale,

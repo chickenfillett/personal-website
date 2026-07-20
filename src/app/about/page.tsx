@@ -4,7 +4,7 @@ import Link from "../components/TransitionLink";
 import { PageHero } from "../components/PageHero";
 import { DisplayHeading } from "../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
-import { getSiteCopy } from "@/lib/siteCopy";
+import { getSiteCopy } from "@/content/siteContent";
 
 export default function About() {
   const { locale } = useLanguage();

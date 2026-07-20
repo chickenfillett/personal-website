@@ -9,7 +9,7 @@ import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { commerceLabels } from "@/lib/productCommerce";
 import { deskHavenPosterSectionCopy, deskHavenPosterStories } from "@/lib/deskhavenPosterCopy";
-import { getSiteCopy } from "@/lib/siteCopy";
+import { getSiteCopy } from "@/content/siteContent";
 import { deskHavenImagesForLocale, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 

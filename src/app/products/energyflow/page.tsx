@@ -8,8 +8,8 @@ import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { commerceLabels, productPricing } from "@/lib/productCommerce";
-import { getEnergyFlowMediaCopy } from "@/lib/siteContent";
-import { getSiteCopy } from "@/lib/siteCopy";
+import { getEnergyFlowMediaCopy } from "@/content/siteContent";
+import { getSiteCopy } from "@/content/siteContent";
 import { energyFlowImagesForLocale, microsoftStoreLinks } from "@/lib/siteAssets";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 

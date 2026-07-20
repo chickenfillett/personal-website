@@ -6,7 +6,7 @@ import SmartScreenshot from "./components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
 import { DisplayHeading } from "./components/Typography";
 import { productCatalog, productCatalogPreloadImages, productPreviewSlides } from "@/lib/productCatalog";
-import { getSiteCopy } from "@/lib/siteCopy";
+import { getSiteCopy } from "@/content/siteContent";
 import { usePreloadImages } from "@/lib/usePreloadImages";
 
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);

@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n/context";
-import { productPricing, type ProductId, type ProductPricingCopy } from "@/lib/productCommerce";
+import type { ProductId, ProductPricingCopy } from "@/domain/products";
+import { productPricing } from "@/lib/productCommerce";
 
 export type PriceItem = ProductPricingCopy["prices"][number];
 

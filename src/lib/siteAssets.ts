@@ -3,6 +3,7 @@ import type { Locale } from "@/lib/i18n/context";
 export type EnergyFlowAssetLocale = "zh" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "pt";
 export type EnergyFlowPosterLocale = "zh" | "en";
 export type DeskHavenAssetLocale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
+export type DeskHavenPosterLocale = Exclude<DeskHavenAssetLocale, "ko" | "de">;
 export type AdhdAssetLocale = "zh" | "en" | "ja" | "fr" | "de" | "es";
 
 export const microsoftStoreLinks = {
@@ -28,6 +29,11 @@ export function deskHavenAssetLocale(locale: Locale): DeskHavenAssetLocale {
     return locale as DeskHavenAssetLocale;
   }
   return "en";
+}
+
+export function deskHavenPosterLocale(locale: Locale): DeskHavenPosterLocale {
+  const assetLocale = deskHavenAssetLocale(locale);
+  return assetLocale === "de" || assetLocale === "ko" ? "en" : assetLocale;
 }
 
 export function adhdAssetLocale(locale: Locale): AdhdAssetLocale {
@@ -120,11 +126,15 @@ const deskHavenScreenshotCount: Record<DeskHavenAssetLocale, number> = {
 
 export function deskHavenImagesForLocale(locale: Locale) {
   const assetLocale = deskHavenAssetLocale(locale);
-  const posters = numberedAssets(assetLocale, "posters", 10);
+  const posterLocale = deskHavenPosterLocale(locale);
+  const posters = posterLocale === "es"
+    ? [...numberedAssets("es", "posters", 9), "/photo/deskhaven/en/posters/poster-10.webp"]
+    : numberedAssets(posterLocale, "posters", 10);
   const screenshots = numberedAssets(assetLocale, "screenshots", deskHavenScreenshotCount[assetLocale]);
 
   return {
     locale: assetLocale,
+    posterLocale,
     posters,
     screenshots,
     hero: posters[1] ?? posters[0],
@@ -139,13 +149,6 @@ export function deskHavenImagesForLocale(locale: Locale) {
 }
 
 export const deskHavenImages = deskHavenImagesForLocale("en");
-
-export function optimizedImagePath(src: string) {
-  const dot = src.lastIndexOf(".");
-  const extension = dot > -1 ? src.slice(dot).toLowerCase() : "";
-  if (extension === ".webp" || !src.startsWith("/photo/")) return src;
-  return `/photo-optimized/${src.slice("/photo/".length, dot)}.webp`;
-}
 
 export function allEnergyFlowImages(locale?: Locale) {
   if (locale) {
@@ -170,9 +173,11 @@ export function allDeskHavenImages(locale?: Locale) {
     return [...assets.posters, ...assets.screenshots];
   }
 
-  return (["zh", "zh-tw", "en", "ja", "ko", "fr", "de", "es", "ru", "pt"] as DeskHavenAssetLocale[]).flatMap((item) => {
-    const posters = numberedAssets(item, "posters", 10);
-    const screenshots = numberedAssets(item, "screenshots", deskHavenScreenshotCount[item]);
-    return [...posters, ...screenshots];
-  });
+  const images = (["zh", "zh-tw", "en", "ja", "ko", "fr", "de", "es", "ru", "pt"] as DeskHavenAssetLocale[])
+    .flatMap((item) => {
+      const assets = deskHavenImagesForLocale(item);
+      return [...assets.posters, ...assets.screenshots];
+    });
+
+  return Array.from(new Set(images));
 }

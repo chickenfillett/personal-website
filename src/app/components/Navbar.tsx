@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Locale, supportedLocales, useLanguage } from "@/lib/i18n/context";
-import { navCopy } from "@/lib/siteCopy";
+import { navCopy } from "@/content/siteContent";
 import Link from "./TransitionLink";
 
 export default function Navbar() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { ProductId } from "@/lib/productCommerce";
+import type { ProductId } from "@/domain/products";
 import { commerceLabels, productPricing } from "@/lib/productCommerce";
 import { detectedBrowserLanguage, selectLocalProductPrice } from "@/lib/localPricing";
 import { useLanguage } from "@/lib/i18n/context";

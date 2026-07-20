@@ -2,7 +2,7 @@
 
 import { PageHero } from "../components/PageHero";
 import { useLanguage } from "@/lib/i18n/context";
-import { getSiteCopy } from "@/lib/siteCopy";
+import { getSiteCopy } from "@/content/siteContent";
 
 export default function Contact() {
   const { locale } = useLanguage();

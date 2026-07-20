@@ -1,11 +1,6 @@
 [build]
-  command = "npm run build"
+  command = "npm run build:static"
   publish = "dist"
-
-[[headers]]
-  for = "/photo-optimized/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/photo/*"

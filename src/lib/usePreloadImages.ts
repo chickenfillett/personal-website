@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { optimizedImagePath } from "./siteAssets";
 
 type NetworkInformationLike = {
   saveData?: boolean;
@@ -41,7 +40,7 @@ export function usePreloadImages(sources: string[], enabled = true, limit = 6) {
         const image = new window.Image();
         image.decoding = "async";
         image.setAttribute("fetchpriority", "low");
-        image.src = optimizedImagePath(src);
+        image.src = src;
       }
     };
 

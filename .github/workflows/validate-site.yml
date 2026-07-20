@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
-  issues: write
 
 concurrency:
   group: validate-site-${{ github.event.pull_request.number }}
@@ -16,7 +14,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build static site
+    name: Validate static and server builds
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -33,32 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build site
-        id: build
-        shell: bash
-        run: |
-          set +e
-          npm run build > build-output.log 2>&1
-          status=$?
-          if [ "$status" -ne 0 ]; then
-            echo "Build failed. Showing the final diagnostic lines:"
-            tail -n 120 build-output.log
-            exit "$status"
-          fi
-          tail -n 40 build-output.log
+      - name: Type-check and lint
+        run: npm run validate
 
-      - name: Publish build diagnostics
-        if: failure() && github.event_name == 'pull_request'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        shell: bash
-        run: |
-          {
-            echo '### Build diagnostics'
-            echo
-            echo '```text'
-            tail -n 80 build-output.log
-            echo '```'
-          } > build-comment.md
-          gh pr comment "$PR_NUMBER" --body-file build-comment.md
+      - name: Build static export
+        run: npm run build:static
+
+      - name: Build standalone server
+        run: npm run build:server

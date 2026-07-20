@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n/context";
-import type { ProductId } from "@/lib/productCommerce";
+import type { ProductId } from "@/domain/products";
 import { productPricing } from "@/lib/productCommerce";
-import { productPolicyContent } from "@/lib/siteContent";
+import { productPolicyContent } from "@/content/siteContent";
 
 export type PolicyKind = "privacy" | "legal";
 export type PolicySection = { title: string; body: string | readonly string[]; bullets?: readonly string[] };

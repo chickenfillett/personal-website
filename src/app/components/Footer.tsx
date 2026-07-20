@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/lib/i18n/context";
-import { getSiteCopy } from "@/lib/siteCopy";
+import { getSiteCopy } from "@/content/siteContent";
 import { commerceLabels } from "@/lib/productCommerce";
 import Link from "./TransitionLink";
 

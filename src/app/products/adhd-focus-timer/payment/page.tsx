@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/context";
-import { getSiteCopy } from "@/lib/siteCopy";
+import { getSiteCopy } from "@/content/siteContent";
 
 export default function ProductPayment() {
   const { locale } = useLanguage();

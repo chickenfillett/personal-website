@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/context";
 import type { DeskHavenAssetLocale } from "@/lib/siteAssets";
-import { deskHavenPosterContent } from "@/lib/siteContent";
+import { deskHavenPosterContent } from "@/content/siteContent";
 
 export function deskHavenPosterStories(locale: Locale, assetLocale: DeskHavenAssetLocale) {
   const copy = deskHavenPosterContent.topicCopy[locale] ?? deskHavenPosterContent.topicCopy.en;

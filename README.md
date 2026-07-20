@@ -1,8 +1,6 @@
 # SoloCraft Brand Site
 
-SoloCraft is Chicken Fillet's independent desktop software brand site.
-
-This repository is a static-export Next.js site deployed to Netlify. It presents the studio, product index, and individual product pages for tools such as EnergyFlow, DeskHaven, and ADHD Focus Timer.
+SoloCraft is Chicken Fillet's multilingual product site for EnergyFlow, DeskHaven, and ADHD Focus Timer. It supports a static export for CDN hosting and a standalone Next.js server for future interactive features.
 
 ## Development
 
@@ -11,21 +9,31 @@ npm install
 npm run dev
 ```
 
-## Build
+The development server uses the server target. Product images are committed as optimized WebP assets and are not regenerated during ordinary development or builds.
+
+## Validation and builds
 
 ```bash
-npm run build
+npm run validate
+npm run build:static
+npm run build:server
 ```
 
-The build runs `scripts/optimize-images.mjs` before `next build`. The script scans `public/photo` and generates lightweight WebP versions under `public/photo-optimized` so product screenshots can load more smoothly.
+- `npm run build` is an alias for `build:static` and writes the deployable static site to `dist/`.
+- `build:server` writes a standalone Next.js application to `.next-server/standalone/`.
+- `npm run start:server` starts the previously built server target.
+- `GET /api/health` is available in both modes. Static export emits a fixed response; server mode serves it through Next.js.
 
-## Image performance
+## Source layout
 
-The redesigned pages use:
+- `src/app`: routes, route-local components, and stylesheets.
+- `src/content/siteContent.ts`: the single source for all visible localized copy.
+- `src/domain`: stable product identifiers and domain types.
+- `src/lib`: locale state, asset mapping, pricing selection, and reusable browser logic.
+- `src/server`: server runtime utilities and future backend-only modules.
+- `public/photo`: current, web-ready product assets only.
+- `scripts`: deterministic asset import and build launchers.
 
-- `SmartScreenshot` for WebP-first screenshots with PNG fallback.
-- `usePreloadImages` to preload cross-language image variants before language switching.
-- Lazy loading for below-the-fold screenshots and priority loading for hero screenshots.
-- Netlify cache headers for `/photo`, `/photo-optimized`, and `/_next/static` assets.
+See [Architecture](docs/ARCHITECTURE.md), [Deployment](docs/DEPLOYMENT.md), and [Assets](docs/ASSETS.md) before adding new pages, server features, or product media.
 
-If your deployment uses `npm ci`, run `npm install` locally once and commit the updated `package-lock.json` after adding dependencies.
+`npm run audit` rejects unreachable source files, retired paths, legacy asset references, and byte-for-byte duplicate public files.
