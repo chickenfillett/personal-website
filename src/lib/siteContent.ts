@@ -239,69 +239,69 @@ const zhCopy = {
     "promise": "应用把声音、计时、临时想法和统计放在同一条专注流程里。声音实时生成，不依赖大型音频文件。",
     "features": [
       [
-        "进入前先定好环境",
-        "开始前选择语言、时长、声音与引导方式，先把会打断专注的决定处理掉。"
+        "专注设置",
+        "选择界面语言、计时时长、环境声和引导方式。"
       ],
       [
-        "实时生成的专注声景",
-        "雨、风、海浪、虫鸣等声音在本地实时合成，体积更小，也更便于长时间循环。"
+        "实时环境声",
+        "在本地实时生成雨声、风声、海浪和虫鸣等环境声。"
       ],
       [
-        "声音混音和 8D 空间感",
-        "用混音面板调节不同声层，按需要开启空间移动感，让背景声成为稳定陪伴。"
-      ],
-      [
-        "呼吸过渡",
-        "正式计时前用简短呼吸节奏切换状态，不把开始任务变成突然的压力。"
-      ],
-      [
-        "正向计时与沉浸粒子",
-        "时间向前累积，避免倒计时带来的失败感；粒子动画给出轻微反馈但不抢注意力。"
-      ],
-      [
-        "想法冰箱",
-        "突然冒出的想法可以先存放起来，专注结束后再处理，不必立刻切出当前任务。"
-      ],
-      [
-        "累计统计与温和完成",
-        "完成页记录真实投入，累计专注数据帮助你看见长期进展，而不是只盯着单次表现。"
-      ]
-    ],
-    "galleryEyebrow": "界面截图",
-    "galleryTitle": "ADHD Focus Timer 1.5.0 的真实界面。",
-    "galleryIntro": "从准备页、声音混音、呼吸过渡到专注计时、想法暂存与统计回看，这组截图展示完整的专注流程。界面截图会随网站语言自动切换。",
-    "galleryItems": [
-      [
-        "专注准备",
-        "先选择时长、语言和环境声，让开始变得明确。"
-      ],
-      [
-        "声音面板",
-        "多层声景可以自由混合，用于不同的专注状态。"
+        "声音混合与 8D 音频",
+        "分别调节各类环境声的音量，并可开启空间音频效果。"
       ],
       [
         "呼吸引导",
-        "用短暂过渡把注意力从混乱带回当前任务。"
+        "在计时前按照动画完成一次呼吸练习。"
       ],
       [
-        "专注进行中",
-        "正向计时、粒子反馈和全屏环境一起保持低压力节奏。"
+        "正向计时",
+        "计时从零开始累积，并可使用全屏粒子背景。"
       ],
       [
         "想法冰箱",
-        "临时想法先保存，之后再回来处理。"
+        "记录专注过程中出现的临时想法，结束后统一查看。"
       ],
       [
-        "累计统计",
-        "用长期记录看见真实投入，而不是只评价单次结果。"
+        "专注统计",
+        "查看专注次数、累计时间和历史记录。"
+      ]
+    ],
+    "galleryEyebrow": "界面截图",
+    "galleryTitle": "ADHD Focus Timer 界面",
+    "galleryIntro": "以下截图展示专注设置、声音混合、呼吸引导、正向计时、想法冰箱、统计和应用设置。",
+    "galleryItems": [
+      [
+        "专注设置",
+        "选择计时时长、界面语言和环境声。"
       ],
       [
-        "支持与设置",
-        "语言、声音、隐私与支持入口集中在清晰位置。"
+        "声音混合",
+        "分别调节多种环境声的音量和空间效果。"
       ],
       [
-        "休息节奏",
-        "完成专注后进入休息状态，让下一次开始之前有一段缓冲。"
+        "呼吸引导",
+        "按照动画完成计时前的呼吸练习。"
+      ],
+      [
+        "正向计时",
+        "从零开始累计专注时间，并显示全屏粒子背景。"
+      ],
+      [
+        "想法冰箱",
+        "保存专注过程中出现的临时想法。"
+      ],
+      [
+        "专注统计",
+        "查看累计时间、完成次数和历史记录。"
+      ],
+      [
+        "应用设置",
+        "管理语言、声音、隐私和其他应用选项。"
+      ],
+      [
+        "休息计时",
+        "专注结束后开始休息计时。"
       ]
     ]
   },
@@ -4455,8 +4455,677 @@ export const siteCopy = {
   "pt": ptCopy,
 } as const satisfies Record<Locale, SiteCopy>;
 
+type FunctionalNarrative = {
+  home: Pick<SiteCopy["home"], "eyebrow" | "title" | "intro" | "primary" | "secondary" | "currentProduct" | "chapters" | "productTitle" | "studioTitle" | "studioBody" | "studioNote">;
+  products: Pick<SiteCopy["products"], "title" | "intro">;
+  productCards: SiteCopy["productCards"];
+  energyflow: Pick<SiteCopy["energyflow"], "eyebrow" | "title" | "intro" | "status" | "promiseTitle" | "promise">;
+  deskhaven: Pick<SiteCopy["deskhaven"], "eyebrow" | "title" | "intro" | "status" | "promiseTitle" | "promise">;
+  adhd: Pick<SiteCopy["adhd"], "eyebrow" | "title" | "intro" | "status" | "promiseTitle" | "promise">;
+  about: Pick<SiteCopy["about"], "title" | "intro" | "story" | "techTitle" | "tech" | "ctaTitle" | "ctaDescription" | "ctaButton">;
+  contact: SiteCopy["contact"];
+  footer: Pick<SiteCopy["footer"], "subtitle" | "copyright">;
+};
+
+const functionalNarrative = {
+  zh: {
+    home: {
+      eyebrow: "CHICKEN FILLET / WINDOWS 软件",
+      title: "SoloCraft",
+      intro: "由 Chicken Fillet 独立开发和维护，专注于 Windows 桌面应用。",
+      primary: "查看产品",
+      secondary: "关于 SoloCraft",
+      currentProduct: "界面预览",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "记录状态，查看历史变化。", body: "记录精力、情绪、压力和活动，并通过时间线与分析报告查看历史记录。", bullets: ["状态记录", "多媒体记录", "时间线", "趋势分析"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "整理本地文件，查看内容关联。", body: "集中收纳、搜索和归档本地文件，并通过关系图谱查看文件、标签与项目之间的关联。", bullets: ["文件管理", "搜索与筛选", "关系图谱", "本地备份"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "设置环境声并开始正向计时。", body: "组合多种环境声，通过呼吸引导开始正向计时。临时想法可以存入想法冰箱，结束后再处理。", bullets: ["环境声", "呼吸引导", "正向计时", "想法冰箱"] },
+      ],
+      productTitle: "产品",
+      studioTitle: "关于 SoloCraft",
+      studioBody: "SoloCraft 由 Chicken Fillet 独立开发和维护，专注于 Windows 桌面应用。",
+      studioNote: "网站中的截图、功能说明、价格和下载链接均对应已发布版本。",
+    },
+    products: {
+      title: "Windows 应用",
+      intro: "所有应用均已发布。产品页提供功能说明、真实界面、当前地区价格、隐私政策和 Microsoft Store 下载链接。",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "状态记录与分析", description: "记录精力、情绪、压力和活动，并通过时间线与分析报告查看历史变化。", status: "已发布" },
+      deskhaven: { title: "DeskHaven", category: "本地文件管理", description: "收纳、搜索和归档本地文件，并通过关系图谱查看内容关联。", status: "已发布" },
+      adhd: { title: "ADHD Focus Timer", category: "专注计时与环境声", description: "组合环境声、使用呼吸引导和正向计时，并记录专注过程中的临时想法。", status: "已发布" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "记录精力、情绪和压力。",
+      intro: "快速记录当前状态、活动、文字、图片或录音，并通过时间线、筛选和分析报告查看历史记录。",
+      status: "已发布",
+      promiseTitle: "记录与分析",
+      promise: "EnergyFlow 将主动记录整理为时间线、趋势和分析报告。",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "整理本地文件，查看内容关联。",
+      intro: "集中收纳、搜索和归档本地文件，并通过关系图谱查看文件、标签与项目之间的关联。支持本地加密和备份。",
+      status: "已发布",
+      promiseTitle: "本地文件管理",
+      promise: "DeskHaven 提供文件管理、搜索、归档、关系图谱、加密和备份功能。",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "用环境声和正向计时辅助专注。",
+      intro: "自由组合多种环境声，通过呼吸引导开始正向计时。专注过程中出现的临时想法，可以随手存入“想法冰箱”，结束后再处理。",
+      status: "已发布",
+      promiseTitle: "专注计时",
+      promise: "ADHD Focus Timer 提供环境声、呼吸引导、正向计时、想法冰箱和统计功能。",
+    },
+    about: {
+      title: "关于 SoloCraft",
+      intro: "SoloCraft 是 Chicken Fillet 独立开发和维护的 Windows 软件项目。",
+      story: ["项目目前包括状态记录、本地文件管理和专注计时应用。", "产品页面展示已发布版本的真实界面、功能、价格、隐私政策和下载链接。", "应用更新、网站内容和用户支持均由 Chicken Fillet 维护。"],
+      techTitle: "开发范围",
+      tech: ["Windows 桌面应用", "本地数据处理", "统计与可视化", "多语言界面"],
+      ctaTitle: "联系",
+      ctaDescription: "产品反馈、技术支持、合作或媒体询问可通过电子邮件发送。",
+      ctaButton: "联系",
+    },
+    contact: { title: "联系", intro: "可通过电子邮件发送产品反馈、技术支持、合作或媒体询问。", infoTitle: "电子邮件", email: "联系邮箱" },
+    footer: { subtitle: "Chicken Fillet 独立开发和维护的 Windows 应用。", copyright: "© 2026 SoloCraft." },
+  },
+  "zh-tw": {
+    home: {
+      eyebrow: "CHICKEN FILLET / WINDOWS 軟體",
+      title: "SoloCraft",
+      intro: "由 Chicken Fillet 獨立開發與維護，專注於 Windows 桌面應用程式。",
+      primary: "查看產品",
+      secondary: "關於 SoloCraft",
+      currentProduct: "介面預覽",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "記錄狀態，查看歷史變化。", body: "記錄精力、情緒、壓力與活動，並透過時間軸和分析報告查看歷史記錄。", bullets: ["狀態記錄", "多媒體記錄", "時間軸", "趨勢分析"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "整理本地檔案，查看內容關聯。", body: "集中收納、搜尋與封存本地檔案，並透過關係圖譜查看檔案、標籤與專案之間的關聯。", bullets: ["檔案管理", "搜尋與篩選", "關係圖譜", "本地備份"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "設定環境聲並開始正向計時。", body: "組合多種環境聲，透過呼吸引導開始正向計時。臨時想法可存入想法冰箱，結束後再處理。", bullets: ["環境聲", "呼吸引導", "正向計時", "想法冰箱"] },
+      ],
+      productTitle: "產品",
+      studioTitle: "關於 SoloCraft",
+      studioBody: "SoloCraft 由 Chicken Fillet 獨立開發與維護，專注於 Windows 桌面應用程式。",
+      studioNote: "網站中的截圖、功能說明、價格與下載連結均對應已發布版本。",
+    },
+    products: {
+      title: "Windows 應用程式",
+      intro: "所有應用程式均已發布。產品頁提供功能說明、真實介面、目前地區價格、隱私權政策與 Microsoft Store 下載連結。",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "狀態記錄與分析", description: "記錄精力、情緒、壓力與活動，並透過時間軸和分析報告查看歷史變化。", status: "已發布" },
+      deskhaven: { title: "DeskHaven", category: "本地檔案管理", description: "收納、搜尋與封存本地檔案，並透過關係圖譜查看內容關聯。", status: "已發布" },
+      adhd: { title: "ADHD Focus Timer", category: "專注計時與環境聲", description: "組合環境聲、使用呼吸引導和正向計時，並記錄專注過程中的臨時想法。", status: "已發布" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "記錄精力、情緒與壓力。",
+      intro: "快速記錄目前狀態、活動、文字、圖片或錄音，並透過時間軸、篩選與分析報告查看歷史記錄。",
+      status: "已發布",
+      promiseTitle: "記錄與分析",
+      promise: "EnergyFlow 將主動記錄整理為時間軸、趨勢與分析報告。",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "整理本地檔案，查看內容關聯。",
+      intro: "集中收納、搜尋與封存本地檔案，並透過關係圖譜查看檔案、標籤與專案之間的關聯。支援本地加密和備份。",
+      status: "已發布",
+      promiseTitle: "本地檔案管理",
+      promise: "DeskHaven 提供檔案管理、搜尋、封存、關係圖譜、加密與備份功能。",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "用環境聲和正向計時輔助專注。",
+      intro: "自由組合多種環境聲，透過呼吸引導開始正向計時。專注時出現的臨時想法，可存入「想法冰箱」，結束後再處理。",
+      status: "已發布",
+      promiseTitle: "專注計時",
+      promise: "ADHD Focus Timer 提供環境聲、呼吸引導、正向計時、想法冰箱與統計功能。",
+    },
+    about: {
+      title: "關於 SoloCraft",
+      intro: "SoloCraft 是 Chicken Fillet 獨立開發與維護的 Windows 軟體專案。",
+      story: ["目前包含狀態記錄、本地檔案管理與專注計時應用程式。", "產品頁面展示已發布版本的真實介面、功能、價格、隱私權政策與下載連結。", "應用程式更新、網站內容與使用者支援均由 Chicken Fillet 維護。"],
+      techTitle: "開發範圍",
+      tech: ["Windows 桌面應用程式", "本地資料處理", "統計與視覺化", "多語言介面"],
+      ctaTitle: "聯絡",
+      ctaDescription: "產品意見、技術支援、合作或媒體詢問可透過電子郵件傳送。",
+      ctaButton: "聯絡",
+    },
+    contact: { title: "聯絡", intro: "可透過電子郵件傳送產品意見、技術支援、合作或媒體詢問。", infoTitle: "電子郵件", email: "聯絡信箱" },
+    footer: { subtitle: "Chicken Fillet 獨立開發與維護的 Windows 應用程式。", copyright: "© 2026 SoloCraft." },
+  },
+  en: {
+    home: {
+      eyebrow: "CHICKEN FILLET / WINDOWS SOFTWARE",
+      title: "SoloCraft",
+      intro: "Independently developed and maintained by Chicken Fillet, with a focus on Windows desktop applications.",
+      primary: "View products",
+      secondary: "About SoloCraft",
+      currentProduct: "Interface preview",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "Record your state and review changes over time.", body: "Log energy, mood, stress, and activities, then review the history through timelines and analysis reports.", bullets: ["State logging", "Media entries", "Timeline", "Trend analysis"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "Organize local files and view their relationships.", body: "Collect, search, and archive local files, then use the relationship graph to inspect links between files, tags, and projects.", bullets: ["File management", "Search and filters", "Relationship graph", "Local backup"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "Set ambient sound and start a forward timer.", body: "Mix ambient sounds, begin with a breathing guide, and save temporary thoughts in the Idea Fridge for later.", bullets: ["Ambient sound", "Breathing guide", "Forward timer", "Idea Fridge"] },
+      ],
+      productTitle: "Products",
+      studioTitle: "About SoloCraft",
+      studioBody: "SoloCraft is independently developed and maintained by Chicken Fillet, with a focus on Windows desktop applications.",
+      studioNote: "Screenshots, feature details, pricing, and download links on this site refer to released versions.",
+    },
+    products: {
+      title: "Windows applications",
+      intro: "All applications are released. Product pages include feature details, real interfaces, a region-matched price, privacy policies, and Microsoft Store download links.",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "State logging and analysis", description: "Record energy, mood, stress, and activities, then review changes through timelines and analysis reports.", status: "Available" },
+      deskhaven: { title: "DeskHaven", category: "Local file management", description: "Collect, search, and archive local files, then inspect content relationships in a graph.", status: "Available" },
+      adhd: { title: "ADHD Focus Timer", category: "Focus timer and ambient sound", description: "Mix ambient sounds, use a breathing guide and forward timer, and capture temporary thoughts during a session.", status: "Available" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "Record energy, mood, and stress.",
+      intro: "Quickly record your current state, activity, text, images, or audio, then review the history with timelines, filters, and analysis reports.",
+      status: "Available",
+      promiseTitle: "Logging and analysis",
+      promise: "EnergyFlow organizes your entries into timelines, trends, and analysis reports.",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "Organize local files and view content relationships.",
+      intro: "Collect, search, and archive local files, then use the relationship graph to inspect links between files, tags, and projects. Local encryption and backup are included.",
+      status: "Available",
+      promiseTitle: "Local file management",
+      promise: "DeskHaven provides file management, search, archiving, relationship graphs, encryption, and backup.",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "Use ambient sound and forward timing to support focus.",
+      intro: "Mix multiple ambient sounds and use a breathing guide before starting a forward timer. Save temporary thoughts in the Idea Fridge and return to them after the session.",
+      status: "Available",
+      promiseTitle: "Focus timing",
+      promise: "ADHD Focus Timer provides ambient sound, breathing guidance, forward timing, the Idea Fridge, and session statistics.",
+    },
+    about: {
+      title: "About SoloCraft",
+      intro: "SoloCraft is a Windows software project independently developed and maintained by Chicken Fillet.",
+      story: ["The current applications cover state logging, local file management, and focus timing.", "Product pages show released interfaces, features, pricing, privacy policies, and download links.", "Chicken Fillet maintains the applications, website content, and user support."],
+      techTitle: "Development areas",
+      tech: ["Windows desktop applications", "Local data processing", "Statistics and visualization", "Multilingual interfaces"],
+      ctaTitle: "Contact",
+      ctaDescription: "Send product feedback, support requests, collaboration proposals, or media enquiries by email.",
+      ctaButton: "Contact",
+    },
+    contact: { title: "Contact", intro: "Send product feedback, support requests, collaboration proposals, or media enquiries by email.", infoTitle: "Email", email: "Contact email" },
+    footer: { subtitle: "Windows applications independently developed and maintained by Chicken Fillet.", copyright: "© 2026 SoloCraft." },
+  },
+  ja: {
+    home: {
+      eyebrow: "CHICKEN FILLET / WINDOWS ソフトウェア",
+      title: "SoloCraft",
+      intro: "Chicken Fillet が個人で開発・保守する Windows デスクトップアプリを紹介します。",
+      primary: "製品を見る",
+      secondary: "SoloCraft について",
+      currentProduct: "画面プレビュー",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "状態を記録し、履歴の変化を確認。", body: "エネルギー、気分、ストレス、活動を記録し、タイムラインと分析レポートで履歴を確認します。", bullets: ["状態記録", "メディア記録", "タイムライン", "傾向分析"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "ローカルファイルを整理し、関連を確認。", body: "ローカルファイルを保管、検索、アーカイブし、関係グラフでファイル、タグ、プロジェクト間の関連を確認します。", bullets: ["ファイル管理", "検索と絞り込み", "関係グラフ", "ローカルバックアップ"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "環境音を設定し、経過時間を計測。", body: "複数の環境音を組み合わせ、呼吸ガイドの後に経過時間の計測を始めます。途中の考えは Idea Fridge に保存できます。", bullets: ["環境音", "呼吸ガイド", "経過時間", "Idea Fridge"] },
+      ],
+      productTitle: "製品",
+      studioTitle: "SoloCraft について",
+      studioBody: "SoloCraft は Chicken Fillet が個人で開発・保守する Windows デスクトップアプリのプロジェクトです。",
+      studioNote: "掲載している画面、機能、価格、ダウンロード先は公開済みバージョンに対応しています。",
+    },
+    products: {
+      title: "Windows アプリ",
+      intro: "すべて公開済みです。各製品ページで機能、実際の画面、地域別価格、プライバシーポリシー、Microsoft Store のリンクを確認できます。",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "状態記録と分析", description: "エネルギー、気分、ストレス、活動を記録し、タイムラインと分析レポートで変化を確認します。", status: "公開中" },
+      deskhaven: { title: "DeskHaven", category: "ローカルファイル管理", description: "ローカルファイルを保管、検索、アーカイブし、関係グラフで内容の関連を確認します。", status: "公開中" },
+      adhd: { title: "ADHD Focus Timer", category: "集中タイマーと環境音", description: "環境音、呼吸ガイド、経過時間の計測を使い、途中の考えを保存します。", status: "公開中" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "エネルギー、気分、ストレスを記録。",
+      intro: "現在の状態、活動、テキスト、画像、音声をすばやく記録し、タイムライン、絞り込み、分析レポートで履歴を確認します。",
+      status: "公開中",
+      promiseTitle: "記録と分析",
+      promise: "EnergyFlow は記録をタイムライン、傾向、分析レポートに整理します。",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "ローカルファイルを整理し、関連を確認。",
+      intro: "ローカルファイルを保管、検索、アーカイブし、関係グラフでファイル、タグ、プロジェクト間の関連を確認します。暗号化とバックアップにも対応します。",
+      status: "公開中",
+      promiseTitle: "ローカルファイル管理",
+      promise: "DeskHaven はファイル管理、検索、アーカイブ、関係グラフ、暗号化、バックアップを提供します。",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "環境音と経過時間で集中を支援。",
+      intro: "複数の環境音を組み合わせ、呼吸ガイドの後に経過時間の計測を始めます。途中で浮かんだ考えは Idea Fridge に保存し、終了後に確認できます。",
+      status: "公開中",
+      promiseTitle: "集中タイマー",
+      promise: "ADHD Focus Timer は環境音、呼吸ガイド、経過時間、Idea Fridge、統計を提供します。",
+    },
+    about: {
+      title: "SoloCraft について",
+      intro: "SoloCraft は Chicken Fillet が個人で開発・保守する Windows ソフトウェアプロジェクトです。",
+      story: ["現在は状態記録、ローカルファイル管理、集中タイマーのアプリを公開しています。", "製品ページには公開済み画面、機能、価格、プライバシーポリシー、ダウンロード先を掲載しています。", "アプリの更新、サイト内容、ユーザーサポートは Chicken Fillet が担当します。"],
+      techTitle: "開発分野",
+      tech: ["Windows デスクトップアプリ", "ローカルデータ処理", "統計と可視化", "多言語インターフェース"],
+      ctaTitle: "お問い合わせ",
+      ctaDescription: "製品への意見、技術サポート、協業、取材についてメールでお問い合わせいただけます。",
+      ctaButton: "お問い合わせ",
+    },
+    contact: { title: "お問い合わせ", intro: "製品への意見、技術サポート、協業、取材についてメールでお問い合わせいただけます。", infoTitle: "メール", email: "連絡先メール" },
+    footer: { subtitle: "Chicken Fillet が個人で開発・保守する Windows アプリ。", copyright: "© 2026 SoloCraft." },
+  },
+  ko: {
+    home: {
+      eyebrow: "CHICKEN FILLET / WINDOWS 소프트웨어",
+      title: "SoloCraft",
+      intro: "Chicken Fillet이 독립적으로 개발하고 유지 관리하는 Windows 데스크톱 앱을 소개합니다.",
+      primary: "제품 보기",
+      secondary: "SoloCraft 소개",
+      currentProduct: "화면 미리보기",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "상태를 기록하고 이전 변화를 확인합니다.", body: "에너지, 기분, 스트레스, 활동을 기록하고 타임라인과 분석 보고서에서 이력을 확인합니다.", bullets: ["상태 기록", "미디어 기록", "타임라인", "추세 분석"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "로컬 파일을 정리하고 관계를 확인합니다.", body: "로컬 파일을 보관, 검색, 보관 처리하고 관계 그래프에서 파일, 태그, 프로젝트의 연결을 확인합니다.", bullets: ["파일 관리", "검색과 필터", "관계 그래프", "로컬 백업"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "환경음을 설정하고 순방향 타이머를 시작합니다.", body: "여러 환경음을 조합하고 호흡 안내 후 타이머를 시작합니다. 떠오른 생각은 Idea Fridge에 저장할 수 있습니다.", bullets: ["환경음", "호흡 안내", "순방향 타이머", "Idea Fridge"] },
+      ],
+      productTitle: "제품",
+      studioTitle: "SoloCraft 소개",
+      studioBody: "SoloCraft는 Chicken Fillet이 독립적으로 개발하고 유지 관리하는 Windows 데스크톱 앱 프로젝트입니다.",
+      studioNote: "사이트의 화면, 기능, 가격, 다운로드 링크는 출시된 버전을 기준으로 합니다.",
+    },
+    products: {
+      title: "Windows 애플리케이션",
+      intro: "모든 앱이 출시되었습니다. 제품 페이지에서 기능, 실제 화면, 현재 지역 가격, 개인정보 처리방침, Microsoft Store 링크를 확인할 수 있습니다.",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "상태 기록 및 분석", description: "에너지, 기분, 스트레스, 활동을 기록하고 타임라인과 분석 보고서에서 변화를 확인합니다.", status: "출시됨" },
+      deskhaven: { title: "DeskHaven", category: "로컬 파일 관리", description: "로컬 파일을 보관, 검색, 보관 처리하고 관계 그래프에서 콘텐츠 연결을 확인합니다.", status: "출시됨" },
+      adhd: { title: "ADHD Focus Timer", category: "집중 타이머 및 환경음", description: "환경음, 호흡 안내, 순방향 타이머를 사용하고 집중 중 떠오른 생각을 기록합니다.", status: "출시됨" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "에너지, 기분, 스트레스를 기록합니다.",
+      intro: "현재 상태, 활동, 텍스트, 이미지, 오디오를 빠르게 기록하고 타임라인, 필터, 분석 보고서에서 이력을 확인합니다.",
+      status: "출시됨",
+      promiseTitle: "기록 및 분석",
+      promise: "EnergyFlow는 기록을 타임라인, 추세, 분석 보고서로 정리합니다.",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "로컬 파일을 정리하고 콘텐츠 관계를 확인합니다.",
+      intro: "로컬 파일을 보관, 검색, 보관 처리하고 관계 그래프에서 파일, 태그, 프로젝트의 연결을 확인합니다. 로컬 암호화와 백업을 지원합니다.",
+      status: "출시됨",
+      promiseTitle: "로컬 파일 관리",
+      promise: "DeskHaven은 파일 관리, 검색, 보관, 관계 그래프, 암호화, 백업 기능을 제공합니다.",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "환경음과 순방향 타이머로 집중을 보조합니다.",
+      intro: "여러 환경음을 조합하고 호흡 안내 후 순방향 타이머를 시작합니다. 집중 중 떠오른 생각은 Idea Fridge에 저장하고 종료 후 확인할 수 있습니다.",
+      status: "출시됨",
+      promiseTitle: "집중 타이머",
+      promise: "ADHD Focus Timer는 환경음, 호흡 안내, 순방향 타이머, Idea Fridge, 통계를 제공합니다.",
+    },
+    about: {
+      title: "SoloCraft 소개",
+      intro: "SoloCraft는 Chicken Fillet이 독립적으로 개발하고 유지 관리하는 Windows 소프트웨어 프로젝트입니다.",
+      story: ["현재 상태 기록, 로컬 파일 관리, 집중 타이머 앱을 제공합니다.", "제품 페이지에는 출시된 화면, 기능, 가격, 개인정보 처리방침, 다운로드 링크가 있습니다.", "앱 업데이트, 사이트 콘텐츠, 사용자 지원은 Chicken Fillet이 관리합니다."],
+      techTitle: "개발 영역",
+      tech: ["Windows 데스크톱 앱", "로컬 데이터 처리", "통계 및 시각화", "다국어 인터페이스"],
+      ctaTitle: "문의",
+      ctaDescription: "제품 의견, 기술 지원, 협업, 미디어 문의는 이메일로 보내 주세요.",
+      ctaButton: "문의",
+    },
+    contact: { title: "문의", intro: "제품 의견, 기술 지원, 협업, 미디어 문의는 이메일로 보내 주세요.", infoTitle: "이메일", email: "문의 이메일" },
+    footer: { subtitle: "Chicken Fillet이 독립적으로 개발하고 유지 관리하는 Windows 앱.", copyright: "© 2026 SoloCraft." },
+  },
+  fr: {
+    home: {
+      eyebrow: "CHICKEN FILLET / LOGICIELS WINDOWS",
+      title: "SoloCraft",
+      intro: "Applications Windows développées et maintenues indépendamment par Chicken Fillet.",
+      primary: "Voir les produits",
+      secondary: "À propos de SoloCraft",
+      currentProduct: "Aperçu de l’interface",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "Enregistrer son état et consulter son évolution.", body: "Consignez énergie, humeur, stress et activités, puis consultez l’historique dans la chronologie et les rapports d’analyse.", bullets: ["Suivi de l’état", "Entrées multimédias", "Chronologie", "Analyse des tendances"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "Organiser les fichiers locaux et consulter leurs relations.", body: "Rassemblez, recherchez et archivez les fichiers locaux, puis examinez les liens entre fichiers, étiquettes et projets dans le graphe.", bullets: ["Gestion de fichiers", "Recherche et filtres", "Graphe de relations", "Sauvegarde locale"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "Régler les sons d’ambiance et lancer un chronomètre progressif.", body: "Mélangez plusieurs sons, suivez le guide respiratoire, puis enregistrez les idées passagères dans Idea Fridge.", bullets: ["Sons d’ambiance", "Guide respiratoire", "Chronomètre progressif", "Idea Fridge"] },
+      ],
+      productTitle: "Produits",
+      studioTitle: "À propos de SoloCraft",
+      studioBody: "SoloCraft est un projet d’applications Windows développé et maintenu indépendamment par Chicken Fillet.",
+      studioNote: "Les captures, fonctions, prix et liens de téléchargement correspondent aux versions publiées.",
+    },
+    products: {
+      title: "Applications Windows",
+      intro: "Toutes les applications sont publiées. Chaque page présente les fonctions, l’interface réelle, le prix régional, la politique de confidentialité et le lien Microsoft Store.",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "Suivi et analyse de l’état", description: "Consignez énergie, humeur, stress et activités, puis consultez les changements dans la chronologie et les rapports.", status: "Disponible" },
+      deskhaven: { title: "DeskHaven", category: "Gestion locale des fichiers", description: "Rassemblez, recherchez et archivez les fichiers locaux, puis consultez leurs relations dans un graphe.", status: "Disponible" },
+      adhd: { title: "ADHD Focus Timer", category: "Chronomètre de concentration et sons", description: "Mélangez des sons d’ambiance, utilisez le guide respiratoire et le chronomètre progressif, puis notez les idées passagères.", status: "Disponible" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "Enregistrer l’énergie, l’humeur et le stress.",
+      intro: "Enregistrez rapidement l’état actuel, l’activité, du texte, des images ou de l’audio, puis consultez l’historique avec la chronologie, les filtres et les rapports.",
+      status: "Disponible",
+      promiseTitle: "Suivi et analyse",
+      promise: "EnergyFlow organise les entrées en chronologies, tendances et rapports d’analyse.",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "Organiser les fichiers locaux et consulter leurs relations.",
+      intro: "Rassemblez, recherchez et archivez les fichiers locaux, puis examinez les liens entre fichiers, étiquettes et projets dans le graphe. Le chiffrement et la sauvegarde locale sont inclus.",
+      status: "Disponible",
+      promiseTitle: "Gestion locale des fichiers",
+      promise: "DeskHaven fournit gestion, recherche, archivage, graphe de relations, chiffrement et sauvegarde.",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "Utiliser les sons d’ambiance et un chronomètre progressif pour se concentrer.",
+      intro: "Mélangez plusieurs sons d’ambiance et suivez le guide respiratoire avant de lancer le chronomètre. Enregistrez les idées passagères dans Idea Fridge pour les reprendre après la session.",
+      status: "Disponible",
+      promiseTitle: "Chronomètre de concentration",
+      promise: "ADHD Focus Timer fournit sons d’ambiance, guide respiratoire, chronomètre progressif, Idea Fridge et statistiques.",
+    },
+    about: {
+      title: "À propos de SoloCraft",
+      intro: "SoloCraft est un projet de logiciels Windows développé et maintenu indépendamment par Chicken Fillet.",
+      story: ["Les applications actuelles couvrent le suivi de l’état, la gestion locale des fichiers et le chronométrage de la concentration.", "Les pages produit présentent les interfaces publiées, les fonctions, les prix, les politiques de confidentialité et les liens de téléchargement.", "Chicken Fillet assure les mises à jour, le contenu du site et l’assistance aux utilisateurs."],
+      techTitle: "Domaines de développement",
+      tech: ["Applications Windows", "Traitement local des données", "Statistiques et visualisation", "Interfaces multilingues"],
+      ctaTitle: "Contact",
+      ctaDescription: "Envoyez par e-mail vos retours, demandes d’assistance, propositions de collaboration ou questions presse.",
+      ctaButton: "Contact",
+    },
+    contact: { title: "Contact", intro: "Envoyez par e-mail vos retours, demandes d’assistance, propositions de collaboration ou questions presse.", infoTitle: "E-mail", email: "Adresse de contact" },
+    footer: { subtitle: "Applications Windows développées et maintenues indépendamment par Chicken Fillet.", copyright: "© 2026 SoloCraft." },
+  },
+  de: {
+    home: {
+      eyebrow: "CHICKEN FILLET / WINDOWS-SOFTWARE",
+      title: "SoloCraft",
+      intro: "Windows-Desktopanwendungen, unabhängig entwickelt und gepflegt von Chicken Fillet.",
+      primary: "Produkte ansehen",
+      secondary: "Über SoloCraft",
+      currentProduct: "Oberflächenvorschau",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "Zustand erfassen und zeitliche Änderungen prüfen.", body: "Energie, Stimmung, Stress und Aktivitäten protokollieren und den Verlauf in Zeitleisten und Analyseberichten prüfen.", bullets: ["Zustandsprotokoll", "Medieneinträge", "Zeitleiste", "Trendanalyse"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "Lokale Dateien ordnen und Beziehungen anzeigen.", body: "Lokale Dateien sammeln, durchsuchen und archivieren sowie Verknüpfungen zwischen Dateien, Tags und Projekten im Beziehungsgraphen prüfen.", bullets: ["Dateiverwaltung", "Suche und Filter", "Beziehungsgraph", "Lokale Sicherung"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "Umgebungsgeräusche einstellen und Vorwärtszeit starten.", body: "Mehrere Umgebungsgeräusche mischen, eine Atemanleitung nutzen und Gedanken im Idea Fridge für später speichern.", bullets: ["Umgebungsgeräusche", "Atemanleitung", "Vorwärtszeit", "Idea Fridge"] },
+      ],
+      productTitle: "Produkte",
+      studioTitle: "Über SoloCraft",
+      studioBody: "SoloCraft ist ein von Chicken Fillet unabhängig entwickeltes und gepflegtes Projekt für Windows-Desktopanwendungen.",
+      studioNote: "Screenshots, Funktionen, Preise und Downloadlinks beziehen sich auf veröffentlichte Versionen.",
+    },
+    products: {
+      title: "Windows-Anwendungen",
+      intro: "Alle Anwendungen sind veröffentlicht. Die Produktseiten enthalten Funktionen, echte Oberflächen, einen regionalen Preis, Datenschutzrichtlinien und Microsoft-Store-Links.",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "Zustandsprotokoll und Analyse", description: "Energie, Stimmung, Stress und Aktivitäten erfassen und Änderungen in Zeitleisten und Analyseberichten prüfen.", status: "Verfügbar" },
+      deskhaven: { title: "DeskHaven", category: "Lokale Dateiverwaltung", description: "Lokale Dateien sammeln, durchsuchen und archivieren sowie ihre Beziehungen im Graphen anzeigen.", status: "Verfügbar" },
+      adhd: { title: "ADHD Focus Timer", category: "Fokustimer und Umgebungsgeräusche", description: "Umgebungsgeräusche mischen, Atemanleitung und Vorwärtszeit nutzen und vorübergehende Gedanken speichern.", status: "Verfügbar" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "Energie, Stimmung und Stress protokollieren.",
+      intro: "Aktuellen Zustand, Aktivität, Text, Bilder oder Audio schnell erfassen und den Verlauf mit Zeitleisten, Filtern und Analyseberichten prüfen.",
+      status: "Verfügbar",
+      promiseTitle: "Protokoll und Analyse",
+      promise: "EnergyFlow ordnet Einträge in Zeitleisten, Trends und Analyseberichte.",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "Lokale Dateien ordnen und Beziehungen anzeigen.",
+      intro: "Lokale Dateien sammeln, durchsuchen und archivieren sowie Verknüpfungen zwischen Dateien, Tags und Projekten im Beziehungsgraphen prüfen. Lokale Verschlüsselung und Sicherung sind enthalten.",
+      status: "Verfügbar",
+      promiseTitle: "Lokale Dateiverwaltung",
+      promise: "DeskHaven bietet Dateiverwaltung, Suche, Archivierung, Beziehungsgraph, Verschlüsselung und Sicherung.",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "Mit Umgebungsgeräuschen und Vorwärtszeit konzentrieren.",
+      intro: "Mehrere Umgebungsgeräusche mischen und nach einer Atemanleitung die Vorwärtszeit starten. Vorübergehende Gedanken im Idea Fridge speichern und nach der Sitzung prüfen.",
+      status: "Verfügbar",
+      promiseTitle: "Fokustimer",
+      promise: "ADHD Focus Timer bietet Umgebungsgeräusche, Atemanleitung, Vorwärtszeit, Idea Fridge und Statistiken.",
+    },
+    about: {
+      title: "Über SoloCraft",
+      intro: "SoloCraft ist ein von Chicken Fillet unabhängig entwickeltes und gepflegtes Windows-Softwareprojekt.",
+      story: ["Die aktuellen Anwendungen decken Zustandsprotokolle, lokale Dateiverwaltung und Fokuszeit ab.", "Produktseiten zeigen veröffentlichte Oberflächen, Funktionen, Preise, Datenschutzrichtlinien und Downloadlinks.", "Chicken Fillet pflegt die Anwendungen, die Website-Inhalte und den Benutzersupport."],
+      techTitle: "Entwicklungsbereiche",
+      tech: ["Windows-Desktopanwendungen", "Lokale Datenverarbeitung", "Statistik und Visualisierung", "Mehrsprachige Oberflächen"],
+      ctaTitle: "Kontakt",
+      ctaDescription: "Produktfeedback, Supportanfragen, Kooperationsvorschläge oder Presseanfragen können per E-Mail gesendet werden.",
+      ctaButton: "Kontakt",
+    },
+    contact: { title: "Kontakt", intro: "Produktfeedback, Supportanfragen, Kooperationsvorschläge oder Presseanfragen können per E-Mail gesendet werden.", infoTitle: "E-Mail", email: "Kontaktadresse" },
+    footer: { subtitle: "Windows-Anwendungen, unabhängig entwickelt und gepflegt von Chicken Fillet.", copyright: "© 2026 SoloCraft." },
+  },
+  es: {
+    home: {
+      eyebrow: "CHICKEN FILLET / SOFTWARE PARA WINDOWS",
+      title: "SoloCraft",
+      intro: "Aplicaciones de escritorio para Windows desarrolladas y mantenidas de forma independiente por Chicken Fillet.",
+      primary: "Ver productos",
+      secondary: "Acerca de SoloCraft",
+      currentProduct: "Vista previa de la interfaz",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "Registra tu estado y consulta los cambios históricos.", body: "Registra energía, ánimo, estrés y actividades, y consulta el historial mediante cronologías e informes de análisis.", bullets: ["Registro de estado", "Entradas multimedia", "Cronología", "Análisis de tendencias"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "Organiza archivos locales y consulta sus relaciones.", body: "Reúne, busca y archiva archivos locales, y examina las conexiones entre archivos, etiquetas y proyectos en el grafo.", bullets: ["Gestión de archivos", "Búsqueda y filtros", "Grafo de relaciones", "Copia local"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "Configura sonidos ambientales e inicia un cronómetro progresivo.", body: "Mezcla varios sonidos, sigue la guía de respiración y guarda pensamientos temporales en Idea Fridge para revisarlos después.", bullets: ["Sonidos ambientales", "Guía de respiración", "Cronómetro progresivo", "Idea Fridge"] },
+      ],
+      productTitle: "Productos",
+      studioTitle: "Acerca de SoloCraft",
+      studioBody: "SoloCraft es un proyecto de aplicaciones para Windows desarrollado y mantenido de forma independiente por Chicken Fillet.",
+      studioNote: "Las capturas, funciones, precios y enlaces de descarga corresponden a versiones publicadas.",
+    },
+    products: {
+      title: "Aplicaciones para Windows",
+      intro: "Todas las aplicaciones están publicadas. Cada página incluye funciones, interfaz real, precio regional, política de privacidad y enlace de Microsoft Store.",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "Registro y análisis del estado", description: "Registra energía, ánimo, estrés y actividades, y consulta los cambios en cronologías e informes.", status: "Disponible" },
+      deskhaven: { title: "DeskHaven", category: "Gestión local de archivos", description: "Reúne, busca y archiva archivos locales, y consulta sus relaciones en un grafo.", status: "Disponible" },
+      adhd: { title: "ADHD Focus Timer", category: "Cronómetro de concentración y sonido", description: "Mezcla sonidos ambientales, usa la guía de respiración y el cronómetro progresivo, y guarda pensamientos temporales.", status: "Disponible" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "Registra energía, ánimo y estrés.",
+      intro: "Registra rápidamente el estado actual, la actividad, texto, imágenes o audio, y consulta el historial con cronologías, filtros e informes de análisis.",
+      status: "Disponible",
+      promiseTitle: "Registro y análisis",
+      promise: "EnergyFlow organiza las entradas en cronologías, tendencias e informes de análisis.",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "Organiza archivos locales y consulta sus relaciones.",
+      intro: "Reúne, busca y archiva archivos locales, y examina las conexiones entre archivos, etiquetas y proyectos en el grafo. Incluye cifrado y copias locales.",
+      status: "Disponible",
+      promiseTitle: "Gestión local de archivos",
+      promise: "DeskHaven ofrece gestión, búsqueda, archivo, grafo de relaciones, cifrado y copias de seguridad.",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "Usa sonidos ambientales y tiempo progresivo para concentrarte.",
+      intro: "Mezcla varios sonidos ambientales y sigue una guía de respiración antes de iniciar el cronómetro. Guarda pensamientos temporales en Idea Fridge para revisarlos al terminar.",
+      status: "Disponible",
+      promiseTitle: "Cronómetro de concentración",
+      promise: "ADHD Focus Timer ofrece sonidos ambientales, guía de respiración, tiempo progresivo, Idea Fridge y estadísticas.",
+    },
+    about: {
+      title: "Acerca de SoloCraft",
+      intro: "SoloCraft es un proyecto de software para Windows desarrollado y mantenido de forma independiente por Chicken Fillet.",
+      story: ["Las aplicaciones actuales cubren registro del estado, gestión local de archivos y cronometraje de concentración.", "Las páginas de producto muestran interfaces publicadas, funciones, precios, políticas de privacidad y enlaces de descarga.", "Chicken Fillet mantiene las aplicaciones, el contenido del sitio y el soporte a usuarios."],
+      techTitle: "Áreas de desarrollo",
+      tech: ["Aplicaciones de escritorio para Windows", "Procesamiento local de datos", "Estadística y visualización", "Interfaces multilingües"],
+      ctaTitle: "Contacto",
+      ctaDescription: "Envía por correo comentarios, solicitudes de soporte, propuestas de colaboración o consultas de prensa.",
+      ctaButton: "Contacto",
+    },
+    contact: { title: "Contacto", intro: "Envía por correo comentarios, solicitudes de soporte, propuestas de colaboración o consultas de prensa.", infoTitle: "Correo electrónico", email: "Correo de contacto" },
+    footer: { subtitle: "Aplicaciones para Windows desarrolladas y mantenidas de forma independiente por Chicken Fillet.", copyright: "© 2026 SoloCraft." },
+  },
+  ru: {
+    home: {
+      eyebrow: "CHICKEN FILLET / ПРОГРАММЫ ДЛЯ WINDOWS",
+      title: "SoloCraft",
+      intro: "Приложения для Windows, которые Chicken Fillet разрабатывает и поддерживает самостоятельно.",
+      primary: "Смотреть продукты",
+      secondary: "О SoloCraft",
+      currentProduct: "Предпросмотр интерфейса",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "Записывайте состояние и просматривайте изменения.", body: "Сохраняйте данные об энергии, настроении, стрессе и занятиях, затем изучайте историю на временной шкале и в отчётах.", bullets: ["Запись состояния", "Медиа-вложения", "Временная шкала", "Анализ тенденций"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "Упорядочивайте локальные файлы и просматривайте связи.", body: "Собирайте, ищите и архивируйте локальные файлы, а в графе просматривайте связи между файлами, метками и проектами.", bullets: ["Управление файлами", "Поиск и фильтры", "Граф связей", "Локальная копия"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "Настройте фоновые звуки и запустите прямой таймер.", body: "Смешивайте фоновые звуки, используйте дыхательную инструкцию и сохраняйте временные мысли в Idea Fridge.", bullets: ["Фоновые звуки", "Дыхательная инструкция", "Прямой таймер", "Idea Fridge"] },
+      ],
+      productTitle: "Продукты",
+      studioTitle: "О SoloCraft",
+      studioBody: "SoloCraft — проект приложений для Windows, который Chicken Fillet разрабатывает и поддерживает самостоятельно.",
+      studioNote: "Снимки экрана, функции, цены и ссылки на загрузку относятся к опубликованным версиям.",
+    },
+    products: {
+      title: "Приложения для Windows",
+      intro: "Все приложения опубликованы. На страницах продуктов указаны функции, реальный интерфейс, цена для текущего региона, политика конфиденциальности и ссылка на Microsoft Store.",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "Запись и анализ состояния", description: "Записывайте энергию, настроение, стресс и занятия, затем просматривайте изменения на временной шкале и в отчётах.", status: "Доступно" },
+      deskhaven: { title: "DeskHaven", category: "Локальное управление файлами", description: "Собирайте, ищите и архивируйте локальные файлы, а также просматривайте связи в графе.", status: "Доступно" },
+      adhd: { title: "ADHD Focus Timer", category: "Таймер фокуса и фоновые звуки", description: "Смешивайте фоновые звуки, используйте дыхательную инструкцию и прямой таймер, сохраняйте временные мысли.", status: "Доступно" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "Записывайте энергию, настроение и стресс.",
+      intro: "Быстро сохраняйте текущее состояние, занятие, текст, изображения или аудио, затем просматривайте историю с помощью шкалы, фильтров и отчётов.",
+      status: "Доступно",
+      promiseTitle: "Запись и анализ",
+      promise: "EnergyFlow объединяет записи во временные шкалы, тенденции и аналитические отчёты.",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "Упорядочивайте локальные файлы и просматривайте связи.",
+      intro: "Собирайте, ищите и архивируйте локальные файлы, а в графе просматривайте связи между файлами, метками и проектами. Поддерживаются локальное шифрование и резервные копии.",
+      status: "Доступно",
+      promiseTitle: "Локальное управление файлами",
+      promise: "DeskHaven предоставляет управление файлами, поиск, архив, граф связей, шифрование и резервное копирование.",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "Используйте фоновые звуки и прямой таймер для концентрации.",
+      intro: "Смешивайте несколько фоновых звуков и используйте дыхательную инструкцию перед запуском таймера. Временные мысли можно сохранить в Idea Fridge и просмотреть после сеанса.",
+      status: "Доступно",
+      promiseTitle: "Таймер фокуса",
+      promise: "ADHD Focus Timer предоставляет фоновые звуки, дыхательную инструкцию, прямой таймер, Idea Fridge и статистику.",
+    },
+    about: {
+      title: "О SoloCraft",
+      intro: "SoloCraft — проект программ для Windows, который Chicken Fillet разрабатывает и поддерживает самостоятельно.",
+      story: ["Текущие приложения предназначены для записи состояния, локального управления файлами и учёта времени концентрации.", "На страницах продуктов показаны опубликованные интерфейсы, функции, цены, политики конфиденциальности и ссылки на загрузку.", "Chicken Fillet поддерживает приложения, содержимое сайта и отвечает на обращения пользователей."],
+      techTitle: "Направления разработки",
+      tech: ["Приложения для Windows", "Локальная обработка данных", "Статистика и визуализация", "Многоязычные интерфейсы"],
+      ctaTitle: "Связаться",
+      ctaDescription: "Отзывы о продуктах, запросы поддержки, предложения о сотрудничестве и вопросы прессы можно отправить по электронной почте.",
+      ctaButton: "Связаться",
+    },
+    contact: { title: "Связаться", intro: "Отзывы о продуктах, запросы поддержки, предложения о сотрудничестве и вопросы прессы можно отправить по электронной почте.", infoTitle: "Электронная почта", email: "Адрес для связи" },
+    footer: { subtitle: "Приложения для Windows, которые Chicken Fillet разрабатывает и поддерживает самостоятельно.", copyright: "© 2026 SoloCraft." },
+  },
+  pt: {
+    home: {
+      eyebrow: "CHICKEN FILLET / SOFTWARE PARA WINDOWS",
+      title: "SoloCraft",
+      intro: "Aplicações de ambiente de trabalho para Windows desenvolvidas e mantidas de forma independente por Chicken Fillet.",
+      primary: "Ver produtos",
+      secondary: "Sobre o SoloCraft",
+      currentProduct: "Pré-visualização da interface",
+      chapters: [
+        { id: "energyflow", num: "01 / EnergyFlow", title: "Registe o estado e consulte alterações anteriores.", body: "Registe energia, humor, stress e atividades, depois consulte o histórico em cronologias e relatórios de análise.", bullets: ["Registo do estado", "Entradas multimédia", "Cronologia", "Análise de tendências"] },
+        { id: "deskhaven", num: "02 / DeskHaven", title: "Organize ficheiros locais e consulte as relações.", body: "Reúna, pesquise e arquive ficheiros locais, depois veja ligações entre ficheiros, etiquetas e projetos no grafo.", bullets: ["Gestão de ficheiros", "Pesquisa e filtros", "Grafo de relações", "Cópia local"] },
+        { id: "adhd", num: "03 / ADHD Focus Timer", title: "Configure sons ambiente e inicie um cronómetro progressivo.", body: "Misture vários sons, siga o guia de respiração e guarde pensamentos temporários no Idea Fridge para mais tarde.", bullets: ["Sons ambiente", "Guia de respiração", "Cronómetro progressivo", "Idea Fridge"] },
+      ],
+      productTitle: "Produtos",
+      studioTitle: "Sobre o SoloCraft",
+      studioBody: "SoloCraft é um projeto de aplicações Windows desenvolvido e mantido de forma independente por Chicken Fillet.",
+      studioNote: "As capturas, funções, preços e ligações de transferência correspondem a versões publicadas.",
+    },
+    products: {
+      title: "Aplicações para Windows",
+      intro: "Todas as aplicações estão publicadas. Cada página inclui funções, interface real, preço regional, política de privacidade e ligação à Microsoft Store.",
+    },
+    productCards: {
+      energyflow: { title: "EnergyFlow", category: "Registo e análise do estado", description: "Registe energia, humor, stress e atividades, depois consulte alterações em cronologias e relatórios.", status: "Disponível" },
+      deskhaven: { title: "DeskHaven", category: "Gestão local de ficheiros", description: "Reúna, pesquise e arquive ficheiros locais, depois consulte as relações num grafo.", status: "Disponível" },
+      adhd: { title: "ADHD Focus Timer", category: "Cronómetro de concentração e sons", description: "Misture sons ambiente, use o guia de respiração e o cronómetro progressivo, e guarde pensamentos temporários.", status: "Disponível" },
+    },
+    energyflow: {
+      eyebrow: "EnergyFlow",
+      title: "Registe energia, humor e stress.",
+      intro: "Registe rapidamente o estado atual, atividade, texto, imagens ou áudio, depois consulte o histórico com cronologias, filtros e relatórios de análise.",
+      status: "Disponível",
+      promiseTitle: "Registo e análise",
+      promise: "EnergyFlow organiza as entradas em cronologias, tendências e relatórios de análise.",
+    },
+    deskhaven: {
+      eyebrow: "DeskHaven",
+      title: "Organize ficheiros locais e consulte as relações.",
+      intro: "Reúna, pesquise e arquive ficheiros locais, depois veja ligações entre ficheiros, etiquetas e projetos no grafo. Inclui cifragem e cópias locais.",
+      status: "Disponível",
+      promiseTitle: "Gestão local de ficheiros",
+      promise: "DeskHaven fornece gestão, pesquisa, arquivo, grafo de relações, cifragem e cópias de segurança.",
+    },
+    adhd: {
+      eyebrow: "ADHD Focus Timer / 1.5.0",
+      title: "Use sons ambiente e tempo progressivo para apoiar a concentração.",
+      intro: "Misture vários sons ambiente e siga um guia de respiração antes de iniciar o cronómetro. Guarde pensamentos temporários no Idea Fridge para rever após a sessão.",
+      status: "Disponível",
+      promiseTitle: "Cronómetro de concentração",
+      promise: "ADHD Focus Timer fornece sons ambiente, guia de respiração, tempo progressivo, Idea Fridge e estatísticas.",
+    },
+    about: {
+      title: "Sobre o SoloCraft",
+      intro: "SoloCraft é um projeto de software para Windows desenvolvido e mantido de forma independente por Chicken Fillet.",
+      story: ["As aplicações atuais abrangem registo do estado, gestão local de ficheiros e cronometragem de concentração.", "As páginas de produto mostram interfaces publicadas, funções, preços, políticas de privacidade e ligações de transferência.", "Chicken Fillet mantém as aplicações, o conteúdo do site e o apoio aos utilizadores."],
+      techTitle: "Áreas de desenvolvimento",
+      tech: ["Aplicações de ambiente de trabalho Windows", "Processamento local de dados", "Estatística e visualização", "Interfaces multilingues"],
+      ctaTitle: "Contacto",
+      ctaDescription: "Envie por e-mail comentários, pedidos de suporte, propostas de colaboração ou questões de imprensa.",
+      ctaButton: "Contacto",
+    },
+    contact: { title: "Contacto", intro: "Envie por e-mail comentários, pedidos de suporte, propostas de colaboração ou questões de imprensa.", infoTitle: "E-mail", email: "E-mail de contacto" },
+    footer: { subtitle: "Aplicações para Windows desenvolvidas e mantidas de forma independente por Chicken Fillet.", copyright: "© 2026 SoloCraft." },
+  },
+} as const satisfies Record<Locale, FunctionalNarrative>;
+
 export function getSiteCopy(locale: Locale): SiteCopy {
-  return (siteCopy[locale] ?? siteCopy.en) as SiteCopy;
+  const base = siteCopy[locale] as SiteCopy;
+  const functional = functionalNarrative[locale];
+
+  return {
+    ...base,
+    home: { ...base.home, ...functional.home },
+    products: { ...base.products, ...functional.products },
+    productCards: functional.productCards,
+    energyflow: { ...base.energyflow, ...functional.energyflow },
+    deskhaven: { ...base.deskhaven, ...functional.deskhaven },
+    adhd: { ...base.adhd, ...functional.adhd },
+    about: { ...base.about, ...functional.about },
+    contact: functional.contact,
+    footer: { ...base.footer, ...functional.footer },
+  };
 }
 
 export type EnergyFlowMediaItem = readonly [title: string, body: string];
@@ -4878,19 +5547,19 @@ const posterOrders: Record<DeskHavenAssetLocale, PosterTopic[]> = {
 
 const topicCopy = {
   zh: {
-    private: ["专属私域空间", "把重要文件、照片、导出资料和敏感内容放进本地私域，不再让桌面承担所有记忆。"],
-    workbench: ["本地内容工作台", "在同一个工作台里查看文件列表、详情、统计和最近操作，先建立秩序，再处理细节。"],
-    search: ["更快找到目标", "搜索、标签、路径和文件夹入口并列出现，让找文件不再只依赖模糊的文件名回忆。"],
-    archive: ["归档更有秩序", "按区域、状态和时间线管理资料，整理之后依然能清楚知道内容去了哪里。"],
-    relationships: ["关系清晰可见", "用关系图谱看见文件、标签、项目和主题之间的连接，理解内容为什么重要。"],
-    dashboard: ["先看全局再进入细节", "仪表盘汇总数量、趋势、分类和最近变化，适合每天打开后先扫一眼。"],
-    automation: ["后台自动整理", "路径、规则、开关和语言设置集中管理，让整理在后台稳定发生。"],
-    ai: ["接入 AI 工具链", "把摘要、标签、归类等能力接进文件工作流，帮助理解内容，而不是替你失控操作。"],
-    theme: ["白天清爽，夜晚专注", "深浅模式对应不同工作环境，界面保持克制，不用视觉噪音抢走注意力。"],
-    control: ["数据和控制权", "导入导出、备份恢复、加密和密钥管理放在明确位置，重要文件始终可控。"],
-    passwords: ["密码与密钥本地管理", "把敏感凭据放在本地受控区域，减少散落在文档和聊天记录里的风险。"],
-    ssh: ["SSH 密钥安全管理", "把开发相关密钥集中管理，并保持本地优先、可查看、可掌控。"],
-    settings: ["设置集中可见", "监控、备份、语言和数据选项放在一个清楚的位置，减少日常维护成本。"],
+    private: ["本地文件空间", "在本地保存文档、图片、导出资料和其他文件。"],
+    workbench: ["文件工作台", "在一个界面查看文件列表、详细信息、统计和最近操作。"],
+    search: ["搜索与筛选", "使用关键词、标签、路径和文件夹筛选文件。"],
+    archive: ["归档管理", "按照区域、状态和时间整理归档内容。"],
+    relationships: ["关系图谱", "查看文件、标签、项目和主题之间的关联。"],
+    dashboard: ["仪表盘", "查看文件数量、分类、存储趋势和最近变化。"],
+    automation: ["自动整理", "根据监控路径和规则在后台处理文件。"],
+    ai: ["AI 功能", "使用摘要、标签和分类功能处理文件内容。"],
+    theme: ["外观设置", "切换浅色或深色界面。"],
+    control: ["数据管理", "导入、导出、备份、恢复并管理加密设置。"],
+    passwords: ["密码管理", "在本地保存和管理密码信息。"],
+    ssh: ["SSH 密钥管理", "在本地保存、查看和管理 SSH 密钥。"],
+    settings: ["应用设置", "管理监控、语言、备份和数据选项。"],
   },
   en: {
     private: ["A private file space", "Keep important files, photos, exports, and sensitive material in a local space you control."],
@@ -5040,12 +5709,12 @@ export type PosterSectionCopy = {
 
 const sectionCopy: Record<Locale, PosterSectionCopy> = {
   zh: {
-    eyebrow: "核心能力",
-    title: "用产品海报查看 DeskHaven 的主要功能。",
-    body: "每张海报对应一项功能：本地空间、搜索、归档、关系图、后台整理、AI 工具链、主题、凭据与数据控制。",
-    galleryEyebrow: "真实界面",
-    galleryTitle: "查看 DeskHaven 的实际工作界面。",
-    galleryBody: "从仪表盘、文件台到设置与隐私控制，下方展示当前语言版本的真实界面。",
+    eyebrow: "功能",
+    title: "DeskHaven 功能",
+    body: "以下海报展示本地文件空间、搜索、归档、关系图谱、自动整理、AI 功能、外观和数据管理。",
+    galleryEyebrow: "界面截图",
+    galleryTitle: "DeskHaven 界面",
+    galleryBody: "以下截图展示仪表盘、文件工作台、关系图谱、设置和隐私控制。",
   },
   "zh-tw": {
     eyebrow: "核心能力",

@@ -2,7 +2,7 @@
 
 import { ProductInfoLinks } from "../../components/ProductActions";
 import { ProductFeatureSections } from "../../components/ProductFeatureSections";
-import { ProductHero, ProductPromise } from "../../components/ProductHero";
+import { ProductHero } from "../../components/ProductHero";
 import { ProductMediaGallery } from "../../components/ProductMediaGallery";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
@@ -62,8 +62,6 @@ export default function ADHDFocusTimerPage() {
           sizes="(max-width: 1024px) 92vw, 620px"
         />
       </ProductHero>
-
-      <ProductPromise eyebrow={copy.common.productPromise} title={copy.adhd.promiseTitle} body={copy.adhd.promise} />
 
       <div id="product-info" />
       <ProductPricing product="adhd" />

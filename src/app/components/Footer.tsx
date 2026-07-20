@@ -1,32 +1,19 @@
 "use client";
 
-import { type Locale, useLanguage } from "@/lib/i18n/context";
+import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/lib/siteCopy";
 import { commerceLabels } from "@/lib/productCommerce";
 import Link from "./TransitionLink";
 
 const redditUrl = "https://www.reddit.com/user/Chickenfillet_dev/";
 
-const footerNavigationCopy: Record<Locale, { privacy: string; websitePrivacy: string; reddit: string }> = {
-  zh: { privacy: "隐私政策", websitePrivacy: "网站隐私政策", reddit: "Reddit" },
-  "zh-tw": { privacy: "隱私政策", websitePrivacy: "網站隱私政策", reddit: "Reddit" },
-  en: { privacy: "Privacy", websitePrivacy: "Website privacy", reddit: "Reddit" },
-  ja: { privacy: "プライバシー", websitePrivacy: "ウェブサイトのプライバシー", reddit: "Reddit" },
-  ko: { privacy: "개인정보 보호", websitePrivacy: "웹사이트 개인정보 처리방침", reddit: "Reddit" },
-  fr: { privacy: "Confidentialité", websitePrivacy: "Confidentialité du site", reddit: "Reddit" },
-  de: { privacy: "Datenschutz", websitePrivacy: "Website-Datenschutz", reddit: "Reddit" },
-  es: { privacy: "Privacidad", websitePrivacy: "Privacidad del sitio web", reddit: "Reddit" },
-  ru: { privacy: "Конфиденциальность", websitePrivacy: "Конфиденциальность сайта", reddit: "Reddit" },
-  pt: { privacy: "Privacidade", websitePrivacy: "Privacidade do site", reddit: "Reddit" },
-};
-
 const footerLinkClass = "hover:text-foreground transition-colors";
 
 export default function Footer() {
   const { locale } = useLanguage();
-  const { footer } = getSiteCopy(locale);
+  const copy = getSiteCopy(locale);
+  const { footer } = copy;
   const labels = commerceLabels(locale);
-  const navigation = footerNavigationCopy[locale] ?? footerNavigationCopy.en;
 
   return (
     <footer className="border-t border-white/[0.07]">
@@ -42,7 +29,7 @@ export default function Footer() {
             <div className="mt-4 flex flex-col gap-3 text-sm text-muted">
               <Link className={footerLinkClass} href="/about">{footer.about}</Link>
               <Link className={footerLinkClass} href="/contact">{footer.contact}</Link>
-              <a className={footerLinkClass} href={redditUrl} target="_blank" rel="noreferrer">{navigation.reddit}</a>
+              <a className={footerLinkClass} href={redditUrl} target="_blank" rel="noreferrer">Reddit</a>
             </div>
           </div>
 
@@ -56,9 +43,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xs uppercase tracking-[0.12em] text-[var(--faint)]">{navigation.privacy}</h3>
+            <h3 className="text-xs uppercase tracking-[0.12em] text-[var(--faint)]">{footer.privacy}</h3>
             <div className="mt-4 flex flex-col gap-3 text-sm text-muted">
-              <Link className={footerLinkClass} href="/privacy">{navigation.websitePrivacy}</Link>
+              <Link className={footerLinkClass} href="/privacy">{copy.system.websitePrivacy.title}</Link>
               <Link className={footerLinkClass} href="/products/energyflow/privacy">EnergyFlow {labels.privacy}</Link>
               <Link className={footerLinkClass} href="/products/deskhaven/privacy">DeskHaven {labels.privacy}</Link>
               <Link className={footerLinkClass} href="/products/adhd-focus-timer/privacy">ADHD Focus Timer {labels.privacy}</Link>
@@ -76,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-6 border-t border-white/[0.06] text-xs text-[var(--faint)]">
-          &copy; {new Date().getFullYear()} SoloCraft. {footer.copyright}
+          &copy; {new Date().getFullYear()} SoloCraft.
         </div>
       </div>
     </footer>

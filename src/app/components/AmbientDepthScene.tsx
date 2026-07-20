@@ -41,6 +41,7 @@ export default function AmbientDepthScene() {
       connection?.saveData === true ||
       connection?.effectiveType === "2g" ||
       connection?.effectiveType === "slow-2g";
+    document.documentElement.dataset.performance = lowPower ? "low" : "full";
     const frameInterval = 1000 / (lowPower ? 24 : 30);
 
     let width = 0;
@@ -254,6 +255,7 @@ export default function AmbientDepthScene() {
       window.removeEventListener("resize", scheduleResize);
       document.removeEventListener("visibilitychange", handleVisibility);
       if (finePointer && !reducedMotion) window.removeEventListener("pointermove", handlePointerMove);
+      delete document.documentElement.dataset.performance;
     };
   }, []);
 

@@ -2,7 +2,7 @@
 
 import { ProductInfoLinks } from "../../components/ProductActions";
 import { ProductFeatureSections } from "../../components/ProductFeatureSections";
-import { ProductHero, ProductPromise } from "../../components/ProductHero";
+import { ProductHero } from "../../components/ProductHero";
 import { ProductMediaGallery } from "../../components/ProductMediaGallery";
 import ProductPricing from "../../components/ProductPricing";
 import SmartScreenshot from "../../components/SmartScreenshot";
@@ -44,8 +44,6 @@ export default function DeskHavenPage() {
           sizes="(max-width: 1024px) 92vw, 620px"
         />
       </ProductHero>
-
-      <ProductPromise eyebrow={copy.common.productPromise} title={copy.deskhaven.promiseTitle} body={copy.deskhaven.promise} />
 
       <div id="product-info" />
       <ProductPricing product="deskhaven" />

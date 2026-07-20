@@ -3,6 +3,7 @@ import "./globals.css";
 import "./brand-v4.css";
 import "./brand-polish.css";
 import "./product-system.css";
+import "./visual-depth.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AmbientDepthScene from "./components/AmbientDepthScene";
@@ -11,17 +12,17 @@ import { LanguageProvider } from "@/lib/i18n/context";
 
 export const metadata: Metadata = {
   title: {
-    default: "SoloCraft — Quiet software for Windows",
+    default: "SoloCraft — Windows applications by Chicken Fillet",
     template: "%s — SoloCraft",
   },
-  description: "Independent, local-first Windows software for energy awareness, file order, and gentler focus.",
+  description: "SoloCraft presents Windows desktop applications developed by Chicken Fillet: EnergyFlow, DeskHaven, and ADHD Focus Timer.",
   applicationName: "SoloCraft",
   creator: "Chicken Fillet",
   category: "technology",
-  keywords: ["SoloCraft", "Windows apps", "local-first software", "EnergyFlow", "DeskHaven", "ADHD Focus Timer"],
+  keywords: ["SoloCraft", "Windows applications", "Chicken Fillet", "EnergyFlow", "DeskHaven", "ADHD Focus Timer"],
   openGraph: {
-    title: "SoloCraft — Quiet software for Windows",
-    description: "Independent, local-first tools that make digital work calmer, clearer, and easier to control.",
+    title: "SoloCraft — Windows applications by Chicken Fillet",
+    description: "Product information, interface screenshots, pricing, privacy policies, and Microsoft Store links for SoloCraft applications.",
     type: "website",
   },
 };

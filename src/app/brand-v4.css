@@ -225,6 +225,7 @@ body::after {
   font-size: clamp(2.6rem, 4.9vw, 5rem);
   line-height: 1.03;
   letter-spacing: -0.042em;
+  white-space: pre-line;
 }
 
 html[lang="zh"] .brand-hero-copy .site-heading-hero,
@@ -328,21 +329,6 @@ html[lang="ko"] .brand-hero-copy .site-heading-hero {
   background: linear-gradient(90deg, rgba(134, 175, 255, 0.035), transparent 70%);
 }
 
-.brand-principles {
-  position: relative;
-}
-
-.brand-principles::after {
-  content: "";
-  position: absolute;
-  right: 2rem;
-  top: 7rem;
-  width: min(28rem, 42vw);
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(134, 175, 255, 0.25), transparent);
-  opacity: 0.65;
-}
-
 :where(a, button):focus-visible {
   outline: 2px solid rgba(134, 175, 255, 0.72);
   outline-offset: 3px;
@@ -367,10 +353,6 @@ html[lang="ko"] .brand-hero-copy .site-heading-hero {
     font-size: clamp(2.25rem, 11vw, 3.55rem);
   }
 
-  .brand-note-grid {
-    grid-template-columns: 1fr;
-  }
-
   .hero-preview-shell {
     min-height: 410px;
   }
@@ -383,9 +365,6 @@ html[lang="ko"] .brand-hero-copy .site-heading-hero {
     padding: 0.8rem 0.95rem;
   }
 
-  .brand-principles::after {
-    display: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

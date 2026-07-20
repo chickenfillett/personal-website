@@ -32,25 +32,3 @@ export function ProductHero({
     </section>
   );
 }
-
-export function ProductPromise({
-  eyebrow,
-  title,
-  body,
-}: {
-  eyebrow: string;
-  title: string;
-  body: string;
-}) {
-  return (
-    <section className="product-promise-section">
-      <div className="product-promise-grid">
-        <span className="eyebrow">{eyebrow}</span>
-        <div>
-          <DisplayHeading variant="section" className="mt-0">{title}</DisplayHeading>
-          <p>{body}</p>
-        </div>
-      </div>
-    </section>
-  );
-}

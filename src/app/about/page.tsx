@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "../components/TransitionLink";
-import { NumberedCardGrid } from "../components/NumberedCardGrid";
 import { PageHero } from "../components/PageHero";
 import { DisplayHeading } from "../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
@@ -22,13 +21,6 @@ export default function About() {
               <p key={paragraph} className="mt-6 first:mt-0">{paragraph}</p>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/[0.07]">
-        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
-          <span className="eyebrow">{copy.about.philosophyTitle}</span>
-          <NumberedCardGrid items={copy.about.philosophy} columns={2} titleOffset="medium" />
         </div>
       </section>
 

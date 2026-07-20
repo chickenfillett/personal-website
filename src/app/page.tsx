@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "./components/TransitionLink";
 import SmartScreenshot from "./components/SmartScreenshot";
 import { useLanguage } from "@/lib/i18n/context";
-import { NumberedCardGrid } from "./components/NumberedCardGrid";
 import { DisplayHeading } from "./components/Typography";
 import { productCatalog, productCatalogPreloadImages, productPreviewSlides } from "@/lib/productCatalog";
 import { getSiteCopy } from "@/lib/siteCopy";
@@ -161,17 +160,9 @@ export default function Home() {
               <Link href="#story" className="primary-action rounded-full px-5 py-3 text-sm font-medium hover-lift">{copy.home.primary}</Link>
               <Link href="/about" className="secondary-action rounded-full px-5 py-3 text-sm hover-lift">{copy.home.secondary}</Link>
             </div>
-            <div className="brand-note-grid mt-14 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 max-w-3xl">
-              {copy.home.notes.map(([title, body]) => (
-                <div key={title} className="brand-note text-sm leading-relaxed text-[var(--faint)]">
-                  <strong className="block mb-2 text-muted font-medium">{title}</strong>
-                  {body}
-                </div>
-              ))}
-            </div>
           </div>
 
-          <div className="screen-shell hero-preview-shell rounded-[2rem] p-4 md:p-5 min-h-[470px] flex flex-col gap-4">
+          <div className="glass-stage hero-preview-shell rounded-[1.4rem] p-3 md:p-4 min-h-[470px] flex flex-col gap-4">
             <div className="flex items-center justify-between text-xs text-[var(--faint)] uppercase tracking-[0.14em] px-1">
               <span>{copy.home.currentProduct}</span>
               <span className="hero-preview-label" key={activeHero?.title}>{activeHero?.title}</span>
@@ -231,7 +222,7 @@ export default function Home() {
         </div>
 
         <div className="lg:sticky lg:top-24 h-[620px] grid place-items-center">
-          <div className="screen-shell story-preview-shell relative w-full max-w-[640px] h-[560px] rounded-[2.125rem] overflow-hidden">
+          <div className="story-preview-shell relative w-full max-w-[640px] h-[560px]">
             <div className="absolute top-7 left-8 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--faint)]">{copy.home.currentProduct}</div>
             {stages.map((stage, index) => (
               <Link
@@ -242,7 +233,7 @@ export default function Home() {
                 }}
                 className="story-stage-product absolute inset-[4.8rem_2rem_2rem] block"
               >
-                <div className="story-stage-card h-full rounded-[1.5rem] border border-white/10 bg-[var(--surface)] overflow-hidden">
+                <div className="story-stage-card glass-stage h-full rounded-[1.15rem] overflow-hidden">
                   <div className="h-12 border-b border-white/[0.07] flex items-center justify-between px-4 text-xs text-[var(--faint)]">
                     <span className="text-muted">{stage.title}</span>
                     <span>{stage.status}</span>
@@ -262,13 +253,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
-
-      <section id="principles" className="brand-principles max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
-        <span className="eyebrow">{copy.common.operatingPrinciples}</span>
-        <DisplayHeading variant="section">{copy.home.principlesTitle}</DisplayHeading>
-        <p className="mt-7 text-lg leading-[1.8] text-muted max-w-2xl">{copy.home.principlesBody}</p>
-        <NumberedCardGrid items={copy.home.notes} />
       </section>
 
       <section className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-32 border-t border-white/[0.07]">
