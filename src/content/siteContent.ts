@@ -239,69 +239,53 @@ const zhCopy = {
     "promise": "应用把声音、计时、临时想法和统计放在同一条专注流程里。声音实时生成，不依赖大型音频文件。",
     "features": [
       [
-        "专注设置",
-        "选择界面语言、计时时长、环境声和引导方式。"
+        "全屏专注计时",
+        "在沉浸式全屏界面中选择时长并开始计时，进度始终清晰可见。"
       ],
       [
-        "实时环境声",
-        "在本地实时生成雨声、风声、海浪和虫鸣等环境声。"
+        "自定义声音环境",
+        "混合雨声、风声、海浪和鸟鸣，并按需要开启空间音频与完成提示音。"
       ],
       [
-        "声音混合与 8D 音频",
-        "分别调节各类环境声的音量，并可开启空间音频效果。"
+        "随手保存临时想法",
+        "专注过程中可用文字或语音暂存念头，不必离开当前计时。"
       ],
       [
-        "呼吸引导",
-        "在计时前按照动画完成一次呼吸练习。"
-      ],
-      [
-        "正向计时",
-        "计时从零开始累积，并可使用全屏粒子背景。"
-      ],
-      [
-        "想法冰箱",
-        "记录专注过程中出现的临时想法，结束后统一查看。"
-      ],
-      [
-        "专注统计",
-        "查看专注次数、累计时间和历史记录。"
+        "本地统计与隐私",
+        "专注记录和偏好保存在设备本地；结束后可查看时长、次数和历史趋势。"
       ]
     ],
     "galleryEyebrow": "界面截图",
     "galleryTitle": "ADHD Focus Timer 界面",
-    "galleryIntro": "以下截图展示专注设置、声音混合、呼吸引导、正向计时、想法冰箱、统计和应用设置。",
+    "galleryIntro": "以下是 1.5.0 版本的实际界面，依次展示专注设置、呼吸引导、计时、隐私说明、想法暂存、完成摘要和休息计时。",
     "galleryItems": [
       [
-        "专注设置",
-        "选择计时时长、界面语言和环境声。"
-      ],
-      [
-        "声音混合",
-        "分别调节多种环境声的音量和空间效果。"
+        "专注设置与声音混合",
+        "选择 5–180 分钟的计时时长，设置呼吸引导，并分别调节多种环境声。"
       ],
       [
         "呼吸引导",
-        "按照动画完成计时前的呼吸练习。"
+        "在计时开始前跟随光环完成一段平稳的呼吸过渡。"
       ],
       [
-        "正向计时",
-        "从零开始累计专注时间，并显示全屏粒子背景。"
+        "全屏正向计时",
+        "从零开始累计专注时间，暂停和想法冰箱始终可以直接使用。"
+      ],
+      [
+        "隐私与应用信息",
+        "查看本地存储说明、隐私政策、版本信息和支持方式。"
       ],
       [
         "想法冰箱",
-        "保存专注过程中出现的临时想法。"
+        "用文字或语音保存临时想法，不中断正在进行的专注。"
       ],
       [
-        "专注统计",
-        "查看累计时间、完成次数和历史记录。"
-      ],
-      [
-        "应用设置",
-        "管理语言、声音、隐私和其他应用选项。"
+        "完成摘要",
+        "专注结束后查看本次时长、累计数据和暂存的想法。"
       ],
       [
         "休息计时",
-        "专注结束后开始休息计时。"
+        "完成专注后进入独立的休息倒计时。"
       ]
     ]
   },
@@ -680,69 +664,53 @@ const zhTwCopy = {
     "promise": "1.5.0 重新整理了介面、聲音和多語言體驗。雨聲、風聲、海浪、蟲鳴等聲音由 Web Audio 即時生成，應用不再攜帶龐大的音訊文件；混音、8D 空間感和完成提示音也可以依自己的狀態調整。",
     "features": [
       [
-        "進入前先定好環境",
-        "開始前選擇語言、時長、聲音與引導方式，先把會打斷專注的決定處理掉。"
+        "全螢幕專注計時",
+        "在沉浸式全螢幕介面中選擇時長並開始計時，進度始終清楚可見。"
       ],
       [
-        "即時生成的專注聲景",
-        "雨、風、海浪、蟲鳴等聲音在本地即時合成，體積更小，也更便於長時間循環。"
+        "自訂聲音環境",
+        "混合雨聲、風聲、海浪與鳥鳴，並依需要開啟空間音訊與完成提示音。"
       ],
       [
-        "聲音混音和 8D 空間感",
-        "用混音面板調節不同聲層，按需要開啟空間移動感，讓背景聲成為穩定陪伴。"
+        "隨手保存臨時想法",
+        "專注過程中可用文字或語音暫存念頭，不必離開目前的計時畫面。"
       ],
       [
-        "呼吸過渡",
-        "正式計時前用簡短呼吸節奏切換狀態，不把開始任務變成突然的壓力。"
-      ],
-      [
-        "正向計時與沉浸粒子",
-        "時間向前累積，避免倒數帶來的失敗感；粒子動畫給出輕微回饋但不搶注意力。"
-      ],
-      [
-        "想法冰箱",
-        "突然冒出的想法可以先存放起來，專注結束後再處理，不必立刻切出目前任務。"
-      ],
-      [
-        "累計統計與溫和完成",
-        "完成頁記錄真實投入，累計專注資料幫助你看見長期進展，而不是只盯著單次表現。"
+        "本地統計與隱私",
+        "專注記錄和偏好保存在裝置本地；結束後可查看時長、次數與歷史趨勢。"
       ]
     ],
     "galleryEyebrow": "介面截圖",
-    "galleryTitle": "ADHD Focus Timer 1.5.0 的真實介面。",
-    "galleryIntro": "從準備頁、聲音混音、呼吸過渡到專注計時、想法暫存與統計回看，這組截圖展示完整的專注流程。介面截圖會隨網站語言自動切換。",
+    "galleryTitle": "ADHD Focus Timer 介面",
+    "galleryIntro": "以下是 1.5.0 版本的實際介面，依序展示專注設定、呼吸引導、計時、隱私說明、想法暫存、完成摘要與休息計時。",
     "galleryItems": [
       [
-        "專注準備",
-        "先選擇時長、語言和環境聲，讓開始變得明確。"
-      ],
-      [
-        "聲音面板",
-        "多層聲景可以自由混合，用於不同的專注狀態。"
+        "專注設定與聲音混合",
+        "選擇 5–180 分鐘的計時長度，設定呼吸引導，並分別調整多種環境聲。"
       ],
       [
         "呼吸引導",
-        "用短暫過渡把注意力從混亂帶回目前任務。"
+        "在計時開始前跟隨光環完成一段平穩的呼吸過渡。"
       ],
       [
-        "專注進行中",
-        "正向計時、粒子回饋和全螢幕環境一起保持低壓力節奏。"
+        "全螢幕正向計時",
+        "從零開始累積專注時間，暫停與想法冰箱可隨時直接使用。"
+      ],
+      [
+        "隱私與應用程式資訊",
+        "查看本地儲存說明、隱私權政策、版本資訊與支援方式。"
       ],
       [
         "想法冰箱",
-        "臨時想法先保存，之後再回來處理。"
+        "用文字或語音保存臨時想法，不中斷正在進行的專注。"
       ],
       [
-        "累計統計",
-        "用長期記錄看見真實投入，而不是只評價單次結果。"
+        "完成摘要",
+        "專注結束後查看本次時長、累積資料與暫存的想法。"
       ],
       [
-        "支援與設定",
-        "語言、聲音、隱私與支援入口集中在清晰位置。"
-      ],
-      [
-        "休息節奏",
-        "完成專注後進入休息狀態，讓下一次開始之前有一段緩衝。"
+        "休息計時",
+        "完成專注後進入獨立的休息倒數計時。"
       ]
     ]
   },
@@ -1121,69 +1089,53 @@ const enCopy = {
     "promise": "Version 1.5.0 rebuilds the interface, audio, and multilingual experience. Rain, wind, ocean, and night sounds are generated locally with Web Audio, so the app no longer carries huge audio files. The mixer, 8D spatial motion, and completion chime can all be tuned to your current state.",
     "features": [
       [
-        "Set the environment first",
-        "Choose language, duration, sound, and guidance before the session so fewer decisions interrupt focus later."
+        "Fullscreen focus timer",
+        "Choose a duration and start a quiet fullscreen session with progress kept clearly in view."
       ],
       [
-        "Real-time focus soundscapes",
-        "Rain, wind, ocean, and night layers are synthesized locally, keeping the app small and comfortable for long loops."
+        "Build your sound environment",
+        "Mix rain, wind, waves, and birdsong, then enable spatial audio or a completion chime when useful."
       ],
       [
-        "Mixer and 8D space",
-        "Balance sound layers and enable spatial movement when you want background sound to feel present without becoming loud."
+        "Capture thoughts without leaving focus",
+        "Save a passing thought as text or a voice note without leaving the active timer."
       ],
       [
-        "Breathing transition",
-        "A short breathing rhythm helps shift into the session without turning the start into a jolt."
-      ],
-      [
-        "Forward timer with particles",
-        "Time accumulates instead of counting down toward failure. Subtle particles provide feedback without demanding attention."
-      ],
-      [
-        "Idea Fridge",
-        "Store sudden thoughts for later so you do not have to leave the current task immediately."
-      ],
-      [
-        "Stats and gentle completion",
-        "The completion screen records real effort, while cumulative stats help you see progress over time."
+        "Local history and privacy",
+        "Focus records and preferences stay on the device; review duration, sessions, and history after finishing."
       ]
     ],
     "galleryEyebrow": "Interface screenshots",
-    "galleryTitle": "The real ADHD Focus Timer 1.5.0 interface.",
-    "galleryIntro": "From setup, sound mixing, and breathing transition to focus timing, Idea Fridge, and cumulative stats, these screenshots show the complete focus flow. Interface captures switch with the website language when matching assets are available.",
+    "galleryTitle": "ADHD Focus Timer interface",
+    "galleryIntro": "These 1.5.0 screens show focus setup, breathing, the active timer, privacy information, thought capture, session results, and rest timing.",
     "galleryItems": [
       [
-        "Focus setup",
-        "Choose duration, language, and sound before the session begins."
+        "Focus setup and sound mixer",
+        "Choose a 5–180 minute duration, enable breathing guidance, and set each ambient sound independently."
       ],
       [
-        "Sound mixer",
-        "Blend multiple ambience layers for different focus states."
+        "Breathing guidance",
+        "Follow the halo through a steady transition before the focus timer begins."
       ],
       [
-        "Breathing guide",
-        "Use a short transition to bring attention back to the task."
+        "Fullscreen count-up timer",
+        "Build focused time from zero with pause and Idea Fridge controls always available."
       ],
       [
-        "Focus session",
-        "Forward timing, particles, and full-screen calm keep the rhythm low-pressure."
+        "Privacy and app information",
+        "Review local-storage details, the privacy policy, version information, and support options."
       ],
       [
         "Idea Fridge",
-        "Capture temporary thoughts without leaving the session."
+        "Save a passing thought as text or voice without interrupting the current session."
       ],
       [
-        "Cumulative stats",
-        "See real effort over time instead of judging one session."
+        "Session summary",
+        "Review the completed duration, cumulative totals, and any thoughts saved during the session."
       ],
       [
-        "Support and settings",
-        "Language, sound, privacy, and support stay easy to find."
-      ],
-      [
-        "Rest rhythm",
-        "Move into a calm break after focus, with space before the next session begins."
+        "Rest timer",
+        "Move into a separate recovery countdown after a focus session."
       ]
     ]
   },
@@ -1562,69 +1514,53 @@ const jaCopy = {
     "promise": "1.5.0 では、インターフェイス、音、多言語体験を作り直しました。雨、風、海、夜の音は Web Audio でローカル生成され、大きな音声ファイルを持ちません。ミキサー、8D 空間感、完了チャイムも状態に合わせて調整できます。",
     "features": [
       [
-        "先に環境を整える",
-        "言語、時間、音、ガイドを開始前に決め、集中中の余分な選択を減らします。"
+        "フルスクリーン集中タイマー",
+        "時間を選び、進行状況が見やすい静かなフルスクリーン画面で集中を始めます。"
       ],
       [
-        "リアルタイムの集中音",
-        "雨、風、海、夜の音をローカルで生成し、軽く長時間ループしやすくします。"
+        "音環境を自由に調整",
+        "雨音、風音、波音、鳥の声を組み合わせ、必要に応じて空間オーディオや完了音を有効にできます。"
       ],
       [
-        "ミキサーと 8D 空間",
-        "複数の音層を調整し、必要な時だけ空間的な動きを加えられます。"
+        "集中を止めずにメモ",
+        "タイマー画面を離れず、浮かんだ考えを文章または音声で一時保存できます。"
       ],
       [
-        "呼吸の移行",
-        "短い呼吸リズムで、急な開始ではなく自然に状態を切り替えます。"
-      ],
-      [
-        "前向きな計時と粒子",
-        "時間を積み上げ、失敗へ向かう倒数感を避けます。粒子は控えめなフィードバックです。"
-      ],
-      [
-        "Idea Fridge",
-        "浮かんだ考えを一時保存し、今の作業からすぐ離れずに済みます。"
-      ],
-      [
-        "統計とやさしい完了",
-        "完了画面は実際の投入を記録し、累積統計で長期の進歩を見せます。"
+        "ローカル履歴とプライバシー",
+        "集中記録と設定は端末内に保存され、終了後に時間、回数、履歴を確認できます。"
       ]
     ],
-    "galleryEyebrow": "画面スクリーンショット",
-    "galleryTitle": "ADHD Focus Timer 1.5.0 の実際の画面。",
-    "galleryIntro": "準備、サウンドミックス、呼吸への切り替え、集中タイマー、Idea Fridge、統計の振り返りまで、集中の流れを実画面で確認できます。対応する画像がある言語では自動で切り替わります。",
+    "galleryEyebrow": "画面イメージ",
+    "galleryTitle": "ADHD Focus Timer の画面",
+    "galleryIntro": "バージョン 1.5.0 の実画面で、集中設定、呼吸ガイド、タイマー、プライバシー情報、メモ、完了結果、休憩タイマーを確認できます。",
     "galleryItems": [
       [
-        "集中準備",
-        "時間、言語、環境音を先に選びます。"
-      ],
-      [
-        "サウンドミキサー",
-        "複数の音を混ぜて、集中状態に合わせます。"
+        "集中設定とサウンドミキサー",
+        "5〜180 分の時間を選び、呼吸ガイドと各環境音を個別に設定します。"
       ],
       [
         "呼吸ガイド",
-        "短い移行で注意を作業へ戻します。"
+        "集中タイマーを始める前に、光の輪に合わせて呼吸を整えます。"
       ],
       [
-        "集中セッション",
-        "前向きな計時、粒子、全画面の落ち着きで低圧のリズムを保ちます。"
+        "フルスクリーン正方向タイマー",
+        "ゼロから集中時間を積み上げ、いつでも一時停止や Idea Fridge を使えます。"
+      ],
+      [
+        "プライバシーとアプリ情報",
+        "ローカル保存、プライバシーポリシー、バージョン、サポート情報を確認します。"
       ],
       [
         "Idea Fridge",
-        "一時的な考えを保存し、あとで戻れます。"
+        "集中を中断せず、浮かんだ考えを文章または音声で保存します。"
       ],
       [
-        "累積統計",
-        "単発の結果ではなく、長期の投入を見ます。"
+        "セッション結果",
+        "今回の集中時間、累計データ、保存した考えを終了後に確認します。"
       ],
       [
-        "サポートと設定",
-        "言語、音、プライバシー、サポートを見つけやすく配置します。"
-      ],
-      [
-        "休憩リズム",
-        "集中後に休憩へ入り、次の開始までの余白を作ります。"
+        "休憩タイマー",
+        "集中を終えたら、独立した休憩カウントダウンへ移ります。"
       ]
     ]
   },
@@ -2003,69 +1939,53 @@ const koCopy = {
     "promise": "1.5.0은 인터페이스, 오디오, 다국어 경험을 다시 정리했습니다. 비, 바람, 바다, 밤소리는 Web Audio로 로컬에서 생성되어 큰 오디오 파일을 포함하지 않습니다. 믹서, 8D 공간감, 완료 알림음도 현재 상태에 맞게 조절할 수 있습니다.",
     "features": [
       [
-        "환경을 먼저 정하기",
-        "언어, 시간, 소리, 가이드를 시작 전에 정해 집중 중 결정을 줄입니다."
+        "전체 화면 집중 타이머",
+        "시간을 선택하고 진행 상황이 선명하게 보이는 조용한 전체 화면에서 집중을 시작합니다."
       ],
       [
-        "실시간 집중 사운드",
-        "비, 바람, 바다, 밤소리를 로컬에서 합성해 앱을 가볍고 긴 루프에 적합하게 유지합니다."
+        "나만의 사운드 환경",
+        "빗소리, 바람, 파도, 새소리를 조합하고 필요할 때 공간 음향과 완료 알림음을 켤 수 있습니다."
       ],
       [
-        "믹서와 8D 공간감",
-        "여러 소리 레이어를 조절하고 필요할 때 공간 이동감을 켤 수 있습니다."
+        "집중을 벗어나지 않고 생각 기록",
+        "진행 중인 타이머를 닫지 않고 떠오른 생각을 글이나 음성으로 잠시 저장합니다."
       ],
       [
-        "호흡 전환",
-        "짧은 호흡 리듬으로 갑작스러운 시작 대신 상태를 부드럽게 바꿉니다."
-      ],
-      [
-        "정방향 타이머와 입자",
-        "시간을 쌓아 실패감을 줄이고, 입자는 주의를 빼앗지 않는 피드백을 줍니다."
-      ],
-      [
-        "Idea Fridge",
-        "갑자기 떠오른 생각을 잠시 저장하고 현재 작업을 바로 벗어나지 않게 합니다."
-      ],
-      [
-        "통계와 부드러운 완료",
-        "완료 화면은 실제 노력을 기록하고 누적 통계는 장기 진행을 보여 줍니다."
+        "로컬 기록과 개인정보 보호",
+        "집중 기록과 설정은 기기에 저장되며 종료 후 시간, 횟수, 이전 기록을 확인할 수 있습니다."
       ]
     ],
-    "galleryEyebrow": "인터페이스 스크린샷",
-    "galleryTitle": "ADHD Focus Timer 1.5.0 실제 화면.",
-    "galleryIntro": "준비 화면, 사운드 믹서, 호흡 전환, 집중 타이머, Idea Fridge, 누적 통계까지 전체 집중 흐름을 실제 화면으로 확인할 수 있습니다. 대응 이미지가 있는 언어는 자동으로 전환됩니다.",
+    "galleryEyebrow": "인터페이스 화면",
+    "galleryTitle": "ADHD Focus Timer 인터페이스",
+    "galleryIntro": "버전 1.5.0의 실제 화면에서 집중 설정, 호흡 안내, 타이머, 개인정보 안내, 생각 기록, 완료 요약, 휴식 타이머를 확인할 수 있습니다.",
     "galleryItems": [
       [
-        "집중 준비",
-        "시간, 언어, 환경음을 먼저 선택합니다."
+        "집중 설정과 사운드 믹서",
+        "5~180분 시간을 선택하고 호흡 안내와 각 환경음의 크기를 따로 설정합니다."
       ],
       [
-        "사운드 믹서",
-        "여러 분위기 소리를 섞어 집중 상태에 맞춥니다."
+        "호흡 안내",
+        "집중 타이머가 시작되기 전에 빛의 움직임을 따라 호흡을 안정시킵니다."
       ],
       [
-        "호흡 가이드",
-        "짧은 전환으로 주의를 작업으로 돌립니다."
+        "전체 화면 정방향 타이머",
+        "0부터 집중 시간을 쌓으며 일시 정지와 Idea Fridge를 언제든 사용할 수 있습니다."
       ],
       [
-        "집중 세션",
-        "정방향 타이머, 입자, 전체 화면 환경으로 낮은 압박의 리듬을 유지합니다."
+        "개인정보 보호와 앱 정보",
+        "로컬 저장 방식, 개인정보 처리방침, 버전, 지원 정보를 확인합니다."
       ],
       [
         "Idea Fridge",
-        "임시 생각을 저장하고 나중에 돌아옵니다."
+        "현재 집중을 방해하지 않고 떠오른 생각을 글이나 음성으로 저장합니다."
       ],
       [
-        "누적 통계",
-        "한 번의 결과가 아니라 장기적인 실제 투입을 봅니다."
+        "세션 완료 요약",
+        "완료한 시간, 누적 기록, 세션 중 저장한 생각을 확인합니다."
       ],
       [
-        "지원과 설정",
-        "언어, 소리, 개인정보, 지원을 쉽게 찾을 수 있습니다."
-      ],
-      [
-        "휴식 리듬",
-        "집중 후 차분한 휴식 상태로 들어가 다음 시작 전 여백을 만듭니다."
+        "휴식 타이머",
+        "집중을 마치면 별도의 휴식 카운트다운으로 이동합니다."
       ]
     ]
   },
@@ -2444,69 +2364,53 @@ const frCopy = {
     "promise": "La version 1.5.0 reconstruit l'interface, l'audio et l'expérience multilingue. Pluie, vent, océan et sons nocturnes sont générés localement avec Web Audio, sans gros fichiers audio intégrés. Le mixeur, l'effet spatial 8D et le carillon de fin restent réglables.",
     "features": [
       [
-        "Préparer l'environnement",
-        "Choisir langue, durée, son et guidage avant la session réduit les décisions pendant le focus."
+        "Minuteur de concentration plein écran",
+        "Choisissez une durée et lancez une session calme en plein écran, avec une progression toujours lisible."
       ],
       [
-        "Ambiances générées en temps réel",
-        "Pluie, vent, océan et nuit sont synthétisés localement, pour une app légère et agréable en boucle longue."
+        "Composez votre ambiance sonore",
+        "Mélangez pluie, vent, vagues et chants d’oiseaux, puis activez l’audio spatial ou le signal de fin selon vos besoins."
       ],
       [
-        "Mixeur et espace 8D",
-        "Équilibrez les couches sonores et activez le mouvement spatial quand le fond sonore doit être plus présent."
+        "Notez une idée sans quitter la session",
+        "Enregistrez une pensée en texte ou en note vocale sans fermer le minuteur en cours."
       ],
       [
-        "Transition respiratoire",
-        "Un rythme court aide à entrer dans la session sans choc de départ."
-      ],
-      [
-        "Chronomètre progressif et particules",
-        "Le temps s'accumule au lieu de compter vers l'échec ; les particules restent discrètes."
-      ],
-      [
-        "Idea Fridge",
-        "Les pensées soudaines peuvent être gardées pour plus tard sans quitter la tâche."
-      ],
-      [
-        "Statistiques et fin douce",
-        "L'écran de fin note l'effort réel, tandis que les statistiques montrent les progrès dans le temps."
+        "Historique local et confidentialité",
+        "Les sessions et préférences restent sur l’appareil ; consultez ensuite les durées, le nombre de sessions et l’historique."
       ]
     ],
-    "galleryEyebrow": "Captures d'écran",
-    "galleryTitle": "L’interface réelle d’ADHD Focus Timer 1.5.0.",
-    "galleryIntro": "De la préparation au mixage sonore, puis de la respiration au chronomètre, à l’Idea Fridge et aux statistiques, ces captures montrent le parcours complet de concentration. Les images changent automatiquement quand la langue dispose d’un jeu dédié.",
+    "galleryEyebrow": "Captures de l’interface",
+    "galleryTitle": "Interface d’ADHD Focus Timer",
+    "galleryIntro": "Ces écrans de la version 1.5.0 présentent les réglages, la respiration, le minuteur, les informations de confidentialité, la prise de notes, le bilan et la pause.",
     "galleryItems": [
       [
-        "Préparation",
-        "Choisissez durée, langue et ambiance avant de commencer."
-      ],
-      [
-        "Mixeur sonore",
-        "Mélangez plusieurs couches selon l'état de concentration."
+        "Réglages et mixage sonore",
+        "Choisissez une durée de 5 à 180 minutes, activez la respiration et réglez chaque son d’ambiance séparément."
       ],
       [
         "Guide respiratoire",
-        "Une courte transition ramène l'attention vers la tâche."
+        "Suivez le halo pour retrouver un rythme régulier avant le début du minuteur."
       ],
       [
-        "Session de focus",
-        "Chronomètre progressif, particules et plein écran maintiennent un rythme doux."
+        "Minuteur progressif plein écran",
+        "Comptez le temps depuis zéro avec les commandes Pause et Idea Fridge toujours accessibles."
+      ],
+      [
+        "Confidentialité et informations",
+        "Consultez le stockage local, la politique de confidentialité, la version et les options d’assistance."
       ],
       [
         "Idea Fridge",
-        "Capturez les pensées temporaires sans quitter la session."
+        "Conservez une pensée en texte ou en audio sans interrompre la session."
       ],
       [
-        "Statistiques cumulées",
-        "Regardez l'effort réel dans le temps, pas une seule session."
+        "Bilan de session",
+        "Retrouvez la durée accomplie, les totaux cumulés et les idées enregistrées."
       ],
       [
-        "Support et réglages",
-        "Langue, son, confidentialité et support restent faciles à trouver."
-      ],
-      [
-        "Rythme de pause",
-        "Passer à une pause calme après le focus, avec de l’espace avant la prochaine session."
+        "Minuteur de pause",
+        "Passez à un compte à rebours distinct après la session de concentration."
       ]
     ]
   },
@@ -2885,69 +2789,53 @@ const deCopy = {
     "promise": "Version 1.5.0 erneuert Oberfläche, Audio und Mehrsprachigkeit. Regen, Wind, Meer und Nachtklänge werden lokal mit Web Audio erzeugt, ohne große Audiodateien. Mixer, 8D-Raumgefühl und Abschlussklang lassen sich anpassen.",
     "features": [
       [
-        "Umgebung zuerst festlegen",
-        "Sprache, Dauer, Klang und Führung werden vor der Sitzung gewählt, damit später weniger Entscheidungen stören."
+        "Fokus-Timer im Vollbild",
+        "Wähle eine Dauer und starte eine ruhige Vollbildsitzung, deren Fortschritt jederzeit klar erkennbar bleibt."
       ],
       [
-        "Echtzeit-Klangwelten",
-        "Regen, Wind, Meer und Nacht werden lokal synthetisiert, wodurch die App klein und loop-freundlich bleibt."
+        "Eigene Klangkulisse",
+        "Mische Regen, Wind, Wellen und Vogelstimmen und aktiviere bei Bedarf Raumklang oder einen Abschlusston."
       ],
       [
-        "Mixer und 8D-Raum",
-        "Klangschichten balancieren und räumliche Bewegung einschalten, wenn der Hintergrund präsenter sein soll."
+        "Gedanken festhalten, ohne den Fokus zu verlassen",
+        "Speichere einen spontanen Gedanken als Text oder Sprachnotiz, ohne den laufenden Timer zu schließen."
       ],
       [
-        "Atemübergang",
-        "Ein kurzer Atemrhythmus hilft beim Wechsel in die Sitzung, ohne den Start hart wirken zu lassen."
-      ],
-      [
-        "Vorwärtszähler und Partikel",
-        "Zeit sammelt sich, statt zum Scheitern herunterzuzählen. Partikel geben dezentes Feedback."
-      ],
-      [
-        "Idea Fridge",
-        "Plötzliche Gedanken können für später geparkt werden, ohne die Aufgabe sofort zu verlassen."
-      ],
-      [
-        "Statistiken und sanfter Abschluss",
-        "Der Abschluss erfasst echte Anstrengung; kumulative Statistiken zeigen Fortschritt über Zeit."
+        "Lokaler Verlauf und Datenschutz",
+        "Fokusdaten und Einstellungen bleiben auf dem Gerät; Dauer, Sitzungen und Verlauf lassen sich danach prüfen."
       ]
     ],
-    "galleryEyebrow": "Oberflächen-Screenshots",
-    "galleryTitle": "Die echte Oberfläche von ADHD Focus Timer 1.5.0.",
-    "galleryIntro": "Von Vorbereitung, Sound-Mix und Atemübergang bis zu Fokuszeit, Idea Fridge und Statistik zeigt diese Galerie den vollständigen Fokusablauf. Passende Sprachversionen wechseln automatisch mit der Website-Sprache.",
+    "galleryEyebrow": "Oberflächenansichten",
+    "galleryTitle": "ADHD Focus Timer im Einsatz",
+    "galleryIntro": "Diese Ansichten aus Version 1.5.0 zeigen Einrichtung, Atemführung, Timer, Datenschutzinformationen, Gedankenspeicher, Abschluss und Pausenzeit.",
     "galleryItems": [
       [
-        "Fokus vorbereiten",
-        "Dauer, Sprache und Klang vor Beginn wählen."
-      ],
-      [
-        "Sound-Mixer",
-        "Mehrere Klangschichten für unterschiedliche Fokuszustände mischen."
+        "Fokuseinstellungen und Sound-Mixer",
+        "Wähle 5 bis 180 Minuten, aktiviere die Atemführung und regle jedes Umgebungsgeräusch einzeln."
       ],
       [
         "Atemführung",
-        "Ein kurzer Übergang bringt Aufmerksamkeit zurück zur Aufgabe."
+        "Folge dem Leuchtring und finde vor dem Start des Timers einen ruhigen Atemrhythmus."
       ],
       [
-        "Fokus-Sitzung",
-        "Vorwärtszählung, Partikel und Vollbildruhe halten den Druck niedrig."
+        "Aufwärts zählender Vollbild-Timer",
+        "Sammle Fokuszeit ab null; Pause und Idea Fridge bleiben jederzeit erreichbar."
+      ],
+      [
+        "Datenschutz und App-Informationen",
+        "Informiere dich über lokale Speicherung, Datenschutz, Version und Supportmöglichkeiten."
       ],
       [
         "Idea Fridge",
-        "Temporäre Gedanken festhalten, ohne die Sitzung zu verlassen."
+        "Speichere einen Gedanken als Text oder Sprache, ohne die laufende Sitzung zu unterbrechen."
       ],
       [
-        "Kumulative Statistik",
-        "Echte Anstrengung über Zeit sehen, statt eine Sitzung zu bewerten."
+        "Sitzungsübersicht",
+        "Prüfe die abgeschlossene Dauer, Gesamtwerte und während der Sitzung gespeicherte Gedanken."
       ],
       [
-        "Support und Einstellungen",
-        "Sprache, Klang, Datenschutz und Support bleiben leicht auffindbar."
-      ],
-      [
-        "Pausenrhythmus",
-        "Nach dem Fokus in eine ruhige Pause wechseln, bevor die nächste Sitzung beginnt."
+        "Pausen-Timer",
+        "Wechsle nach einer Fokussitzung in einen separaten Erholungs-Countdown."
       ]
     ]
   },
@@ -3326,69 +3214,53 @@ const esCopy = {
     "promise": "La versión 1.5.0 reconstruye la interfaz, el audio y la experiencia multilingüe. Lluvia, viento, océano y sonidos nocturnos se generan localmente con Web Audio, sin archivos de audio enormes. El mezclador, el espacio 8D y el sonido de finalización se pueden ajustar.",
     "features": [
       [
-        "Preparar el entorno",
-        "Elegir idioma, duración, sonido y guía antes de la sesión reduce decisiones durante el foco."
+        "Temporizador de concentración a pantalla completa",
+        "Elige una duración e inicia una sesión tranquila a pantalla completa con el progreso siempre visible."
       ],
       [
-        "Ambientes en tiempo real",
-        "Lluvia, viento, océano y noche se sintetizan localmente, manteniendo la app ligera para bucles largos."
+        "Crea tu ambiente sonoro",
+        "Combina lluvia, viento, olas y pájaros, y activa el audio espacial o el aviso final cuando lo necesites."
       ],
       [
-        "Mezclador y espacio 8D",
-        "Equilibra capas de sonido y activa movimiento espacial cuando quieras un fondo más presente."
+        "Guarda una idea sin salir de la sesión",
+        "Anota un pensamiento como texto o voz sin cerrar el temporizador en curso."
       ],
       [
-        "Transición respiratoria",
-        "Un ritmo breve ayuda a entrar en la sesión sin un inicio brusco."
-      ],
-      [
-        "Conteo progresivo y partículas",
-        "El tiempo se acumula en vez de contar hacia el fracaso. Las partículas dan feedback discreto."
-      ],
-      [
-        "Idea Fridge",
-        "Guarda pensamientos repentinos para después sin abandonar la tarea actual."
-      ],
-      [
-        "Estadísticas y cierre suave",
-        "La pantalla final registra esfuerzo real y las estadísticas muestran progreso en el tiempo."
+        "Historial local y privacidad",
+        "Las sesiones y preferencias permanecen en el dispositivo; después puedes revisar duración, sesiones e historial."
       ]
     ],
-    "galleryEyebrow": "Capturas de interfaz",
-    "galleryTitle": "La interfaz real de ADHD Focus Timer 1.5.0.",
-    "galleryIntro": "Desde la preparación y la mezcla de sonido hasta la respiración, el temporizador, Idea Fridge y las estadísticas, estas capturas muestran el flujo completo de concentración. Las imágenes cambian automáticamente cuando existe una versión para el idioma.",
+    "galleryEyebrow": "Capturas de la interfaz",
+    "galleryTitle": "Interfaz de ADHD Focus Timer",
+    "galleryIntro": "Estas pantallas de la versión 1.5.0 muestran la configuración, la respiración, el temporizador, la privacidad, las notas, el resumen y el descanso.",
     "galleryItems": [
       [
-        "Preparar foco",
-        "Elige duración, idioma y ambiente antes de empezar."
-      ],
-      [
-        "Mezclador de sonido",
-        "Combina varias capas para distintos estados de foco."
+        "Configuración y mezclador de sonido",
+        "Elige entre 5 y 180 minutos, activa la respiración y ajusta cada sonido ambiental por separado."
       ],
       [
         "Guía de respiración",
-        "Una transición breve devuelve la atención a la tarea."
+        "Sigue el halo para estabilizar la respiración antes de iniciar el temporizador."
       ],
       [
-        "Sesión de foco",
-        "Conteo progresivo, partículas y pantalla completa sostienen un ritmo de baja presión."
+        "Temporizador ascendente a pantalla completa",
+        "Acumula tiempo desde cero con Pausa e Idea Fridge siempre disponibles."
+      ],
+      [
+        "Privacidad e información de la aplicación",
+        "Consulta el almacenamiento local, la política de privacidad, la versión y las opciones de soporte."
       ],
       [
         "Idea Fridge",
-        "Captura pensamientos temporales sin salir de la sesión."
+        "Guarda un pensamiento como texto o voz sin interrumpir la sesión actual."
       ],
       [
-        "Estadísticas acumuladas",
-        "Observa esfuerzo real en el tiempo, no una sola sesión."
+        "Resumen de la sesión",
+        "Revisa la duración completada, los totales acumulados y las ideas guardadas."
       ],
       [
-        "Soporte y ajustes",
-        "Idioma, sonido, privacidad y soporte quedan fáciles de encontrar."
-      ],
-      [
-        "Ritmo de descanso",
-        "Pasa a una pausa tranquila después del foco, con espacio antes de la siguiente sesión."
+        "Temporizador de descanso",
+        "Pasa a una cuenta atrás independiente al terminar una sesión de concentración."
       ]
     ]
   },
@@ -3767,69 +3639,53 @@ const ruCopy = {
     "promise": "Версия 1.5.0 обновляет интерфейс, звук и многоязычный опыт. Дождь, ветер, океан и ночные звуки генерируются локально через Web Audio, без больших аудиофайлов. Микшер, 8D-пространство и звук завершения можно настроить под состояние.",
     "features": [
       [
-        "Сначала настроить среду",
-        "Выберите язык, длительность, звук и подсказки до начала, чтобы меньше решений мешали во время фокуса."
+        "Полноэкранный таймер фокусировки",
+        "Выберите длительность и начните спокойную полноэкранную сессию с хорошо заметным прогрессом."
       ],
       [
-        "Звуковые сцены в реальном времени",
-        "Дождь, ветер, океан и ночь синтезируются локально, поэтому приложение остаётся лёгким."
+        "Настройка звуковой среды",
+        "Смешивайте дождь, ветер, волны и пение птиц, при необходимости включая пространственный звук и сигнал завершения."
       ],
       [
-        "Микшер и 8D-пространство",
-        "Балансируйте слои звука и включайте пространственное движение, когда фон должен быть ощутимее."
+        "Запись мыслей без выхода из режима",
+        "Сохраните внезапную мысль текстом или голосом, не закрывая активный таймер."
       ],
       [
-        "Дыхательный переход",
-        "Короткий ритм дыхания помогает перейти к сессии без резкого старта."
-      ],
-      [
-        "Прямой таймер и частицы",
-        "Время накапливается, а не отсчитывает путь к провалу. Частицы дают тихую обратную связь."
-      ],
-      [
-        "Idea Fridge",
-        "Внезапные мысли можно сохранить на потом, не выходя из текущей задачи."
-      ],
-      [
-        "Статистика и мягкое завершение",
-        "Экран завершения фиксирует реальное усилие, а статистика показывает прогресс во времени."
+        "Локальная история и конфиденциальность",
+        "Записи и настройки остаются на устройстве; после сессии можно посмотреть длительность, количество и историю."
       ]
     ],
-    "galleryEyebrow": "Скриншоты интерфейса",
-    "galleryTitle": "Реальный интерфейс ADHD Focus Timer 1.5.0.",
-    "galleryIntro": "От подготовки и микширования звука до дыхательного перехода, таймера, Idea Fridge и статистики — эти скриншоты показывают полный путь фокуса. Изображения автоматически меняются, когда для языка есть отдельный набор.",
+    "galleryEyebrow": "Снимки интерфейса",
+    "galleryTitle": "Интерфейс ADHD Focus Timer",
+    "galleryIntro": "Экраны версии 1.5.0 показывают настройку, дыхание, таймер, сведения о конфиденциальности, запись мыслей, итог сессии и отдых.",
     "galleryItems": [
       [
-        "Подготовка фокуса",
-        "Выберите длительность, язык и звуковую среду до начала."
+        "Настройка и микшер звука",
+        "Выберите от 5 до 180 минут, включите дыхательную подготовку и настройте каждый фоновый звук отдельно."
       ],
       [
-        "Звуковой микшер",
-        "Смешивайте несколько слоёв для разных состояний фокуса."
+        "Дыхательная подготовка",
+        "Следуйте за световым кругом, чтобы выровнять дыхание перед запуском таймера."
       ],
       [
-        "Дыхание",
-        "Короткий переход возвращает внимание к задаче."
+        "Полноэкранный таймер с отсчётом вверх",
+        "Накапливайте время с нуля; пауза и Idea Fridge всегда остаются доступными."
       ],
       [
-        "Сессия фокуса",
-        "Прямой таймер, частицы и полноэкранная среда держат низкое давление."
+        "Конфиденциальность и сведения о приложении",
+        "Проверьте описание локального хранения, политику конфиденциальности, версию и способы поддержки."
       ],
       [
         "Idea Fridge",
-        "Сохраняйте временные мысли, не покидая сессию."
+        "Сохраните мысль текстом или голосом, не прерывая текущую сессию."
       ],
       [
-        "Накопительная статистика",
-        "Смотрите реальное усилие во времени, а не одну сессию."
+        "Итоги сессии",
+        "Посмотрите завершённое время, общую статистику и сохранённые во время сессии мысли."
       ],
       [
-        "Поддержка и настройки",
-        "Язык, звук, приватность и поддержка находятся в понятном месте."
-      ],
-      [
-        "Ритм отдыха",
-        "После фокуса переходите к спокойной паузе, оставляя пространство перед новой сессией."
+        "Таймер отдыха",
+        "После фокусировки перейдите к отдельному обратному отсчёту отдыха."
       ]
     ]
   },
@@ -4208,69 +4064,53 @@ const ptCopy = {
     "promise": "A versão 1.5.0 reconstrói interface, áudio e experiência multilíngue. Chuva, vento, oceano e sons noturnos são gerados localmente com Web Audio, sem arquivos de áudio enormes. O mixer, o espaço 8D e o som de conclusão podem ser ajustados.",
     "features": [
       [
-        "Preparar o ambiente",
-        "Escolher idioma, duração, som e guia antes da sessão reduz decisões durante o foco."
+        "Temporizador de foco em tela cheia",
+        "Escolha uma duração e inicie uma sessão tranquila em tela cheia, com o progresso sempre visível."
       ],
       [
-        "Paisagens sonoras em tempo real",
-        "Chuva, vento, oceano e noite são sintetizados localmente, mantendo o app leve para loops longos."
+        "Crie seu ambiente sonoro",
+        "Combine chuva, vento, ondas e pássaros e ative áudio espacial ou o aviso de conclusão quando quiser."
       ],
       [
-        "Mixer e espaço 8D",
-        "Equilibre camadas sonoras e ative movimento espacial quando quiser um fundo mais presente."
+        "Registre ideias sem sair da sessão",
+        "Salve um pensamento em texto ou voz sem fechar o temporizador em andamento."
       ],
       [
-        "Transição respiratória",
-        "Um ritmo curto ajuda a entrar na sessão sem um começo brusco."
-      ],
-      [
-        "Contagem progressiva e partículas",
-        "O tempo se acumula em vez de contar rumo ao fracasso. As partículas dão feedback discreto."
-      ],
-      [
-        "Idea Fridge",
-        "Guarde pensamentos repentinos para depois sem sair da tarefa atual."
-      ],
-      [
-        "Estatísticas e conclusão suave",
-        "A tela final registra esforço real e as estatísticas mostram progresso ao longo do tempo."
+        "Histórico local e privacidade",
+        "Sessões e preferências ficam no dispositivo; depois, consulte duração, quantidade de sessões e histórico."
       ]
     ],
     "galleryEyebrow": "Capturas da interface",
-    "galleryTitle": "A interface real do ADHD Focus Timer 1.5.0.",
-    "galleryIntro": "Da preparação e mixagem de som à respiração, ao timer, ao Idea Fridge e às estatísticas, estas capturas mostram o fluxo completo de foco. As imagens mudam automaticamente quando há versão disponível para o idioma.",
+    "galleryTitle": "Interface do ADHD Focus Timer",
+    "galleryIntro": "Estas telas da versão 1.5.0 mostram configuração, respiração, temporizador, privacidade, registro de ideias, resumo e descanso.",
     "galleryItems": [
       [
-        "Preparar foco",
-        "Escolha duração, idioma e ambiente antes de começar."
+        "Configuração e mixer de som",
+        "Escolha entre 5 e 180 minutos, ative a respiração guiada e ajuste cada som ambiente separadamente."
       ],
       [
-        "Mixer de som",
-        "Combine várias camadas para diferentes estados de foco."
+        "Respiração guiada",
+        "Acompanhe o halo para estabilizar a respiração antes de iniciar o temporizador."
       ],
       [
-        "Guia de respiração",
-        "Uma transição curta traz a atenção de volta à tarefa."
+        "Temporizador crescente em tela cheia",
+        "Acumule tempo desde zero com Pausa e Idea Fridge sempre disponíveis."
       ],
       [
-        "Sessão de foco",
-        "Contagem progressiva, partículas e tela cheia mantêm um ritmo de baixa pressão."
+        "Privacidade e informações do aplicativo",
+        "Consulte o armazenamento local, a política de privacidade, a versão e as opções de suporte."
       ],
       [
         "Idea Fridge",
-        "Capture pensamentos temporários sem sair da sessão."
+        "Salve um pensamento em texto ou voz sem interromper a sessão atual."
       ],
       [
-        "Estatísticas acumuladas",
-        "Veja esforço real no tempo, não apenas uma sessão."
+        "Resumo da sessão",
+        "Veja a duração concluída, os totais acumulados e as ideias salvas durante a sessão."
       ],
       [
-        "Suporte e ajustes",
-        "Idioma, som, privacidade e suporte ficam fáceis de encontrar."
-      ],
-      [
-        "Ritmo de descanso",
-        "Entre em uma pausa calma após o foco, com espaço antes da próxima sessão."
+        "Temporizador de descanso",
+        "Passe para uma contagem regressiva separada depois da sessão de foco."
       ]
     ]
   },

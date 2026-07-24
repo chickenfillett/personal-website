@@ -13,7 +13,8 @@
     "lint": "eslint",
     "audit": "node scripts/audit-repository.mjs",
     "validate": "npm run audit && npm run typecheck && npm run lint",
-    "import:energyflow": "node scripts/import-energyflow-assets.mjs"
+    "import:energyflow": "node scripts/import-energyflow-assets.mjs",
+    "import:adhd": "node scripts/import-adhd-assets.mjs"
   },
   "dependencies": {
     "next": "16.2.4",

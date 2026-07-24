@@ -36,6 +36,8 @@ const assetDirectories = {
       7,
     ]),
   ),
+  "public/photo/adhd-focus-timer/zh/posters": 4,
+  "public/photo/adhd-focus-timer/en/posters": 4,
   "public/photo/deskhaven/zh/screenshots": 20,
   "public/photo/deskhaven/zh-tw/screenshots": 18,
   "public/photo/deskhaven/en/screenshots": 21,

@@ -5,6 +5,7 @@ export type EnergyFlowPosterLocale = "zh" | "en";
 export type DeskHavenAssetLocale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
 export type DeskHavenPosterLocale = Exclude<DeskHavenAssetLocale, "ko" | "de">;
 export type AdhdAssetLocale = "zh" | "en" | "ja" | "fr" | "de" | "es";
+export type AdhdPosterLocale = "zh" | "en";
 
 export const microsoftStoreLinks = {
   energyflow: "https://apps.microsoft.com/store/detail/9N7ZWFVC2QQS?cid=DevShareMCLPCS",
@@ -40,6 +41,10 @@ export function adhdAssetLocale(locale: Locale): AdhdAssetLocale {
   if (locale === "zh" || locale === "zh-tw") return "zh";
   if (locale === "ja" || locale === "fr" || locale === "de" || locale === "es") return locale;
   return "en";
+}
+
+export function adhdPosterLocale(locale: Locale): AdhdPosterLocale {
+  return locale === "zh" || locale === "zh-tw" ? "zh" : "en";
 }
 
 function numberedEnergyFlowScreenshots(locale: EnergyFlowAssetLocale) {
@@ -82,14 +87,25 @@ function numberedAdhdScreenshots(locale: AdhdAssetLocale) {
   );
 }
 
+function numberedAdhdPosters(locale: AdhdPosterLocale) {
+  return Array.from(
+    { length: 4 },
+    (_, index) => `/photo/adhd-focus-timer/${locale}/posters/poster-${String(index + 1).padStart(2, "0")}.webp`,
+  );
+}
+
 export function adhdImagesForLocale(locale: Locale) {
   const assetLocale = adhdAssetLocale(locale);
+  const posterLocale = adhdPosterLocale(locale);
   const screenshots = numberedAdhdScreenshots(assetLocale);
+  const posters = numberedAdhdPosters(posterLocale);
 
   return {
     locale: assetLocale,
+    posterLocale,
+    posters,
     screenshots,
-    hero: screenshots[0],
+    hero: posters[0],
     setup: screenshots[0],
     soundscape: screenshots[0],
     breathing: screenshots[1],
@@ -163,8 +179,15 @@ export function allEnergyFlowImages(locale?: Locale) {
 }
 
 export function allAdhdImages(locale?: Locale) {
-  if (locale) return adhdImagesForLocale(locale).screenshots;
-  return (["zh", "en", "ja", "fr", "de", "es"] as AdhdAssetLocale[]).flatMap(numberedAdhdScreenshots);
+  if (locale) {
+    const assets = adhdImagesForLocale(locale);
+    return [...assets.posters, ...assets.screenshots];
+  }
+
+  const screenshots = (["zh", "en", "ja", "fr", "de", "es"] as AdhdAssetLocale[])
+    .flatMap(numberedAdhdScreenshots);
+  const posters = (["zh", "en"] as AdhdPosterLocale[]).flatMap(numberedAdhdPosters);
+  return [...posters, ...screenshots];
 }
 
 export function allDeskHavenImages(locale?: Locale) {

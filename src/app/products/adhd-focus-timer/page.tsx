@@ -18,28 +18,11 @@ export default function ADHDFocusTimerPage() {
   const adhdAssets = adhdImagesForLocale(locale);
   const legalLabel = commerceLabels(locale).legal;
   const labels = commerceLabels(locale);
-  usePreloadImages([adhdAssets.hero, adhdAssets.breathing, ...adhdAssets.screenshots.slice(0, 2)], true, 6);
+  usePreloadImages([...adhdAssets.posters.slice(0, 2), ...adhdAssets.screenshots.slice(0, 2)], true, 4);
   const galleryItems = copy.adhd.galleryItems as readonly (readonly [string, string])[];
-
-  const featureImages = [
-    adhdAssets.setup,
-    adhdAssets.soundscape,
-    adhdAssets.soundscape,
-    adhdAssets.breathing,
-    adhdAssets.focus,
-    adhdAssets.ideaFridge,
-    adhdAssets.stats,
-  ] as const;
-
-  const galleryCards = [
-    { image: adhdAssets.screenshots[0], copy: galleryItems[0] },
-    { image: adhdAssets.screenshots[1], copy: galleryItems[2] },
-    { image: adhdAssets.screenshots[2], copy: galleryItems[3] },
-    { image: adhdAssets.screenshots[3], copy: galleryItems[6] },
-    { image: adhdAssets.screenshots[4], copy: galleryItems[4] },
-    { image: adhdAssets.screenshots[5], copy: galleryItems[5] },
-    { image: adhdAssets.screenshots[6], copy: galleryItems[7] },
-  ].filter((item): item is { image: string; copy: readonly [string, string] } => Boolean(item.image && item.copy));
+  const galleryCards = adhdAssets.screenshots
+    .map((image, index) => ({ image, copy: galleryItems[index] }))
+    .filter((item): item is { image: string; copy: readonly [string, string] } => Boolean(item.copy));
 
   return (
     <div className="product-page" data-product="adhd">
@@ -55,9 +38,9 @@ export default function ADHDFocusTimerPage() {
       >
         <SmartScreenshot
           src={adhdAssets.hero}
-          alt="ADHD Focus Timer focus session"
-          width={1200}
-          height={675}
+          alt={`${copy.adhd.features[0][0]} - ADHD Focus Timer`}
+          width={1400}
+          height={788}
           priority
           sizes="(max-width: 1024px) 92vw, 620px"
         />
@@ -76,9 +59,9 @@ export default function ADHDFocusTimerPage() {
 
       <ProductFeatureSections
         features={copy.adhd.features}
-        images={featureImages}
-        imageWidth={1200}
-        imageHeight={675}
+        images={adhdAssets.posters}
+        imageWidth={1400}
+        imageHeight={788}
       />
 
       <ProductMediaGallery
