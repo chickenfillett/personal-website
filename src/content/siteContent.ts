@@ -257,7 +257,7 @@ const zhCopy = {
     ],
     "galleryEyebrow": "界面截图",
     "galleryTitle": "ADHD Focus Timer 界面",
-    "galleryIntro": "以下是 1.5.0 版本的实际界面，依次展示专注设置、呼吸引导、计时、隐私说明、想法暂存、完成摘要和休息计时。",
+    "galleryIntro": "以下是 1.5.0 版本的实际界面，依次展示专注设置、呼吸引导、计时、声音混合、想法暂存、完成摘要和休息计时。",
     "galleryItems": [
       [
         "专注设置与声音混合",
@@ -272,8 +272,8 @@ const zhCopy = {
         "从零开始累计专注时间，暂停和想法冰箱始终可以直接使用。"
       ],
       [
-        "隐私与应用信息",
-        "查看本地存储说明、隐私政策、版本信息和支持方式。"
+        "声音混合",
+        "分别调节环境声、提示音和空间音频，保存适合当前任务的声音环境。"
       ],
       [
         "想法冰箱",
@@ -682,7 +682,7 @@ const zhTwCopy = {
     ],
     "galleryEyebrow": "介面截圖",
     "galleryTitle": "ADHD Focus Timer 介面",
-    "galleryIntro": "以下是 1.5.0 版本的實際介面，依序展示專注設定、呼吸引導、計時、隱私說明、想法暫存、完成摘要與休息計時。",
+    "galleryIntro": "以下是 1.5.0 版本的實際介面，依序展示專注設定、呼吸引導、計時、聲音混合、想法暫存、完成摘要與休息計時。",
     "galleryItems": [
       [
         "專注設定與聲音混合",
@@ -697,8 +697,8 @@ const zhTwCopy = {
         "從零開始累積專注時間，暫停與想法冰箱可隨時直接使用。"
       ],
       [
-        "隱私與應用程式資訊",
-        "查看本地儲存說明、隱私權政策、版本資訊與支援方式。"
+        "聲音混合",
+        "分別調整環境音、提示音與空間音訊，保存適合目前任務的聲音環境。"
       ],
       [
         "想法冰箱",
@@ -1107,7 +1107,7 @@ const enCopy = {
     ],
     "galleryEyebrow": "Interface screenshots",
     "galleryTitle": "ADHD Focus Timer interface",
-    "galleryIntro": "These 1.5.0 screens show focus setup, breathing, the active timer, privacy information, thought capture, session results, and rest timing.",
+    "galleryIntro": "These 1.5.0 screens show focus setup, breathing, the active timer, sound mixing, thought capture, session results, and rest timing.",
     "galleryItems": [
       [
         "Focus setup and sound mixer",
@@ -1122,8 +1122,8 @@ const enCopy = {
         "Build focused time from zero with pause and Idea Fridge controls always available."
       ],
       [
-        "Privacy and app information",
-        "Review local-storage details, the privacy policy, version information, and support options."
+        "Sound mixer",
+        "Balance ambient layers, cues, and spatial audio, then keep the sound environment that suits the task."
       ],
       [
         "Idea Fridge",
@@ -1532,7 +1532,7 @@ const jaCopy = {
     ],
     "galleryEyebrow": "画面イメージ",
     "galleryTitle": "ADHD Focus Timer の画面",
-    "galleryIntro": "バージョン 1.5.0 の実画面で、集中設定、呼吸ガイド、タイマー、プライバシー情報、メモ、完了結果、休憩タイマーを確認できます。",
+    "galleryIntro": "バージョン 1.5.0 の実画面で、集中設定、呼吸ガイド、タイマー、サウンドミキサー、メモ、完了結果、休憩タイマーを確認できます。",
     "galleryItems": [
       [
         "集中設定とサウンドミキサー",
@@ -1547,8 +1547,8 @@ const jaCopy = {
         "ゼロから集中時間を積み上げ、いつでも一時停止や Idea Fridge を使えます。"
       ],
       [
-        "プライバシーとアプリ情報",
-        "ローカル保存、プライバシーポリシー、バージョン、サポート情報を確認します。"
+        "サウンドミキサー",
+        "環境音、通知音、空間オーディオを個別に調整し、作業に合う音環境を保存します。"
       ],
       [
         "Idea Fridge",
@@ -1957,7 +1957,7 @@ const koCopy = {
     ],
     "galleryEyebrow": "인터페이스 화면",
     "galleryTitle": "ADHD Focus Timer 인터페이스",
-    "galleryIntro": "버전 1.5.0의 실제 화면에서 집중 설정, 호흡 안내, 타이머, 개인정보 안내, 생각 기록, 완료 요약, 휴식 타이머를 확인할 수 있습니다.",
+    "galleryIntro": "버전 1.5.0의 실제 화면에서 집중 설정, 호흡 안내, 타이머, 사운드 믹서, 생각 기록, 완료 요약, 휴식 타이머를 확인할 수 있습니다.",
     "galleryItems": [
       [
         "집중 설정과 사운드 믹서",
@@ -1972,8 +1972,8 @@ const koCopy = {
         "0부터 집중 시간을 쌓으며 일시 정지와 Idea Fridge를 언제든 사용할 수 있습니다."
       ],
       [
-        "개인정보 보호와 앱 정보",
-        "로컬 저장 방식, 개인정보 처리방침, 버전, 지원 정보를 확인합니다."
+        "사운드 믹서",
+        "환경음, 알림음, 공간 음향을 각각 조절하고 현재 작업에 맞는 소리 환경을 저장합니다."
       ],
       [
         "Idea Fridge",
@@ -2382,7 +2382,7 @@ const frCopy = {
     ],
     "galleryEyebrow": "Captures de l’interface",
     "galleryTitle": "Interface d’ADHD Focus Timer",
-    "galleryIntro": "Ces écrans de la version 1.5.0 présentent les réglages, la respiration, le minuteur, les informations de confidentialité, la prise de notes, le bilan et la pause.",
+    "galleryIntro": "Ces écrans de la version 1.5.0 présentent les réglages, la respiration, le minuteur, le mixage sonore, la prise de notes, le bilan et la pause.",
     "galleryItems": [
       [
         "Réglages et mixage sonore",
@@ -2397,8 +2397,8 @@ const frCopy = {
         "Comptez le temps depuis zéro avec les commandes Pause et Idea Fridge toujours accessibles."
       ],
       [
-        "Confidentialité et informations",
-        "Consultez le stockage local, la politique de confidentialité, la version et les options d’assistance."
+        "Mixage sonore",
+        "Réglez séparément les ambiances, les signaux et l’audio spatial, puis conservez l’environnement adapté à la tâche."
       ],
       [
         "Idea Fridge",
@@ -2807,7 +2807,7 @@ const deCopy = {
     ],
     "galleryEyebrow": "Oberflächenansichten",
     "galleryTitle": "ADHD Focus Timer im Einsatz",
-    "galleryIntro": "Diese Ansichten aus Version 1.5.0 zeigen Einrichtung, Atemführung, Timer, Datenschutzinformationen, Gedankenspeicher, Abschluss und Pausenzeit.",
+    "galleryIntro": "Diese Ansichten aus Version 1.5.0 zeigen Einrichtung, Atemführung, Timer, Sound-Mixer, Gedankenspeicher, Abschluss und Pausenzeit.",
     "galleryItems": [
       [
         "Fokuseinstellungen und Sound-Mixer",
@@ -2822,8 +2822,8 @@ const deCopy = {
         "Sammle Fokuszeit ab null; Pause und Idea Fridge bleiben jederzeit erreichbar."
       ],
       [
-        "Datenschutz und App-Informationen",
-        "Informiere dich über lokale Speicherung, Datenschutz, Version und Supportmöglichkeiten."
+        "Sound-Mixer",
+        "Regle Umgebungsgeräusche, Signale und Raumklang getrennt und speichere die passende Klangumgebung."
       ],
       [
         "Idea Fridge",
@@ -3232,7 +3232,7 @@ const esCopy = {
     ],
     "galleryEyebrow": "Capturas de la interfaz",
     "galleryTitle": "Interfaz de ADHD Focus Timer",
-    "galleryIntro": "Estas pantallas de la versión 1.5.0 muestran la configuración, la respiración, el temporizador, la privacidad, las notas, el resumen y el descanso.",
+    "galleryIntro": "Estas pantallas de la versión 1.5.0 muestran la configuración, la respiración, el temporizador, la mezcla de sonido, las notas, el resumen y el descanso.",
     "galleryItems": [
       [
         "Configuración y mezclador de sonido",
@@ -3247,8 +3247,8 @@ const esCopy = {
         "Acumula tiempo desde cero con Pausa e Idea Fridge siempre disponibles."
       ],
       [
-        "Privacidad e información de la aplicación",
-        "Consulta el almacenamiento local, la política de privacidad, la versión y las opciones de soporte."
+        "Mezclador de sonido",
+        "Ajusta por separado los ambientes, avisos y audio espacial, y conserva el entorno adecuado para cada tarea."
       ],
       [
         "Idea Fridge",
@@ -3657,7 +3657,7 @@ const ruCopy = {
     ],
     "galleryEyebrow": "Снимки интерфейса",
     "galleryTitle": "Интерфейс ADHD Focus Timer",
-    "galleryIntro": "Экраны версии 1.5.0 показывают настройку, дыхание, таймер, сведения о конфиденциальности, запись мыслей, итог сессии и отдых.",
+    "galleryIntro": "Экраны версии 1.5.0 показывают настройку, дыхание, таймер, звуковой микшер, запись мыслей, итог сессии и отдых.",
     "galleryItems": [
       [
         "Настройка и микшер звука",
@@ -3672,8 +3672,8 @@ const ruCopy = {
         "Накапливайте время с нуля; пауза и Idea Fridge всегда остаются доступными."
       ],
       [
-        "Конфиденциальность и сведения о приложении",
-        "Проверьте описание локального хранения, политику конфиденциальности, версию и способы поддержки."
+        "Звуковой микшер",
+        "Настройте фоновые звуки, сигналы и пространственное аудио и сохраните подходящую для задачи среду."
       ],
       [
         "Idea Fridge",
@@ -4082,7 +4082,7 @@ const ptCopy = {
     ],
     "galleryEyebrow": "Capturas da interface",
     "galleryTitle": "Interface do ADHD Focus Timer",
-    "galleryIntro": "Estas telas da versão 1.5.0 mostram configuração, respiração, temporizador, privacidade, registro de ideias, resumo e descanso.",
+    "galleryIntro": "Estas telas da versão 1.5.0 mostram configuração, respiração, temporizador, mixagem de som, registro de ideias, resumo e descanso.",
     "galleryItems": [
       [
         "Configuração e mixer de som",
@@ -4097,8 +4097,8 @@ const ptCopy = {
         "Acumule tempo desde zero com Pausa e Idea Fridge sempre disponíveis."
       ],
       [
-        "Privacidade e informações do aplicativo",
-        "Consulte o armazenamento local, a política de privacidade, a versão e as opções de suporte."
+        "Mixer de som",
+        "Ajuste ambientes, alertas e áudio espacial separadamente e salve o cenário adequado para cada tarefa."
       ],
       [
         "Idea Fridge",

@@ -14,4 +14,4 @@ Asset fallback rules are also centralized in `src/lib/siteAssets.ts`. Do not cop
 
 EnergyFlow assets can be refreshed with `npm run import:energyflow` after placing a source package in the location expected by the import script. The script validates counts and writes optimized WebP files.
 
-ADHD Focus Timer advertising images can be refreshed with `npm run import:adhd -- <advertising-image-directory>`. The source directory must contain `中文` and `英文` folders, each with four numbered 16:9 PNG files.
+ADHD Focus Timer media can be refreshed with `npm run import:adhd -- <promotional-images-directory>`. The directory may contain `广告图` (four Chinese and four English posters) and `界面截图` (seven screenshots for each supported asset language). Passing either subdirectory directly is also supported.

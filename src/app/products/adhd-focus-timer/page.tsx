@@ -20,7 +20,8 @@ export default function ADHDFocusTimerPage() {
   const labels = commerceLabels(locale);
   usePreloadImages([...adhdAssets.posters.slice(0, 2), ...adhdAssets.screenshots.slice(0, 2)], true, 4);
   const galleryItems = copy.adhd.galleryItems as readonly (readonly [string, string])[];
-  const galleryCards = adhdAssets.screenshots
+  const galleryImages = [4, 0, 1, 3, 2, 5, 6].map((index) => adhdAssets.screenshots[index]);
+  const galleryCards = galleryImages
     .map((image, index) => ({ image, copy: galleryItems[index] }))
     .filter((item): item is { image: string; copy: readonly [string, string] } => Boolean(item.copy));
 
@@ -70,8 +71,8 @@ export default function ADHDFocusTimerPage() {
         intro={copy.adhd.galleryIntro}
         images={galleryCards.map((item) => item.image)}
         items={galleryCards.map((item) => item.copy)}
-        imageWidth={1180}
-        imageHeight={664}
+        imageWidth={1400}
+        imageHeight={788}
         imageShape="landscape"
         productName="ADHD Focus Timer"
       />

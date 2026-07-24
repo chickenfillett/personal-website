@@ -4,7 +4,7 @@ export type EnergyFlowAssetLocale = "zh" | "en" | "ja" | "ko" | "fr" | "de" | "e
 export type EnergyFlowPosterLocale = "zh" | "en";
 export type DeskHavenAssetLocale = "zh" | "zh-tw" | "en" | "ja" | "ko" | "fr" | "de" | "es" | "ru" | "pt";
 export type DeskHavenPosterLocale = Exclude<DeskHavenAssetLocale, "ko" | "de">;
-export type AdhdAssetLocale = "zh" | "en" | "ja" | "fr" | "de" | "es";
+export type AdhdAssetLocale = "zh" | "en" | "ja" | "fr" | "de" | "es" | "ru" | "pt";
 export type AdhdPosterLocale = "zh" | "en";
 
 export const microsoftStoreLinks = {
@@ -39,7 +39,9 @@ export function deskHavenPosterLocale(locale: Locale): DeskHavenPosterLocale {
 
 export function adhdAssetLocale(locale: Locale): AdhdAssetLocale {
   if (locale === "zh" || locale === "zh-tw") return "zh";
-  if (locale === "ja" || locale === "fr" || locale === "de" || locale === "es") return locale;
+  if (["en", "ja", "fr", "de", "es", "ru", "pt"].includes(locale)) {
+    return locale as AdhdAssetLocale;
+  }
   return "en";
 }
 
@@ -106,12 +108,12 @@ export function adhdImagesForLocale(locale: Locale) {
     posters,
     screenshots,
     hero: posters[0],
-    setup: screenshots[0],
-    soundscape: screenshots[0],
-    breathing: screenshots[1],
-    focus: screenshots[2],
-    support: screenshots[3],
-    ideaFridge: screenshots[4],
+    setup: screenshots[4],
+    soundscape: screenshots[3],
+    breathing: screenshots[0],
+    focus: screenshots[1],
+    support: screenshots[4],
+    ideaFridge: screenshots[2],
     stats: screenshots[5],
     rest: screenshots[6],
   };
@@ -184,7 +186,7 @@ export function allAdhdImages(locale?: Locale) {
     return [...assets.posters, ...assets.screenshots];
   }
 
-  const screenshots = (["zh", "en", "ja", "fr", "de", "es"] as AdhdAssetLocale[])
+  const screenshots = (["zh", "en", "ja", "fr", "de", "es", "ru", "pt"] as AdhdAssetLocale[])
     .flatMap(numberedAdhdScreenshots);
   const posters = (["zh", "en"] as AdhdPosterLocale[]).flatMap(numberedAdhdPosters);
   return [...posters, ...screenshots];

@@ -31,7 +31,7 @@ const assetDirectories = {
   "public/photo/energyflow/zh/posters": 4,
   "public/photo/energyflow/en/posters": 4,
   ...Object.fromEntries(
-    ["zh", "en", "ja", "fr", "de", "es"].map((locale) => [
+    ["zh", "en", "ja", "fr", "de", "es", "ru", "pt"].map((locale) => [
       `public/photo/adhd-focus-timer/${locale}/screenshots`,
       7,
     ]),
