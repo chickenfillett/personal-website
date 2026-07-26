@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { DisplayHeading } from "./Typography";
+import { MediaSurface } from "./layout/MediaSurface";
+import { SectionShell } from "./layout/SectionShell";
 
 type GalleryItem = readonly [title: string, body: string];
 
@@ -25,7 +27,7 @@ export function ProductMediaGallery({
   productName: string;
 }) {
   return (
-    <section className="product-gallery-section">
+    <SectionShell size="large" bordered className="product-gallery-section">
       <div className="product-section-inner">
         <div className="product-section-heading">
           <span className="eyebrow">{eyebrow}</span>
@@ -39,8 +41,8 @@ export function ProductMediaGallery({
             const imageTitle = item?.[0] ?? `${productName} ${String(index + 1).padStart(2, "0")}`;
 
             return (
-              <figure key={image} className="product-gallery-card">
-                <div className="product-gallery-media">
+              <figure key={image} className={`product-gallery-item product-gallery-item-${(index % 5) + 1}`}>
+                <MediaSurface size="gallery" className="product-gallery-media">
                   <Image
                     src={image}
                     alt={imageTitle}
@@ -52,7 +54,7 @@ export function ProductMediaGallery({
                       ? "(max-width: 620px) 88vw, (max-width: 980px) 42vw, 300px"
                       : "(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 540px"}
                   />
-                </div>
+                </MediaSurface>
 
                 {item ? (
                   <figcaption className="product-gallery-copy">
@@ -73,6 +75,6 @@ export function ProductMediaGallery({
           })}
         </div>
       </div>
-    </section>
+    </SectionShell>
   );
 }

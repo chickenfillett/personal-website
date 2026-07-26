@@ -1,4 +1,6 @@
 import Link from "./TransitionLink";
+import { InlineMeta } from "./layout/InlineMeta";
+import { SectionShell } from "./layout/SectionShell";
 
 export type ProductAction = {
   href: string;
@@ -40,23 +42,39 @@ export function ProductHeroActions({
   actions: readonly ProductAction[];
 }) {
   return (
-    <div className="product-hero-actions mt-10 flex flex-wrap gap-3">
-      <span className="product-status rounded-full border border-white/10 px-5 py-3 text-sm text-muted">{status}</span>
-      {actions.map((action) => (
-        <ActionLink key={`${action.href}-${action.label}`} action={action} />
-      ))}
+    <div className="product-hero-actions mt-10">
+      <InlineMeta items={[status]} />
+      <div className="mt-6 flex flex-wrap gap-3">
+        {actions.map((action) => (
+          <ActionLink key={`${action.href}-${action.label}`} action={action} />
+        ))}
+      </div>
     </div>
   );
 }
 
 export function ProductInfoLinks({ actions }: { actions: readonly ProductAction[] }) {
   return (
-    <section className="product-info-links-section">
+    <SectionShell size="small" bordered className="product-info-links-section">
       <div className="product-info-links">
         {actions.map((action) => (
-          <ActionLink key={`${action.href}-${action.label}`} action={action} compact />
+          action.external ? (
+            <a
+              key={`${action.href}-${action.label}`}
+              href={action.href}
+              target="_blank"
+              rel="noreferrer"
+              className="product-info-row"
+            >
+              <span>{action.label}</span><span aria-hidden="true">→</span>
+            </a>
+          ) : (
+            <Link key={`${action.href}-${action.label}`} href={action.href} className="product-info-row">
+              <span>{action.label}</span><span aria-hidden="true">→</span>
+            </Link>
+          )
         ))}
       </div>
-    </section>
+    </SectionShell>
   );
 }

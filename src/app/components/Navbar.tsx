@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Locale, supportedLocales, useLanguage } from "@/lib/i18n/context";
 import { navCopy } from "@/content/siteContent";
 import Link from "./TransitionLink";
+import { SiteContainer } from "./layout/SiteContainer";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -62,7 +63,8 @@ export default function Navbar() {
 
   return (
     <header className="brand-header sticky top-0 z-50 border-b border-white/[0.06] bg-background/80 backdrop-blur-xl">
-      <nav className="max-w-[1180px] mx-auto px-5 md:px-8 h-16 flex items-center justify-between gap-6" aria-label="Primary navigation">
+      <SiteContainer className="h-16">
+      <nav className="h-full flex items-center justify-between gap-6" aria-label="Primary navigation">
         <Link href="/" className="brand-wordmark flex items-center gap-3 text-foreground tracking-tight shrink-0" aria-label="SoloCraft home">
           <span className="brand-mark" aria-hidden="true"><span /></span>
           <span className="flex items-baseline gap-2">
@@ -157,6 +159,7 @@ export default function Navbar() {
           ) : null}
         </div>
       </nav>
+      </SiteContainer>
     </header>
   );
 }

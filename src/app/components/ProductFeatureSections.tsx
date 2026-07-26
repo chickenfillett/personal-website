@@ -1,5 +1,8 @@
 import SmartScreenshot from "./SmartScreenshot";
 import { DisplayHeading } from "./Typography";
+import { MediaSurface } from "./layout/MediaSurface";
+import { SectionShell } from "./layout/SectionShell";
+import { SplitSection } from "./layout/SplitSection";
 
 export function ProductFeatureSections({
   features,
@@ -15,14 +18,24 @@ export function ProductFeatureSections({
   return (
     <section className="product-feature-section">
       {features.map(([title, body], index) => (
-        <div key={`${title}-${index}`} className="product-feature-row">
-          <div className={`detail-rail ${index % 2 === 1 ? "product-feature-row-reverse" : ""}`}>
-            <div className="detail-sticky product-feature-copy">
+        <SectionShell
+          key={`${title}-${index}`}
+          size="large"
+          bordered
+          className="product-feature-row"
+        >
+          <SplitSection
+            reverse={index % 2 === 1}
+            className="detail-rail"
+            content={
+              <div className="product-feature-copy">
               <span className="product-feature-index">{String(index + 1).padStart(2, "0")}</span>
               <DisplayHeading variant="feature">{title}</DisplayHeading>
               <p>{body}</p>
             </div>
-            <div className="product-feature-media">
+            }
+            media={
+              <MediaSurface size="feature" className="product-feature-media">
               <SmartScreenshot
                 src={images[index] ?? images[0]}
                 alt={title}
@@ -30,9 +43,10 @@ export function ProductFeatureSections({
                 height={imageHeight}
                 sizes="(max-width: 1024px) 92vw, 680px"
               />
-            </div>
-          </div>
-        </div>
+              </MediaSurface>
+            }
+          />
+        </SectionShell>
       ))}
     </section>
   );

@@ -5,6 +5,9 @@ import { PageHero } from "../components/PageHero";
 import { DisplayHeading } from "../components/Typography";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/content/siteContent";
+import { ContentRow } from "../components/layout/ContentRow";
+import { EditorialGrid } from "../components/layout/EditorialGrid";
+import { SectionShell } from "../components/layout/SectionShell";
 
 export default function About() {
   const { locale } = useLanguage();
@@ -14,31 +17,40 @@ export default function About() {
     <div className="flex flex-col">
       <PageHero eyebrow="SoloCraft" title={copy.about.title} intro={copy.about.intro} animated />
 
-      <section className="border-t border-white/[0.07]">
-        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
+      <SectionShell size="medium" bordered>
+        <EditorialGrid>
+          <div className="about-section-label">
+            <span className="eyebrow">SoloCraft</span>
+          </div>
           <div className="max-w-3xl text-lg leading-[1.85] text-muted">
             {copy.about.story.map((paragraph) => (
               <p key={paragraph} className="mt-6 first:mt-0">{paragraph}</p>
             ))}
           </div>
-        </div>
-      </section>
+        </EditorialGrid>
+      </SectionShell>
 
-      <section className="border-t border-white/[0.07]">
-        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
-          <span className="eyebrow">{copy.about.techTitle}</span>
-          <ul className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-foreground">
+      <SectionShell size="medium" bordered>
+        <EditorialGrid>
+          <div className="about-section-label">
+            <span className="eyebrow">{copy.about.techTitle}</span>
+          </div>
+          <div className="about-tech-list">
             {copy.about.tech.map((item) => (
-              <li key={item} className="border border-white/[0.07] bg-white/[0.012] px-5 py-4 text-sm text-muted">
-                {item}
-              </li>
+              <ContentRow
+                key={item}
+                index={String(copy.about.tech.indexOf(item) + 1).padStart(2, "0")}
+                title={item}
+              />
             ))}
-          </ul>
-        </div>
-      </section>
+          </div>
+        </EditorialGrid>
+      </SectionShell>
 
-      <section className="border-t border-white/[0.07]">
-        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
+      <SectionShell size="medium" bordered>
+        <EditorialGrid>
+          <div className="about-section-label" />
+          <div className="about-cta">
           <DisplayHeading variant="section" className="mt-0">{copy.about.ctaTitle}</DisplayHeading>
           <p className="mt-5 text-muted">{copy.about.ctaDescription}</p>
           <Link
@@ -47,8 +59,9 @@ export default function About() {
           >
             {copy.about.ctaButton}
           </Link>
-        </div>
-      </section>
+          </div>
+        </EditorialGrid>
+      </SectionShell>
     </div>
   );
 }
