@@ -3,6 +3,7 @@ import "./globals.css";
 import "./brand.css";
 import "./products.css";
 import "./effects.css";
+import "./layout-system.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AmbientDepthScene from "./components/AmbientDepthScene";

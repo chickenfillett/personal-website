@@ -3,6 +3,8 @@
 import { PageHero } from "../components/PageHero";
 import { useLanguage } from "@/lib/i18n/context";
 import { getSiteCopy } from "@/content/siteContent";
+import { EditorialGrid } from "../components/layout/EditorialGrid";
+import { SectionShell } from "../components/layout/SectionShell";
 
 export default function Contact() {
   const { locale } = useLanguage();
@@ -12,11 +14,13 @@ export default function Contact() {
     <div className="flex flex-col">
       <PageHero eyebrow="SoloCraft" title={copy.contact.title} intro={copy.contact.intro} />
 
-      <section className="border-t border-white/[0.07]">
-        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-20 md:py-28">
+      <SectionShell size="medium" bordered>
+        <EditorialGrid>
+          <div className="contact-section-label">
           <span className="eyebrow">{copy.contact.infoTitle}</span>
-          <div className="mt-10 border-t border-white/10 max-w-2xl">
-            <div className="grid grid-cols-1 sm:grid-cols-[10rem_1fr] gap-3 sm:gap-8 py-7 border-b border-white/[0.07]">
+          </div>
+          <div className="surface-info contact-email-panel">
+            <div className="grid grid-cols-1 sm:grid-cols-[10rem_1fr] gap-3 sm:gap-8">
               <span className="text-sm text-[var(--faint)]">{copy.contact.email}</span>
               <a
                 href="mailto:3371436706@qq.com"
@@ -26,8 +30,8 @@ export default function Contact() {
               </a>
             </div>
           </div>
-        </div>
-      </section>
+        </EditorialGrid>
+      </SectionShell>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import type { ProductId } from "@/domain/products";
 import { productPolicyMeta } from "@/domain/products";
 import { commerceLabels } from "@/lib/productCommerce";
 import { useLanguage } from "@/lib/i18n/context";
+import { SectionShell } from "./layout/SectionShell";
 
 export default function ProductPolicyPage({ product, kind }: { product: ProductId; kind: PolicyKind }) {
   const { locale } = useLanguage();
@@ -33,10 +34,9 @@ export default function ProductPolicyPage({ product, kind }: { product: ProductI
         )}
       />
 
-      <section className="border-t border-white/[0.07]">
-        <div className="max-w-[1180px] mx-auto px-5 md:px-8 py-12 md:py-20">
+      <SectionShell size="medium" bordered>
           <div className="grid grid-cols-1 lg:grid-cols-[17rem_1fr] gap-10 lg:gap-16 items-start">
-            <aside className="lg:sticky lg:top-24 rounded-3xl border border-white/[0.08] bg-white/[0.015] p-6">
+            <aside className="surface-info lg:sticky lg:top-24">
               <h2 className="text-xs uppercase tracking-[0.14em] text-[var(--faint)]">{labels.toc}</h2>
               <nav className="mt-5 flex flex-col gap-3 text-sm text-muted">
                 {copy.sections.map((section, index) => (
@@ -49,8 +49,7 @@ export default function ProductPolicyPage({ product, kind }: { product: ProductI
 
             <LegalDocumentSections sections={copy.sections} />
           </div>
-        </div>
-      </section>
+      </SectionShell>
     </div>
   );
 }
