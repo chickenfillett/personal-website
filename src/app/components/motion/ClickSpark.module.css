@@ -1,0 +1,34 @@
+.wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--spark-color, #83aedd);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: pop 0.6s ease-out forwards;
+}
+
+@keyframes pop {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--spark-dx), var(--spark-dy)) scale(0.2);
+  }
+}
+
+/* prefers-reduced-motion: no sparks, content fully visible */
+@media (prefers-reduced-motion: reduce) {
+  .spark {
+    animation: none;
+    display: none;
+  }
+}

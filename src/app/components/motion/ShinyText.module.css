@@ -1,0 +1,32 @@
+.shiny {
+  display: inline-block;
+  color: var(--fg, #e8eef5);
+  background: linear-gradient(110deg, var(--fg, #e8eef5) 38%, var(--accent, #83aedd) 50%, var(--fg, #e8eef5) 62%);
+  background-size: 220% 100%;
+  /* Static highlight, fixed at the 0% phase (pixel-identical to the V1 still).
+     The old @keyframes animated background-position, which cannot be composited:
+     while the eyebrow was on screen it repainted the whole viewport every frame,
+     the real cause of scroll stutter on high-refresh phones. */
+  background-position: 0% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: none;
+}
+
+.static {
+  background: none;
+  -webkit-text-fill-color: var(--fg, #e8eef5);
+  color: var(--fg, #e8eef5);
+  animation: none;
+}
+
+/* prefers-reduced-motion: fully static, visible text */
+@media (prefers-reduced-motion: reduce) {
+  .shiny {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: var(--fg, #e8eef5);
+    color: var(--fg, #e8eef5);
+  }
+}

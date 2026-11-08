@@ -1,0 +1,47 @@
+/* ============================================================================
+   Frosted-glass buttons — applied site-wide.
+   Imported last in layout.tsx, so it wins over brand.css / products.css rules.
+   Repeated class selectors (.primary-action.primary-action) raise specificity
+   to match two-class rules such as `.product-page .primary-action` without
+   resorting to !important.
+   Pure CSS: no JS, no animation, no external asset, no new npm dependency.
+   ========================================================================= */
+
+.primary-action.primary-action,
+.secondary-action.secondary-action,
+.language-menu-button.language-menu-button,
+.mobile-menu-button.mobile-menu-button {
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  background: rgba(232, 238, 245, 0.06);
+  border: 1px solid rgba(232, 238, 245, 0.16);
+  color: #E8EEF5;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* The primary CTA keeps a slightly brighter pane so it still reads as the lead action. */
+.primary-action.primary-action {
+  background: rgba(232, 238, 245, 0.13);
+  border-color: rgba(232, 238, 245, 0.26);
+}
+
+.primary-action.primary-action:hover,
+.secondary-action.secondary-action:hover,
+.language-menu-button.language-menu-button:hover,
+.mobile-menu-button.mobile-menu-button:hover,
+.language-menu-button.language-menu-button[aria-expanded="true"],
+.mobile-menu-button.mobile-menu-button[aria-expanded="true"] {
+  background: rgba(232, 238, 245, 0.11);
+  border-color: rgba(232, 238, 245, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Browsers without backdrop-filter get an opaque-enough frosted pane instead. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .primary-action.primary-action,
+  .secondary-action.secondary-action,
+  .language-menu-button.language-menu-button,
+  .mobile-menu-button.mobile-menu-button {
+    background: rgba(232, 238, 245, 0.10);
+  }
+}

@@ -1,0 +1,51 @@
+.card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--bg-2, #111821);
+  border: 1px solid var(--line, rgba(232, 238, 245, 0.14));
+  border-radius: 12px;
+  isolation: isolate;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(131, 174, 221, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .glow { opacity: 1; }
+
+.glare {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(232, 238, 245, 0.06) 48%, transparent 60%);
+  transform: translateX(-120%);
+}
+
+.card:hover .glare {
+  transform: translateX(120%);
+  transition: transform 0.8s ease;
+}
+
+.static .glow,
+.static .glare { display: none; }
+
+/* prefers-reduced-motion: no follow light, no glare, content fully visible */
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .glare { display: none; }
+  .card:hover .glare { transform: none; transition: none; }
+}

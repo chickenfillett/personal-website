@@ -1,0 +1,35 @@
+{
+  "name": "chicken-fillet-personal-site",
+  "version": "0.3.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/run-next.mjs dev server",
+    "build": "npm run build:static",
+    "build:static": "node scripts/run-next.mjs build static",
+    "build:server": "node scripts/run-next.mjs build server",
+    "start": "npm run start:server",
+    "start:server": "node scripts/run-next.mjs start server",
+    "typecheck": "tsc --noEmit --pretty false",
+    "lint": "eslint",
+    "audit": "node scripts/audit-repository.mjs",
+    "validate": "npm run audit && npm run typecheck && npm run lint",
+    "import:energyflow": "node scripts/import-energyflow-assets.mjs",
+    "import:adhd": "node scripts/import-adhd-assets.mjs"
+  },
+  "dependencies": {
+    "next": "16.2.4",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.4",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,768 @@
+:root {
+  --container-max: 1200px;
+  --page-gutter: 24px;
+  --grid-gap: 24px;
+
+  --section-xl: 144px;
+  --section-lg: 112px;
+  --section-md: 80px;
+  --section-sm: 56px;
+
+  --radius-media: 18px;
+  --radius-panel: 14px;
+  --radius-control: 10px;
+  --radius-compact: 10px;
+
+  --line-soft: rgba(232, 238, 245, 0.075);
+  --line-strong: rgba(232, 238, 245, 0.22);
+  --surface-panel: rgba(232, 238, 245, 0.025);
+  --surface-media: var(--bg-2);
+}
+
+.site-container {
+  width: min(calc(100% - var(--page-gutter) * 2), var(--container-max));
+  margin-inline: auto;
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--grid-gap);
+}
+
+/* 「左标签 + 右正文」两栏：label 占 4 列，正文占 5–12 列。
+   用于不带专门列跨度类的 editorial-grid（Introduction / 产品问题区 / 更新记录）。 */
+.editorial-split > :first-child {
+  grid-column: span 4;
+  min-width: 0;
+}
+
+.editorial-split > :last-child {
+  grid-column: 5 / span 8;
+  min-width: 0;
+}
+
+.section-shell {
+  position: relative;
+}
+
+/* 区块之间用 1px 细分割线 + 留白分段 */
+.section-shell-bordered {
+  border-top: 1px solid var(--line-soft);
+}
+
+.section-shell-large {
+  padding-block: var(--section-lg);
+}
+
+.section-shell-medium {
+  padding-block: var(--section-md);
+}
+
+.section-shell-small {
+  padding-block: var(--section-sm);
+}
+
+.split-section {
+  row-gap: 48px;
+}
+
+.split-section-center {
+  align-items: center;
+}
+
+.split-section-start {
+  align-items: start;
+}
+
+.split-section-content {
+  grid-column: span 5;
+  min-width: 0;
+}
+
+.split-section-media {
+  grid-column: span 7;
+  min-width: 0;
+}
+
+.split-section-reverse .split-section-content {
+  grid-column: 8 / span 5;
+}
+
+.split-section-reverse .split-section-media {
+  grid-column: 1 / span 7;
+  grid-row: 1;
+}
+
+.media-surface {
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-media);
+  background: var(--surface-media);
+}
+
+.media-surface .screenshot-frame,
+.media-surface .screenshot-frame:hover {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.media-surface .screenshot-image {
+  border-radius: 0;
+}
+
+.surface-info {
+  padding: 28px 30px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-panel);
+  background: var(--surface-panel);
+}
+
+/* 内容行：1px 细分割线 + 间距分段 */
+.content-row {
+  padding-block: 1.35rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.content-row-copy h3 {
+  color: var(--foreground);
+  font-size: 1rem;
+  font-weight: 520;
+}
+
+.content-row-copy p {
+  margin-top: 0.55rem;
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+/* 首页产品特征：无边框小标签 */
+.outcome-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outcome-chip {
+  padding: 0.42rem 0.95rem;
+  border-radius: var(--radius-control);
+  background: var(--surface-panel);
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.outcome-chip:hover {
+  color: var(--foreground);
+  background: rgba(232, 238, 245, 0.05);
+}
+
+.inline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0;
+  color: var(--faint);
+  font-size: 0.875rem;
+}
+
+.inline-meta > span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.inline-meta > span + span::before {
+  content: "·";
+  margin-inline: 0.65rem;
+  color: var(--line-strong);
+}
+
+/* 产品索引行：无编号列、无横线 */
+.product-index-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.product-index-row {
+  display: grid;
+  grid-template-columns: minmax(10rem, 1.1fr) minmax(14rem, 1.8fr) minmax(7rem, auto) 2rem;
+  gap: 24px;
+  align-items: center;
+  padding-block: 26px;
+  border-radius: var(--radius-panel);
+  color: var(--muted);
+  transition: background-color 180ms ease;
+}
+
+.product-index-row:hover {
+  background: var(--surface-panel);
+}
+
+.product-index-row strong {
+  color: var(--foreground);
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  transition: color 180ms ease;
+}
+
+.product-index-description {
+  line-height: 1.7;
+}
+
+.product-index-meta {
+  color: var(--faint);
+  font-size: 0.875rem;
+}
+
+.product-index-arrow {
+  color: var(--faint);
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.product-index-row:hover strong,
+.product-index-row:hover .product-index-arrow {
+  color: var(--foreground);
+}
+
+.product-index-row:hover .product-index-arrow {
+  transform: translateX(4px);
+}
+
+.control-primary,
+.control-secondary,
+.primary-action,
+.secondary-action {
+  min-height: 44px;
+  border-radius: var(--radius-control);
+  padding-inline: 20px;
+}
+
+.page-hero {
+  padding-top: calc(var(--section-lg) + 48px);
+  padding-bottom: var(--section-md);
+}
+
+.legal-document-hero {
+  padding-top: calc(var(--section-lg) + 32px);
+  padding-bottom: var(--section-md);
+}
+
+.home-hero {
+  min-height: min(880px, 100svh);
+  display: grid;
+  align-items: center;
+  padding-top: 128px;
+  padding-bottom: var(--section-lg);
+}
+
+.home-hero-media {
+  min-width: 0;
+}
+
+.home-hero-preview {
+  display: block;
+}
+
+/* 首屏轮播：三张图全部预载并叠放，靠透明度交叉过渡。
+   三张图实测均为 16:9（1400x788 / 1120x630 / 1600x900），舞台固定 16:9，
+   框与图严丝合缝，切换时尺寸恒定不变 */
+.home-hero-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+
+.home-hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.home-hero-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.home-hero-slide .screenshot-frame,
+.home-hero-slide .screenshot-image {
+  width: 100%;
+  height: 100%;
+}
+
+.home-hero-slide .screenshot-image {
+  object-fit: contain;
+}
+
+/* 首页产品章节：整块可点击进入产品页 */
+.home-product-block {
+  display: block;
+  border-radius: var(--radius-panel);
+  color: inherit;
+}
+
+.home-product-media .media-surface {
+  transition: border-color 260ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-product-block:hover .home-product-media .media-surface {
+  border-color: rgba(232, 238, 245, 0.22);
+  transform: translateY(-3px);
+}
+
+.home-product-enter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.6rem;
+  color: var(--faint);
+  font-size: 0.86rem;
+  transition: color 180ms ease;
+}
+
+.home-product-block:hover .home-product-enter {
+  color: var(--foreground);
+}
+
+.product-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.product-switcher-control {
+  min-height: 40px;
+  padding-inline: 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  color: var(--faint);
+  font-size: 0.82rem;
+  transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.product-switcher-control:hover,
+.product-switcher-control[aria-selected="true"] {
+  border-color: var(--line-strong);
+  background: var(--surface-panel);
+  color: var(--foreground);
+}
+
+.home-product-copy .site-heading-feature {
+  max-width: 13em;
+}
+
+.home-studio-heading {
+  grid-column: span 4;
+}
+
+.home-studio-content {
+  grid-column: 5 / span 8;
+}
+
+.home-studio-note {
+  margin-top: 40px;
+}
+
+.product-hero-section,
+.product-pricing-section,
+.product-info-links-section,
+.product-feature-row,
+.product-section-inner {
+  width: auto;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.product-hero-section {
+  min-height: min(840px, 92svh);
+  display: grid;
+  align-items: center;
+  padding-top: calc(var(--section-lg) + 32px);
+  padding-bottom: var(--section-lg);
+}
+
+.product-page-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 48px var(--grid-gap);
+}
+
+.product-hero-media,
+.product-hero-media::before,
+.product-hero-media > .screenshot-frame,
+.product-hero-media > .screenshot-frame:hover {
+  transform: none;
+}
+
+.product-hero-media::before {
+  display: none;
+}
+
+.product-status {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.product-info-links-section {
+  padding-bottom: var(--section-sm);
+}
+
+/* 定价区基于 editorial-grid 的 12 列：左侧文案 5 列，右侧大字价格 6 列，中间留 1 列呼吸
+   （必须写在 layout-system 中：本文件最后加载，才能压过 editorial-grid 的默认列布局） */
+.product-pricing-grid {
+  margin-top: 1.75rem;
+  align-items: start;
+}
+
+.product-pricing-copy {
+  grid-column: 1 / span 5;
+}
+
+.product-pricing-rows {
+  grid-column: 7 / span 6;
+  align-self: start;
+}
+
+.product-feature-section,
+.product-feature-row,
+.product-gallery-section {
+  background: transparent;
+}
+
+.product-feature-row {
+  padding-block: var(--section-lg);
+}
+
+.detail-rail {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 48px var(--grid-gap);
+}
+
+.product-feature-copy {
+  top: auto;
+}
+
+.product-feature-copy > p {
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.82;
+}
+
+.product-feature-media,
+.product-feature-media .screenshot-frame,
+.product-feature-media .screenshot-frame:hover,
+.product-feature-row-reverse .product-feature-media .screenshot-frame,
+.product-feature-row-reverse .product-feature-media .screenshot-frame:hover {
+  transform: none;
+}
+
+.product-gallery-section {
+  padding-block: var(--section-lg);
+}
+
+.product-section-inner {
+  padding-block: 0;
+}
+
+.product-section-heading {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--grid-gap);
+}
+
+.product-section-heading > .eyebrow {
+  grid-column: span 4;
+}
+
+.product-section-heading .site-heading-section,
+.product-section-heading > p {
+  grid-column: 5 / span 8;
+}
+
+.product-section-heading > p {
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.82;
+}
+
+.products-index {
+  padding-top: 0;
+  padding-bottom: var(--section-lg);
+}
+
+.products-index-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.products-index-row {
+  display: block;
+  padding-block: 48px;
+  border-radius: var(--radius-panel);
+  color: var(--muted);
+  transition: background-color 180ms ease;
+}
+
+.products-index-row:hover {
+  background: var(--surface-panel);
+}
+
+.products-index-copy {
+  position: relative;
+  min-width: 0;
+}
+
+.products-index-copy .product-index-title {
+  margin-top: 18px;
+  color: var(--foreground);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+.products-index-copy > p {
+  margin-top: 20px;
+  max-width: 34rem;
+  line-height: 1.75;
+}
+
+.products-index-copy .inline-meta {
+  margin-top: 20px;
+}
+
+.products-index-action {
+  display: inline-block;
+  margin-top: 28px;
+  color: var(--faint);
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.products-index-row:hover .products-index-action {
+  color: var(--foreground);
+  transform: translateX(4px);
+}
+
+.about-section-label,
+.contact-section-label {
+  grid-column: span 4;
+}
+
+.about-section-label + div,
+.about-tech-list,
+.about-cta,
+.contact-email-panel {
+  grid-column: 5 / span 8;
+}
+
+.site-footer {
+  padding-top: var(--section-md);
+}
+
+.site-footer-main {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--grid-gap);
+}
+
+.site-footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.site-footer-group h3 {
+  color: var(--faint);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-footer-group > div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.site-footer-meta {
+  margin-top: var(--section-sm);
+  padding-block: 24px;
+  border-top: 1px solid var(--line-soft);
+  color: var(--faint);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 1023px) {
+  .editorial-grid,
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+
+  .split-section-content,
+  .split-section-media,
+  .split-section-reverse .split-section-content,
+  .split-section-reverse .split-section-media {
+    grid-column: 1;
+  }
+
+  .split-section-content,
+  .split-section-reverse .split-section-content {
+    grid-row: 1;
+  }
+
+  .split-section-media,
+  .split-section-reverse .split-section-media {
+    grid-row: 2;
+  }
+
+  .product-index-row {
+    grid-template-columns: minmax(0, 1fr) 2rem;
+  }
+
+  .product-index-description {
+    grid-column: 1 / -1;
+  }
+
+  .product-index-meta {
+    grid-column: 1;
+  }
+
+  .product-index-arrow {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .product-page-grid,
+  .product-pricing-grid,
+  .detail-rail,
+  .product-section-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .product-pricing-copy,
+  .product-pricing-rows,
+  .product-section-heading > .eyebrow,
+  .product-section-heading .site-heading-section,
+  .product-section-heading > p {
+    grid-column: 1;
+  }
+
+  .product-pricing-grid,
+  .product-section-heading {
+    gap: 32px;
+  }
+
+  .product-pricing-grid {
+    margin-top: 0;
+    row-gap: 40px;
+  }
+
+  .product-pricing-copy,
+  .product-pricing-rows {
+    grid-column: 1 / -1;
+  }
+
+  .home-studio-heading,
+  .home-studio-content,
+  .about-section-label,
+  .contact-section-label,
+  .about-section-label + div,
+  .about-tech-list,
+  .about-cta,
+  .contact-email-panel,
+  .editorial-split > :first-child,
+  .editorial-split > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .home-studio-grid,
+  .site-footer-main {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+
+  .site-footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 40px;
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --page-gutter: 16px;
+    --radius-media: 12px;
+  }
+
+  .section-shell-large,
+  .section-shell-medium,
+  .section-shell-small {
+    padding-block: 72px;
+  }
+
+  .surface-info {
+    padding: 24px 20px;
+  }
+
+  .product-index-row {
+    grid-template-columns: minmax(0, 1fr) 1.5rem;
+    gap: 10px;
+    padding-block: 20px;
+  }
+
+  .product-index-row strong {
+    font-size: 1.3rem;
+  }
+
+  .product-index-description,
+  .product-index-meta {
+    grid-column: 1 / -1;
+  }
+
+  .product-index-arrow {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .page-hero,
+  .home-hero,
+  .product-hero-section {
+    min-height: 0;
+    padding-top: 112px;
+    padding-bottom: 72px;
+  }
+
+  .product-switcher {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .product-switcher-control {
+    justify-self: stretch;
+    border-radius: var(--radius-compact);
+    text-align: left;
+  }
+
+  .site-footer-links {
+    grid-template-columns: 1fr;
+  }
+}

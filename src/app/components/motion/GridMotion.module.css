@@ -1,0 +1,36 @@
+.grid {
+  position: relative;
+  /* The grid lives on a pseudo-element with a transform (not an animated
+     background-position, which would repaint every frame). overflow:hidden
+     keeps the oversized pseudo-element from widening the document. */
+  overflow: hidden;
+}
+
+.grid::before {
+  content: "";
+  position: absolute;
+  inset: -48px;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(232, 238, 245, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232, 238, 245, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  /* Static grid. The 24s infinite transform loop kept the compositor and main
+     thread awake on every frame while the hero was on screen, even though the
+     transform itself never repaints. The pattern is periodic at 48px, so
+     stopping at translate(0,0) is pixel-identical to every phase of the old
+     animation: zero visual change, zero scroll cost. */
+  animation: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.static::before { animation: none; }
+
+/* prefers-reduced-motion: grid stays fully visible */
+@media (prefers-reduced-motion: reduce) {
+  .grid::before { animation: none; }
+}

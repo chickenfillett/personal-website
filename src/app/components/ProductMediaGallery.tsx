@@ -1,0 +1,70 @@
+import Image from "next/image";
+import { DisplayHeading } from "./Typography";
+import { MediaSurface } from "./layout/MediaSurface";
+import { SectionShell } from "./layout/SectionShell";
+
+type GalleryItem = readonly [title: string, body: string];
+
+export function ProductMediaGallery({
+  eyebrow,
+  title,
+  intro,
+  images,
+  items,
+  imageWidth,
+  imageHeight,
+  imageShape,
+  productName,
+}: {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  images: readonly string[];
+  items?: readonly GalleryItem[];
+  imageWidth: number;
+  imageHeight: number;
+  imageShape: "portrait" | "landscape";
+  productName: string;
+}) {
+  return (
+    <SectionShell size="large" bordered className="product-gallery-section">
+      <div className="product-section-inner">
+        <div className="product-section-heading">
+          <span className="eyebrow">{eyebrow}</span>
+          <DisplayHeading variant="section">{title}</DisplayHeading>
+          <p>{intro}</p>
+        </div>
+
+        <div className={`product-gallery-grid product-gallery-grid-${imageShape}`}>
+          {images.map((image, index) => {
+            const item = items?.[index];
+            const imageTitle = item?.[0] ?? `${productName} ${index + 1}`;
+
+            return (
+              <figure key={image} className="product-gallery-item">
+                <MediaSurface size="gallery" className="product-gallery-media">
+                  <Image
+                    src={image}
+                    alt={imageTitle}
+                    width={imageWidth}
+                    height={imageHeight}
+                    loading="lazy"
+                    decoding="async"
+                    sizes={imageShape === "portrait"
+                      ? "(max-width: 620px) 88vw, (max-width: 980px) 45vw, 360px"
+                      : "(max-width: 720px) 92vw, (max-width: 1180px) 45vw, 360px"}
+                  />
+                </MediaSurface>
+
+                <figcaption className="product-gallery-copy">
+                  <h3>{imageTitle}</h3>
+                  {item ? <p>{item[1]}</p> : null}
+                </figcaption>
+              </figure>
+            );
+          })}
+        </div>
+      </div>
+    </SectionShell>
+  );
+}

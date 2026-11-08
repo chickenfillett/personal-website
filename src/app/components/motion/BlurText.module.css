@@ -1,0 +1,39 @@
+.root {
+  display: inline;
+}
+
+.char {
+  display: inline-block;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  white-space: pre;
+}
+
+.go {
+  animation: blurIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes blurIn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+
+/* prefers-reduced-motion: text fully visible, no per-char animation */
+@media (prefers-reduced-motion: reduce) {
+  .char {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+  .go { animation: none !important; }
+}

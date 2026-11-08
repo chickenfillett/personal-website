@@ -1,0 +1,41 @@
+.star {
+  position: relative;
+  display: inline-flex;
+  padding: 1px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--line, rgba(232, 238, 245, 0.14));
+  isolation: isolate;
+}
+
+.border {
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(from 0deg, transparent 0 72%, var(--accent, #83aedd) 85%, transparent 100%);
+  animation: spin 5s linear infinite;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  border-radius: 11px;
+  background: var(--bg-2, #111821);
+  color: var(--fg, #e8eef5);
+}
+
+.static .border {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* prefers-reduced-motion: plain hairline border, content fully visible */
+@media (prefers-reduced-motion: reduce) {
+  .border {
+    animation: none;
+    opacity: 0;
+  }
+}

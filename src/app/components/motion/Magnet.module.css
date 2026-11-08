@@ -1,0 +1,24 @@
+.magnet {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Only promote to a compositor layer while actually being hovered. A constant
+   will-change keeps two permanent layers alive (and enlarges the backdrop
+   sampling area of the frosted CTA buttons nested inside). */
+.magnet:hover {
+  will-change: transform;
+}
+
+.static {
+  transition: none !important;
+  transform: none !important;
+}
+
+/* prefers-reduced-motion: no pull, content fully visible */
+@media (prefers-reduced-motion: reduce) {
+  .magnet {
+    transition: none !important;
+    transform: none !important;
+  }
+}

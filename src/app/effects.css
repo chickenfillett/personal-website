@@ -1,0 +1,293 @@
+/* Ambient light, material depth, and performance-aware surface effects. */
+:root {
+  /* Glass tokens collapsed to solid surfaces + 1px hairline borders */
+  --glass-fill: var(--bg-2);
+  --glass-fill-strong: var(--bg-2);
+  --glass-line: var(--line);
+  --glass-line-bright: rgba(232, 238, 245, 0.22);
+  --glass-shadow: none;
+}
+
+body {
+  background: var(--bg);
+}
+
+/* 暗角：四周压暗聚焦中心 */
+.ambient-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+.ambient-lightfield {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  opacity: 0.96;
+}
+
+.ambient-spectrum {
+  position: absolute;
+  pointer-events: none;
+  width: 130vw;
+  left: -15vw;
+  filter: none;
+  opacity: 0;
+}
+
+.ambient-spectrum-a {
+  height: 40vh;
+  top: 6vh;
+  opacity: 0.18;
+  transform: rotate(-3deg) skewX(-6deg);
+  background: transparent;
+  animation: none;
+}
+
+.ambient-spectrum-b {
+  height: 36vh;
+  top: 44vh;
+  opacity: 0.2;
+  transform: rotate(2deg) skewX(4deg) translateZ(-80px);
+  background: transparent;
+  animation: none;
+}
+
+.ambient-spectrum-c {
+  height: 32vh;
+  bottom: -4vh;
+  opacity: 0.14;
+  transform: rotate(-2deg) skewX(-4deg) translateZ(-150px);
+  background: transparent;
+  animation: none;
+}
+
+@keyframes spectrum-drift-a {
+  from { transform: rotate(-3deg) skewX(-6deg) scaleX(0.98); opacity: 0.14; }
+  to { transform: rotate(-2deg) skewX(-4deg) scaleX(1.04); opacity: 0.22; }
+}
+
+@keyframes spectrum-drift-b {
+  from { transform: rotate(2deg) skewX(4deg) translateZ(-80px) scaleX(1.03); opacity: 0.16; }
+  to { transform: rotate(1deg) skewX(3deg) translateZ(-70px) scaleX(0.97); opacity: 0.24; }
+}
+
+.glass-stage,
+.card-premium,
+.surface-depth,
+.story-stage-card,
+.product-pricing-panel,
+.product-gallery-card {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--glass-line);
+  background: var(--glass-fill);
+  box-shadow: none;
+  transition: border-color 260ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.glass-stage::before,
+.card-premium::before,
+.surface-depth::before,
+.story-stage-card::before,
+.product-pricing-panel::before,
+.product-gallery-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: transparent;
+  opacity: 0;
+}
+
+.glass-stage::after,
+.card-premium::after,
+.surface-depth::after,
+.story-stage-card::after,
+.product-gallery-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  background: transparent;
+  opacity: 0;
+  transform: none;
+  transition: opacity 300ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.glass-stage:hover,
+.card-premium:hover,
+.surface-depth:hover,
+.story-stage-card:hover,
+.product-gallery-card:hover {
+  border-color: var(--accent);
+  box-shadow: none;
+  filter: none;
+}
+
+.glass-stage:hover::after,
+.card-premium:hover::after,
+.surface-depth:hover::after,
+.story-stage-card:hover::after,
+.product-gallery-card:hover::after {
+  opacity: 0;
+  transform: none;
+}
+
+.hero-preview-shell {
+  transform: none;
+  transform-origin: center;
+  box-shadow: none;
+}
+
+.hero-preview-shell::before {
+  background: transparent;
+  opacity: 0;
+}
+
+.hero-preview-stage {
+  border-radius: 0.85rem;
+  background: var(--bg);
+}
+
+.hero-preview-chip {
+  border-radius: 0.7rem;
+  background: var(--bg-2);
+  border-color: var(--line);
+}
+
+.story-preview-shell {
+  perspective: 1500px;
+  overflow: visible;
+}
+
+.story-stage-card {
+  border-radius: 1rem;
+  transform: none;
+  transform-origin: center;
+  box-shadow: none;
+}
+
+.screenshot-frame,
+.screenshot-container,
+.product-page .screenshot-frame {
+  position: relative;
+  isolation: isolate;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--bg-2);
+  overflow: hidden;
+  box-shadow: none;
+  transition: border-color 260ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.screenshot-frame::after,
+.screenshot-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: none;
+  background: transparent;
+  mix-blend-mode: normal;
+  opacity: 0;
+}
+
+.screenshot-frame:hover,
+.product-page .screenshot-frame:hover {
+  border-color: var(--accent);
+  box-shadow: none;
+  filter: none;
+}
+
+.screenshot-image,
+.screenshot-img,
+.product-page .screenshot-image {
+  border-radius: calc(0.9rem - 1px);
+}
+
+.hero-preview-image-frame,
+.story-stage-image-frame {
+  border: 0;
+  border-radius: 0.72rem;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hero-preview-image-frame::after,
+.story-stage-image-frame::after {
+  display: none;
+}
+
+.product-hero-media::after,
+.product-feature-media::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 8%;
+  right: 3%;
+  bottom: -8%;
+  height: 26%;
+  background: transparent;
+  filter: none;
+  transform: none;
+  opacity: 0;
+}
+
+.product-gallery-card {
+  border-radius: 0.8rem;
+  background: var(--bg-2);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 580px;
+}
+
+.product-feature-row {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 680px;
+}
+
+.product-gallery-media {
+  background: var(--bg);
+}
+
+.product-gallery-copy,
+.product-gallery-index {
+  background: var(--bg-2);
+}
+
+.index-row {
+  border-radius: 0.85rem;
+  padding-inline: 1rem;
+}
+
+@media (max-width: 920px) {
+  .hero-preview-shell,
+  .story-stage-card {
+    transform: none;
+  }
+
+  .ambient-spectrum {
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-spectrum {
+    animation: none;
+  }
+
+  .glass-stage::after,
+  .card-premium::after,
+  .surface-depth::after,
+  .story-stage-card::after,
+  .product-gallery-card::after {
+    transition: none;
+  }
+}
