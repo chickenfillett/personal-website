@@ -9,7 +9,8 @@ import { SectionShell } from "./components/layout/SectionShell";
 import { SplitSection } from "./components/layout/SplitSection";
 import { MediaSurface } from "./components/layout/MediaSurface";
 import { DisplayHeading } from "./components/Typography";
-import { BlurText, ShinyText, Magnet, ClickSpark, GridMotion, SpotlightCard } from "@/app/components/motion";
+import { BlurText, ShinyText, Magnet, ClickSpark, SpotlightCard } from "@/app/components/motion";
+import GradientASCII from "./components/hero/GradientASCII";
 
 export default function Home() {
   const { locale } = useLanguage();
@@ -18,8 +19,42 @@ export default function Home() {
 
   return (
     <div className="home-page">
-      {/* Hero — the name is the visual center; no imagery, only a faint GridMotion grid. */}
+      {/* Hero — the name is the visual center; the eclipse orb is the single light source. */}
       <SectionShell size="large" className="brand-hero home-hero">
+        {/* V3 full-bleed light field — one canvas behind the whole hero, not a boxed orb.
+            The glyphs and cold-blue glow now reach the name, the page edges and the divider.
+            Pure inline style so no frozen CSS is touched; pointer-events off keeps CTAs clickable. */}
+        <div
+          aria-hidden="true"
+          style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}
+        >
+          <GradientASCII
+            shape="eclipse"
+            colors={["#0A1420", "#2E5A82", "#83AEDD", "#E8EEF5"]}
+            characters=" 01"
+            cellSize={18}
+            density={0.62}
+            glyphOpacity={0.95}
+            gradientOpacity={0.35}
+            glow={0.06}
+            depthOfField={0}
+            flicker={0.40}
+            softness={0.5}
+            scale={1}
+            flow={0.5}
+            speed={1.5}
+            grain={0}
+            variation={0}
+            scrambleRadius={0.1}
+            mouseInteraction={false}
+            clickEffect="none"
+            intro={false}
+            lightMode={false}
+            fontFamily='"SF Mono", "Cascadia Mono", Consolas, monospace'
+            style={{ width: "100%", height: "100%" }}
+          />
+        </div>
+        <div style={{ position: "relative", zIndex: 1 }}>
         <SplitSection
           content={
             <div className="brand-hero-copy animate-fade-in">
@@ -44,12 +79,9 @@ export default function Home() {
               </ClickSpark>
             </div>
           }
-          media={
-            <div className="home-hero-media" aria-hidden="true">
-              <GridMotion />
-            </div>
-          }
+          media={<div className="home-hero-media" aria-hidden="true" />}
         />
+        </div>
       </SectionShell>
 
       {/* Introduction */}
